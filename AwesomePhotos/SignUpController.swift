@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpController: UIViewController {
     
@@ -121,16 +122,41 @@ class SignUpController: UIViewController {
 //    }
     
     @objc func handleSignUp() {
-        print("Handle sign up")
-//        guard let email = emailTextField.text else { return }
-//        guard let password = passwordTextField.text else { return }
-//        guard let username = usernameTextField.text else { return }
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
         
-//        createUser(withEmail: email, password: password, username: username)
+        createUser(withEmail: email, password: password, username: username)
     }
     
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: API
+    
+    func createUser(withEmail email: String, password: String, username: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("Failed to sign user up with error: ", error.localizedDescription)
+                return
+            }
+
+            guard let uid = result?.user.uid else { return }
+            let values = ["email": email, "username": username]
+            
+            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
+                if let error = error {
+                    print("Failed to update database values with error: ", error.localizedDescription)
+                    return
+                }
+                guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+                guard let controller = navController.viewControllers[0] as? HomeController else { return }
+                controller.configureViewComponents()
+                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+            })
+        }
     }
     
     // MARK: - Helper Functions

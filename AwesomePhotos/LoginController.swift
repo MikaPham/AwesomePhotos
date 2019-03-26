@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
-    //UI
+    //MARK: UI
     
     let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -98,24 +99,42 @@ class LoginController: UIViewController {
         return button
     }()
     
-    //Init
+    //MARK: Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
     }
     
-    //Selectors
+    //MARK: Selectors
     
     @objc func handleLogin() {
-        print("Handle login")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        logUserIn(withEmail: email, password: password)
     }
     
     @objc func handleShowSignUp() {
         print(navigationController?.pushViewController(SignUpController(), animated: true))
     }
     
-    //Helper functions
+    //MARK: API
+    
+    func logUserIn(withEmail email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) {(result,error) in
+            if let error = error {
+                print("Failed to log in with error: ", error.localizedDescription)
+                return
+            }
+            
+            guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+            guard let controller = navController.viewControllers[0] as? HomeController else { return }
+            controller.configureViewComponents()
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    //MARK: Helper functions
     func configureViewComponents() {
         view.backgroundColor = UIColor.mainBlue()
         navigationController?.navigationBar.isHidden = true
