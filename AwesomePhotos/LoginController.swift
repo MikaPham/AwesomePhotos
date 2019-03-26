@@ -115,7 +115,13 @@ class LoginController: UIViewController {
     }
     
     @objc func handleShowSignUp() {
-        print(navigationController?.pushViewController(SignUpController(), animated: true))
+        navigationController?.pushViewController(SignUpController(), animated: true)
+    }
+    
+    @objc func alertClose(gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     //MARK: API
@@ -124,6 +130,11 @@ class LoginController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) {(result,error) in
             if let error = error {
                 print("Failed to log in with error: ", error.localizedDescription)
+                let alert = UIAlertController(title: "Log in failed", message: "Invalid email or password", preferredStyle: .alert)
+                self.present(alert, animated: true, completion:{
+                    alert.view.superview?.isUserInteractionEnabled = true
+                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
+                })
                 return
             }
             

@@ -133,12 +133,23 @@ class SignUpController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func alertClose(gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     // MARK: API
     
     func createUser(withEmail email: String, password: String, username: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to sign user up with error: ", error.localizedDescription)
+                let alert = UIAlertController(title: "Sign up failed", message: "Cannot sign user up with provided credentials", preferredStyle: .alert)
+                self.present(alert, animated: true, completion:{
+                    alert.view.superview?.isUserInteractionEnabled = true
+                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
+                })
                 return
             }
 
@@ -148,12 +159,16 @@ class SignUpController: UIViewController {
             Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
                 if let error = error {
                     print("Failed to update database values with error: ", error.localizedDescription)
+                    let alert = UIAlertController(title: "Sign up failed", message: "Cannot sign user up with provided credentials", preferredStyle: .alert)
+                    self.present(alert, animated: true, completion:{
+                        alert.view.superview?.isUserInteractionEnabled = true
+                        alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
+                    })
                     return
                 }
                 guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
                 guard let controller = navController.viewControllers[0] as? HomeController else { return }
                 controller.configureViewComponents()
-                self.dismiss(animated: true, completion: nil)
                 self.dismiss(animated: true, completion: nil)
             })
         }
