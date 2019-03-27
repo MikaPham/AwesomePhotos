@@ -90,17 +90,6 @@ class SignUpController: UIViewController {
         return dividerView
     }()
     
-//    let googleLoginButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.layer.cornerRadius = 5
-//        button.setTitle("Sign In with Google", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-//        button.backgroundColor = .googleRed()
-//        button.setTitleColor(.white, for: .normal)
-//        button.addTarget(self, action: #selector(handleGoogleSignIn), for: .touchUpInside)
-//        return button
-//    }()
-    
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -116,10 +105,7 @@ class SignUpController: UIViewController {
     }
     
     // MARK: - Selectors
-    
-//    @objc func handleGoogleSignIn() {
-//        GIDSignIn.sharedInstance()?.signIn()
-//    }
+
     
     @objc func handleSignUp() {
         guard let email = emailTextField.text else { return }
@@ -199,9 +185,7 @@ class SignUpController: UIViewController {
         view.addSubview(dividerView)
         dividerView.anchor(top: loginButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
         
-//        view.addSubview(googleLoginButton)
-//        googleLoginButton.anchor(top: dividerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
-        
+
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 32, paddingBottom: 12, paddingRight: 32, width: 0, height: 50)
         
