@@ -16,6 +16,11 @@
 		183E5B042249BC8600F7309E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B032249BC8600F7309E /* HomeController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
+		18CBCDA9224C650700420484 /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDA8224C650700420484 /* GenericView.swift */; };
+		18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAA224C65BB00420484 /* LogInView.swift */; };
+		18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAC224C65C800420484 /* SignUpView.swift */; };
+		18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAE224C65CE00420484 /* HomeView.swift */; };
+		18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDB0224C6A2300420484 /* GenericViewController.swift */; };
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +36,11 @@
 		183E5B032249BC8600F7309E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18CBCDA8224C650700420484 /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
+		18CBCDAA224C65BB00420484 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		18CBCDAC224C65C800420484 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		18CBCDAE224C65CE00420484 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		18CBCDB0224C6A2300420484 /* GenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,11 +79,10 @@
 		183E5AEC2249BBC100F7309E /* AwesomePhotos */ = {
 			isa = PBXGroup;
 			children = (
-				183E5B032249BC8600F7309E /* HomeController.swift */,
-				183E5B012249BC5E00F7309E /* SignUpController.swift */,
+				18CBCDA7224C648E00420484 /* Controllers */,
+				18CBCDA5224C647500420484 /* Views */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
 				183E5AED2249BBC100F7309E /* AppDelegate.swift */,
-				183E5AFF2249BC3000F7309E /* LoginController.swift */,
 				183E5AF12249BBC100F7309E /* Main.storyboard */,
 				183E5AF42249BBC200F7309E /* Assets.xcassets */,
 				183E5AF62249BBC200F7309E /* LaunchScreen.storyboard */,
@@ -83,13 +92,34 @@
 			path = AwesomePhotos;
 			sourceTree = "<group>";
 		};
+		18CBCDA5224C647500420484 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18CBCDA8224C650700420484 /* GenericView.swift */,
+				18CBCDAA224C65BB00420484 /* LogInView.swift */,
+				18CBCDAC224C65C800420484 /* SignUpView.swift */,
+				18CBCDAE224C65CE00420484 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18CBCDA7224C648E00420484 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				183E5B032249BC8600F7309E /* HomeController.swift */,
+				183E5AFF2249BC3000F7309E /* LoginController.swift */,
+				183E5B012249BC5E00F7309E /* SignUpController.swift */,
+				18CBCDB0224C6A2300420484 /* GenericViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		5F52CD847736A41FC2177DA3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */,
 				81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -204,6 +234,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -213,6 +244,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -228,8 +260,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
+				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
+				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
+				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
+				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,

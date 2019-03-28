@@ -9,4 +9,5 @@ target 'AwesomePhotos' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+  pod 'SnapKit'
 end
