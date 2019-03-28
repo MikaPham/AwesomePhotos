@@ -21,6 +21,7 @@ class HomeController: GenericViewController<HomeView> {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationController?.navigationBar.barTintColor = UIColor.mainBlue()
         authenticateUser()
+        loadUserData()
     }
     
     //MARK: - Selector
@@ -52,15 +53,12 @@ class HomeController: GenericViewController<HomeView> {
     }
     
     func authenticateUser() {
-        
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let navController = UINavigationController(rootViewController: LoginController())
                 navController.navigationBar.barStyle = .black
                 self.present(navController, animated: true, completion: nil)
             }
-        } else {
-            loadUserData()
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LogInView : GenericView {
     
@@ -59,21 +60,30 @@ class LogInView : GenericView {
         label.textColor = UIColor(white: 1, alpha: 0.88)
         label.font = UIFont.systemFont(ofSize: 14)
         dividerView.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: dividerView.centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: dividerView.centerXAnchor).isActive = true
+        label.snp.makeConstraints{(make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
         
         let separator1 = UIView()
         separator1.backgroundColor = UIColor(white: 1, alpha: 0.88)
         dividerView.addSubview(separator1)
-        separator1.anchor(top: nil, left: dividerView.leftAnchor, bottom: nil, right: label.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1.0)
-        separator1.centerYAnchor.constraint(equalTo: dividerView.centerYAnchor).isActive = true
+        separator1.snp.makeConstraints{(make) in
+            make.left.equalTo(dividerView.snp_left).offset(8)
+            make.right.equalTo(label.snp_left).offset(-8)
+            make.height.equalTo(1.0)
+            make.centerY.equalToSuperview()
+        }
         
         let separator2 = UIView()
         separator2.backgroundColor = UIColor(white: 1, alpha: 0.88)
         dividerView.addSubview(separator2)
-        separator2.anchor(top: nil, left: label.rightAnchor, bottom: nil, right: dividerView.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1.0)
-        separator2.centerYAnchor.constraint(equalTo: dividerView.centerYAnchor).isActive = true
+        separator2.snp.makeConstraints{(make) in
+            make.left.equalTo(label.snp_right).offset(8)
+            make.right.equalTo(dividerView.snp_right).offset(-8)
+            make.height.equalTo(1.0)
+            make.centerY.equalToSuperview()
+        }
         
         return dividerView
     }()
@@ -87,30 +97,59 @@ class LogInView : GenericView {
         return button
     }()
     
+    //MARK: Helper functions
     
     override func configureView() {
-        super.configureView()
-        
         self.backgroundColor = UIColor.mainBlue()
         
         self.addSubview(logoImageView)
-        logoImageView.anchor(top: self.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 60, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
-        logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        logoImageView.snp.makeConstraints{(make) in
+            make.top.equalToSuperview().offset(60)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
+            make.centerX.equalToSuperview()
+        }
         
         self.addSubview(emailContainerView)
-        emailContainerView.anchor(top: logoImageView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+        emailContainerView.snp.makeConstraints{(make) in
+            make.top.equalTo(logoImageView.snp_bottom).offset(24)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
+        
         
         self.addSubview(passwordContainerView)
-        passwordContainerView.anchor(top: emailContainerView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+        passwordContainerView.snp.makeConstraints{(make) in
+            make.top.equalTo(emailContainerView.snp_bottom).offset(16)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
         
         self.addSubview(loginButton)
-        loginButton.anchor(top: passwordContainerView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+        loginButton.snp.makeConstraints{(make) in
+            make.top.equalTo(passwordContainerView.snp_bottom).offset(24)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
         
         self.addSubview(dividerView)
-        dividerView.anchor(top: loginButton.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 24, paddingLeft: 32, paddingBottom: 0, paddingRight: 32, width: 0, height: 50)
+        dividerView.snp.makeConstraints{(make) in
+            make.top.equalTo(loginButton.snp_bottom).offset(24)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
         
         self.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 32, paddingBottom: 12, paddingRight: 32, width: 0, height: 50)
+        dontHaveAccountButton.snp_makeConstraints{(make) in
+            make.bottom.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
     }
 }
 

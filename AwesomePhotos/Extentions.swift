@@ -7,38 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 
 extension UIView {
-    
-    func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        if let top = top {
-            self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
-        }
-        
-        if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
-        }
-        
-        if let bottom = bottom {
-            bottomAnchor.constraint(equalTo: bottom, constant: -paddingBottom).isActive = true
-        }
-        
-        if let right = right {
-            rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
-        }
-        
-        if width != 0 {
-            widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        
-        if height != 0 {
-            heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
-    }
-    
     func textContainerView(view: UIView, _ image: UIImage, _ textField: UITextField) -> UIView {
         view.backgroundColor = .clear
         
@@ -46,17 +17,29 @@ extension UIView {
         imageView.image = image
         imageView.alpha = 0.87
         view.addSubview(imageView)
-        imageView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 24, height: 24)
-        imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        imageView.snp.makeConstraints{(make) in
+            make.left.equalToSuperview().offset(8)
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+            make.centerY.equalToSuperview()
+        }
         
         view.addSubview(textField)
-        textField.anchor(top: nil, left: imageView.rightAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-        textField.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+        textField.snp.makeConstraints{(make) in
+            make.left.equalTo(imageView.snp_right).offset(12)
+            make.right.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
+        }
         
         let separatorView = UIView()
         separatorView.backgroundColor = UIColor(white: 1, alpha: 0.87)
         view.addSubview(separatorView)
-        separatorView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.75)
+        separatorView.snp.makeConstraints{(make) in
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(0.75)
+        }
         
         return view
     }

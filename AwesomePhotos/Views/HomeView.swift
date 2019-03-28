@@ -26,7 +26,9 @@ class HomeView : GenericView {
         self.backgroundColor = UIColor.mainBlue()
         
         self.addSubview(welcomeLabel)
-        welcomeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        welcomeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        welcomeLabel.snp.makeConstraints{(make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
 }
