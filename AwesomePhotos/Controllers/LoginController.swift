@@ -33,8 +33,6 @@ class LoginController: GenericViewController<LogInView> {
     
     @objc func alertClose(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
-        contentView.emailTextField.text = ""
-        contentView.passwordTextField.text = ""
     }
     
     //MARK: - API

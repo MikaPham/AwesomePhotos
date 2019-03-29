@@ -12,16 +12,17 @@ import Firebase
 class HomeController: GenericViewController<HomeView> {
     
     //MARK: - Init
+    override func viewWillAppear(_ animated: Bool) {
+        authenticateUser()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "AwesomePhotos"
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationController?.navigationBar.barTintColor = UIColor.mainRed()
-        authenticateUser()
-        loadUserData()
     }
     
     //MARK: - Selector
@@ -60,6 +61,8 @@ class HomeController: GenericViewController<HomeView> {
                 navController.navigationBar.barStyle = .black
                 self.present(navController, animated: true, completion: nil)
             }
+        } else {
+            loadUserData()
         }
     }
     
@@ -69,7 +72,7 @@ class HomeController: GenericViewController<HomeView> {
             let navController = UINavigationController(rootViewController: LoginController())
             navController.navigationBar.barStyle = .black
             self.present(navController, animated: true, completion: nil)
-        } catch let error{
+        } catch let error as NSError{
             print("Failed to sign out with error", error)
             let alert = UIAlertController(title: "Sign out failed", message: "Failed to sign user out", preferredStyle: .alert)
             self.present(alert, animated: true, completion:{

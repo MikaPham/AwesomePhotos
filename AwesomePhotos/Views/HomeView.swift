@@ -16,8 +16,6 @@ class HomeView : GenericView {
         let label = UILabel()
         label.textColor = UIColor.mainRed()
         label.font = UIFont.systemFont(ofSize: 28)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.alpha = 0
         return label
     }()
     

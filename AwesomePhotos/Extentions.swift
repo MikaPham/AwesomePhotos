@@ -58,7 +58,7 @@ extension UIColor {
 extension UITextField {
     func textField(withPlaceolder placeholder: String, isSecureTextEntry: Bool) -> UITextField {
         let tf = YoshikoTextField()
-        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.font = UIFont.systemFont(ofSize: 17)
         tf.textColor = .black
         tf.isSecureTextEntry = isSecureTextEntry
         tf.attributedPlaceholder = NSAttributedString(string: placeholder)
