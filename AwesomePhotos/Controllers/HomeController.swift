@@ -19,7 +19,7 @@ class HomeController: GenericViewController<HomeView> {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
         navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.mainBlue()
+        navigationController?.navigationBar.barTintColor = UIColor.mainRed()
         authenticateUser()
         loadUserData()
     }
@@ -40,6 +40,7 @@ class HomeController: GenericViewController<HomeView> {
     
     //MARK: - API
     func loadUserData() {
+        print("loading user data")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         print(uid)
         Database.database().reference().child("users").child(uid).child("username").observeSingleEvent(of: .value) { (snapshot) in

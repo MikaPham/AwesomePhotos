@@ -16,6 +16,7 @@ class LoginController: GenericViewController<LogInView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        hideKeyboardWhenTappedAround()
     }
     
     //MARK: - Selectors

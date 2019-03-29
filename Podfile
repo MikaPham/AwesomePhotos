@@ -10,4 +10,5 @@ target 'AwesomePhotos' do
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
   pod 'SnapKit'
+  pod 'TextFieldEffects'
 end

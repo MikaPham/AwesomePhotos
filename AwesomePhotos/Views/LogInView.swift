@@ -23,12 +23,12 @@ class LogInView : GenericView {
     
     lazy var emailContainerView: UIView = {
         let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"ic_mail_outline_white_2x")!, emailTextField)
+        return view.textContainerView(view: view, UIImage(named:"icons8-message-black")!, emailTextField)
     }()
     
     lazy var passwordContainerView: UIView = {
         let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"ic_lock_outline_white_2x")!, passwordTextField)
+        return view.textContainerView(view: view, UIImage(named:"icons8-lock-black")!, passwordTextField)
     }()
     
     lazy var emailTextField: UITextField = {
@@ -45,8 +45,8 @@ class LogInView : GenericView {
         let button = UIButton(type: .system)
         button.setTitle("LOG IN", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.setTitleColor(UIColor.mainBlue(), for: .normal)
-        button.backgroundColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.mainRed()
         button.addTarget(self, action: #selector(LoginController.handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
         return button
@@ -57,7 +57,7 @@ class LogInView : GenericView {
         
         let label = UILabel()
         label.text = "OR"
-        label.textColor = UIColor(white: 1, alpha: 0.88)
+        label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 14)
         dividerView.addSubview(label)
         label.snp.makeConstraints{(make) in
@@ -66,7 +66,7 @@ class LogInView : GenericView {
         }
         
         let separator1 = UIView()
-        separator1.backgroundColor = UIColor(white: 1, alpha: 0.88)
+        separator1.backgroundColor = UIColor.black
         dividerView.addSubview(separator1)
         separator1.snp.makeConstraints{(make) in
             make.left.equalTo(dividerView.snp_left).offset(8)
@@ -76,7 +76,7 @@ class LogInView : GenericView {
         }
         
         let separator2 = UIView()
-        separator2.backgroundColor = UIColor(white: 1, alpha: 0.88)
+        separator2.backgroundColor = UIColor.black
         dividerView.addSubview(separator2)
         separator2.snp.makeConstraints{(make) in
             make.left.equalTo(label.snp_right).offset(8)
@@ -90,8 +90,8 @@ class LogInView : GenericView {
     
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]))
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.mainRed()]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(LoginController.handleShowSignUp), for: .touchUpInside)
         return button
@@ -100,7 +100,7 @@ class LogInView : GenericView {
     //MARK: Helper functions
     
     override func configureView() {
-        self.backgroundColor = UIColor.mainBlue()
+        self.backgroundColor = .white
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in

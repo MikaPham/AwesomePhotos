@@ -14,6 +14,7 @@ class SignUpController: GenericViewController<SignUpView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: - Selectors
