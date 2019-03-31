@@ -16,13 +16,13 @@ extension UIView {
         
         let imageView = UIImageView()
         imageView.image = image
-        imageView.alpha = 0.87
 
         view.addSubview(imageView)
         imageView.snp.makeConstraints{(make) in
             make.left.equalToSuperview().offset(8)
-            make.width.equalTo(21)
             make.centerY.equalToSuperview().offset(8)
+            make.width.equalTo(25)
+            make.height.equalTo(25)
         }
         
         view.addSubview(textField)

@@ -8,14 +8,15 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
     
     //MARK: - UI
     func configureNavBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleGoBack))
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.mainRed()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
+        navigationItem.leftBarButtonItem?.tintColor = .black
+        navigationController?.navigationBar.barTintColor = UIColor.white
     }
     
     //MARK: - Init

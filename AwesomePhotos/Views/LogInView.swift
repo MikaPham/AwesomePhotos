@@ -23,12 +23,12 @@ class LogInView : GenericView {
     
     lazy var emailContainerView: UIView = {
         let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"icons8-message-black")!, emailTextField)
+        return view.textContainerView(view: view, UIImage(named:"icons8-new_post")!, emailTextField)
     }()
     
     lazy var passwordContainerView: UIView = {
         let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"icons8-lock-black")!, passwordTextField)
+        return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, passwordTextField)
     }()
     
     lazy var emailTextField: UITextField = {
