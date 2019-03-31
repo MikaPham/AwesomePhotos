@@ -11,6 +11,14 @@ import Firebase
 
 class HomeController: GenericViewController<HomeView> {
     
+    //MARK: - UI
+    func configureNavBar() {
+        navigationItem.title = "AwesomePhotos"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.barTintColor = UIColor.mainRed()
+    }
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         authenticateUser()
@@ -19,10 +27,7 @@ class HomeController: GenericViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "AwesomePhotos"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "baseline_arrow_back_white_24dp"), style: .plain, target: self, action: #selector(handleSignOut))
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationController?.navigationBar.barTintColor = UIColor.mainRed()
+        configureNavBar()
     }
     
     //MARK: - Selector

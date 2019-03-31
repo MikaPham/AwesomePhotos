@@ -45,10 +45,19 @@ class LogInView : GenericView {
         let button = UIButton(type: .system)
         button.setTitle("LOG IN", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.mainRed()
         button.addTarget(self, action: #selector(LoginController.handleLogin), for: .touchUpInside)
         button.layer.cornerRadius = 5
+        return button
+    }()
+    
+    let forgotPasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Forgot your password?", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(LoginController.handleForgotPassword), for: .touchUpInside)
         return button
     }()
     
@@ -58,7 +67,7 @@ class LogInView : GenericView {
         let label = UILabel()
         label.text = "OR"
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 17)
         dividerView.addSubview(label)
         label.snp.makeConstraints{(make) in
             make.centerX.equalToSuperview()
@@ -130,6 +139,14 @@ class LogInView : GenericView {
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
             make.top.equalTo(passwordContainerView.snp_bottom).offset(24)
+            make.left.equalToSuperview().offset(120)
+            make.right.equalToSuperview().offset(-120)
+            make.height.equalTo(50)
+        }
+        
+        self.addSubview(forgotPasswordButton)
+        forgotPasswordButton.snp.makeConstraints { (make) in
+            make.top.equalTo(loginButton.snp_bottom).offset(8)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
@@ -137,7 +154,7 @@ class LogInView : GenericView {
         
         self.addSubview(dividerView)
         dividerView.snp.makeConstraints{(make) in
-            make.top.equalTo(loginButton.snp_bottom).offset(24)
+            make.top.equalTo(forgotPasswordButton.snp_bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)

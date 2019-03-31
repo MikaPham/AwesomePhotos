@@ -69,7 +69,7 @@ class SignUpView : GenericView {
         let label = UILabel()
         label.text = "OR"
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 17)
         dividerView.addSubview(label)
         label.snp.makeConstraints{(make) in
             make.centerX.equalToSuperview()
@@ -148,8 +148,8 @@ class SignUpView : GenericView {
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
             make.top.equalTo(passwordContainerView.snp_bottom).offset(24)
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
+            make.left.equalToSuperview().offset(120)
+            make.right.equalToSuperview().offset(-120)
             make.height.equalTo(50)
         }
         
