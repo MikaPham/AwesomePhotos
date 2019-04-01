@@ -57,6 +57,11 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
                 })
                 return
             }
+            let alert = UIAlertController(title: "Help is on the way!", message: "Check your inbox for a password reset link", preferredStyle: .alert)
+            self.present(alert, animated: true, completion:{
+                alert.view.superview?.isUserInteractionEnabled = true
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
+            })
         }
     }
 }

@@ -115,7 +115,7 @@ class SignUpView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(60)
+            make.top.equalToSuperview().offset(100)
             make.width.equalTo(150)
             make.height.equalTo(150)
             make.centerX.equalToSuperview()
