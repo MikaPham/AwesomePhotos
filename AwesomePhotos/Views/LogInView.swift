@@ -113,7 +113,7 @@ class LogInView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(80)
             make.width.equalTo(150)
             make.height.equalTo(150)
             make.centerX.equalToSuperview()

@@ -15,7 +15,9 @@ class HomeController: GenericViewController<HomeView> {
     func configureNavBar() {
         navigationItem.title = "AwesomePhotos"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleSignOut))
+        navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.mainRed()]
     }
     
     //MARK: - Init

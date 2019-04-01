@@ -70,7 +70,7 @@ class ForgotPasswordView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(150)
+            make.top.equalToSuperview().offset(100)
             make.width.equalTo(120)
             make.height.equalTo(120)
             make.centerX.equalToSuperview()
@@ -86,7 +86,7 @@ class ForgotPasswordView : GenericView {
         
         self.addSubview(label2)
         label2.snp.makeConstraints { (make) in
-            make.top.equalTo(label1.snp_bottom).offset(32)
+            make.top.equalTo(label1.snp_bottom).offset(16)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
@@ -95,7 +95,7 @@ class ForgotPasswordView : GenericView {
         self.addSubview(emailContainerView)
         emailContainerView.snp.makeConstraints{(make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(label2.snp_bottom).offset(32)
+            make.top.equalTo(label2.snp_bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)

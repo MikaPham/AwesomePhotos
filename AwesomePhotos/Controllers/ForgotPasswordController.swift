@@ -17,6 +17,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
         navigationItem.leftBarButtonItem?.tintColor = .black
         navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate;
     }
     
     //MARK: - Init
