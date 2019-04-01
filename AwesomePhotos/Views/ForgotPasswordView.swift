@@ -78,7 +78,7 @@ class ForgotPasswordView : GenericView {
         
         self.addSubview(label1)
         label1.snp.makeConstraints { (make) in
-            make.top.equalTo(logoImageView.snp_bottom).offset(32)
+            make.top.equalTo(logoImageView.snp_bottom).offset(24)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
@@ -86,7 +86,7 @@ class ForgotPasswordView : GenericView {
         
         self.addSubview(label2)
         label2.snp.makeConstraints { (make) in
-            make.top.equalTo(label1.snp_bottom).offset(16)
+            make.top.equalTo(label1.snp_bottom).offset(8)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
@@ -103,7 +103,7 @@ class ForgotPasswordView : GenericView {
         
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
-            make.top.equalTo(emailContainerView.snp_bottom).offset(32)
+            make.top.equalTo(emailContainerView.snp_bottom).offset(24)
             make.left.equalToSuperview().offset(120)
             make.right.equalToSuperview().offset(-120)
             make.height.equalTo(50)

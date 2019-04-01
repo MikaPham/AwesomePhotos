@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+//SignUpController for SignUpView
 class SignUpController: GenericViewController<SignUpView> {
     
     override func viewDidLoad() {
@@ -38,21 +39,23 @@ class SignUpController: GenericViewController<SignUpView> {
     // MARK: - API
     
     func createUser(withEmail email: String, password: String, username: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
+            //If sign up fails
             if let error = error {
                 print("Failed to sign user up with error: ", error.localizedDescription)
-                let alert = UIAlertController(title: "Sign up failed", message: "Cannot sign user up with provided credentials", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
                 self.present(alert, animated: true, completion:{
                     alert.view.superview?.isUserInteractionEnabled = true
                     alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
                 })
                 return
             }
-
+            
+            //If sign up succeeds update user account with their username
             guard let uid = result?.user.uid else { return }
             let values = ["email": email, "username": username]
-            
             Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
+                //If update username fails
                 if let error = error {
                     print("Failed to update database values with error: ", error.localizedDescription)
                     let alert = UIAlertController(title: "Sign up failed", message: "Cannot sign user up with provided credentials", preferredStyle: .alert)
@@ -62,6 +65,7 @@ class SignUpController: GenericViewController<SignUpView> {
                     })
                     return
                 }
+                //If updates succeeds directs user to HomeController
                 guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
                 guard navController.viewControllers[0] is HomeController else { return }
                 self.dismiss(animated: true, completion: nil)

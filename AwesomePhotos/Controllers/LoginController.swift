@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+//LoginController for LogInView
 class LoginController: GenericViewController<LogInView> {
     
     //MARK: - Init
@@ -42,17 +43,18 @@ class LoginController: GenericViewController<LogInView> {
     //MARK: - API
     
     func logUserIn(withEmail email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) {(result,error) in
+        Auth.auth().signIn(withEmail: email, password: password) {(result,error) in //Attempt log user in
+            //If log in fails
             if let error = error {
                 print("Failed to log in with error: ", error.localizedDescription)
-                let alert = UIAlertController(title: "Log in failed", message: "Invalid email or password", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Log in failed", message: error.localizedDescription, preferredStyle: .alert)
                 self.present(alert, animated: true, completion:{
                     alert.view.superview?.isUserInteractionEnabled = true
                     alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
                 })
                 return
             }
-
+            //If log in succeeds direct user to HomeController
             guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
             guard navController.viewControllers[0] is HomeController else { return }
             self.dismiss(animated: true, completion: nil)

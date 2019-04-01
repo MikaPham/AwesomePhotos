@@ -8,6 +8,8 @@
 
 import UIKit
 
+//A generic view from which all other views are going to inherit
+
 public class GenericView : UIView {
     
     public required init() {

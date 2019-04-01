@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import TextFieldEffects
 
+//For textfields with images in logInVIew/ signUpView/ forgotPasswordView
 extension UIView {
     func textContainerView(view: UIView, _ image: UIImage, _ textField: UITextField) -> UIView {
         view.backgroundColor = .clear
@@ -37,6 +38,7 @@ extension UIView {
     }
 }
 
+//Definition of all colors used in the app
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
@@ -59,6 +61,7 @@ extension UIColor {
     }
 }
 
+//For text fields in logInVIew/ signUpView/ forgotPasswordView
 extension UITextField {
     func textField(withPlaceolder placeholder: String, isSecureTextEntry: Bool) -> UITextField {
         let tf = YoshikoTextField()
@@ -73,6 +76,7 @@ extension UITextField {
     }
 }
 
+//To hide keyboard when tapped on anywhere else on the screen
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))

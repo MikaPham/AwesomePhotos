@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Generic view controller from which all other view controllers are going to inherit
 public class GenericViewController<View: GenericView> : UIViewController {
     internal var contentView : View {
         return view as! View
