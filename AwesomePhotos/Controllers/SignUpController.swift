@@ -10,13 +10,36 @@ import UIKit
 import Firebase
 
 //SignUpController for SignUpView
-class SignUpController: GenericViewController<SignUpView> {
+class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //To lock screen in portrait mode
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.shouldSupportOrientation = .portrait // set desired orientation
+        let value = UIInterfaceOrientation.portrait.rawValue // set desired orientation
+        UIDevice.current.setValue(value, forKey: "orientation")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         hideKeyboardWhenTappedAround()
+        //Delegate textfields to make keyboard disappear when tap Return on keyboard
+        contentView.emailTextField.delegate = self
+        contentView.passwordTextField.delegate = self
+        contentView.usernameTextField.delegate = self
     }
+    
+    //Function to make keyboard disappear when tap Return on keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        contentView.emailTextField.resignFirstResponder()
+        contentView.passwordTextField.resignFirstResponder()
+        contentView.usernameTextField.resignFirstResponder()
+        return true
+    }
+    
     
     // MARK: - Selectors
     
@@ -42,7 +65,6 @@ class SignUpController: GenericViewController<SignUpView> {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
             //If sign up fails
             if let error = error {
-                print("Failed to sign user up with error: ", error.localizedDescription)
                 let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
                 self.present(alert, animated: true, completion:{
                     alert.view.superview?.isUserInteractionEnabled = true
@@ -57,8 +79,7 @@ class SignUpController: GenericViewController<SignUpView> {
             Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
                 //If update username fails
                 if let error = error {
-                    print("Failed to update database values with error: ", error.localizedDescription)
-                    let alert = UIAlertController(title: "Sign up failed", message: "Cannot sign user up with provided credentials", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
                     self.present(alert, animated: true, completion:{
                         alert.view.superview?.isUserInteractionEnabled = true
                         alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))

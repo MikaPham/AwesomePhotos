@@ -43,13 +43,13 @@ class LogInView : GenericView {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("LOG IN", for: .normal)
+        button.setTitle("Log In", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.mainRed()
         button.addTarget(self, action: #selector(LoginController.handleLogin), for: .touchUpInside)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 14
         return button
     }()
     
@@ -138,7 +138,7 @@ class LogInView : GenericView {
         
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
-            make.top.equalTo(passwordContainerView.snp_bottom).offset(24)
+            make.top.equalTo(passwordContainerView.snp_bottom).offset(32)
             make.left.equalToSuperview().offset(120)
             make.right.equalToSuperview().offset(-120)
             make.height.equalTo(50)

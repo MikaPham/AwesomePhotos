@@ -23,4 +23,5 @@ public class GenericView : UIView {
     }
     
     internal func configureView(){}
+    
 }

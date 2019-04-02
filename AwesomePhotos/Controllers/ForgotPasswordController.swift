@@ -11,7 +11,7 @@ import Firebase
 import SnapKit
 
 //ForgotPasswordController for ForgotPasswordView
-class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
+class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITextFieldDelegate {
     
     //MARK: - UI
     func configureNavBar() {
@@ -21,15 +21,35 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate; //To enable go back to previous screen with left swipe
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+        
+        //To lock screen in portrait mode
+        super.viewWillAppear(animated)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.shouldSupportOrientation = .portrait // set desired orientation
+        let value = UIInterfaceOrientation.portrait.rawValue // set desired orientation
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
         hideKeyboardWhenTappedAround()
+        //Delegate textfields to make keyboard disappear when tap Return on keyboard
+        contentView.emailTextField.delegate = self
+    }
+    
+    //Function to make keyboard disappear when tap Return on keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        contentView.emailTextField.resignFirstResponder()
+        return true
     }
     
     //MARK: - Selectors
@@ -52,7 +72,6 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView> {
         Auth.auth().sendPasswordReset(withEmail: email) { error in //Attempt to send reset password email
             //If send email fails
             if let error = error {
-                print("Failed to send email with error: ", error.localizedDescription)
                 let alert = UIAlertController(title: "Invalid email", message: error.localizedDescription, preferredStyle: .alert)
                 self.present(alert, animated: true, completion:{
                     alert.view.superview?.isUserInteractionEnabled = true

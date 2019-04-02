@@ -54,12 +54,13 @@ class SignUpView : GenericView {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SIGN UP", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.mainRed()
         button.addTarget(self, action: #selector(SignUpController.handleSignUp), for: .touchUpInside)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 14
         return button
     }()
     

@@ -52,8 +52,8 @@ extension UIColor {
         return UIColor.rgb(red: 168, green: 168, blue: 168)
     }
     
-    static func lightGrey() -> UIColor {
-        return UIColor.rgb(red: 230, green: 230, blue: 230)
+    static func lightGray() -> UIColor {
+        return UIColor.rgb(red: 248, green: 248, blue: 248)
     }
     
     static func mainRed() -> UIColor {
@@ -68,8 +68,9 @@ extension UITextField {
         tf.font = UIFont.systemFont(ofSize: 17)
         tf.textColor = .black
         tf.isSecureTextEntry = isSecureTextEntry
-        tf.attributedPlaceholder = NSAttributedString(string: placeholder)
-        tf.inactiveBorderColor = UIColor.lightGrey()
+        tf.attributedPlaceholder = NSMutableAttributedString(string: placeholder)
+        tf.placeholderFontScale = 0.8
+        tf.inactiveBorderColor = UIColor.lightGray()
         tf.activeBorderColor = UIColor.mainRed()
         tf.autocapitalizationType = .none
         return tf
@@ -78,6 +79,7 @@ extension UITextField {
 
 //To hide keyboard when tapped on anywhere else on the screen
 extension UIViewController {
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

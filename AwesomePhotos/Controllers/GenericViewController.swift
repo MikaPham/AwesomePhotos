@@ -14,6 +14,10 @@ public class GenericViewController<View: GenericView> : UIViewController {
         return view as! View
     }
     
+    public override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
