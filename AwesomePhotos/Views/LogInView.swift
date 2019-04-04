@@ -17,7 +17,7 @@ class LogInView : GenericView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = UIImage(named: "firebase-logo")
+        iv.image = UIImage(named: "AwesomeLogo")
         return iv
     }()
     
@@ -113,7 +113,7 @@ class LogInView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(100)
             make.width.equalTo(150)
             make.height.equalTo(150)
             make.centerX.equalToSuperview()

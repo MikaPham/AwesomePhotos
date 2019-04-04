@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "firebase-logo.png",
+      "filename" : "AwesomeLogo - Cornered.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "AwesomeLogo2x.png",
       "scale" : "2x"
     },
     {
