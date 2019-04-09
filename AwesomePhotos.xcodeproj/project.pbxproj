@@ -26,6 +26,9 @@
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
 		5D3D5058225C65D1002C14D5 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D5057225C65D1002C14D5 /* Camera.storyboard */; };
 		5D3D505B225C6676002C14D5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505A225C6676002C14D5 /* CameraViewController.swift */; };
+		5D3D505D225C66AD002C14D5 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505C225C66AD002C14D5 /* PreviewImageViewController.swift */; };
+		5D3D505F225C66C4002C14D5 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505E225C66C4002C14D5 /* VideoViewController.swift */; };
+		5D3D5061225C6706002C14D5 /* DownloadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
 		5D3D5057225C65D1002C14D5 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		5D3D505A225C6676002C14D5 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		5D3D505C225C66AD002C14D5 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
+		5D3D505E225C66C4002C14D5 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				5D3D505A225C6676002C14D5 /* CameraViewController.swift */,
+				5D3D505C225C66AD002C14D5 /* PreviewImageViewController.swift */,
+				5D3D505E225C66C4002C14D5 /* VideoViewController.swift */,
+				5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,12 +303,15 @@
 			files = (
 				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
+				5D3D5061225C6706002C14D5 /* DownloadImageViewController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				5D3D505B225C6676002C14D5 /* CameraViewController.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
+				5D3D505F225C66C4002C14D5 /* VideoViewController.swift in Sources */,
+				5D3D505D225C66AD002C14D5 /* PreviewImageViewController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
