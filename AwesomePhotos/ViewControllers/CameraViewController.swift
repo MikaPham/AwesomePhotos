@@ -59,7 +59,7 @@ class CameraViewController : UIViewController
             photoOutPut?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutPut!)
         }catch{
-            
+            print("Could not add input or output..")
         }
     }
     
