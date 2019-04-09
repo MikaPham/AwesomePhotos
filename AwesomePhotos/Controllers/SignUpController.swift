@@ -12,6 +12,11 @@ import Firebase
 //SignUpController for SignUpView
 class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     
+    let adminScope = "0"
+    let userScope = "1"
+    
+    let db = Firestore.firestore()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -75,8 +80,9 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             
             //If sign up succeeds update user account with their username
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "username": username]
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
+            let values = ["email": email, "username": username, "scope": self.userScope]
+            
+            self.db.collection("users").addDocument(data: values) { error in
                 //If update username fails
                 if let error = error {
                     let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
@@ -84,13 +90,12 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
                         alert.view.superview?.isUserInteractionEnabled = true
                         alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
                     })
-                    return
                 }
-                //If updates succeeds directs user to HomeController
-                guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-                guard navController.viewControllers[0] is HomeController else { return }
-                self.dismiss(animated: true, completion: nil)
-            })
+            }
+            //If updates succeeds directs user to HomeController
+            guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
+            guard navController.viewControllers[0] is HomeController else { return }
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
