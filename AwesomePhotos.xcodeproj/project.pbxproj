@@ -24,6 +24,8 @@
 		18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */; };
 		18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */; };
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
+		5D3D5058225C65D1002C14D5 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D3D5057225C65D1002C14D5 /* Camera.storyboard */; };
+		5D3D505B225C6676002C14D5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505A225C6676002C14D5 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
+		5D3D5057225C65D1002C14D5 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		5D3D505A225C6676002C14D5 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +87,8 @@
 		183E5AEC2249BBC100F7309E /* AwesomePhotos */ = {
 			isa = PBXGroup;
 			children = (
+				5D3D5059225C6657002C14D5 /* ViewControllers */,
+				5D3D5056225C65C0002C14D5 /* Storyboards */,
 				18CBCDA7224C648E00420484 /* Controllers */,
 				18CBCDA5224C647500420484 /* Views */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
@@ -118,6 +124,22 @@
 				18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5D3D5056225C65C0002C14D5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5D3D5057225C65D1002C14D5 /* Camera.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		5D3D5059225C6657002C14D5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5D3D505A225C6676002C14D5 /* CameraViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		5F52CD847736A41FC2177DA3 /* Pods */ = {
@@ -202,6 +224,7 @@
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				5D3D5058225C65D1002C14D5 /* Camera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +296,7 @@
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
+				5D3D505B225C6676002C14D5 /* CameraViewController.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
