@@ -8,6 +8,7 @@ target 'AwesomePhotos' do
   # Pods for AwesomePhotos
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 	pod 'Firebase/Auth'
   pod 'SnapKit'
   pod 'TextFieldEffects'
