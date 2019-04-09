@@ -20,6 +20,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     @IBOutlet weak var timeRecordedLbl: UILabel!
     
+    
+    //TODO : Will not upload video to storage
     @IBAction func recordingBtn(_ sender: UIButton) {
         if movieFileOutput.isRecording {
             movieFileOutput.stopRecording()
@@ -45,29 +47,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return NSTemporaryDirectory().appending("comeonFile.qt")
     }
     
-    func clearTmpDir(){
-        var removed: Int = 0
-        do {
-            let tmpDirURL = URL(string: NSTemporaryDirectory())!
-            let tmpFiles = try FileManager.default.contentsOfDirectory(at: tmpDirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-            print("\(tmpFiles.count) temporary files found")
-            for url in tmpFiles {
-                removed += 1
-                try FileManager.default.removeItem(at: url)
-            }
-            print("\(removed) temporary files removed")
-        } catch {
-            print(error)
-            print("\(removed) temporary files removed")
-        }
-    }
-    
-    func maxRecordedDuration() -> CMTime{
-        let recordtime : Int64 = 300
-        let preferedTimescale : Int32 = 1
-        return CMTimeMake(value: recordtime, timescale: preferedTimescale)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         clearTmpDir()
@@ -78,7 +57,14 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         startSession()
     }
     
-    //Set up video
+    //MARK : Custom Methods
+    
+    /*
+     1. Creating a capture session.
+     2. Obtaining and configuring the necessary capture devices.
+     3. Creating inputs using the capture devices.
+     4. Configuring a photo output object to process captured images.*/
+    
     func configureSession(){
         self.captureSession.sessionPreset = .high
     }
@@ -129,19 +115,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         self.captureSession.startRunning()
     }
     
-    //    //Func : Main
-    
-    func setVideoOrientation()
-    {
-        if let connection = self.myPreviewLayer?.connection
-        {
-            if connection.isVideoOrientationSupported{
-                connection.videoOrientation = self.videoOrientation()
-                self.myPreviewLayer?.frame = self.view.bounds
-            }
-        }
-    }
-    
+
     //Func : Helpers
     
     func videoOrientation() -> AVCaptureVideoOrientation
@@ -172,6 +146,44 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     override func viewWillLayoutSubviews() {
         self.setVideoOrientation()
     }
+    
+    
+    func setVideoOrientation()
+    {
+        if let connection = self.myPreviewLayer?.connection
+        {
+            if connection.isVideoOrientationSupported{
+                connection.videoOrientation = self.videoOrientation()
+                self.myPreviewLayer?.frame = self.view.bounds
+            }
+        }
+    }
+    
+   
+    func clearTmpDir(){  //Clears the cache so movie files won't be stored on the device
+        var removed: Int = 0
+        do {
+            let tmpDirURL = URL(string: NSTemporaryDirectory())!
+            let tmpFiles = try FileManager.default.contentsOfDirectory(at: tmpDirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            print("\(tmpFiles.count) temporary files found")
+            for url in tmpFiles {
+                removed += 1
+                try FileManager.default.removeItem(at: url)
+            }
+            print("\(removed) temporary files removed")
+        } catch {
+            print(error)
+            print("\(removed) temporary files removed")
+        }
+    }
+    
+    
+    func maxRecordedDuration() -> CMTime{  //Sets the maximum recorded time to 5 minutes
+        let recordtime : Int64 = 300
+        let preferedTimescale : Int32 = 1
+        return CMTimeMake(value: recordtime, timescale: preferedTimescale)
+    }
+    
     
     //Protocol for AVCaptureFileOutputRecordingDelegate
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
