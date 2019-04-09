@@ -29,6 +29,7 @@
 		5D3D505D225C66AD002C14D5 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505C225C66AD002C14D5 /* PreviewImageViewController.swift */; };
 		5D3D505F225C66C4002C14D5 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D505E225C66C4002C14D5 /* VideoViewController.swift */; };
 		5D3D5061225C6706002C14D5 /* DownloadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */; };
+		5DF7F4A9225C856F002D97C0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF7F4A8225C856F002D97C0 /* RoundedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		5D3D505C225C66AD002C14D5 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		5D3D505E225C66C4002C14D5 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
+		5DF7F4A8225C856F002D97C0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 				183E5AF62249BBC200F7309E /* LaunchScreen.storyboard */,
 				183E5B092249DDD900F7309E /* GoogleService-Info.plist */,
 				183E5AF92249BBC200F7309E /* Info.plist */,
+				5DF7F4A7225C8536002D97C0 /* GlobalDesign */,
 			);
 			path = AwesomePhotos;
 			sourceTree = "<group>";
@@ -149,6 +152,14 @@
 				5D3D5060225C6706002C14D5 /* DownloadImageViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5DF7F4A7225C8536002D97C0 /* GlobalDesign */ = {
+			isa = PBXGroup;
+			children = (
+				5DF7F4A8225C856F002D97C0 /* RoundedButton.swift */,
+			);
+			path = GlobalDesign;
 			sourceTree = "<group>";
 		};
 		5F52CD847736A41FC2177DA3 /* Pods */ = {
@@ -312,6 +323,7 @@
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				5D3D505F225C66C4002C14D5 /* VideoViewController.swift in Sources */,
 				5D3D505D225C66AD002C14D5 /* PreviewImageViewController.swift in Sources */,
+				5DF7F4A9225C856F002D97C0 /* RoundedButton.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
