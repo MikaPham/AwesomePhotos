@@ -12,4 +12,6 @@ target 'AwesomePhotos' do
   pod 'Firebase/Firestore'
   pod 'SnapKit'
   pod 'TextFieldEffects'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end

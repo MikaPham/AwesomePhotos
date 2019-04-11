@@ -21,6 +21,8 @@
 		18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAC224C65C800420484 /* SignUpView.swift */; };
 		18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAE224C65CE00420484 /* HomeView.swift */; };
 		18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDB0224C6A2300420484 /* GenericViewController.swift */; };
+		18F0E259225F39380021A240 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0E258225F39380021A240 /* ShareController.swift */; };
+		18F0E25B225F3AFC0021A240 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0E25A225F3AFC0021A240 /* User.swift */; };
 		18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */; };
 		18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */; };
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
@@ -43,6 +45,8 @@
 		18CBCDAC224C65C800420484 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		18CBCDAE224C65CE00420484 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18CBCDB0224C6A2300420484 /* GenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
+		18F0E258225F39380021A240 /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
+		18F0E25A225F3AFC0021A240 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				18CBCDA7224C648E00420484 /* Controllers */,
 				18CBCDA5224C647500420484 /* Views */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
+				18F0E25A225F3AFC0021A240 /* User.swift */,
 				183E5AED2249BBC100F7309E /* AppDelegate.swift */,
 				183E5AF12249BBC100F7309E /* Main.storyboard */,
 				183E5AF42249BBC200F7309E /* Assets.xcassets */,
@@ -116,6 +121,7 @@
 				183E5B012249BC5E00F7309E /* SignUpController.swift */,
 				18CBCDB0224C6A2300420484 /* GenericViewController.swift */,
 				18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */,
+				18F0E258225F39380021A240 /* ShareController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,6 +249,9 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -258,6 +267,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
@@ -283,11 +295,13 @@
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
+				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
+				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

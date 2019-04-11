@@ -108,6 +108,11 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.7.0)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
   - SnapKit (4.2.0)
   - TextFieldEffects (1.5.1)
 
@@ -116,6 +121,8 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Firestore
+  - RxCocoa
+  - RxSwift
   - SnapKit
   - TextFieldEffects
 
@@ -138,6 +145,9 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
     - SnapKit
     - TextFieldEffects
 
@@ -159,9 +169,12 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 1bc0d8c8a6d231d979925d05b1d5011e6c62b8aa
+PODFILE CHECKSUM: 216dfe593888a588ff2331d5595c5992d46413e2
 
 COCOAPODS: 1.6.1
