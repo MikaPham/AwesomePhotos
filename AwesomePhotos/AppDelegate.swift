@@ -16,10 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        let db = Firestore.firestore()
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let navController = UINavigationController(rootViewController: ShareController())
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+        let navController = UINavigationController(rootViewController: shareController)
         navController.navigationBar.barStyle = .black
         window?.rootViewController = navController
         

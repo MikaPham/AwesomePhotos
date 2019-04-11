@@ -36,12 +36,16 @@ class ShareController: UITableViewController {
     }
     
     func fetchUsers() {
+        
         //Make a connection to the database and take a snapshot at "users" collection
         self.db.collection("users").addSnapshotListener{ querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print ("Error fetching documents")
                 return
             }
+            self.usersEmails.removeAll()
+            self.users.removeAll()
+            self.shownUsers.removeAll()
             for doc in documents {
                 let dict = doc.data()
                 print(type(of: dict))
@@ -51,7 +55,6 @@ class ShareController: UITableViewController {
                 if let userEmail = user.email {
                     self.usersEmails.append(userEmail)
                 }
-                
                 //Must have this or else arrays will be empty
                 DispatchQueue.main.async() {
                     self.tableView.reloadData()
@@ -68,8 +71,8 @@ class ShareController: UITableViewController {
             .debounce(0.5, scheduler: MainScheduler.instance) //Wait 0.5s for changes
             .distinctUntilChanged() //If changes didn't occur, check if new value is the same as old value
             .filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
-            .subscribe(onNext: {[unowned self ] query in // Here we will be notified of every new value
-                self.shownUsers = self.usersEmails.filter{ $0.hasPrefix(query) } // We now do our "API Request" to find cities.
+            .subscribe(onNext: {[unowned self] query in // Here we will be notified of every new value
+                self.shownUsers = self.usersEmails.filter{ $0.hasPrefix(query.lowercased()) } // We now do our "API Request" to find cities.
                 self.tableView.reloadData() // Reload tableview's data
             })
             .disposed(by: disposeBag)
