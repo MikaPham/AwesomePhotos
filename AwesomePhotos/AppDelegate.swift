@@ -16,9 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        let db = Firestore.firestore()
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let navController = UINavigationController(rootViewController: HomeController())
+        let navController = UINavigationController(rootViewController: ShareController())
         navController.navigationBar.barStyle = .black
         window?.rootViewController = navController
         
