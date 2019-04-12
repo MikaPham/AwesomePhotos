@@ -9,7 +9,7 @@
 import UIKit
 
 class CellWithButton: UITableViewCell {
-    @IBOutlet weak var shareButton: cellButton!
+    @IBOutlet weak var button: cellButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

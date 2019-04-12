@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
         let navController = UINavigationController(rootViewController: shareController)
-        navController.navigationBar.barStyle = .black
+        navController.navigationBar.barTintColor = UIColor.lightGray()
         window?.rootViewController = navController
         
         return true
