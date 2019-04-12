@@ -12,11 +12,18 @@ import RxCocoa
 import Firebase
 
 class ShareController: UITableViewController {
+    
+    //MARK: UI
     @IBOutlet var searchBar: UISearchBar!
+    
     let db = Firestore.firestore()
+    
+    
     var users = [User]()
     var usersEmails = [String]()
     var shownUsers = [String]()
+    var toBeShared = [String]()
+    
     var disposeBag = DisposeBag() // Bag of disposables to release them when view is being deallocated
 
     override func viewDidLoad() {
@@ -30,9 +37,31 @@ class ShareController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "city", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath) as! CellWithButton
         cell.textLabel?.text = shownUsers[indexPath.row]
+        cell.shareButton.tag = indexPath.row
+        cell.shareButton.indexPath = indexPath
+        cell.shareButton.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+        
         return cell
+    }
+    
+    @objc func shareTapped(sender:cellButton!) {
+        guard let button = sender else { return }
+        guard let indexPath = button.indexPath else { return }
+        if !toBeShared.contains(shownUsers[button.tag]) {
+            toBeShared.append(shownUsers[button.tag])
+            usersEmails.remove(at: usersEmails.firstIndex(of: shownUsers[button.tag])!)
+            shownUsers.remove(at: button.tag)
+            self.tableView.deleteRows(at: [indexPath], with: .top)
+        }
+        print(toBeShared,usersEmails)
+    }
+    
+    fileprivate func clearUsersLists() {
+        self.usersEmails.removeAll()
+        self.users.removeAll()
+        self.shownUsers.removeAll()
     }
     
     func fetchUsers() {
@@ -43,12 +72,9 @@ class ShareController: UITableViewController {
                 print ("Error fetching documents")
                 return
             }
-            self.usersEmails.removeAll()
-            self.users.removeAll()
-            self.shownUsers.removeAll()
+            self.clearUsersLists()
             for doc in documents {
                 let dict = doc.data()
-                print(type(of: dict))
                 let user = User()
                 user.setValuesForKeys(dict) //Map dictionary values into User objects
                 self.users.append(user)
