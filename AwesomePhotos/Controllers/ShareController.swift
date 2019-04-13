@@ -13,21 +13,20 @@ import Firebase
 
 class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: UI
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var shareTableView: UITableView!
     
     let db = Firestore.firestore()
     
-    
     var users = [User]()
-    var usersEmails = [String]()
-    var shownUsers = [String]()
-    var toBeShared = [String]()
+    var shownUsers = [User]()
+    var toBeShared = [User]()
     
     var disposeBag = DisposeBag() // Bag of disposables to release them when view is being deallocated
 
+    
+    //MARK: UI
     fileprivate func configureTableViews() {
         shareTableView.delegate = self
         searchTableView.delegate = self
@@ -48,18 +47,19 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath) as! CellWithButton
         if (tableView.tag == 1) { //shareTableView
-            cell.textLabel?.text = toBeShared[indexPath.row]
+            cell.textLabel?.text = toBeShared[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
         } else if (tableView.tag == 2) { //searchTableView
-            cell.textLabel?.text = shownUsers[indexPath.row]
+            cell.textLabel?.text = shownUsers[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
         }
         return cell
     }
+    
     
     //MARK: Init
     override func viewDidLoad() {
@@ -76,28 +76,23 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         guard let indexPath = button.indexPath else { return }
     
         toBeShared.append(shownUsers[button.tag]) //add to toBeShared
-        usersEmails.remove(at: usersEmails.firstIndex(of: shownUsers[button.tag])!) //remove from usersEmails
         shownUsers.remove(at: button.tag) //remove from shownUsers
         searchTableView.deleteRows(at: [indexPath], with: .top) //remove row from searchTableView
         searchTableView.reloadData() //reload data of searchTableView
         shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .bottom) //insert row to shareTableView
-        //print(toBeShared,usersEmails)
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
     }
     
     @objc func removeTapped(sender:cellButton!) {
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else { return }
-        
-        usersEmails.append(toBeShared[button.tag]) //add to usersEmails
+
         toBeShared.remove(at: toBeShared.firstIndex(of: toBeShared[button.tag])!) //remove from toBeShared
         self.shareTableView.deleteRows(at: [indexPath], with: .fade) //remove row from shareTableView
         self.shareTableView.reloadData() //reload data of shareTableView
-        //print(toBeShared,usersEmails)
     }
     
     fileprivate func clearUsersLists() {
-        self.usersEmails.removeAll()
         self.users.removeAll()
         self.shownUsers.removeAll()
     }
@@ -110,11 +105,14 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             .distinctUntilChanged() //If changes didn't occur, check if new value is the same as old value
             .filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
             .subscribe(onNext: {[unowned self] query in // Here we will be notified of every new value
-                self.shownUsers = self.usersEmails.filter{ $0.contains(query.lowercased()) } // We now do our "API Request" to find cities.
+                self.shownUsers = self.users.filter({ (user) -> Bool in
+                    (user.email?.contains(query.lowercased()))!
+                })
                 self.searchTableView.reloadData() // Reload tableview's data
             })
             .disposed(by: disposeBag)
     }
+    
     
     //MARK: API
     func fetchUsers() {
@@ -130,10 +128,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 let dict = doc.data()
                 let user = User()
                 user.setValuesForKeys(dict) //Map dictionary values into User objects
+                user.uid = doc.documentID
                 self.users.append(user)
-                if let userEmail = user.email {
-                    self.usersEmails.append(userEmail)
-                }
+                
                 //Must have this or else arrays will be empty
                 DispatchQueue.main.async() {
                     self.searchTableView.reloadData()

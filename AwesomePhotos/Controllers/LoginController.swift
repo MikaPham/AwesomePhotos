@@ -12,8 +12,8 @@ import Firebase
 //LoginController for LogInView
 class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
     
-    //MARK: - Init
     
+    //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -40,8 +40,8 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
         return true
     }
     
-    //MARK: - Selectors
     
+    //MARK: - Selectors
     @objc func handleLogin() {
         guard let email = contentView.emailTextField.text else { return }
         guard let password = contentView.passwordTextField.text else { return }
@@ -60,8 +60,8 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - API
     
+    //MARK: - API
     func logUserIn(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) {(result,error) in //Attempt log user in
             //If log in fails
