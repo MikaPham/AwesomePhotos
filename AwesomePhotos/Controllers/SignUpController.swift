@@ -16,7 +16,9 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     let userScope = "1"
     
     let db = Firestore.firestore()
+  
     
+    //MARK: UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -27,6 +29,8 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
         UIDevice.current.setValue(value, forKey: "orientation")
     }
     
+    
+    //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -47,7 +51,6 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     
     
     // MARK: - Selectors
-    
     @objc func handleSignUp() {
         guard let email = contentView.emailTextField.text else { return }
         guard let password = contentView.passwordTextField.text else { return }
@@ -64,8 +67,8 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - API
     
+    // MARK: - API
     func createUser(withEmail email: String, password: String, username: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
             //If sign up fails

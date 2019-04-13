@@ -13,6 +13,7 @@ import SnapKit
 //ForgotPasswordController for ForgotPasswordView
 class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITextFieldDelegate {
     
+    
     //MARK: - UI
     func configureNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
@@ -24,6 +25,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
     
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +54,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
         return true
     }
     
+    
     //MARK: - Selectors
     @objc func handleGoBack(){
         navigationController?.navigationBar.isHidden = true
@@ -66,6 +69,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     @objc func alertClose(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     //MARK: - API
     func sendResetPassword(email: String) {

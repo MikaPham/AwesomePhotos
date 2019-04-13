@@ -12,4 +12,5 @@ class User: NSObject {
     @objc var username: String?
     @objc var email: String?
     @objc var scope: String?
+    @objc var uid: String?
 }

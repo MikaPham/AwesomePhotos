@@ -11,6 +11,7 @@ import Firebase
 
 class HomeController: GenericViewController<HomeView> {
     
+    
     //MARK: - UI
     func configureNavBar() {
         navigationItem.title = "AwesomePhotos"
@@ -19,6 +20,7 @@ class HomeController: GenericViewController<HomeView> {
         navigationController?.navigationBar.barTintColor = UIColor.lightGray()
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.mainRed()]
     }
+    
     
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +32,7 @@ class HomeController: GenericViewController<HomeView> {
         super.viewDidLoad()
         configureNavBar()
     }
+    
     
     //MARK: - Selector
     @objc func handleSignOut() {
@@ -44,6 +47,7 @@ class HomeController: GenericViewController<HomeView> {
     @objc func alertClose(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     //MARK: - API
     func loadUserData() {
