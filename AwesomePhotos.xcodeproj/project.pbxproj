@@ -29,6 +29,7 @@
 		5DB33D232264EBA80055FAB0 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */; };
 		5DB33D252264EBBE0055FAB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */; };
 		5DB33D272264EBE20055FAB0 /* loadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */; };
+		5DB33D2A2264ECBA0055FAB0 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D292264ECBA0055FAB0 /* Stopwatch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImageViewController.swift; sourceTree = "<group>"; };
+		5DB33D292264ECBA0055FAB0 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,12 +145,29 @@
 		5DB33D1D2264EAE00055FAB0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5DB33D202264EB7F0055FAB0 /* CameraViewController.swift */,
-				5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */,
-				5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */,
-				5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */,
+				5DB33D2B2264ECD90055FAB0 /* Camera */,
+				5DB33D282264ECA30055FAB0 /* Video */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5DB33D282264ECA30055FAB0 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */,
+				5DB33D292264ECBA0055FAB0 /* Stopwatch.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		5DB33D2B2264ECD90055FAB0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				5DB33D202264EB7F0055FAB0 /* CameraViewController.swift */,
+				5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */,
+				5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		5F52CD847736A41FC2177DA3 /* Pods */ = {
@@ -306,6 +325,7 @@
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				5DB33D212264EB7F0055FAB0 /* CameraViewController.swift in Sources */,
+				5DB33D2A2264ECBA0055FAB0 /* Stopwatch.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
