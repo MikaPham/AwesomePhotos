@@ -26,6 +26,9 @@
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
 		5DB33D1F2264EAEF0055FAB0 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB33D1E2264EAEF0055FAB0 /* Camera.storyboard */; };
 		5DB33D212264EB7F0055FAB0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D202264EB7F0055FAB0 /* CameraViewController.swift */; };
+		5DB33D232264EBA80055FAB0 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */; };
+		5DB33D252264EBBE0055FAB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */; };
+		5DB33D272264EBE20055FAB0 /* loadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
 		5DB33D1E2264EAEF0055FAB0 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		5DB33D202264EB7F0055FAB0 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
+		5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImageViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				5DB33D202264EB7F0055FAB0 /* CameraViewController.swift */,
+				5DB33D222264EBA80055FAB0 /* PreviewImageViewController.swift */,
+				5DB33D242264EBBE0055FAB0 /* VideoViewController.swift */,
+				5DB33D262264EBE20055FAB0 /* loadImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -300,6 +309,9 @@
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
+				5DB33D252264EBBE0055FAB0 /* VideoViewController.swift in Sources */,
+				5DB33D232264EBA80055FAB0 /* PreviewImageViewController.swift in Sources */,
+				5DB33D272264EBE20055FAB0 /* loadImageViewController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
