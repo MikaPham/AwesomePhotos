@@ -207,7 +207,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         do {
             let tmpDirURL = URL(string: NSTemporaryDirectory())!
             let tmpFiles = try FileManager.default.contentsOfDirectory(at: tmpDirURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-            print("\(tmpFiles.count) temporary files found
+           // print("\(tmpFiles.count") temporary files found")
             for url in tmpFiles {
                 removed += 1
                 try FileManager.default.removeItem(at: url)
