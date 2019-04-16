@@ -22,7 +22,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     var stopWatch = Stopwatch()
     var rotating = false
-    let shapeLayer = CAShapeLayer()
+    let startShapeLayer = CAShapeLayer()
+    let endShapeLayer = CAShapeLayer()
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -93,48 +94,69 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         self.captureSession.startRunning()
     }
     
-    //6. Sets up a custom recording button
+    //6. Sets up a custom recording button with animation
     func configureRecordingBtn(){
-        let btnCenter = view.center
+        let btnCenter = CGPoint(x: 190, y: 600)
+        
         
         //Create tracklayer to show if you are recording or not
         let trackLayer = CAShapeLayer()
         let circularPath = UIBezierPath(arcCenter: btnCenter, radius: 40, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
         
-        trackLayer.strokeColor = UIColor.red.cgColor
+        let colorForTrackLayer =  UIColor(red: (127/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
+        trackLayer.strokeColor = colorForTrackLayer.cgColor
         trackLayer.lineWidth = 10
         trackLayer.fillColor = UIColor.clear.cgColor
         view.layer.addSublayer(trackLayer)
         
         //Create animation spinning around the recording button
-        shapeLayer.path = circularPath.cgPath
+        startShapeLayer.path = circularPath.cgPath
         
-        shapeLayer.strokeColor = UIColor.black.cgColor
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineWidth = 10
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-        shapeLayer.strokeEnd = 0
-        view.layer.addSublayer(shapeLayer)
+        let colorForAnimation = UIColor(red: (180/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
+        startShapeLayer.strokeColor = colorForAnimation.cgColor
+        startShapeLayer.fillColor = UIColor.clear.cgColor
+        startShapeLayer.lineWidth = 10
+        startShapeLayer.lineCap = CAShapeLayerLineCap.round
+        startShapeLayer.strokeEnd = 0
+        view.layer.addSublayer(startShapeLayer)
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        endShapeLayer.path = circularPath.cgPath
+        
+        let colorForTailLayer =  UIColor(red: (127/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
+        endShapeLayer.strokeColor = colorForTailLayer.cgColor
+        endShapeLayer.fillColor = UIColor.clear.cgColor
+        endShapeLayer.lineWidth = 10
+        endShapeLayer.lineCap = CAShapeLayerLineCap.round
+        endShapeLayer.strokeEnd = 0
+        view.layer.addSublayer(endShapeLayer)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRecordingButtonPressed)))
     }
     
     //7. Tap recogniser which handles if video is recording or not
-    @objc private func handleTap(){
+    @objc private func handleRecordingButtonPressed(){
         
         let spinAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let tailSpinAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         if !rotating{
             
             spinAnimation.toValue = 1
             spinAnimation.duration = 2
-            spinAnimation.repeatCount = Float.infinity
-            spinAnimation.fillMode = CAMediaTimingFillMode.forwards
+            spinAnimation.repeatCount = .greatestFiniteMagnitude
+            spinAnimation.fillMode = CAMediaTimingFillMode.backwards
             spinAnimation.isRemovedOnCompletion = true
-            spinAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
             
-            shapeLayer.add(spinAnimation, forKey: "GoAround")
+            tailSpinAnimation.toValue = 1
+            tailSpinAnimation.duration = 2
+            tailSpinAnimation.beginTime = CACurrentMediaTime() + 0.3
+            tailSpinAnimation.repeatCount = .greatestFiniteMagnitude
+            tailSpinAnimation.fillMode = CAMediaTimingFillMode.backwards
+            tailSpinAnimation.isRemovedOnCompletion = false
+            
+            startShapeLayer.add(spinAnimation, forKey: "GoAround")
+            endShapeLayer.add(tailSpinAnimation, forKey: "Comes around")
         }
         
         if movieFileOutput.isRecording {
@@ -142,7 +164,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             movieFileOutput.stopRecording()
             rotating = true //Stops the animation
             view.layer.transform = CATransform3DIdentity
-            shapeLayer.removeAllAnimations()
+            startShapeLayer.removeAllAnimations()
             stopWatch.stop()
             
             //Upload video to firestorage
@@ -155,55 +177,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
         else {
             rotating = false
-            Timer.scheduledTimer(timeInterval: 0.1, target: self,
-                                 selector: #selector(updateElapsedTimeLabel(_:)), userInfo: nil, repeats: true)
-            stopWatch.start()//Start recoding
-            movieFileOutput.connection(with: .video)?.videoOrientation = self.videoOrientation()
-            movieFileOutput.maxRecordedDuration = maxRecordedDuration()
-            movieFileOutput.startRecording(to: URL(fileURLWithPath: self.videoLocation()), recordingDelegate: self)
-        }
-    }
-    
-    //Should be killed off
-    @IBAction func recordingBtn(_ sender: UIButton) {
-        
-        //Spinning animation for recording btn
-        if !rotating {
-            // create a spin animation
-            let spinAnimation = CABasicAnimation()
-            // starts from 0
-            spinAnimation.fromValue = 0
-            // goes to 360 ( 2 * π )
-            spinAnimation.toValue = Double.pi*2
-            // define how long it will take to complete a 360
-            spinAnimation.duration = 1
-            // make it spin infinitely
-            spinAnimation.repeatCount = Float.infinity
-            // do not remove when completed
-            spinAnimation.isRemovedOnCompletion = false
-            // specify the fill mode
-            spinAnimation.fillMode = CAMediaTimingFillMode.forwards
-            // and the animation acceleration
-            spinAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-            // add the animation to the button layer
-            viewToSpin.layer.add(spinAnimation, forKey: "transform.rotation.z")
-        }
-        
-        if movieFileOutput.isRecording {
-            rotating = true //Stops the animation
-            viewToSpin.layer.removeAllAnimations()
-            movieFileOutput.stopRecording()
-            stopWatch.stop()
-            
-            //Upload video to firestorage
-            let uploadRef = videoStorageReference.child("comeonFile.mov")
-            let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
-            uploadVideoTask.observe(.progress) { (snapshot) in
-                print(snapshot.progress ?? "Progress cancelled")
-            }
-            uploadVideoTask.resume()
-        }
-        else {
             Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                  selector: #selector(updateElapsedTimeLabel(_:)), userInfo: nil, repeats: true)
             stopWatch.start()//Start recoding
