@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
         let navController = UINavigationController(rootViewController: shareController)
         navController.navigationBar.barTintColor = UIColor.lightGray()
+        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         window?.rootViewController = navController
         
         return true
