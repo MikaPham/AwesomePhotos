@@ -75,6 +75,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         makeObsSearchBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
         navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+        navigationItem.title = "Add People"
+        UINavigationBar.appearance().tintColor = UIColor.mainRed()
     }
     
 
