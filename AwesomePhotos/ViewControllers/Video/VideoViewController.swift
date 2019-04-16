@@ -5,20 +5,18 @@ import AVFoundation
 import FirebaseStorage
 import MobileCoreServices
 
-
-let videoStorageReference : StorageReference = {
-    return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("movies")
-}()
-
 class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelegate
 {
+    //MARK: - Properties
+    let videoStorageReference : StorageReference = {
+        return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("movies")
+    }()
     @IBOutlet weak var previewWiew: UIView!
     let captureSession = AVCaptureSession()
     var movieFileOutput = AVCaptureMovieFileOutput()
     var videoCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
     @IBOutlet weak var viewToSpin: UIView!
-    
     @IBOutlet weak var timeRecoredLbl: UILabel!
     
     var rotating = false
