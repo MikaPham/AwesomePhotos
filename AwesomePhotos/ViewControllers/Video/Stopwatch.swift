@@ -3,7 +3,6 @@ import Foundation
 class Stopwatch
 {
     var startTime : Date?
-    
     var elapsedTime: TimeInterval
     {
         if let startTime = self.startTime

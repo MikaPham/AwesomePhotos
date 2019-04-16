@@ -19,6 +19,20 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var viewToSpin: UIView!
     @IBOutlet weak var timeRecoredLbl: UILabel!
     
+    //MARK: - Initalization
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        clearTmpDir()
+        configureSession()
+        configureVideoInput()
+        configureVideoOutPut()
+        configurePreviewLayer()
+        startSession()
+    }
+    
+    //MARK: - Methods
+    
     var rotating = false
     func rotateButton()
     {
@@ -47,7 +61,9 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             viewToSpin.layer.removeAllAnimations()
         }
     }
-    @IBAction func recordingBtn(_ sender: UIButton) {
+    
+    //
+    @IBAction func recordingButtonPressed(_ sender: UIButton) {
         
         rotateButton()
         if movieFileOutput.isRecording {
@@ -110,16 +126,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         let recordtime : Int64 = 300
         let preferedTimescale : Int32 = 1
         return CMTimeMake(value: recordtime, timescale: preferedTimescale)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        clearTmpDir()
-        configureSession()
-        configureVideoInput()
-        configureVideoOutPut()
-        configurePreviewLayer()
-        startSession()
     }
     
     //Set up video

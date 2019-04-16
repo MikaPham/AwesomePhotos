@@ -45,6 +45,7 @@ class CameraViewController : UIViewController, SwitchBackAndForth
         }
         return nil
     }
+    
     // 3. Creating inputs using the capture devices.
     // and outputs the photo to be shown later in the previewLayer
     func configureInputOutput()
@@ -58,18 +59,12 @@ class CameraViewController : UIViewController, SwitchBackAndForth
             //Specifies the settings for the photo, and which format it should be
             photoOutPut?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutPut!)
-        }catch{
-            
+        } catch{
+            print("No device input or output devices found")
         }
     }
     
-    // 4. Starting the camera session
-    func startRunningSession()
-    {
-        captureSession.startRunning()
-    }
-    
-    // 5. Configures the image to fit the preview layer
+    // 4. Configures the image to fit the preview layer
     func configurePreviewLayer()
     {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -79,8 +74,15 @@ class CameraViewController : UIViewController, SwitchBackAndForth
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     
+    // 5. Starting the camera session
+    func startRunningSession()
+    {
+        captureSession.startRunning()
+    }
+
+    
     //6. Taking photo when button is pressed
-    @IBAction func cameraBtnPressed(_ sender: UIButton) {
+    @IBAction func cameraButtonPressed(_ sender: Any) {
         let setting = AVCapturePhotoSettings()
         photoOutPut?.capturePhoto(with: setting, delegate: self)
     }
@@ -94,17 +96,21 @@ class CameraViewController : UIViewController, SwitchBackAndForth
     }
     
     //8. Goes back to the home screen
-    @IBAction func backBtnPressed(_ sender: UIButton) {
+    @IBAction func backButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "segueToHome", sender: self)
     }
     
     //9. Go to video view to record video
-    @IBAction func switchToVideoModeBtnPressed(_ sender: UIButton) {
+    @IBAction func switchToVideoModeButtonPressed(_ sender: UIButton) {
         captureSession.stopRunning()
         performSegue(withIdentifier: "segueToVideo", sender: self)
     }
+    
+    //10. Preview latest file taken
+//    @IBAction previewLatestFileButtonPressed(){
+//
+//    }
 }
-
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {

@@ -25,7 +25,6 @@ class SwitchBackAndForth
             captureSession.addInput(newInput)
         }
     }
-
 }
 
 
