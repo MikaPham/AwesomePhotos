@@ -6,11 +6,11 @@ class CameraViewController : UIViewController, SwitchBackAndForth
     // MARK: - Properties
     var captureSession = AVCaptureSession()
     
-    var frontCamera : AVCaptureDevice?
-    var backCamera : AVCaptureDevice?
-    var currentCamera : AVCaptureDevice?
-    var photoOutPut : AVCapturePhotoOutput?
-    var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
+    let frontCamera : AVCaptureDevice?
+    let backCamera : AVCaptureDevice?
+    let currentCamera : AVCaptureDevice?
+    let photoOutPut : AVCapturePhotoOutput?
+    let cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     var image : UIImage?
     
     @IBOutlet weak var cameraBtn: RoundedButton!

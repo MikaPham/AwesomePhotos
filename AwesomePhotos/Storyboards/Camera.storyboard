@@ -132,30 +132,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmx-yi-zdX">
-                                        <rect key="frame" x="149" y="33" width="77" height="74"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01i-Oq-BnZ" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="6" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.67836625399999995" green="1" blue="0.5707260301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
-                                                        <color key="value" red="1" green="0.0" blue="0.004973547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="cameraBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="sFT-5F-UCD"/>
-                                                    <action selector="recordingBtn:" destination="kdh-6X-wJS" eventType="touchUpInside" id="x0P-HQ-fgR"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -172,7 +148,6 @@
                     </view>
                     <connections>
                         <outlet property="timeRecoredLbl" destination="VM3-iG-pYl" id="gVF-jL-Uh3"/>
-                        <outlet property="viewToSpin" destination="nmx-yi-zdX" id="BqU-bs-qdM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iij-NI-OCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
