@@ -13,7 +13,7 @@
         <!--Camera View Controller-->
         <scene sceneID="b1h-dA-1yH">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="a0q-U5-cTp" customClass="CameraViewController" customModule="GreenWealth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="a0q-U5-cTp" customClass="CameraViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7RC-oI-TKt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                     <action selector="switchCameraBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="Mw9-ri-byV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMI-k1-2Dg" userLabel="RecordingBtn" customClass="RoundedButton" customModule="GreenWealth" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMI-k1-2Dg" userLabel="RecordingBtn" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
                                 <rect key="frame" x="35" y="547" width="75" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,11 +49,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="recordingBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="uiT-pr-zVd"/>
+                                    <action selector="switchToVideoModeBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="uiT-pr-zVd"/>
                                     <segue destination="kdh-6X-wJS" kind="show" identifier="segueToVideo" id="0jG-hM-Z94"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-Xr-lVE" customClass="RoundedButton" customModule="GreenWealth" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSo-Xr-lVE" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
                                 <rect key="frame" x="157" y="547" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.67836625399999995" green="1" blue="0.5707260301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,12 +94,12 @@
         <!--Video View Controller-->
         <scene sceneID="9x1-4B-b5M">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="kdh-6X-wJS" customClass="VideoViewController" customModule="GreenWealth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="kdh-6X-wJS" customClass="VideoViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XjF-Nm-v2p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-TD-ILT" userLabel="cameraBtn" customClass="RoundedButton" customModule="GreenWealth" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-TD-ILT" userLabel="cameraBtn" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
                                 <rect key="frame" x="16" y="583" width="69" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,7 +114,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="recordingBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="0RL-SL-q59"/>
+                                    <action selector="switchToVideoModeBtnPressed:" destination="a0q-U5-cTp" eventType="touchUpInside" id="0RL-SL-q59"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3n-kE-5Xp" userLabel="SwitchCameras">
@@ -144,7 +144,7 @@
                                 <rect key="frame" x="156" y="576" width="77" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01i-Oq-BnZ" customClass="RoundedButton" customModule="GreenWealth" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01i-Oq-BnZ" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
                                         <rect key="frame" x="8" y="7" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.67836625399999995" green="1" blue="0.5707260301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -180,7 +180,7 @@
         <!--Video View Controller-->
         <scene sceneID="5ku-Xh-e3A">
             <objects>
-                <viewController id="AT6-qq-VJu" customClass="VideoViewController" customModule="GreenWealth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AT6-qq-VJu" customClass="VideoViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LkH-7T-2wk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-NS-E1U" customClass="RoundedButton" customModule="GreenWealth" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-NS-E1U" customClass="RoundedButton" customModule="AwesomePhotos" customModuleProvider="target">
                                         <rect key="frame" x="185" y="572" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.67836625399999995" green="1" blue="0.5707260301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -223,7 +223,7 @@
         <!--Previewmage View Controller-->
         <scene sceneID="GX1-ON-T0f">
             <objects>
-                <viewController id="gUE-GD-fpQ" customClass="PreviewmageViewController" customModule="GreenWealth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gUE-GD-fpQ" customClass="PreviewmageViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="az2-L0-Y8e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

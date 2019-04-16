@@ -1,8 +1,9 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController : UIViewController
+class CameraViewController : UIViewController, SwitchBackAndForth
 {
+    // MARK: - Properties
     var captureSession = AVCaptureSession()
     
     var frontCamera : AVCaptureDevice?
@@ -10,10 +11,11 @@ class CameraViewController : UIViewController
     var currentCamera : AVCaptureDevice?
     var photoOutPut : AVCapturePhotoOutput?
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
-    
     var image : UIImage?
     
     @IBOutlet weak var cameraBtn: RoundedButton!
+    
+    //MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +24,17 @@ class CameraViewController : UIViewController
         configurePreviewLayer()
         startRunningSession()
     }
-    //MARK : Custom Methods
     
-    /*
-     1. Creating a capture session.
-     2. Obtaining and configuring the necessary capture devices.
-     3. Creating inputs using the capture devices.
-     4. Configuring a photo output object to process captured images.*/
+    //MARK: - Methods
     
+    
+    // 1. Creating a capture session.
     func createCaptureSession()
     {
         captureSession.sessionPreset = .photo
     }
     
-    //Selects the back camera pr. default and returns it if a camera exists
+    // 2. Identifying the necessary capture devices.
     func configureCaptureDevices(position: AVCaptureDevice.Position) -> AVCaptureDevice?
     {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession( deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: position)
@@ -46,8 +45,8 @@ class CameraViewController : UIViewController
         }
         return nil
     }
-    
-    //Adds input from taken photo to captureSession and outputs the photo to be shown later in the previewImageViewController
+    // 3. Creating inputs using the capture devices.
+    // and outputs the photo to be shown later in the previewLayer
     func configureInputOutput()
     {
         currentCamera = AVCaptureDevice.default(for: AVMediaType.video)
@@ -56,6 +55,7 @@ class CameraViewController : UIViewController
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutPut = AVCapturePhotoOutput()
+            //Specifies the settings for the photo, and which format it should be
             photoOutPut?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutPut!)
         }catch{
@@ -63,7 +63,13 @@ class CameraViewController : UIViewController
         }
     }
     
-    //Configures the image in the previewLayer so it looks nice and tight
+    // 4. Starting the camera session
+    func startRunningSession()
+    {
+        captureSession.startRunning()
+    }
+    
+    // 5. Configures the image to fit the preview layer
     func configurePreviewLayer()
     {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -73,56 +79,32 @@ class CameraViewController : UIViewController
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     
-    func startRunningSession()
-    {
-        captureSession.startRunning()
-    }
-    
-    @IBAction func recordingBtnPressed(_ sender: UIButton) {
-        captureSession.stopRunning()
-        performSegue(withIdentifier: "segueToVideo", sender: self)
-    }
-    
+    //6. Taking photo when button is pressed
     @IBAction func cameraBtnPressed(_ sender: UIButton) {
         let setting = AVCapturePhotoSettings()
         photoOutPut?.capturePhoto(with: setting, delegate: self)
     }
     
-    @IBAction func backBtnPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueToHome", sender: self)
-    }
-    
-    @IBAction func switchCameraBtnPressed(_ sender: UIButton) {
-        
-        let currentCamera : AVCaptureInput = captureSession.inputs[0]
-        captureSession.removeInput(currentCamera)
-        
-        var newCamera : AVCaptureDevice?
-        if (currentCamera as! AVCaptureDeviceInput).device.position == .back{
-            newCamera = self.configureCaptureDevices(position: .front)!
-        }else{
-            newCamera = self.configureCaptureDevices(position: .back)!
-        }
-        var newInput : AVCaptureDeviceInput?
-        do
-        {
-            newInput = try AVCaptureDeviceInput(device: newCamera!)
-        }catch{
-            print("Error")
-        }
-        if let newInput = newInput{
-            captureSession.addInput(newInput)
-        }
-    }
-    
-    //Transfer image from CameraVC to PreviewVC
+    //7. Transitions from CameraVC to PreviewVC and pass the taken image to the preview layer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToShowPhoto"{
             let previewVC = segue.destination as! PreviewmageViewController
             previewVC.image = self.image
         }
     }
+    
+    //8. Goes back to the home screen
+    @IBAction func backBtnPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueToHome", sender: self)
+    }
+    
+    //9. Go to video view to record video
+    @IBAction func switchToVideoModeBtnPressed(_ sender: UIButton) {
+        captureSession.stopRunning()
+        performSegue(withIdentifier: "segueToVideo", sender: self)
+    }
 }
+
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {

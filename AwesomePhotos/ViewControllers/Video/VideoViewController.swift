@@ -7,7 +7,7 @@ import MobileCoreServices
 
 
 let videoStorageReference : StorageReference = {
-    return Storage.storage().reference(forURL : "gs://greenwealth-302e0.appspot.com/").child("movieFolder")
+    return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("movies")
 }()
 
 class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelegate
@@ -58,7 +58,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             stopWatch.stop()
             
             //Upload video to firestorage
-            let uploadRef = videoStorageReference.child("comeonFile.mov")
+            let uploadRef = videoStorageReference.child("movie.mov")
             let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
             uploadVideoTask.observe(.progress) { (snapshot) in
                 print(snapshot.progress ?? "Progress cancelled")
@@ -76,7 +76,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func videoLocation() -> String{
-        return NSTemporaryDirectory().appending("comeonFile.mov")
+        return NSTemporaryDirectory().appending("movie.mov")
     }
     
     

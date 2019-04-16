@@ -10,7 +10,7 @@ class PreviewmageViewController : UIViewController
     var image : UIImage!
     
     let storageReference : StorageReference = {
-        return Storage.storage().reference(forURL: "gs://greenwealth-302e0.appspot.com/").child("photos")
+        return Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child("photos")
     }()
     
     override func viewDidLoad() {
