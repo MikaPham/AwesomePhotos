@@ -16,15 +16,20 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var shareTableView: UITableView!
-    
+    @IBOutlet weak var permissionSelector: UISegmentedControl!
+
     let db = Firestore.firestore()
     
     var users = [User]()
     var shownUsers = [User]()
     var toBeShared = [User]()
+    var alreadyShared = [String]()
+    var persmission = AppConstants.OwnerPermission
     
-    var disposeBag = DisposeBag() // Bag of disposables to release them when view is being deallocated
-
+    //var photoUid: String
+    
+    // Bag of disposables to release them when view is being deallocated
+    var disposeBag = DisposeBag()
     
     //MARK: UI
     fileprivate func configureTableViews() {
@@ -47,12 +52,12 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath) as! CellWithButton
         if (tableView.tag == 1) { //shareTableView
-            cell.textLabel?.text = toBeShared[indexPath.row].email
+            cell.cellLabel?.text = toBeShared[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
         } else if (tableView.tag == 2) { //searchTableView
-            cell.textLabel?.text = shownUsers[indexPath.row].email
+            cell.cellLabel.text = shownUsers[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
@@ -66,11 +71,57 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         configureTableViews()
         fetchUsers()
+        fetchAlreadyShared()
         makeObsSearchBar()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
+
     
     //MARK: Selectors
+    @IBAction func indexChanged(_ sender: Any) {
+        switch self.permissionSelector.selectedSegmentIndex
+        {
+        case 0:
+            self.persmission = AppConstants.OwnerPermission
+        case 1:
+            self.persmission = AppConstants.ViewerPermission
+        default:
+            break
+        }
+    }
+    
+    @objc func onShared() {
+        var usersToShare = [String]()
+        for user in toBeShared{
+            guard let userUid = user.uid else { return }
+            usersToShare.append(userUid)
+        }
+        if (self.persmission == AppConstants.OwnerPermission) {
+            self.db.collection("photos").document("abcd").updateData(
+                ["owners" : FieldValue.arrayUnion(usersToShare)]
+            )
+        } else {
+            self.db.collection("photos").document("abcd").updateData(
+                ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
+            )
+        }
+        toBeShared.removeAll()
+        shareTableView.reloadData()
+        
+        let alert = UIAlertController(title: "Share Successful!", message: "Shared to selected users.", preferredStyle: .alert)
+        self.present(alert, animated: true, completion:{
+            alert.view.superview?.isUserInteractionEnabled = true
+            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
+        })
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    @objc func alertClose(gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func shareTapped(sender:cellButton!) {
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else { return }
@@ -81,15 +132,23 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         searchTableView.reloadData() //reload data of searchTableView
         shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .bottom) //insert row to shareTableView
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
+        navigationItem.rightBarButtonItem?.isEnabled = true
+
     }
     
     @objc func removeTapped(sender:cellButton!) {
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else { return }
 
+        shownUsers.append(toBeShared[button.tag])
         toBeShared.remove(at: toBeShared.firstIndex(of: toBeShared[button.tag])!) //remove from toBeShared
+        
         self.shareTableView.deleteRows(at: [indexPath], with: .fade) //remove row from shareTableView
         self.shareTableView.reloadData() //reload data of shareTableView
+        if toBeShared.isEmpty {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        searchTableView.reloadData()
     }
     
     fileprivate func clearUsersLists() {
@@ -115,8 +174,20 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     //MARK: API
+    func fetchAlreadyShared() {
+        self.db.collection("photos").document("abcd").addSnapshotListener{querySnapshot, error in
+            guard let data = querySnapshot?.data() else {return}
+            self.alreadyShared = data["sharedWith"] as! [String]
+            for user in self.users {
+                guard let userUid = user.uid else { return }
+                if self.alreadyShared.contains(userUid) {
+                    self.users.remove(at: self.users.firstIndex(of: user)!)
+                }
+            }
+        }
+    }
+    
     func fetchUsers() {
-        
         //Make a connection to the database and take a snapshot at "users" collection
         self.db.collection("users").addSnapshotListener{ querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
@@ -130,7 +201,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 user.setValuesForKeys(dict) //Map dictionary values into User objects
                 user.uid = doc.documentID
                 self.users.append(user)
-                
                 //Must have this or else arrays will be empty
                 DispatchQueue.main.async() {
                     self.searchTableView.reloadData()
