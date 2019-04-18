@@ -17,7 +17,7 @@ class ForgotPasswordView : GenericView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = UIImage(named: "a-2")
+        iv.image = UIImage(named: "SmileFace")
         return iv
     }()
     
