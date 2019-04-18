@@ -24,6 +24,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var shownUsers = [User]()
     var toBeShared = [User]()
     var alreadyShared = [String]()
+    var alreadyOwned = [String]()
     var persmission = AppConstants.OwnerPermission
     
     //var photoUid: String
@@ -61,17 +62,17 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+            cell.button.tintColor = UIColor.mainRed()
         }
         return cell
     }
-    
     
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableViews()
         fetchUsers()
-        fetchAlreadyShared()
+        fetchAlreadySharedAndOwned()
         makeObsSearchBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -127,8 +128,13 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @objc func shareTapped(sender:cellButton!) {
         guard let button = sender else { return }
-        guard let indexPath = button.indexPath else { return }
-    
+        guard let indexPath = button.indexPath else {return }
+        if toBeShared.contains(shownUsers[button.tag]) {
+            shownUsers.remove(at: button.tag) //remove from shownUsers
+            searchTableView.deleteRows(at: [indexPath], with: .top) //remove row from searchTableView
+            searchTableView.reloadData() //reload data of searchTableView
+            return
+        }
         toBeShared.append(shownUsers[button.tag]) //add to toBeShared
         shownUsers.remove(at: button.tag) //remove from shownUsers
         searchTableView.deleteRows(at: [indexPath], with: .top) //remove row from searchTableView
@@ -157,6 +163,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     fileprivate func clearUsersLists() {
         self.users.removeAll()
         self.shownUsers.removeAll()
+        self.alreadyShared.removeAll()
+        
     }
     
     func makeObsSearchBar() {
@@ -177,13 +185,23 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     //MARK: API
-    func fetchAlreadyShared() {
+    func fetchAlreadySharedAndOwned() {
         self.db.collection("photos").document("abcd").addSnapshotListener{querySnapshot, error in
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
+            self.alreadyOwned = data["owners"] as! [String]
+            
+            if(self.alreadyOwned.count == 5) {
+                self.permissionSelector.setEnabled(false, forSegmentAt: 0)
+                self.permissionSelector.selectedSegmentIndex = 1
+            }
+            
             for user in self.users {
                 guard let userUid = user.uid else { return }
                 if self.alreadyShared.contains(userUid) {
+                    self.users.remove(at: self.users.firstIndex(of: user)!)
+                }
+                else if self.alreadyOwned.contains(userUid) {
                     self.users.remove(at: self.users.firstIndex(of: user)!)
                 }
             }
