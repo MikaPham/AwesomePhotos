@@ -12,15 +12,15 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com").child("movieFolder")
     }()
     @IBOutlet weak var previewWiew: UIView!
-    let captureSession = AVCaptureSession()
-    let movieFileOutput = AVCaptureMovieFileOutput()
-    let videoCaptureDevice : AVCaptureDevice?
-    let myPreviewLayer : AVCaptureVideoPreviewLayer?
+    var captureSession = AVCaptureSession()
+    var movieFileOutput = AVCaptureMovieFileOutput()
+    var videoCaptureDevice : AVCaptureDevice?
+    var myPreviewLayer : AVCaptureVideoPreviewLayer?
     @IBOutlet weak var viewToSpin: UIView!
     @IBOutlet weak var timeRecoredLbl: UILabel!
     @IBOutlet weak var recordingBtn: UIButton!
     
-    var stopWatch = Stopwatch()
+    var stopWatch = VideoStopwatch()
     var rotating = false
     let startShapeLayer = CAShapeLayer()
     let endShapeLayer = CAShapeLayer()
@@ -28,7 +28,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeRecordingBtn()
+        configureRecordingButtonAnimation()
         clearTmpDir()
         configureSession()
         configureVideoInput()
@@ -95,7 +95,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //6. Sets up a custom recording button with animation
-    func configureRecordingBtn(){
+    func configureRecordingButtonAnimation(){
         let btnCenter = CGPoint(x: 190, y: 600)
         
         
@@ -191,6 +191,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return NSTemporaryDirectory().appending("comeonFile.mov")
     }
     
+    //MARK: - Helper Methods
+    
     //9. Updates the time recorded and resets it, if video stopped recording
     @objc func updateElapsedTimeLabel(_ timer: Timer) {
         if stopWatch.isRunning {
@@ -237,8 +239,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             }
         }
     }
-    
-    //MARK: - Helper
     
     //13. The different positions the phone can be in, is used in the setVideoOrientation
     func videoOrientation() -> AVCaptureVideoOrientation

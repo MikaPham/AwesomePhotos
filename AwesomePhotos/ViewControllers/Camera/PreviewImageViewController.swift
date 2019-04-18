@@ -5,7 +5,6 @@ import FirebaseStorage
 class PreviewmageViewController : UIViewController
 {
     //MARK: - Properties
-    @IBOutlet weak var watermarkView: UIImageView!
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
     
@@ -40,8 +39,7 @@ class PreviewmageViewController : UIViewController
     
     //Saves the photo to local storage
     @IBAction func saveToLocalBtnPressed(_ sender: UIButton) {
-        let waterMarkedImage = UIImage.imageWithWatermark(image1: photo, image2: watermarkView)
-        UIImageWriteToSavedPhotosAlbum(waterMarkedImage, nil, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         dismiss(animated: true, completion: nil)
     }
     

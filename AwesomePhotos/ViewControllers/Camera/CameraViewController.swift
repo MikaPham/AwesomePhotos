@@ -1,19 +1,17 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController : UIViewController, SwitchBackAndForth
+class CameraViewController : UIViewController
 {
     // MARK: - Properties
     var captureSession = AVCaptureSession()
     
-    let frontCamera : AVCaptureDevice?
-    let backCamera : AVCaptureDevice?
-    let currentCamera : AVCaptureDevice?
-    let photoOutPut : AVCapturePhotoOutput?
-    let cameraPreviewLayer : AVCaptureVideoPreviewLayer?
+    var frontCamera : AVCaptureDevice?
+    var backCamera : AVCaptureDevice?
+    var currentCamera : AVCaptureDevice?
+    var photoOutPut : AVCapturePhotoOutput?
+    var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     var image : UIImage?
-    
-    @IBOutlet weak var cameraBtn: RoundedButton!
     
     //MARK: - Initialization
     
@@ -109,7 +107,8 @@ class CameraViewController : UIViewController, SwitchBackAndForth
     //10. Preview latest file taken
     //    @IBAction previewLatestFileButtonPressed(){
     //
-    //    }
+    //
+
 }
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
@@ -120,3 +119,4 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
         }
     }
 }
+
