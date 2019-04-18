@@ -111,15 +111,13 @@
 		183E5AEC2249BBC100F7309E /* AwesomePhotos */ = {
 			isa = PBXGroup;
 			children = (
-				C4C4E2F022687D7F003FB861 /* S */,
 				5D10BA2F2266DC5F0011237D /* GlobalDesign */,
-				5D10BA1B2266D7620011237D /* Storyboard */,
 				5D10BA0E2266D5900011237D /* ViewControllers */,
+				5D10BA1B2266D7620011237D /* Storyboards */,
 				879706302265B1330036FA2B /* Shared */,
 				18C9FF49226043BB0003B347 /* Models */,
 				18CBCDA7224C648E00420484 /* Controllers */,
 				18CBCDA5224C647500420484 /* Views */,
-				C4C4E2EC22684946003FB861 /* Storyboards */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
 				183E5AED2249BBC100F7309E /* AppDelegate.swift */,
 				183E5AF12249BBC100F7309E /* Main.storyboard */,
@@ -195,12 +193,12 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		5D10BA1B2266D7620011237D /* Storyboard */ = {
+		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
 			);
-			path = Storyboard;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		5D10BA2F2266DC5F0011237D /* GlobalDesign */ = {
@@ -234,21 +232,6 @@
 				879706312265B1610036FA2B /* FirebaseFunctions.swift */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		C4C4E2EC22684946003FB861 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				C4C4E2ED22684D06003FB861 /* Settings.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		C4C4E2F022687D7F003FB861 /* S */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = S;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

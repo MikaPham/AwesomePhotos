@@ -38,10 +38,11 @@ class PreviewmageViewController : UIViewController
     }
     
     //Saves the photo to local storage
-    @IBAction func saveToLocalBtnPressed(_ sender: UIButton) {
+    @IBAction func saveToLocalButtonPressed(_ sender: UIButton) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         dismiss(animated: true, completion: nil)
     }
+
     
     //Returns the users to the camera
     @IBAction func cancelBtnPressed(_ sender: UIButton) {

@@ -78,14 +78,37 @@ class CameraViewController : UIViewController
         captureSession.startRunning()
     }
     
+    //6. Switching the front and back camera
+    @IBAction func switchCameraButtonPressed(_ sender: UIButton) {
+        
+        let currentCamera : AVCaptureInput = captureSession.inputs[0]
+        captureSession.removeInput(currentCamera)
+        
+        var newCamera : AVCaptureDevice?
+        if (currentCamera as! AVCaptureDeviceInput).device.position == .back{
+            newCamera = self.configureCaptureDevices(position: .front)!
+        }else{
+            newCamera = self.configureCaptureDevices(position: .back)!
+        }
+        var newInput : AVCaptureDeviceInput?
+        do
+        {
+            newInput = try AVCaptureDeviceInput(device: newCamera!)
+        }catch{
+            print("Error")
+        }
+        if let newInput = newInput{
+            captureSession.addInput(newInput)
+        }
+    }
     
-    //6. Taking photo when button is pressed
-    @IBAction func cameraButtonPressed(_ sender: Any) {
+    //7. Taking photo when button is pressed
+    @IBAction func cameraButtonPressed(_ sender: RoundButton) {
         let setting = AVCapturePhotoSettings()
         photoOutPut?.capturePhoto(with: setting, delegate: self)
     }
     
-    //7. Transitions from CameraVC to PreviewVC and pass the taken image to the preview layer
+    //8. Transitions from CameraVC to PreviewVC and pass the taken image to the preview layer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToShowPhoto"{
             let previewVC = segue.destination as! PreviewmageViewController
@@ -93,18 +116,19 @@ class CameraViewController : UIViewController
         }
     }
     
-    //8. Goes back to the home screen
+    //9. Goes back to the home screen
+
     @IBAction func backButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "segueToHome", sender: self)
     }
     
-    //9. Go to video view to record video
+    //10. Go to video view to record video
     @IBAction func switchToVideoModeButtonPressed(_ sender: UIButton) {
         captureSession.stopRunning()
         performSegue(withIdentifier: "segueToVideo", sender: self)
     }
-    
-    //10. Preview latest file taken
+
+    //11. Preview latest file taken
     //    @IBAction previewLatestFileButtonPressed(){
     //
     //
