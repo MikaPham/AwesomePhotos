@@ -111,6 +111,7 @@
 		183E5AEC2249BBC100F7309E /* AwesomePhotos */ = {
 			isa = PBXGroup;
 			children = (
+				C4C4E2F022687D7F003FB861 /* S */,
 				5D10BA2F2266DC5F0011237D /* GlobalDesign */,
 				5D10BA1B2266D7620011237D /* Storyboard */,
 				5D10BA0E2266D5900011237D /* ViewControllers */,
@@ -241,6 +242,13 @@
 				C4C4E2ED22684D06003FB861 /* Settings.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C4C4E2F022687D7F003FB861 /* S */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = S;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
