@@ -11,14 +11,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     let videoStorageReference : StorageReference = {
         return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com").child("movieFolder")
     }()
-    @IBOutlet weak var previewWiew: UIView!
     var captureSession = AVCaptureSession()
     var movieFileOutput = AVCaptureMovieFileOutput()
     var videoCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
-    @IBOutlet weak var viewToSpin: UIView!
-    @IBOutlet weak var timeRecoredLbl: UILabel!
+    @IBOutlet weak var previewWiew: UIView!
     @IBOutlet weak var recordingBtn: UIButton!
+    @IBOutlet weak var timeRecordedLbl: UILabel!
+    @IBOutlet weak var switchToCameraButton: UIButton!
+    @IBOutlet weak var switchBetweenCameraDevices: UIButton!
+    @IBOutlet weak var fileStorage: UIButton!
+    @IBOutlet weak var blackView: UIView!
     
     var stopWatch = VideoStopwatch()
     var rotating = false
@@ -101,7 +104,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         
         //Create tracklayer to show if you are recording or not
         let trackLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: btnCenter, radius: 40, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: btnCenter, radius: 35, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
         
         let colorForTrackLayer =  UIColor(red: (127/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
@@ -141,19 +144,19 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         let tailSpinAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         if !rotating{
-            
+
             spinAnimation.toValue = 1
             spinAnimation.duration = 2
             spinAnimation.repeatCount = .greatestFiniteMagnitude
-            spinAnimation.fillMode = CAMediaTimingFillMode.backwards
+            spinAnimation.fillMode = CAMediaTimingFillMode.forwards
             spinAnimation.isRemovedOnCompletion = true
             
             tailSpinAnimation.toValue = 1
             tailSpinAnimation.duration = 2
             tailSpinAnimation.beginTime = CACurrentMediaTime() + 0.3
             tailSpinAnimation.repeatCount = .greatestFiniteMagnitude
-            tailSpinAnimation.fillMode = CAMediaTimingFillMode.backwards
-            tailSpinAnimation.isRemovedOnCompletion = false
+            tailSpinAnimation.fillMode = CAMediaTimingFillMode.forwards
+            tailSpinAnimation.isRemovedOnCompletion = true
             
             startShapeLayer.add(spinAnimation, forKey: "GoAround")
             endShapeLayer.add(tailSpinAnimation, forKey: "Comes around")
@@ -165,6 +168,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             rotating = true //Stops the animation
             view.layer.transform = CATransform3DIdentity
             startShapeLayer.removeAllAnimations()
+            endShapeLayer.removeAllAnimations()
+            showButtonsWhileNotRecording()
             stopWatch.stop()
             
             //Upload video to firestorage
@@ -179,6 +184,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             rotating = false
             Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                  selector: #selector(updateElapsedTimeLabel(_:)), userInfo: nil, repeats: true)
+            hideButtonsWhileRecording()
             stopWatch.start()//Start recoding
             movieFileOutput.connection(with: .video)?.videoOrientation = self.videoOrientation()
             movieFileOutput.maxRecordedDuration = maxRecordedDuration()
@@ -196,9 +202,9 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     //9. Updates the time recorded and resets it, if video stopped recording
     @objc func updateElapsedTimeLabel(_ timer: Timer) {
         if stopWatch.isRunning {
-            timeRecoredLbl.text = stopWatch.elapsedTimeAsString
+            timeRecordedLbl.text = stopWatch.elapsedTimeAsString
         } else {
-            timeRecoredLbl.text = "00:00"
+            timeRecordedLbl.text = "00:00"
             timer.invalidate()
         }
     }
@@ -264,6 +270,22 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             videoOrientation = .portrait
         }
         return videoOrientation
+    }
+    
+    
+    func hideButtonsWhileRecording(){ // Hides the buttons of the interface to make it more clean while recording
+        switchToCameraButton.isHidden = true
+        switchBetweenCameraDevices.isHidden = true
+        fileStorage.isHidden = true
+        blackView.alpha = 0.2
+    }
+    
+    func showButtonsWhileNotRecording()
+    {
+        switchToCameraButton.isHidden = false
+        switchBetweenCameraDevices.isHidden = false
+        fileStorage.isHidden = false
+        blackView.alpha = 0.7
     }
     
     //Sets the according position to the screen
