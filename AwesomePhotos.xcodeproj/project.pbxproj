@@ -111,7 +111,7 @@
 			children = (
 				5D10BA2F2266DC5F0011237D /* GlobalDesign */,
 				5D10BA0E2266D5900011237D /* ViewControllers */,
-				5D10BA1B2266D7620011237D /* Storyboard */,
+				5D10BA1B2266D7620011237D /* Storyboards */,
 				879706302265B1330036FA2B /* Shared */,
 				18C9FF49226043BB0003B347 /* Models */,
 				18CBCDA7224C648E00420484 /* Controllers */,
@@ -191,12 +191,12 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		5D10BA1B2266D7620011237D /* Storyboard */ = {
+		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
 			);
-			path = Storyboard;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		5D10BA2F2266DC5F0011237D /* GlobalDesign */ = {
