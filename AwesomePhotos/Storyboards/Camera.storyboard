@@ -68,13 +68,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-cl-aMn">
-                                        <rect key="frame" x="276" y="69" width="31" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-cl-aMn">
+                                        <rect key="frame" x="276" y="57" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="9Uz-94-IzE"/>
                                             <constraint firstAttribute="width" constant="31" id="PBs-Ur-pbc"/>
                                         </constraints>
-                                        <state key="normal" image="icons8-documentary"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Record"/>
                                         <connections>
                                             <action selector="switchToVideoModeButtonPressed:" destination="xMg-qa-JzZ" eventType="touchUpInside" id="0Si-CW-qg8"/>
                                             <segue destination="m0S-Bq-Xvm" kind="show" identifier="segueToVideo" id="3Pc-tJ-EmQ"/>
@@ -137,14 +138,6 @@
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akH-mC-vW4">
                                 <rect key="frame" x="0.0" y="751" width="414" height="145"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wat-5H-pga" userLabel="SwitchCameras">
-                                        <rect key="frame" x="344" y="53" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="5NT-Kh-cNu"/>
-                                            <constraint firstAttribute="height" constant="50" id="CIx-vN-PJr"/>
-                                        </constraints>
-                                        <state key="normal" image="icons8-switch_camera"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-wS-Czy" userLabel="RecordingBtn" customClass="RoundedButton" customModule="AwesomePhotos">
                                         <rect key="frame" x="20" y="53" width="50" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -162,28 +155,27 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAv-Is-eOx">
-                                        <rect key="frame" x="277" y="67" width="38" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="0eS-m0-dhi"/>
-                                        </constraints>
-                                        <state key="normal" image="icons8-camera"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAv-Is-eOx">
+                                        <rect key="frame" x="277" y="65" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Camera"/>
                                         <connections>
                                             <segue destination="xMg-qa-JzZ" kind="show" id="rxi-kz-WyZ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gK-4s-AWA">
+                                        <rect key="frame" x="184" y="57" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Wat-5H-pga" firstAttribute="bottom" secondItem="mAv-Is-eOx" secondAttribute="bottom" id="HFq-Jd-41B"/>
-                                    <constraint firstItem="Wat-5H-pga" firstAttribute="leading" secondItem="mAv-Is-eOx" secondAttribute="trailing" constant="29" id="R6o-QO-n2M"/>
                                     <constraint firstItem="Kqg-wS-Czy" firstAttribute="top" secondItem="akH-mC-vW4" secondAttribute="top" constant="53" id="c3B-Pa-Oe9"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wat-5H-pga" secondAttribute="trailing" constant="20" id="dS2-4y-0jZ"/>
-                                    <constraint firstItem="mAv-Is-eOx" firstAttribute="top" secondItem="akH-mC-vW4" secondAttribute="top" constant="67" id="gqM-dh-HrW"/>
                                     <constraint firstAttribute="bottom" secondItem="Kqg-wS-Czy" secondAttribute="bottom" constant="42" id="imU-63-eBc"/>
                                     <constraint firstItem="Kqg-wS-Czy" firstAttribute="leading" secondItem="akH-mC-vW4" secondAttribute="leading" constant="20" id="lCg-XS-qcw"/>
                                     <constraint firstAttribute="height" constant="145" id="nre-wG-baq"/>
-                                    <constraint firstItem="Wat-5H-pga" firstAttribute="top" secondItem="akH-mC-vW4" secondAttribute="top" constant="53" id="uT2-cd-r1Y"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhd-ce-86p">
@@ -226,7 +218,6 @@
                     <connections>
                         <outlet property="blackView" destination="akH-mC-vW4" id="gtq-rg-fQJ"/>
                         <outlet property="fileStorage" destination="Kqg-wS-Czy" id="z5z-UC-HDS"/>
-                        <outlet property="switchBetweenCameraDevices" destination="Wat-5H-pga" id="dfC-Le-qdi"/>
                         <outlet property="switchToCameraButton" destination="mAv-Is-eOx" id="0Xg-3r-SHm"/>
                         <outlet property="timeRecordedLbl" destination="uhd-ce-86p" id="QBA-S6-rxw"/>
                     </connections>
@@ -278,7 +269,7 @@
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-GM-i9h" userLabel="BackBtn">
-                                <rect key="frame" x="20" y="44" width="16" height="22"/>
+                                <rect key="frame" x="20" y="44" width="50" height="50"/>
                                 <state key="normal" image="icons8-cancel"/>
                                 <connections>
                                     <action selector="cancelBtnPressed:" destination="Q5e-Ft-6gc" eventType="touchUpInside" id="2eC-vv-aFZ"/>
@@ -298,6 +289,25 @@
                                     <action selector="saveToLocalButtonPressed:" destination="Q5e-Ft-6gc" eventType="touchUpInside" id="3qn-75-nVU"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaH-Ix-zLe">
+                                <rect key="frame" x="0.0" y="751" width="414" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-3T-JOU">
+                                        <rect key="frame" x="212" y="0.0" width="202" height="145"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.004973547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jap-U0-y4J">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="145"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Upload"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -323,9 +333,9 @@
     </scenes>
     <resources>
         <image name="AwesomeLogo" width="512" height="512"/>
-        <image name="icons8-camera" width="50" height="50"/>
+        <image name="Camera" width="48" height="48"/>
+        <image name="Record" width="48" height="48"/>
         <image name="icons8-cancel" width="50" height="50"/>
-        <image name="icons8-documentary" width="50" height="50"/>
         <image name="icons8-switch_camera" width="50" height="50"/>
         <image name="icons8-upload" width="50" height="50"/>
     </resources>
