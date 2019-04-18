@@ -27,7 +27,6 @@
 		18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */; };
 		18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */; };
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
-		5D10BA0D2266D42B0011237D /* gitignore.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5D10BA0C2266D42B0011237D /* gitignore.zip */; };
 		5D10BA142266D5BD0011237D /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA102266D5B80011237D /* VideoViewController.swift */; };
 		5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */; };
 		5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */; };
@@ -64,7 +63,6 @@
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
-		5D10BA0C2266D42B0011237D /* gitignore.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = gitignore.zip; sourceTree = "<group>"; };
 		5D10BA102266D5B80011237D /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = "../New Group/VideoViewController.swift"; sourceTree = "<group>"; };
 		5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				183E5AF42249BBC200F7309E /* Assets.xcassets */,
 				183E5AF62249BBC200F7309E /* LaunchScreen.storyboard */,
 				183E5B092249DDD900F7309E /* GoogleService-Info.plist */,
-				5D10BA0C2266D42B0011237D /* gitignore.zip */,
 				183E5AF92249BBC200F7309E /* Info.plist */,
 				879706352265D6B60036FA2B /* Constant.swift */,
 			);
