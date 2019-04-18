@@ -30,6 +30,7 @@
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
+		C4C4E2EE22684D06003FB861 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C4E2ED22684D06003FB861 /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C4C4E2ED22684D06003FB861 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				18C9FF49226043BB0003B347 /* Models */,
 				18CBCDA7224C648E00420484 /* Controllers */,
 				18CBCDA5224C647500420484 /* Views */,
+				C4C4E2EC22684946003FB861 /* Storyboards */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
 				183E5AED2249BBC100F7309E /* AppDelegate.swift */,
 				183E5AF12249BBC100F7309E /* Main.storyboard */,
@@ -171,6 +174,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		C4C4E2EC22684946003FB861 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C4C4E2ED22684D06003FB861 /* Settings.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +247,7 @@
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				C4C4E2EE22684D06003FB861 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

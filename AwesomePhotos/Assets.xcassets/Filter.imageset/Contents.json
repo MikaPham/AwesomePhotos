@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "AwesomeLogo - Cornered.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "AwesomeLogo2x.png",
+      "filename" : "Filter_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "AwesomeLogo - Cornered@3x.png",
+      "filename" : "Filter_3x.png",
       "scale" : "3x"
     }
   ],
