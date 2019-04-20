@@ -68,8 +68,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-cl-aMn">
-                                        <rect key="frame" x="276" y="57" width="35" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nC-cl-aMn">
+                                        <rect key="frame" x="276" y="69" width="31" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="9Uz-94-IzE"/>
                                             <constraint firstAttribute="width" constant="31" id="PBs-Ur-pbc"/>
@@ -164,10 +164,10 @@
                                             <segue destination="xMg-qa-JzZ" kind="show" id="rxi-kz-WyZ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gK-4s-AWA">
-                                        <rect key="frame" x="184" y="57" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gK-4s-AWA">
+                                        <rect key="frame" x="178" y="51" width="72" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="RedRecord"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -269,7 +269,7 @@
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4U-GM-i9h" userLabel="BackBtn">
-                                <rect key="frame" x="20" y="44" width="50" height="50"/>
+                                <rect key="frame" x="20" y="44" width="16" height="22"/>
                                 <state key="normal" image="icons8-cancel"/>
                                 <connections>
                                     <action selector="cancelBtnPressed:" destination="Q5e-Ft-6gc" eventType="touchUpInside" id="2eC-vv-aFZ"/>
@@ -335,6 +335,7 @@
         <image name="AwesomeLogo" width="512" height="512"/>
         <image name="Camera" width="48" height="48"/>
         <image name="Record" width="48" height="48"/>
+        <image name="RedRecord" width="72" height="72"/>
         <image name="icons8-cancel" width="50" height="50"/>
         <image name="icons8-switch_camera" width="50" height="50"/>
         <image name="icons8-upload" width="50" height="50"/>

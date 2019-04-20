@@ -97,6 +97,7 @@
 				183E5AEB2249BBC100F7309E /* Products */,
 				5F52CD847736A41FC2177DA3 /* Pods */,
 				6BBB25D5760625FD2F9012E3 /* Frameworks */,
+				5DA8C6A422696CD700E6FE21 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,6 +208,14 @@
 				5D10BA302266DC7D0011237D /* RoundButton.swift */,
 			);
 			path = GlobalDesign;
+			sourceTree = "<group>";
+		};
+		5DA8C6A422696CD700E6FE21 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C4C4E2ED22684D06003FB861 /* Settings.storyboard */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		5F52CD847736A41FC2177DA3 /* Pods */ = {
