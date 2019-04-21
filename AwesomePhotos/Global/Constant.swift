@@ -8,7 +8,12 @@
 
 import Foundation
 
-enum AppConstants: String {
+enum SharingPermissionConstants: String {
     case OwnerPermission = "owner"
     case ViewerPermission = "viewer"
 }
+
+enum Limits : Int {
+    case OwnersLimit = 5
+}
+
