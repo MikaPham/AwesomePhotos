@@ -27,17 +27,17 @@
 		18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */; };
 		18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */; };
 		313270EF0AF61EB93CA099C9 /* Pods_AwesomePhotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */; };
-		5D10BA142266D5BD0011237D /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA102266D5B80011237D /* VideoViewController.swift */; };
 		5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */; };
 		5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */; };
 		5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA192266D6BB0011237D /* CameraViewController.swift */; };
 		5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D10BA1E2266DBC80011237D /* Camera.storyboard */; };
 		5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA302266DC7D0011237D /* RoundButton.swift */; };
 		5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA312266DC7D0011237D /* VideoStopwatch.swift */; };
+		5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */; };
+		5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */; };
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
-		C4C4E2EE22684D06003FB861 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C4E2ED22684D06003FB861 /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,19 +63,19 @@
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
-		5D10BA102266D5B80011237D /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = "../New Group/VideoViewController.swift"; sourceTree = "<group>"; };
 		5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA192266D6BB0011237D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		5D10BA1E2266DBC80011237D /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		5D10BA302266DC7D0011237D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
+		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		C4C4E2ED22684D06003FB861 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +126,7 @@
 				183E5B092249DDD900F7309E /* GoogleService-Info.plist */,
 				183E5AF92249BBC200F7309E /* Info.plist */,
 				879706352265D6B60036FA2B /* Constant.swift */,
+				5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */,
 			);
 			path = AwesomePhotos;
 			sourceTree = "<group>";
@@ -177,7 +178,7 @@
 		5D10BA172266D63C0011237D /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				5D10BA102266D5B80011237D /* VideoViewController.swift */,
+				5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */,
 				5D10BA312266DC7D0011237D /* VideoStopwatch.swift */,
 			);
 			path = Video;
@@ -298,9 +299,9 @@
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
 				5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
+				5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
-				C4C4E2EE22684D06003FB861 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +391,7 @@
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
+				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
@@ -404,7 +406,6 @@
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
 				18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */,
-				5D10BA142266D5BD0011237D /* VideoViewController.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

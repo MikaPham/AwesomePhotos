@@ -117,7 +117,6 @@ class CameraViewController : UIViewController
     }
     
     //9. Goes back to the home screen
-
     @IBAction func backButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "segueToHome", sender: self)
     }
