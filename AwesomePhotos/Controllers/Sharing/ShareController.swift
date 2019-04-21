@@ -25,7 +25,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var toBeShared = [User]()
     var alreadyShared = [String]()
     var alreadyOwned = [String]()
-    var persmission = AppConstants.OwnerPermission
+    var persmission = SharingPermissionConstants.OwnerPermission
     
     //var photoUid: String
     
@@ -88,9 +88,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch self.permissionSelector.selectedSegmentIndex
         {
         case 0:
-            self.persmission = AppConstants.OwnerPermission
+            self.persmission = SharingPermissionConstants.OwnerPermission
         case 1:
-            self.persmission = AppConstants.ViewerPermission
+            self.persmission = SharingPermissionConstants.ViewerPermission
         default:
             break
         }
@@ -102,7 +102,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             guard let userUid = user.uid else { return }
             usersToShare.append(userUid)
         }
-        if (self.persmission == AppConstants.OwnerPermission) {
+        if (self.persmission == SharingPermissionConstants.OwnerPermission) {
             self.db.collection("photos").document("abcd").updateData(
                 ["owners" : FieldValue.arrayUnion(usersToShare)]
             )
@@ -191,7 +191,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]
             
-            if(self.alreadyOwned.count == 5) {
+            if(self.alreadyOwned.count == Limits.OwnersLimit.rawValue) {
                 self.permissionSelector.setEnabled(false, forSegmentAt: 0)
                 self.permissionSelector.selectedSegmentIndex = 1
             }
