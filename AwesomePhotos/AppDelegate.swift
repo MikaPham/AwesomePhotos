@@ -16,15 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-//        window = UIWindow()
-//        window?.makeKeyAndVisible()
+        window = UIWindow()
+        window?.makeKeyAndVisible()
 //        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 //        let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
-//        let navController = UINavigationController(rootViewController: shareController)
-//        navController.navigationBar.barTintColor = UIColor.lightGray()
-//        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
-//        window?.rootViewController = navController
-//
+        let loginController = LoginController()
+        let navController = UINavigationController(rootViewController: loginController)
+        navController.navigationBar.barTintColor = UIColor.lightGray()
+        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
+        window?.rootViewController = navController
+
         return true
     }
     

@@ -6,20 +6,17 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "GrinFace-1.png",
+      "filename" : "Face-6.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "GrinFace.png",
+      "filename" : "Face-7.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }
