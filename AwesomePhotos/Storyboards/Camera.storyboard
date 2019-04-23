@@ -289,33 +289,48 @@
                                     <action selector="saveToLocalButtonPressed:" destination="Q5e-Ft-6gc" eventType="touchUpInside" id="3qn-75-nVU"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xaH-Ix-zLe">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaH-Ix-zLe">
                                 <rect key="frame" x="0.0" y="751" width="414" height="145"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-3T-JOU">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-3T-JOU">
                                         <rect key="frame" x="212" y="0.0" width="202" height="145"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" red="1" green="0.0" blue="0.004973547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jap-U0-y4J">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jap-U0-y4J">
                                         <rect key="frame" x="0.0" y="0.0" width="202" height="145"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="202" id="9KI-Up-385"/>
+                                        </constraints>
                                         <state key="normal" title="Upload"/>
+                                        <connections>
+                                            <action selector="savePhotoBtnPressed:" destination="Q5e-Ft-6gc" eventType="touchUpInside" id="fKH-fr-xQf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="jap-U0-y4J" firstAttribute="baseline" secondItem="aWg-3T-JOU" secondAttribute="firstBaseline" id="0y4-b1-S3C"/>
+                                    <constraint firstItem="aWg-3T-JOU" firstAttribute="leading" secondItem="jap-U0-y4J" secondAttribute="trailing" constant="10" id="5GO-XA-ww0"/>
+                                    <constraint firstItem="jap-U0-y4J" firstAttribute="top" secondItem="aWg-3T-JOU" secondAttribute="top" id="8H3-OF-KE4"/>
+                                    <constraint firstItem="jap-U0-y4J" firstAttribute="top" secondItem="xaH-Ix-zLe" secondAttribute="top" id="Z33-hg-TZm"/>
+                                    <constraint firstItem="jap-U0-y4J" firstAttribute="leading" secondItem="xaH-Ix-zLe" secondAttribute="leading" id="j2y-O3-70Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="jap-U0-y4J" secondAttribute="bottom" id="r7b-vb-Ox9"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dIM-cc-2fM" firstAttribute="trailing" secondItem="yDF-bR-5eC" secondAttribute="trailing" id="65d-5R-k73"/>
+                            <constraint firstItem="xaH-Ix-zLe" firstAttribute="bottom" secondItem="dIM-cc-2fM" secondAttribute="bottom" id="9k8-gk-SPA"/>
+                            <constraint firstItem="xaH-Ix-zLe" firstAttribute="trailing" secondItem="dIM-cc-2fM" secondAttribute="trailing" id="CMp-wJ-ItO"/>
+                            <constraint firstItem="xaH-Ix-zLe" firstAttribute="leading" secondItem="dIM-cc-2fM" secondAttribute="leading" id="KaC-nB-QmA"/>
                             <constraint firstItem="dIM-cc-2fM" firstAttribute="leading" secondItem="yDF-bR-5eC" secondAttribute="leading" id="M1H-sV-c0g"/>
                             <constraint firstItem="QTI-mw-CG6" firstAttribute="top" secondItem="yDF-bR-5eC" secondAttribute="top" id="TEe-1Q-KwE"/>
                             <constraint firstAttribute="bottom" secondItem="dIM-cc-2fM" secondAttribute="bottom" id="a1p-h5-IYH"/>
                             <constraint firstItem="F4U-GM-i9h" firstAttribute="leading" secondItem="hft-55-sBs" secondAttribute="leadingMargin" id="b15-d2-1K2"/>
+                            <constraint firstItem="xaH-Ix-zLe" firstAttribute="top" secondItem="hft-55-sBs" secondAttribute="top" constant="751" id="jt4-Ul-NUh"/>
                             <constraint firstItem="QTI-mw-CG6" firstAttribute="top" secondItem="F4U-GM-i9h" secondAttribute="top" id="ko4-YN-vEY"/>
                             <constraint firstItem="QTI-mw-CG6" firstAttribute="trailing" secondItem="hft-55-sBs" secondAttribute="trailingMargin" id="lW9-QH-OHt"/>
                             <constraint firstItem="dIM-cc-2fM" firstAttribute="top" secondItem="hft-55-sBs" secondAttribute="top" id="pXv-lI-9Ch"/>

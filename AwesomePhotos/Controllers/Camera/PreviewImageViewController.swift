@@ -1,15 +1,16 @@
 import Foundation
 import UIKit
 import FirebaseStorage
+import Firebase
 
-class PreviewmageViewController : UIViewController
-{
+class PreviewmageViewController : UIViewController{
+    
     //MARK: - Properties
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
     
     let storageReference : StorageReference = {
-        return Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child("photos")
+        return Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child("User/\((Auth.auth().currentUser?.uid)!)/Uploads/Photo/abcd/og")
     }()
     
     //MARK: - Initialization
