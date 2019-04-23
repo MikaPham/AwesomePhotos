@@ -38,14 +38,12 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
         //Delegate textfields to make keyboard disappear when tap Return on keyboard
         contentView.emailTextField.delegate = self
         contentView.passwordTextField.delegate = self
-        contentView.usernameTextField.delegate = self
     }
     
     //Function to make keyboard disappear when tap Return on keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contentView.emailTextField.resignFirstResponder()
         contentView.passwordTextField.resignFirstResponder()
-        contentView.usernameTextField.resignFirstResponder()
         return true
     }
     
@@ -54,9 +52,8 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     @objc func handleSignUp() {
         guard let email = contentView.emailTextField.text else { return }
         guard let password = contentView.passwordTextField.text else { return }
-        guard let username = contentView.usernameTextField.text else { return }
         
-        createUser(withEmail: email, password: password, username: username)
+        createUser(withEmail: email, password: password)
     }
     
     @objc func handleShowLogin() {
@@ -69,7 +66,7 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     
     
     // MARK: - API
-    func createUser(withEmail email: String, password: String, username: String) {
+    func createUser(withEmail email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
             //If sign up fails
             if let error = error {
@@ -83,7 +80,7 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             
             //If sign up succeeds update user account with their username
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "username": username, "scope": self.userScope]
+            let values = ["email": email, "scope": self.userScope]
             
             self.db.collection("users").addDocument(data: values) { error in
                 //If update username fails
@@ -95,7 +92,10 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
                     })
                 }
             }
+            
             //If updates succeeds directs user to HomeController
+            self.present(AlertService.alert(imgName: "SmileFace", title: "Sign up success", message: "We will direct you to your homescreen"), animated: true)
+            
             guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
             guard navController.viewControllers[0] is HomeController else { return }
             self.dismiss(animated: true, completion: nil)

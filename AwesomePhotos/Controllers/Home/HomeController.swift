@@ -54,9 +54,9 @@ class HomeController: GenericViewController<HomeView> {
         print("loading user data")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         print(uid)
-        Database.database().reference().child("users").child(uid).child("username").observeSingleEvent(of: .value) { (snapshot) in
-            guard let username = snapshot.value as? String else { return }
-            self.contentView.welcomeLabel.text = "Welcome, \(username)"
+        Database.database().reference().child("users").child(uid).child("email").observeSingleEvent(of: .value) { (snapshot) in
+            guard let email = snapshot.value as? String else { return }
+            self.contentView.welcomeLabel.text = "Welcome, \(email)"
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.contentView.welcomeLabel.alpha = 1

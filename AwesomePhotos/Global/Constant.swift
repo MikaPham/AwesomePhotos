@@ -17,3 +17,5 @@ enum Limits : Int {
     case OwnersLimit = 5
 }
 
+let PhotoTypesConstants = ["OriginalPhoto": "og", "WatermarkPhoto": "wm", "NoWatermarkPhoto": "nwm"]
+

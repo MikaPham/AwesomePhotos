@@ -26,11 +26,6 @@ class SignUpView : GenericView {
         return view.textContainerView(view: view, UIImage(named:"icons8-new_post")!, emailTextField)
     }()
     
-    lazy var usernameContainerView: UIView = {
-        let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"icons8-user")!, usernameTextField)
-    }()
-    
     lazy var passwordContainerView: UIView = {
         let view = UIView()
         return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, passwordTextField)
@@ -129,18 +124,10 @@ class SignUpView : GenericView {
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
         }
-
-        self.addSubview(usernameContainerView)
-        usernameContainerView.snp.makeConstraints{(make) in
-            make.top.equalTo(emailContainerView.snp_bottom).offset(16)
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(50)
-        }
         
         self.addSubview(passwordContainerView)
         passwordContainerView.snp.makeConstraints{(make) in
-            make.top.equalTo(usernameContainerView.snp_bottom).offset(16)
+            make.top.equalTo(emailContainerView.snp_bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
@@ -148,7 +135,7 @@ class SignUpView : GenericView {
         
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
-            make.top.equalTo(passwordContainerView.snp_bottom).offset(24)
+            make.top.equalTo(passwordContainerView.snp_bottom).offset(32)
             make.left.equalToSuperview().offset(120)
             make.right.equalToSuperview().offset(-120)
             make.height.equalTo(50)
