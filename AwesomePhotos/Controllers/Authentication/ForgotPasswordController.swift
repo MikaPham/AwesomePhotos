@@ -69,7 +69,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     @objc func alertClose(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     
     //MARK: - API
     func sendResetPassword(email: String) {
@@ -84,11 +84,8 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
                 return
             }
             //If send email succeeds
-            let alert = UIAlertController(title: "Help is on the way!", message: "Check your inbox for a password reset link", preferredStyle: .alert)
-            self.present(alert, animated: true, completion:{
-                alert.view.superview?.isUserInteractionEnabled = true
-                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-            })
+            let alert = AlertService.alert(imgName: "WinkFace",title: "Help is on the way!",message: "Check your inbox for a password reset link")
+            self.present(alert, animated: true)
         }
     }
 }

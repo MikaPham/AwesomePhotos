@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */; };
+		182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182060BF226EB8C40058ACAA /* CustomAlertController.swift */; };
 		183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5AED2249BBC100F7309E /* AppDelegate.swift */; };
 		183E5AF32249BBC100F7309E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF12249BBC100F7309E /* Main.storyboard */; };
 		183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF42249BBC200F7309E /* Assets.xcassets */; };
@@ -17,6 +19,7 @@
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
 		189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A2433226C272A0017CA03 /* Sharing.storyboard */; };
+		18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6BADE226DA6BF00C29F4F /* Alert.swift */; };
 		18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FF4A22605A2F0003B347 /* CellWithButton.swift */; };
 		18CBCDA9224C650700420484 /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDA8224C650700420484 /* GenericView.swift */; };
 		18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAA224C65BB00420484 /* LogInView.swift */; };
@@ -42,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomAlertController.storyboard; sourceTree = "<group>"; };
+		182060BF226EB8C40058ACAA /* CustomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertController.swift; sourceTree = "<group>"; };
 		183E5AEA2249BBC100F7309E /* AwesomePhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomePhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183E5AED2249BBC100F7309E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		183E5AF22249BBC100F7309E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		189A2433226C272A0017CA03 /* Sharing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sharing.storyboard; sourceTree = "<group>"; };
+		18C6BADE226DA6BF00C29F4F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		18C9FF4A22605A2F0003B347 /* CellWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithButton.swift; sourceTree = "<group>"; };
 		18CBCDA8224C650700420484 /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
 		18CBCDAA224C65BB00420484 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -92,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182060BE226EB2310058ACAA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				182060BF226EB8C40058ACAA /* CustomAlertController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		183E5AE12249BBC100F7309E = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +228,7 @@
 		18CBCDA7224C648E00420484 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				182060BE226EB2310058ACAA /* UI */,
 				189A2430226C26CB0017CA03 /* Home */,
 				189A242F226C26B90017CA03 /* Sharing */,
 				189A242E226C26A00017CA03 /* Authentication */,
@@ -248,6 +263,7 @@
 				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
 				5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */,
 				189A2433226C272A0017CA03 /* Sharing.storyboard */,
+				182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -282,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				879706312265B1610036FA2B /* FirebaseFunctions.swift */,
+				18C6BADE226DA6BF00C29F4F /* Alert.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -351,6 +368,7 @@
 				5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */,
+				182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
@@ -438,6 +456,8 @@
 				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
+				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
+				18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
@@ -606,13 +626,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MZD4V9J498;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosRasmus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -625,13 +645,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MZD4V9J498;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosRasmus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
