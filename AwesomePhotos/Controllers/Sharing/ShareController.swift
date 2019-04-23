@@ -103,9 +103,14 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             usersToShare.append(userUid)
         }
         if (self.persmission == SharingPermissionConstants.OwnerPermission) {
-            self.db.collection("photos").document("abcd").updateData(
-                ["owners" : FieldValue.arrayUnion(usersToShare)]
-            )
+            if (self.alreadyOwned.count + usersToShare.count <= 5){
+                self.db.collection("photos").document("abcd").updateData(
+                    ["owners" : FieldValue.arrayUnion(usersToShare)]
+                )
+            }else {
+                let alert = AlertService.alert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again.")
+                present(alert, animated: true)
+            }
         } else {
             self.db.collection("photos").document("abcd").updateData(
                 ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
@@ -194,6 +199,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             if(self.alreadyOwned.count == Limits.OwnersLimit.rawValue) {
                 self.permissionSelector.setEnabled(false, forSegmentAt: 0)
                 self.permissionSelector.selectedSegmentIndex = 1
+                self.persmission = SharingPermissionConstants.ViewerPermission
             }
             
             for user in self.users {
