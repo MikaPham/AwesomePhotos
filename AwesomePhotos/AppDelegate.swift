@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow()
         window?.makeKeyAndVisible()
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
-        let loginController = LoginController()
-        let navController = UINavigationController(rootViewController: loginController)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+        let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+//        let loginController = LoginController()
+        let navController = UINavigationController(rootViewController: shareController)
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         window?.rootViewController = navController
