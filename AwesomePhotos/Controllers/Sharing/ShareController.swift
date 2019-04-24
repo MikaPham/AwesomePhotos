@@ -108,7 +108,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
                     ["owners" : FieldValue.arrayUnion(usersToShare)]
                 )
             }else {
-                let alert = AlertService.alert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again.")
+                let alert = AlertService.alert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again")
                 present(alert, animated: true)
             }
         } else {
@@ -119,17 +119,11 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         toBeShared.removeAll()
         shareTableView.reloadData()
         
-        let alert = UIAlertController(title: "Share Successful!", message: "Shared to selected users.", preferredStyle: .alert)
-        self.present(alert, animated: true, completion:{
-            alert.view.superview?.isUserInteractionEnabled = true
-            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-        })
+        let alert = AlertService.alert(imgName: "SmileFace", title: "Share successful", message: "Shared to selected users")
+        self.present(alert, animated: true)
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    @objc func alertClose(gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @objc func shareTapped(sender:cellButton!) {
         guard let button = sender else { return }
@@ -187,7 +181,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             })
             .disposed(by: disposeBag)
     }
-    
     
     //MARK: API
     func fetchAlreadySharedAndOwned() {

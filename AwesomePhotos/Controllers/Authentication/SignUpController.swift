@@ -79,7 +79,6 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             }
             
             //If sign up succeeds update user account with their username
-            guard let uid = result?.user.uid else { return }
             let values = ["email": email, "scope": self.userScope]
             
             self.db.collection("users").addDocument(data: values) { error in
@@ -94,7 +93,7 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             }
             
             //If updates succeeds directs user to HomeController
-            self.present(AlertService.alert(imgName: "SmileFace", title: "Sign up success", message: "We will direct you to your homescreen"), animated: true)
+            self.present(AlertService.alert(imgName: "SmileFace", title: "Sign up success", message: "Welcome aboard! We will direct you to your homescreen"), animated: true)
             
             guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
             guard navController.viewControllers[0] is HomeController else { return }

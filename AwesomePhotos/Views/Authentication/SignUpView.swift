@@ -111,7 +111,7 @@ class SignUpView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(100)
             make.width.equalTo(150)
             make.height.equalTo(150)
             make.centerX.equalToSuperview()
@@ -143,7 +143,7 @@ class SignUpView : GenericView {
         
         self.addSubview(dividerView)
         dividerView.snp.makeConstraints{(make) in
-            make.top.equalTo(loginButton.snp_bottom).offset(24)
+            make.top.equalTo(loginButton.snp_bottom).offset(60)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)

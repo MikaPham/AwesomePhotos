@@ -154,7 +154,7 @@ class LogInView : GenericView {
         
         self.addSubview(dividerView)
         dividerView.snp.makeConstraints{(make) in
-            make.top.equalTo(forgotPasswordButton.snp_bottom).offset(16)
+            make.top.equalTo(loginButton.snp_bottom).offset(60)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
