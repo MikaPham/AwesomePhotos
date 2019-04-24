@@ -16,7 +16,7 @@
 #import <stdatomic.h>
 
 #if GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS
- #import <Protobuf/Struct.pbobjc.h>
+#import <protobuf/Struct.pbobjc.h>
 #else
  #import "google/protobuf/Struct.pbobjc.h"
 #endif

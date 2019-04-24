@@ -111,37 +111,36 @@ class LogInView : GenericView {
     override func configureView() {
         self.backgroundColor = .white
         
-        self.addSubview(logoImageView)
-        logoImageView.snp.makeConstraints{(make) in
-            make.top.equalToSuperview().offset(100)
-            make.width.equalTo(150)
-            make.height.equalTo(150)
-            make.centerX.equalToSuperview()
+        self.addSubview(loginButton)
+        loginButton.snp.makeConstraints{(make) in
+            make.top.equalTo(self.snp.centerY).offset(50)
+            make.left.equalToSuperview().offset(120)
+            make.right.equalToSuperview().offset(-120)
+            make.height.equalTo(50)
+        }
+        
+        self.addSubview(passwordContainerView)
+        passwordContainerView.snp.makeConstraints{(make) in
+            make.bottom.equalTo(loginButton.snp_top).offset(-32)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
         }
         
         self.addSubview(emailContainerView)
         emailContainerView.snp.makeConstraints{(make) in
-            make.top.equalTo(logoImageView.snp_bottom).offset(24)
+            make.bottom.equalTo(passwordContainerView.snp_top).offset(-16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
         }
         
-        
-        self.addSubview(passwordContainerView)
-        passwordContainerView.snp.makeConstraints{(make) in
-            make.top.equalTo(emailContainerView.snp_bottom).offset(16)
-            make.left.equalToSuperview().offset(32)
-            make.right.equalToSuperview().offset(-32)
-            make.height.equalTo(50)
-        }
-        
-        self.addSubview(loginButton)
-        loginButton.snp.makeConstraints{(make) in
-            make.top.equalTo(passwordContainerView.snp_bottom).offset(32)
-            make.left.equalToSuperview().offset(120)
-            make.right.equalToSuperview().offset(-120)
-            make.height.equalTo(50)
+        self.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints{(make) in
+            make.bottom.equalTo(emailContainerView.snp_top).offset(-24)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
+            make.centerX.equalToSuperview()
         }
         
         self.addSubview(forgotPasswordButton)
