@@ -62,14 +62,15 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: email, password: password) {(result,error) in //Attempt log user in
             //If log in fails
             if let error = error {
-                let alert = AlertService.alert(imgName: "GrinFace", title: "Log in failed", message: error.localizedDescription)
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Log in failed", message: error.localizedDescription)
                 self.present(alert, animated: true)
                 return
             }
-            //If log in succeeds direct user to HomeController
-            guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-            guard navController.viewControllers[0] is HomeController else { return }
-            self.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let navController = UINavigationController(rootViewController: HomeController())
+                navController.navigationBar.barStyle = .black
+                self.present(navController, animated: true, completion: nil)
+            }
         }
     }
 }

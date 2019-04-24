@@ -62,29 +62,26 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
             //If sign up fails
             if let error = error {
-                let alert = AlertService.alert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
                 self.present(alert, animated: true)
                 return
             }
             
             //If sign up succeeds update user account with their username
-            let values = ["email": email, "scope": Scopes.userScope] as [String : Any]
+            let values = ["email": email, "scope": ScopeConstants["userScope"]!]
             
             self.db.collection("users").addDocument(data: values) { error in
                 //If update username fails
                 if let error = error {
-                    let alert = AlertService.alert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
+                    let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
                     self.present(alert, animated: true)
                     return
                 }
             }
             
             //If updates succeeds directs user to HomeController
-            self.present(AlertService.alert(imgName: "SmileFace", title: "Sign up success", message: "Welcome aboard! We will direct you to your homescreen"), animated: true)
-            
-            guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }
-            guard navController.viewControllers[0] is HomeController else { return }
-            self.dismiss(animated: true, completion: nil)
+            let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Sign up success",message: "Welcome aboard! We will direct you to your homescreen", currentScreen: self, nextScreen: HomeController())
+            self.present(alert,animated: true)
         }
     }
 }

@@ -108,7 +108,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
                     ["owners" : FieldValue.arrayUnion(usersToShare)]
                 )
             }else {
-                let alert = AlertService.alert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again")
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again")
                 present(alert, animated: true)
             }
         } else {
@@ -119,7 +119,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         toBeShared.removeAll()
         shareTableView.reloadData()
         
-        let alert = AlertService.alert(imgName: "SmileFace", title: "Share successful", message: "Shared to selected users")
+        let alert = AlertService.basicAlert(imgName: "SmileFace", title: "Share successful", message: "Shared to selected users")
         self.present(alert, animated: true)
         navigationItem.rightBarButtonItem?.isEnabled = false
     }

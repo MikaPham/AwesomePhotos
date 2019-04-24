@@ -17,10 +17,7 @@ enum Limits : Int {
     case OwnersLimit = 5
 }
 
-enum Scopes : String {
-    case adminScope = "0"
-    case userScope = "1"
-}
+let ScopeConstants = ["adminScope":"0","userScope":"1"]
 
 let PhotoTypesConstants = ["OriginalPhoto": "og", "WatermarkPhoto": "wm", "NoWatermarkPhoto": "nwm"]
 

@@ -72,13 +72,15 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
         Auth.auth().sendPasswordReset(withEmail: email) { error in //Attempt to send reset password email
             //If send email fails
             if let error = error {
-                let alert = AlertService.alert(imgName: "GrinFace", title: "Email sending failed", message: error.localizedDescription)
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Email sending failed", message: error.localizedDescription)
                 self.present(alert, animated: true)
                 return
             }
             //If send email succeeds
-            let alert = AlertService.alert(imgName: "WinkFace",title: "Help is on the way!",message: "Check your inbox for a password reset link")
+            let alert = AlertService.basicAlert(imgName: "WinkFace",title: "Help is on the way!",message: "Check your inbox for a password reset link")
             self.present(alert, animated: true)
+            
+            self.contentView.emailTextField.text = ""
         }
     }
 }

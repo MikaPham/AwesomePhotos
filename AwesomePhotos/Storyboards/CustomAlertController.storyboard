@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Custom Alert Controller-->
+        <!--Next Screen Alert Controller-->
         <scene sceneID="lNw-AK-EaU">
             <objects>
-                <viewController storyboardIdentifier="AlertVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="4It-8R-JVr" customClass="CustomAlertController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="4It-8R-JVr" customClass="NextScreenAlertController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y83-Lx-W46">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
