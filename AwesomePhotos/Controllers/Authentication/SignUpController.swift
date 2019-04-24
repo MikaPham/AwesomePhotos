@@ -12,12 +12,8 @@ import Firebase
 //SignUpController for SignUpView
 class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     
-    let adminScope = "0"
-    let userScope = "1"
-    
     let db = Firestore.firestore()
   
-    
     //MARK: UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,35 +56,26 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func alertClose(gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     // MARK: - API
     func createUser(withEmail email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in //Attmept sign user up
             //If sign up fails
             if let error = error {
-                let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
-                self.present(alert, animated: true, completion:{
-                    alert.view.superview?.isUserInteractionEnabled = true
-                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-                })
+                let alert = AlertService.alert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
+                self.present(alert, animated: true)
                 return
             }
             
             //If sign up succeeds update user account with their username
-            let values = ["email": email, "scope": self.userScope]
+            let values = ["email": email, "scope": Scopes.userScope] as [String : Any]
             
             self.db.collection("users").addDocument(data: values) { error in
                 //If update username fails
                 if let error = error {
-                    let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
-                    self.present(alert, animated: true, completion:{
-                        alert.view.superview?.isUserInteractionEnabled = true
-                        alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-                    })
+                    let alert = AlertService.alert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
+                    self.present(alert, animated: true)
+                    return
                 }
             }
             

@@ -56,21 +56,14 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
         navigationController?.pushViewController(ForgotPasswordController(), animated: true)
     }
     
-    @objc func alertClose(gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     //MARK: - API
     func logUserIn(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) {(result,error) in //Attempt log user in
             //If log in fails
             if let error = error {
-                let alert = UIAlertController(title: "Log in failed", message: error.localizedDescription, preferredStyle: .alert)
-                self.present(alert, animated: true, completion:{
-                    alert.view.superview?.isUserInteractionEnabled = true
-                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-                })
+                let alert = AlertService.alert(imgName: "GrinFace", title: "Log in failed", message: error.localizedDescription)
+                self.present(alert, animated: true)
                 return
             }
             //If log in succeeds direct user to HomeController

@@ -65,10 +65,6 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
         guard let email = contentView.emailTextField.text else { return }
         sendResetPassword(email: email)
     }
-    
-    @objc func alertClose(gesture: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
 
     
     //MARK: - API
@@ -76,11 +72,8 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
         Auth.auth().sendPasswordReset(withEmail: email) { error in //Attempt to send reset password email
             //If send email fails
             if let error = error {
-                let alert = UIAlertController(title: "Invalid email", message: error.localizedDescription, preferredStyle: .alert)
-                self.present(alert, animated: true, completion:{
-                    alert.view.superview?.isUserInteractionEnabled = true
-                    alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
-                })
+                let alert = AlertService.alert(imgName: "GrinFace", title: "Email sending failed", message: error.localizedDescription)
+                self.present(alert, animated: true)
                 return
             }
             //If send email succeeds
