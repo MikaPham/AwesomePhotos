@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import AVKit
 import CoreMedia
 import AVFoundation
 import FirebaseStorage
@@ -16,22 +17,18 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var videoCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
     @IBOutlet weak var previewWiew: UIView!
-    @IBOutlet weak var recordingBtn: UIButton!
     @IBOutlet weak var timeRecordedLbl: UILabel!
     @IBOutlet weak var switchToCameraButton: UIButton!
     @IBOutlet weak var switchBetweenCameraDevices: UIButton!
+    @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var fileStorage: UIButton!
-    @IBOutlet weak var blackView: UIView!
+    @IBOutlet weak var darkButtomView: UIView!
     
     var stopWatch = VideoStopwatch()
-    var rotating = false
-    let startShapeLayer = CAShapeLayer()
-    let endShapeLayer = CAShapeLayer()
     
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureRecordingButtonAnimation()
         clearTmpDir()
         configureSession()
         configureVideoInput()
@@ -60,8 +57,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             {
                 captureSession.addInput(deviceInput)
             }
-        }catch  let error{
-            print(error)
+        }catch{
+            print("No input found")
         }
     }
     
@@ -77,7 +74,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             captureSession.addOutput(dataOutput)
         }
         captureSession.commitConfiguration()
-        
         setVideoOrientation()
         self.captureSession.addOutput(self.movieFileOutput)
     }
@@ -97,109 +93,47 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         self.captureSession.startRunning()
     }
     
-    //6. Sets up a custom recording button with animation
-    func configureRecordingButtonAnimation(){
-        let btnCenter = CGPoint(x: 190, y: 600)
-        
-        
-        //Create tracklayer to show if you are recording or not
-        let trackLayer = CAShapeLayer()
-        let circularPath = UIBezierPath(arcCenter: btnCenter, radius: 35, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
-        trackLayer.path = circularPath.cgPath
-        
-        let colorForTrackLayer =  UIColor(red: (127/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
-        trackLayer.strokeColor = colorForTrackLayer.cgColor
-        trackLayer.lineWidth = 10
-        trackLayer.fillColor = UIColor.clear.cgColor
-        view.layer.addSublayer(trackLayer)
-        
-        //Create animation spinning around the recording button
-        startShapeLayer.path = circularPath.cgPath
-        
-        let colorForAnimation = UIColor(red: (180/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
-        startShapeLayer.strokeColor = colorForAnimation.cgColor
-        startShapeLayer.fillColor = UIColor.clear.cgColor
-        startShapeLayer.lineWidth = 10
-        startShapeLayer.lineCap = CAShapeLayerLineCap.round
-        startShapeLayer.strokeEnd = 0
-        view.layer.addSublayer(startShapeLayer)
-        
-        endShapeLayer.path = circularPath.cgPath
-        
-        let colorForTailLayer =  UIColor(red: (127/255.0), green: (55/255.0), blue: (44/255.0), alpha: 0.6)
-        endShapeLayer.strokeColor = colorForTailLayer.cgColor
-        endShapeLayer.fillColor = UIColor.clear.cgColor
-        endShapeLayer.lineWidth = 10
-        endShapeLayer.lineCap = CAShapeLayerLineCap.round
-        endShapeLayer.strokeEnd = 0
-        view.layer.addSublayer(endShapeLayer)
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRecordingButtonPressed)))
-    }
-    
-    //7. Tap recogniser which handles if video is recording or not
-    @objc private func handleRecordingButtonPressed(){
-        
-        let spinAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        let tailSpinAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
-        if !rotating{
-
-            spinAnimation.toValue = 1
-            spinAnimation.duration = 2
-            spinAnimation.repeatCount = .greatestFiniteMagnitude
-            spinAnimation.fillMode = CAMediaTimingFillMode.forwards
-            spinAnimation.isRemovedOnCompletion = true
-            
-            tailSpinAnimation.toValue = 1
-            tailSpinAnimation.duration = 2
-            tailSpinAnimation.beginTime = CACurrentMediaTime() + 0.3
-            tailSpinAnimation.repeatCount = .greatestFiniteMagnitude
-            tailSpinAnimation.fillMode = CAMediaTimingFillMode.forwards
-            tailSpinAnimation.isRemovedOnCompletion = true
-            
-            startShapeLayer.add(spinAnimation, forKey: "GoAround")
-            endShapeLayer.add(tailSpinAnimation, forKey: "Comes around")
-        }
+    //6. Recording video is pressed and when pressed again, it will stop and upload to firebase storage
+    @IBAction func recordVideoButtonPressed(_ sender: UIButton) {
         
         if movieFileOutput.isRecording {
             
             movieFileOutput.stopRecording()
-            rotating = true //Stops the animation
-            view.layer.transform = CATransform3DIdentity
-            startShapeLayer.removeAllAnimations()
-            endShapeLayer.removeAllAnimations()
-            showButtonsWhileNotRecording()
+            displayButtonsWhileNotRecording()
             stopWatch.stop()
             
             //Upload video to firestorage
-            let uploadRef = videoStorageReference.child("comeonFile.mov")
-            let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
+            let uploadRef = videoStorageReference.child("getit.mp4")
+            //let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
+            let uploadVideoTask = uploadRef.putFile(from: self.videoLocation()!, metadata: nil)
             uploadVideoTask.observe(.progress) { (snapshot) in
                 print(snapshot.progress ?? "Progress cancelled")
             }
             uploadVideoTask.resume()
         }
-        else {
-            rotating = false
+        else { //Starts the recording
             Timer.scheduledTimer(timeInterval: 0.1, target: self,
-                                 selector: #selector(updateElapsedTimeLabel(_:)), userInfo: nil, repeats: true)
-            hideButtonsWhileRecording()
-            stopWatch.start()//Start recoding
+                                 selector: #selector(updateElapsedTimeLabel(_:)),
+                                 userInfo: nil,
+                                 repeats: true)
+            modifyButtonsWhileRecording()
+            stopWatch.start()
             movieFileOutput.connection(with: .video)?.videoOrientation = self.videoOrientation()
             movieFileOutput.maxRecordedDuration = maxRecordedDuration()
-            movieFileOutput.startRecording(to: URL(fileURLWithPath: self.videoLocation()), recordingDelegate: self)
+            movieFileOutput.startRecording(to: videoLocation()!, recordingDelegate: self)
         }
     }
     
-    //8. Stores the video in this temporary directory in the cache
-    func videoLocation() -> String{
-        return NSTemporaryDirectory().appending("comeonFile.mov")
+    //7. Stores the video in this temporary directory in the cache
+    func videoLocation() -> URL?{
+        let directory = NSTemporaryDirectory().appending("getit.mp4")
+        return URL(fileURLWithPath: directory)
+        
     }
     
     //MARK: - Helper Methods
     
-    //9. Updates the time recorded and resets it, if video stopped recording
+    //8. Updates the time recorded and resets it, if video stopped recording
     @objc func updateElapsedTimeLabel(_ timer: Timer) {
         if stopWatch.isRunning {
             timeRecordedLbl.text = stopWatch.elapsedTimeAsString
@@ -209,7 +143,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    //10. Clears the cache so no videos is stored in the cache
+    //9. Clears the cache so no videos is stored in the cache
     func clearTmpDir(){
         var removed: Int = 0
         do {
@@ -227,14 +161,14 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    //11. Sets the duration time to the maximum of 5 min
+    //10. Sets the duration time to the maximum of 5 min
     func maxRecordedDuration() -> CMTime{
         let recordtime : Int64 = 300
         let preferedTimescale : Int32 = 1
         return CMTimeMake(value: recordtime, timescale: preferedTimescale)
     }
     
-    //12. Sets the current rotation of the phone
+    //11. Sets the current rotation of the phone
     func setVideoOrientation()
     {
         if let connection = self.myPreviewLayer?.connection
@@ -246,7 +180,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    //13. The different positions the phone can be in, is used in the setVideoOrientation
+    //12. The different positions the phone can be in, is used in the setVideoOrientation
     func videoOrientation() -> AVCaptureVideoOrientation
     {
         var videoOrientation : AVCaptureVideoOrientation!
@@ -272,20 +206,21 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return videoOrientation
     }
     
-    
-    func hideButtonsWhileRecording(){ // Hides the buttons of the interface to make it more clean while recording
+    // Hides the buttons of the interface to make it more clean while recording
+    func modifyButtonsWhileRecording(){
+        recordingButton.setImage(UIImage(named: "Recording"), for: .normal)
         switchToCameraButton.isHidden = true
-        switchBetweenCameraDevices.isHidden = true
         fileStorage.isHidden = true
-        blackView.alpha = 0.2
+        darkButtomView.alpha = 0.2
     }
     
-    func showButtonsWhileNotRecording()
+    // Shows the buttons when recording is stopped
+    func displayButtonsWhileNotRecording()
     {
+        recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
         switchToCameraButton.isHidden = false
-        switchBetweenCameraDevices.isHidden = false
         fileStorage.isHidden = false
-        blackView.alpha = 0.7
+        darkButtomView.alpha = 0.7
     }
     
     //Sets the according position to the screen
@@ -293,8 +228,31 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         self.setVideoOrientation()
     }
     
+    //returns to camera mode
+    @IBAction func switchToCameraButtonPressed(_ sender: UIButton) {
+        captureSession.stopRunning()
+        dismiss(animated: true, completion: nil)
+        //performSegue(withIdentifier: "segueToCameraMode", sender: self)
+    }
+    
+    @IBAction func previewLatestFileButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let previewVideoVC = segue.destination as! PreviewVideoViewController
+        previewVideoVC.videoURL = sender as? URL
+    }
+    
     //Protocol for AVCaptureFileOutputRecordingDelegate.. Needed for it to work
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        print("Finished recording")
+        if (error != nil){
+            print("Error found : Could not record video")
+        }
+        else{
+            
+            let videoRecorded = videoLocation()! as URL
+            performSegue(withIdentifier: "segueToPreviewVideo", sender: videoRecorded)
+        }
     }
 }

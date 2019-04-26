@@ -39,6 +39,7 @@
 		5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA312266DC7D0011237D /* VideoStopwatch.swift */; };
 		5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */; };
 		5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */; };
+		5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */; };
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
@@ -79,6 +80,7 @@
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
 		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = ../Settings.storyboard; sourceTree = "<group>"; };
+		5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		5D10BA172266D63C0011237D /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */,
 				5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */,
 				5D10BA312266DC7D0011237D /* VideoStopwatch.swift */,
 			);
@@ -462,6 +465,7 @@
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
+				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,

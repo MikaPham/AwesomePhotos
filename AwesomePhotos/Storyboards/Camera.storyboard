@@ -163,9 +163,6 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="Camera"/>
-                                        <connections>
-                                            <action selector="switchToCameraButtonPressed:" destination="4Fv-LI-hsr" eventType="touchUpInside" id="SmB-2X-BlZ"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ2-5e-ugd">
                                         <rect key="frame" x="157" y="37" width="72" height="72"/>
@@ -175,7 +172,7 @@
                                         </constraints>
                                         <state key="normal" image="RedRecord"/>
                                         <connections>
-                                            <action selector="recordVideoButton:" destination="4Fv-LI-hsr" eventType="touchUpInside" id="DFM-nJ-ipT"/>
+                                            <action selector="recordVideoButtonPressed:" destination="4Fv-LI-hsr" eventType="touchUpInside" id="tHv-6d-WqP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXS-bq-n9K" userLabel="FileStorage">
@@ -195,9 +192,6 @@
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="previewLatestFileButtonPressed:" destination="4Fv-LI-hsr" eventType="touchUpInside" id="mja-7h-bd5"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -258,9 +252,7 @@
                         <viewLayoutGuide key="safeArea" id="TsM-zX-2Lc"/>
                     </view>
                     <connections>
-                        <outlet property="darkButtomView" destination="Hah-cU-oBI" id="dhI-k8-fSc"/>
                         <outlet property="fileStorage" destination="UXS-bq-n9K" id="bso-hO-SDO"/>
-                        <outlet property="recordingButton" destination="CJ2-5e-ugd" id="wAw-ph-Owv"/>
                         <outlet property="switchToCameraButton" destination="iWF-eG-Q1I" id="GGe-nB-hsz"/>
                         <outlet property="timeRecordedLbl" destination="l41-mq-Kqg" id="KnA-OA-lR4"/>
                         <segue destination="HJ6-xm-zRx" kind="presentation" identifier="segueToPreviewVideo" id="P1L-Vd-fAT"/>
@@ -287,7 +279,7 @@
                                             <constraint firstAttribute="width" constant="50" id="0ro-yU-I6x"/>
                                             <constraint firstAttribute="height" constant="50" id="9dd-TV-0Pi"/>
                                         </constraints>
-                                        <state key="normal" image="icons8-pause"/>
+                                        <state key="normal" image="icons8-pause_filled"/>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="HJ6-xm-zRx" eventType="touchUpInside" id="Gvq-gl-jvc"/>
                                         </connections>
@@ -358,7 +350,7 @@
                                     <constraint firstAttribute="width" constant="100" id="Ssu-ol-TZJ"/>
                                     <constraint firstAttribute="height" constant="100" id="y50-Ur-heX"/>
                                 </constraints>
-                                <state key="normal" image="icons8-start"/>
+                                <state key="normal" image="icons8-play_filled"/>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="HJ6-xm-zRx" eventType="touchUpInside" id="9xK-wo-x0a"/>
                                 </connections>
@@ -416,9 +408,6 @@
                                         <state key="normal" title="Delete">
                                             <color key="titleColor" red="1" green="0.074452651019999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="deleteButtonPressed:" destination="XcJ-8d-f5M" eventType="touchUpInside" id="aG6-Sh-Vwt"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlv-N6-cb8">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="100"/>
@@ -429,9 +418,6 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
                                         <state key="normal" title="Upload"/>
-                                        <connections>
-                                            <action selector="uploadImageButtonPressed:" destination="XcJ-8d-f5M" eventType="touchUpInside" id="zKQ-am-wAE"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -471,9 +457,9 @@
         <image name="Record" width="48" height="48"/>
         <image name="RedRecord" width="72" height="72"/>
         <image name="icons8-cancel" width="50" height="50"/>
-        <image name="icons8-pause" width="16" height="16"/>
-        <image name="icons8-start" width="16" height="16"/>
+        <image name="icons8-pause_filled" width="25" height="25"/>
+        <image name="icons8-play_filled" width="25" height="25"/>
         <image name="icons8-switch_camera" width="50" height="50"/>
-        <image name="ios11-camera-mode-icon" width="16" height="16"/>
+        <image name="ios11-camera-mode-icon" width="75" height="63"/>
     </resources>
 </document>
