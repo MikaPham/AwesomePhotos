@@ -59,27 +59,12 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
     
     // MARK: - API
     func createUser(withEmail email: String, password: String) {
-        var uid = String()
         Auth.auth().createUser(withEmail: email, password: password) {(result, error) in //Attmept sign user up
             //If sign up fails
             if let error = error {
                 let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
                 self.present(alert, animated: true)
                 return
-            } else {
-                uid = result!.user.uid
-            }
-            
-            //If sign up succeeds update user account with their username
-            let values = ["email": email, "scope": ScopeConstants["userScope"]!]
-            
-            self.db.collection("users").document(uid).setData(values) {error in
-                //If update username fails
-                if let error = error {
-                    let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Sign up failed", message: error.localizedDescription)
-                    self.present(alert, animated: true)
-                    return
-                }
             }
             
             //If updates succeeds directs user to HomeController

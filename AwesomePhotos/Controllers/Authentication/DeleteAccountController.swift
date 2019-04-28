@@ -57,19 +57,6 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     }
     
     //MARK: - API
-    fileprivate func deleteFirestoreDoc(_ uid: String) {
-        // Remove user document from Cloud Firestore
-        db.collection("users").document(uid).delete{err in
-            if let error = err {
-                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Delete account failed", message: error.localizedDescription)
-                self.present(alert, animated: true)
-                return
-            } else {
-                print("Document successfully removed!")
-            }
-        }
-    }
-    
     fileprivate func deleteFromAuth() {
         guard let user = Auth.auth().currentUser else { return }
         // Remove user from Auth
@@ -85,8 +72,6 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     }
     
     func deleteAccount() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        deleteFirestoreDoc(uid)
         deleteFromAuth()
         let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Account deleted",message: "Your account has been deleted. We hope to see you again soon!", currentScreen: self, nextScreen: LoginController())
         self.present(alert,animated: true)
