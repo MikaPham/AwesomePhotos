@@ -18,10 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow()
         window?.makeKeyAndVisible()
+        
+// Uncomment the next 2 lines to test a screen made from storyboard
+        
 //        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Camera", bundle: nil)
 //        let cameraController: CameraViewController = mainStoryboard.instantiateViewController(withIdentifier: "CameraController") as! CameraViewController
-        let loginController = LoginController()
         
+// Uncomment the next line to start the app at the login screen
+        let loginController = LoginController()
+//        let deleteAccountController = DeleteAccountController()
+ 
+//  Remember to set the rootViewController to the screen you want to test
         let navController = UINavigationController(rootViewController: loginController)
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]

@@ -18,6 +18,8 @@
 		183E5B042249BC8600F7309E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B032249BC8600F7309E /* HomeController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
+		1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA852274703F00C0B1FB /* DeleteAccountView.swift */; };
+		1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */; };
 		189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A2433226C272A0017CA03 /* Sharing.storyboard */; };
 		18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6BADE226DA6BF00C29F4F /* Alert.swift */; };
 		18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FF4A22605A2F0003B347 /* CellWithButton.swift */; };
@@ -59,6 +61,8 @@
 		183E5B032249BC8600F7309E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1897EA852274703F00C0B1FB /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountController.swift; sourceTree = "<group>"; };
 		189A2433226C272A0017CA03 /* Sharing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sharing.storyboard; sourceTree = "<group>"; };
 		18C6BADE226DA6BF00C29F4F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		18C9FF4A22605A2F0003B347 /* CellWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithButton.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				183E5B012249BC5E00F7309E /* SignUpController.swift */,
 				18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */,
 				183E5AFF2249BC3000F7309E /* LoginController.swift */,
+				1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				18CBCDAA224C65BB00420484 /* LogInView.swift */,
 				18CBCDAC224C65C800420484 /* SignUpView.swift */,
 				18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */,
+				1897EA852274703F00C0B1FB /* DeleteAccountView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
 				18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */,
+				1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
@@ -478,6 +485,7 @@
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
+				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
