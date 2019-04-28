@@ -16,11 +16,20 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     
     //MARK: - UI
     func configureNavBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
-        navigationItem.leftBarButtonItem?.tintColor = .black
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
+        // Set up navigation bar color
         navigationController?.navigationBar.barTintColor = UIColor.lightGray()
+        
+        // Set up navigation bar back button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleGoBack))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        
+        // Set up navigation bar title
         self.title = "Delete account"
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate; //To enable go back to previous screen with left swipe
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
+        
+        // To enable go back to previous screen with left swipe
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate;
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -48,7 +57,6 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     
     //MARK: - Selectors
     @objc func handleGoBack(){
-        navigationController?.navigationBar.isHidden = true
         navigationController?.popViewController(animated: true)
     }
     
