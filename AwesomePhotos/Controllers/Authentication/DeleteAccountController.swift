@@ -44,9 +44,6 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        print(uid)
     }
     
     //MARK: - Selectors
@@ -65,8 +62,8 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         print(uid)
         
-        // Remove user document from Firesore Database
-        self.db.collection("users").document(uid).delete() { err in
+        // Remove user document from Cloud Firestore 
+        db.collection("users").document(uid).delete{err in
             if let error = err {
                 let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Delete account failed", message: error.localizedDescription)
                 self.present(alert, animated: true)
@@ -87,15 +84,7 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
             }
         }
         
-        // If success sign user out and go back to log in screen
-        do {
-            try Auth.auth().signOut()
-            let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Account deleted!",message: "Hope to see you soon", currentScreen: self, nextScreen: LoginController())
-            self.present(alert,animated: true)
-        } catch let error as NSError{
-            print("Failed to sign out with error", error)
-            let alert = UIAlertController(title: "Sign out failed", message: "Failed to sign user out", preferredStyle: .alert)
-            self.present(alert, animated: true)
-        }
+        let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Account deleted!",message: "Hope to see you soon", currentScreen: self, nextScreen: LoginController())
+        self.present(alert,animated: true)
     }
 }
