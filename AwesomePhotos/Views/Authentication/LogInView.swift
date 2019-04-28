@@ -43,7 +43,7 @@ class LogInView : GenericView {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(.white, for: .normal)

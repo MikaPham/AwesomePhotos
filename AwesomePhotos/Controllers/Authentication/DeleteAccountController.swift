@@ -15,23 +15,6 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     let db = Firestore.firestore()
     
     //MARK: - UI
-    func configureNavBar() {
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
-        // Set up navigation bar color
-        navigationController?.navigationBar.barTintColor = UIColor.lightGray()
-        
-        // Set up navigation bar back button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleGoBack))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-        
-        // Set up navigation bar title
-        self.title = "Delete account"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
-        
-        // To enable go back to previous screen with left swipe
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate;
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -52,14 +35,10 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
+        configureNavBar(title: "Delete account")
     }
     
     //MARK: - Selectors
-    @objc func handleGoBack(){
-        navigationController?.popViewController(animated: true)
-    }
-    
     @objc func handleDeleteAccount(){
         deleteAccount()
     }

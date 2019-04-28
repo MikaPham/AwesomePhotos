@@ -13,20 +13,6 @@ import SnapKit
 //ForgotPasswordController for ForgotPasswordView
 class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITextFieldDelegate {
     
-    
-    //MARK: - UI
-    func configureNavBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "icons8-left"), style: .plain, target: self, action: #selector(handleGoBack))
-        navigationItem.leftBarButtonItem?.tintColor = .black
-        navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate; //To enable go back to previous screen with left swipe
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
-    
-    
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -42,7 +28,7 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
+        configureNavBar(title: "")
         hideKeyboardWhenTappedAround()
         //Delegate textfields to make keyboard disappear when tap Return on keyboard
         contentView.emailTextField.delegate = self
@@ -55,15 +41,15 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     }
     
     
-    //MARK: - Selectors
-    @objc func handleGoBack(){
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.popViewController(animated: true)
-    }
-    
+    //MARK: - Selectors    
     @objc func handleForgotPassword() {
         guard let email = contentView.emailTextField.text else { return }
         sendResetPassword(email: email)
+    }
+    
+    @objc override func handleGoBack() {
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.popViewController(animated: true)
     }
 
     

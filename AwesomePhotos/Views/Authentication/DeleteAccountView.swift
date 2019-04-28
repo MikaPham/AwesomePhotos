@@ -53,7 +53,7 @@ class DeleteAccountView : GenericView {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Delete my account", for: .normal)
+        button.setTitle("Delete", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(.white, for: .normal)

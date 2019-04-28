@@ -70,6 +70,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar(title: "Add people")
         configureTableViews()
         fetchUsers()
         fetchAlreadySharedAndOwned()
@@ -77,7 +78,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
-        navigationItem.title = "Add People"
         UINavigationBar.appearance().tintColor = UIColor.mainRed()
     }
     
