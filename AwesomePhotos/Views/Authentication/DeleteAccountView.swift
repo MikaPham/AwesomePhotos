@@ -15,7 +15,7 @@ class DeleteAccountView : GenericView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = UIImage(named: "HmmFace")
+        iv.image = UIImage(named: "DeadFace")
         return iv
     }()
     
@@ -70,7 +70,7 @@ class DeleteAccountView : GenericView {
         
         self.addSubview(loginButton)
         loginButton.snp.makeConstraints{(make) in
-            make.bottom.equalTo(self.snp.bottom).offset(-80)
+            make.bottom.equalTo(self.snp.bottom).offset(-60)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
