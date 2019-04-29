@@ -9,8 +9,10 @@
 import UIKit
 
 class User: NSObject {
-    @objc var username: String?
+    @objc var createdAt: NSObject?
     @objc var email: String?
     @objc var scope: String?
     @objc var uid: String?
+    @objc var ownedPhotos: [String]?
+    @objc var ownedVideos: [String]?
 }

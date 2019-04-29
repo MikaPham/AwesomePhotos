@@ -26,6 +26,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var alreadyShared = [String]()
     var alreadyOwned = [String]()
     var persmission = SharingPermissionConstants.OwnerPermission
+    var photoUid = "testphoto2"
     
     //var photoUid: String
     
@@ -67,6 +68,13 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    fileprivate func configureShareButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+        UINavigationBar.appearance().tintColor = UIColor.mainRed()
+    }
+
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,13 +83,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         fetchUsers()
         fetchAlreadySharedAndOwned()
         makeObsSearchBar()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
-        UINavigationBar.appearance().tintColor = UIColor.mainRed()
+        configureShareButton()
     }
     
-
     
     //MARK: Selectors
     @IBAction func indexChanged(_ sender: Any) {
@@ -104,15 +108,20 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         if (self.persmission == SharingPermissionConstants.OwnerPermission) {
             if (self.alreadyOwned.count + usersToShare.count <= 5){
-                self.db.collection("photos").document("abcd").updateData(
+                self.db.collection("photos").document(photoUid).updateData(
                     ["owners" : FieldValue.arrayUnion(usersToShare)]
                 )
+                for uid in usersToShare {
+                    self.db.collection("users").document(uid).updateData(
+                        ["ownedPhotos":FieldValue.arrayUnion([photoUid])]
+                    )
+                }
             }else {
                 let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again")
                 present(alert, animated: true)
             }
         } else {
-            self.db.collection("photos").document("abcd").updateData(
+            self.db.collection("photos").document(photoUid).updateData(
                 ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
             )
         }
@@ -184,7 +193,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: API
     func fetchAlreadySharedAndOwned() {
-        self.db.collection("photos").document("abcd").addSnapshotListener{querySnapshot, error in
+        self.db.collection("photos").document(photoUid).addSnapshotListener{querySnapshot, error in
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]

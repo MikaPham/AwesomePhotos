@@ -21,15 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 // Uncomment the next 2 lines to test a screen made from storyboard
         
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Camera", bundle: nil)
-//        let cameraController: CameraViewController = mainStoryboard.instantiateViewController(withIdentifier: "CameraController") as! CameraViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+        let shareController: ShareController = mainStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
         
 // Uncomment the next line to start the app at the login screen
         let loginController = LoginController()
 //        let deleteAccountController = DeleteAccountController()
  
 //  Remember to set the rootViewController to the screen you want to test
-        let navController = UINavigationController(rootViewController: loginController)
+        let navController = UINavigationController(rootViewController: shareController)
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         window?.rootViewController = navController
