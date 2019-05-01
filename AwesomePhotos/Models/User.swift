@@ -15,4 +15,8 @@ class User: NSObject {
     @objc var uid: String?
     @objc var ownedPhotos: [String]?
     @objc var ownedVideos: [String]?
+    @objc var sharedPhotos: [String]?
+    @objc var sharedVideos: [String]?
+    @objc var wmPhotos: [String]?
+    @objc var wmVideos: [String]?
 }
