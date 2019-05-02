@@ -16,10 +16,12 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     let db = Firestore.firestore() 
     
     var owners = [User]()
-    var viewers = [User]()
+    var noWm = [User]()
+    var wm = [User]()
     var toBeRemovedOwners = [User]()
-    var toBeRemovedViewers = [User]()
-    var photoUid = "testphoto2"
+    var toBeRemovedNoWm = [User]()
+    var toBeRemovedWm = [User]()
+    var photoUid = "testphoto3"
     
     //MARK: UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,7 +29,9 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
             case 0:
                 return owners.count
             case 1:
-                return viewers.count
+                return noWm.count
+            case 2:
+                return wm.count
             default:
                 return 0
         }
@@ -40,7 +44,10 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
                 cell.cellLabel?.text = owners[indexPath.row].email
                 break
             case 1:
-                cell.cellLabel?.text = viewers[indexPath.row].email
+                cell.cellLabel?.text = noWm[indexPath.row].email
+                break
+            case 2:
+                cell.cellLabel?.text = wm[indexPath.row].email
                 break
             default:
                 break
@@ -63,6 +70,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
         fetchOwnersAndViewers()
         configureDoneButton()
         configureNavBar(title: "Edit permission")
+        permissionSelector.selectedSegmentIndex = 0
     }
     
     //MARK: Selectors
@@ -72,13 +80,18 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
             guard let uid = user.uid else { return }
             ownersUid.append(uid)
         }
-        var viewersUid = [String]()
-        toBeRemovedViewers.forEach{(user) in
+        var noWmUid = [String]()
+        toBeRemovedNoWm.forEach{(user) in
             guard let uid = user.uid else { return }
-            viewersUid.append(uid)
+            noWmUid.append(uid)
+        }
+        var wmUid = [String]()
+        toBeRemovedWm.forEach{(user) in
+            guard let uid = user.uid else { return }
+            wmUid.append(uid)
         }
         self.db.collection("photos").document(photoUid).updateData(
-            ["owners" : FieldValue.arrayRemove(ownersUid), "sharedWith": FieldValue.arrayRemove(viewersUid)]
+        ["owners" : FieldValue.arrayRemove(ownersUid), "sharedWith": FieldValue.arrayRemove(noWmUid), "sharedWM": FieldValue.arrayRemove(wmUid)]
         )
         navigationItem.rightBarButtonItem?.isEnabled = false
         cleanUsersArrays()
@@ -94,9 +107,12 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
                 owners.remove(at: owners.firstIndex(of: owners[button.tag])!)
                 break
             case 1:
-                toBeRemovedViewers.append(viewers[button.tag])
-                viewers.remove(at: viewers.firstIndex(of: viewers[button.tag])!)
+                toBeRemovedNoWm.append(noWm[button.tag])
+                noWm.remove(at: noWm.firstIndex(of: noWm[button.tag])!)
                 break
+            case 2:
+                toBeRemovedWm.append(wm[button.tag])
+                wm.remove(at: wm.firstIndex(of: wm[button.tag])!)
             default:
                 break
         }
@@ -114,7 +130,8 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     //MARK: API
     fileprivate func cleanUsersArrays() {
         self.toBeRemovedOwners.removeAll()
-        self.toBeRemovedViewers.removeAll()
+        self.toBeRemovedNoWm.removeAll()
+        self.toBeRemovedWm.removeAll()
     }
     
     fileprivate func getUsersByUid(_ viewerUid: String) -> User {
@@ -135,10 +152,13 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
                 for viewerUid in data["sharedWith"] as! [String] {
-                    self.viewers.append(self.getUsersByUid(viewerUid))
+                    self.noWm.append(self.getUsersByUid(viewerUid))
                 }
                 for ownerUid in data["owners"] as! [String] {
                     self.owners.append(self.getUsersByUid(ownerUid))
+                }
+                for wmUid in data["sharedWM"] as! [String] {
+                    self.wm.append(self.getUsersByUid(wmUid))
                 }
             } else {
                 print("Document does not exist")
