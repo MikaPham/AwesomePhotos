@@ -25,8 +25,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var toBeShared = [User]()
     var alreadyShared = [String]()
     var alreadyOwned = [String]()
+    var alreadySharedWm = [String]()
     var persmission = SharingPermissionConstants.OwnerPermission
-    var photoUid = "testphoto2"
+    var photoUid = "testphoto3"
     
     // Bag of disposables to release them when view is being deallocated
     var disposeBag = DisposeBag()
@@ -91,7 +92,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         case 0:
             self.persmission = SharingPermissionConstants.OwnerPermission
         case 1:
-            self.persmission = SharingPermissionConstants.ViewerPermission
+            self.persmission = SharingPermissionConstants.NoWmPermission
+        case 2:
+            self.persmission = SharingPermissionConstants.WmPermission
         default:
             break
         }
@@ -103,38 +106,57 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             guard let userUid = user.uid else { return }
             usersToShare.append(userUid)
         }
-        if (self.persmission == SharingPermissionConstants.OwnerPermission) {
-            if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
+        
+        switch self.persmission {
+            case SharingPermissionConstants.OwnerPermission:
+                if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
+                    self.db.collection("photos").document(photoUid).updateData(
+                        ["owners" : FieldValue.arrayUnion(usersToShare)]
+                    )
+                    for uid in usersToShare {
+                        self.db.collection("users").document(uid).updateData(
+                            ["ownedPhotos":FieldValue.arrayUnion([photoUid])]
+                        )
+                    }
+                }else {
+                    let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed", message: "This file has already had \(alreadyOwned.count) users as owners. You can only add \(Limits.OwnersLimit.rawValue-alreadyOwned.count) more.")
+                    present(alert, animated: true)
+                }
+            break
+            
+            case SharingPermissionConstants.NoWmPermission:
                 self.db.collection("photos").document(photoUid).updateData(
-                    ["owners" : FieldValue.arrayUnion(usersToShare)]
+                    ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
                     self.db.collection("users").document(uid).updateData(
-                        ["ownedPhotos":FieldValue.arrayUnion([photoUid])]
+                        ["sharedPhotos":FieldValue.arrayUnion([photoUid])]
                     )
                 }
-            }else {
-                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed", message: "This file has already had \(alreadyOwned.count) users as owners. You can only add \(Limits.OwnersLimit.rawValue-alreadyOwned.count) more.")
-                present(alert, animated: true)
-            }
-        } else {
-            self.db.collection("photos").document(photoUid).updateData(
-                ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
-            )
-            for uid in usersToShare {
-                self.db.collection("users").document(uid).updateData(
-                    ["sharedPhotos":FieldValue.arrayUnion([photoUid])]
+            break
+            
+            case SharingPermissionConstants.WmPermission:
+                self.db.collection("photos").document(photoUid).updateData(
+                    ["sharedWM":FieldValue.arrayUnion(usersToShare)]
                 )
-            }
+                for uid in usersToShare {
+                    self.db.collection("users").document(uid).updateData(
+                        ["wmPhotos":FieldValue.arrayUnion([photoUid])]
+                    )
+                }
+            break
         }
+
         toBeShared.removeAll()
         shareTableView.reloadData()
         
         var message: String
         if (self.persmission == SharingPermissionConstants.OwnerPermission) {
             message = "Successfully added selected users as the owners of the file."
+        } else if (self.persmission == SharingPermissionConstants.NoWmPermission) {
+            message = "Successfully shared the file without watermark to the selected users."
         } else {
-            message = "Successfully shared the file to the selected users."
+            message = "Successfully shared the watermarked file to the selected users."
         }
         let alert = AlertService.basicAlert(imgName: "SmileFace", title: "Share successful", message: message)
         self.present(alert, animated: true)
@@ -207,16 +229,20 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]
+            self.alreadySharedWm = data["sharedWM"] as! [String]
             
             if(self.alreadyOwned.count == Limits.OwnersLimit.rawValue) {
                 self.permissionSelector.setEnabled(false, forSegmentAt: 0)
                 self.permissionSelector.selectedSegmentIndex = 1
-                self.persmission = SharingPermissionConstants.ViewerPermission
+                self.persmission = SharingPermissionConstants.NoWmPermission
             }
             
             for user in self.users {
                 guard let userUid = user.uid else { return }
                 if self.alreadyShared.contains(userUid) {
+                    self.users.remove(at: self.users.firstIndex(of: user)!)
+                }
+                else if self.alreadyOwned.contains(userUid) {
                     self.users.remove(at: self.users.firstIndex(of: user)!)
                 }
                 else if self.alreadyOwned.contains(userUid) {

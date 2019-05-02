@@ -10,7 +10,8 @@ import Foundation
 
 enum SharingPermissionConstants: String {
     case OwnerPermission = "owner"
-    case ViewerPermission = "viewer"
+    case NoWmPermission = "noWm"
+    case WmPermission = "Wm"
 }
 
 enum Limits : Int {
