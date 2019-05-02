@@ -245,8 +245,8 @@
 				189A2430226C26CB0017CA03 /* Home */,
 				189A242F226C26B90017CA03 /* Sharing */,
 				189A242E226C26A00017CA03 /* Authentication */,
-				5D10BA172266D63C0011237D /* Video */,
 				5D10BA182266D64C0011237D /* Camera */,
+				5D10BA172266D63C0011237D /* Video */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -678,7 +678,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -697,7 +697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
