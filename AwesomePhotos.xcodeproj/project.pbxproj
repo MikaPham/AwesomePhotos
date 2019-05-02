@@ -18,14 +18,18 @@
 		183E5B042249BC8600F7309E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B032249BC8600F7309E /* HomeController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
+		1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA852274703F00C0B1FB /* DeleteAccountView.swift */; };
+		1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */; };
 		189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A2433226C272A0017CA03 /* Sharing.storyboard */; };
-		18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6BADE226DA6BF00C29F4F /* Alert.swift */; };
+		18C6BADF226DA6BF00C29F4F /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6BADE226DA6BF00C29F4F /* AlertService.swift */; };
 		18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9FF4A22605A2F0003B347 /* CellWithButton.swift */; };
 		18CBCDA9224C650700420484 /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDA8224C650700420484 /* GenericView.swift */; };
 		18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAA224C65BB00420484 /* LogInView.swift */; };
 		18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAC224C65C800420484 /* SignUpView.swift */; };
 		18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAE224C65CE00420484 /* HomeView.swift */; };
 		18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDB0224C6A2300420484 /* GenericViewController.swift */; };
+		18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */; };
+		18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */; };
 		18F0E259225F39380021A240 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0E258225F39380021A240 /* ShareController.swift */; };
 		18F0E25B225F3AFC0021A240 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0E25A225F3AFC0021A240 /* User.swift */; };
 		18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */; };
@@ -59,14 +63,18 @@
 		183E5B032249BC8600F7309E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1897EA852274703F00C0B1FB /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountController.swift; sourceTree = "<group>"; };
 		189A2433226C272A0017CA03 /* Sharing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sharing.storyboard; sourceTree = "<group>"; };
-		18C6BADE226DA6BF00C29F4F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		18C6BADE226DA6BF00C29F4F /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		18C9FF4A22605A2F0003B347 /* CellWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithButton.swift; sourceTree = "<group>"; };
 		18CBCDA8224C650700420484 /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
 		18CBCDAA224C65BB00420484 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		18CBCDAC224C65C800420484 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		18CBCDAE224C65CE00420484 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18CBCDB0224C6A2300420484 /* GenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
+		18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditPermission.storyboard; sourceTree = "<group>"; };
+		18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPermissionController.swift; sourceTree = "<group>"; };
 		18F0E258225F39380021A240 /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		18F0E25A225F3AFC0021A240 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -79,7 +87,7 @@
 		5D10BA302266DC7D0011237D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
 		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = ../Settings.storyboard; sourceTree = "<group>"; };
+		5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +167,7 @@
 				183E5B012249BC5E00F7309E /* SignUpController.swift */,
 				18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */,
 				183E5AFF2249BC3000F7309E /* LoginController.swift */,
+				1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -167,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				18F0E258225F39380021A240 /* ShareController.swift */,
+				18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */,
 			);
 			path = Sharing;
 			sourceTree = "<group>";
@@ -185,6 +195,7 @@
 				18CBCDAA224C65BB00420484 /* LogInView.swift */,
 				18CBCDAC224C65C800420484 /* SignUpView.swift */,
 				18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */,
+				1897EA852274703F00C0B1FB /* DeleteAccountView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -240,6 +251,39 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		18D8393E2277E47000D4BBB8 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		18D8393F2277E47D00D4BBB8 /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				189A2433226C272A0017CA03 /* Sharing.storyboard */,
+				18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */,
+			);
+			path = Sharing;
+			sourceTree = "<group>";
+		};
+		18D839412277E49F00D4BBB8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		18D839422277E4AB00D4BBB8 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		5D10BA172266D63C0011237D /* Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,10 +307,10 @@
 		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
-				5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */,
-				189A2433226C272A0017CA03 /* Sharing.storyboard */,
-				182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */,
+				18D839422277E4AB00D4BBB8 /* Alert */,
+				18D839412277E49F00D4BBB8 /* Settings */,
+				18D8393F2277E47D00D4BBB8 /* Sharing */,
+				18D8393E2277E47000D4BBB8 /* Camera */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -301,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				879706312265B1610036FA2B /* FirebaseFunctions.swift */,
-				18C6BADE226DA6BF00C29F4F /* Alert.swift */,
+				18C6BADE226DA6BF00C29F4F /* AlertService.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -375,6 +419,7 @@
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +505,9 @@
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
-				18C6BADF226DA6BF00C29F4F /* Alert.swift in Sources */,
+				18C6BADF226DA6BF00C29F4F /* AlertService.swift in Sources */,
+				1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */,
+				18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
@@ -478,6 +525,7 @@
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
+				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,

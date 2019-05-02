@@ -26,8 +26,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var alreadyShared = [String]()
     var alreadyOwned = [String]()
     var persmission = SharingPermissionConstants.OwnerPermission
-    
-    //var photoUid: String
+    var photoUid = "testphoto2"
     
     // Bag of disposables to release them when view is being deallocated
     var disposeBag = DisposeBag()
@@ -61,27 +60,29 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.cellLabel.text = shownUsers[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
-            cell.button.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+            cell.button.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
             cell.button.tintColor = UIColor.mainRed()
         }
         return cell
     }
     
-    //MARK: Init
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureTableViews()
-        fetchUsers()
-        fetchAlreadySharedAndOwned()
-        makeObsSearchBar()
+    fileprivate func configureShareButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(onShared))
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
-        navigationItem.title = "Add People"
         UINavigationBar.appearance().tintColor = UIColor.mainRed()
     }
-    
 
+    //MARK: Init
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavBar(title: "Add people")
+        configureTableViews()
+        fetchUsers()
+        makeObsSearchBar()
+        configureShareButton()
+    }
+    
     
     //MARK: Selectors
     @IBAction func indexChanged(_ sender: Any) {
@@ -103,29 +104,48 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             usersToShare.append(userUid)
         }
         if (self.persmission == SharingPermissionConstants.OwnerPermission) {
-            if (self.alreadyOwned.count + usersToShare.count <= 5){
-                self.db.collection("photos").document("abcd").updateData(
+            if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
+                self.db.collection("photos").document(photoUid).updateData(
                     ["owners" : FieldValue.arrayUnion(usersToShare)]
                 )
+                for uid in usersToShare {
+                    self.db.collection("users").document(uid).updateData(
+                        ["ownedPhotos":FieldValue.arrayUnion([photoUid])]
+                    )
+                }
             }else {
-                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed.", message: "Please try again")
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed", message: "This file has already had \(alreadyOwned.count) users as owners. You can only add \(Limits.OwnersLimit.rawValue-alreadyOwned.count) more.")
                 present(alert, animated: true)
             }
         } else {
-            self.db.collection("photos").document("abcd").updateData(
+            self.db.collection("photos").document(photoUid).updateData(
                 ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
             )
+            for uid in usersToShare {
+                self.db.collection("users").document(uid).updateData(
+                    ["sharedPhotos":FieldValue.arrayUnion([photoUid])]
+                )
+            }
         }
         toBeShared.removeAll()
         shareTableView.reloadData()
         
-        let alert = AlertService.basicAlert(imgName: "SmileFace", title: "Share successful", message: "Shared to selected users")
+        var message: String
+        if (self.persmission == SharingPermissionConstants.OwnerPermission) {
+            message = "Successfully added selected users as the owners of the file."
+        } else {
+            message = "Successfully shared the file to the selected users."
+        }
+        let alert = AlertService.basicAlert(imgName: "SmileFace", title: "Share successful", message: message)
         self.present(alert, animated: true)
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        // Re-fetch users
+        fetchUsers()
     }
     
     
-    @objc func shareTapped(sender:cellButton!) {
+    @objc func addTapped(sender:cellButton!) {
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else {return }
         if toBeShared.contains(shownUsers[button.tag]) {
@@ -141,7 +161,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .bottom) //insert row to shareTableView
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
         navigationItem.rightBarButtonItem?.isEnabled = true
-
     }
     
     @objc func removeTapped(sender:cellButton!) {
@@ -184,7 +203,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: API
     func fetchAlreadySharedAndOwned() {
-        self.db.collection("photos").document("abcd").addSnapshotListener{querySnapshot, error in
+        self.db.collection("photos").document(photoUid).addSnapshotListener{querySnapshot, error in
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]
@@ -227,6 +246,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
         }
+        fetchAlreadySharedAndOwned()
     }
 }
 

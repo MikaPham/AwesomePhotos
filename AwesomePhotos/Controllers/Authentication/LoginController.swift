@@ -67,7 +67,7 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
                 return
             }
             DispatchQueue.main.async {
-                let navController = UINavigationController(rootViewController: HomeController())
+                let navController = UINavigationController(rootViewController: DeleteAccountController())
                 navController.navigationBar.barStyle = .black
                 self.present(navController, animated: true, completion: nil)
             }

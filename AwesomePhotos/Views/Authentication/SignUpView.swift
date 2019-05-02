@@ -43,13 +43,15 @@ class SignUpView : GenericView {
     
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
+        tf.textContentType = .newPassword
+        tf.passwordRules = UITextInputPasswordRules(descriptor: "minlength: 6;")
         return tf.textField(withPlaceolder: "Password", isSecureTextEntry: true)
     }()
     
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("Sign up", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -98,7 +100,7 @@ class SignUpView : GenericView {
     let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.black])
-        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.mainRed()]))
+        attributedTitle.append(NSAttributedString(string: "Log in", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.mainRed()]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(SignUpController.handleShowLogin), for: .touchUpInside)
         return button

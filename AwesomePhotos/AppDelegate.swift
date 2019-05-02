@@ -18,11 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Camera", bundle: nil)
-        let cameraController: CameraViewController = mainStoryboard.instantiateViewController(withIdentifier: "CameraController") as! CameraViewController
-        let loginController = LoginController()
+        
+        // Do this if you need to instantiate the storyboard
+        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
+        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
 
-        let navController = UINavigationController(rootViewController: loginController)
+        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+
+        // Do this if your view is made from code
+        let loginController = LoginController()
+        let deleteAccountController = DeleteAccountController()
+ 
+        //  Remember to set the rootViewController to the screen you want to test
+        let navController = UINavigationController(rootViewController: editPermissionController)
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         window?.rootViewController = navController

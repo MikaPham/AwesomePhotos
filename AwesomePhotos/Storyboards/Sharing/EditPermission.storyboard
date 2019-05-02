@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ShareController-->
+        <scene sceneID="QEx-Sx-0rz">
+            <objects>
+                <viewController storyboardIdentifier="EditPermissionController" title="ShareController" id="N4o-Ag-0Hq" customClass="EditPermissionController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GWh-qO-DG5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
+                                <rect key="frame" x="20" y="123" width="374" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Owner"/>
+                                    <segment title="Viewer"/>
+                                </segments>
+                                <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="indexChanged:" destination="N4o-Ag-0Hq" eventType="valueChanged" id="jp2-Ef-Hsh"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-UA-gi1">
+                                <rect key="frame" x="0.0" y="178" width="414" height="718"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="email" id="LYa-br-1VW" customClass="CellWithButton" customModule="AwesomePhotos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LYa-br-1VW" id="hE0-Du-NH6" customClass="CellWithButton" customModule="AwesomePhotos" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTn-5m-4Hi">
+                                                    <rect key="frame" x="62" y="12" width="279" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP8-xS-Q6i" customClass="cellButton" customModule="AwesomePhotos" customModuleProvider="target">
+                                                    <rect key="frame" x="339" y="8" width="57" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <state key="normal" title="Remove">
+                                                        <color key="titleColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CircleAccount" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-rt-z4z">
+                                                    <rect key="frame" x="20" y="8" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="xP8-xS-Q6i" id="4fi-HC-kZb"/>
+                                            <outlet property="cellImage" destination="P6v-rt-z4z" id="CoF-CV-xdd"/>
+                                            <outlet property="cellLabel" destination="cTn-5m-4Hi" id="xhm-0R-wJ0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N4o-Ag-0Hq" id="wj8-4k-bmh"/>
+                                    <outlet property="delegate" destination="N4o-Ag-0Hq" id="PNi-6b-5n6"/>
+                                    <outlet property="prefetchDataSource" destination="N4o-Ag-0Hq" id="shC-3s-fZ7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nKv-B4-lNM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jXH-yo-QXp"/>
+                    <connections>
+                        <outlet property="permissionSelector" destination="l6y-a5-zQf" id="ocz-kP-29c"/>
+                        <outlet property="usersTableView" destination="vau-UA-gi1" id="u2l-Bn-ZA1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C3g-Vi-6jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956.521739130435" y="-126.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P9p-at-qLK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hqg-F9-XrG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dwj-m8-W29">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="N4o-Ag-0Hq" kind="relationship" relationship="rootViewController" id="9z2-1z-k5A"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UkT-h0-GF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046.376811594203" y="-126.5625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CircleAccount" width="48" height="48"/>
+    </resources>
+</document>
