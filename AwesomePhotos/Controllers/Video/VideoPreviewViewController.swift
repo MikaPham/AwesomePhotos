@@ -15,6 +15,7 @@ class PreviewVideoViewController : UIViewController
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var UploadButton: UIButton!
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -75,6 +76,15 @@ class PreviewVideoViewController : UIViewController
                 
             }
         })
+        let videoPlayed = NSNotification.Name.AVPlayerItemDidPlayToEndTime
+        
+        //Observes whether the video is done, and sets the video back to 0 and to played again
+        NotificationCenter.default.addObserver(forName: videoPlayed, object: nil, queue: nil) { (notification) in
+            self.avPlayer?.seek(to: CMTime.zero)
+            self.isPlaying = false
+            self.avPlayer?.pause()
+            self.centerPlayButton.setImage(UIImage(named: "icons8-play_filled"), for: .normal)
+        }
     }
 
     var isPlaying = false
@@ -135,6 +145,7 @@ class PreviewVideoViewController : UIViewController
             slider.isHidden = true
             totalDurationLabal.isHidden = true
             currentTimeLabel.isHidden = true
+            UploadButton.isHidden = true
             slider.thumbTintColor = .clear
             isDismissed = true
         }
@@ -144,6 +155,7 @@ class PreviewVideoViewController : UIViewController
             slider.isHidden = false
             totalDurationLabal.isHidden = false
             currentTimeLabel.isHidden = false
+            UploadButton.isHidden = false
             slider.thumbTintColor = .red
             isDismissed = false
         }

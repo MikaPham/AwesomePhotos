@@ -328,11 +328,11 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0a-wN-ysD" userLabel="Back">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0a-wN-ysD" userLabel="Upload">
                                         <rect key="frame" x="356" y="52" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="kUw-d4-Yg9"/>
-                                            <constraint firstAttribute="height" constant="50" id="rDA-oK-lK0"/>
+                                            <constraint firstAttribute="height" constant="50" id="Lxt-pP-PEG"/>
+                                            <constraint firstAttribute="width" constant="50" id="xZX-9x-U4g"/>
                                         </constraints>
                                         <state key="normal" image="icons8-upload"/>
                                         <connections>
@@ -343,19 +343,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="T0a-wN-ysD" firstAttribute="leading" secondItem="1Oq-yD-GAv" secondAttribute="leading" constant="356" id="72j-ad-lNy"/>
+                                    <constraint firstItem="T0a-wN-ysD" firstAttribute="trailing" secondItem="aaV-94-Lkh" secondAttribute="trailing" id="8hW-iI-KDK"/>
                                     <constraint firstAttribute="bottom" secondItem="I1o-RC-5xK" secondAttribute="bottom" constant="42" id="8u0-Ct-ugb"/>
                                     <constraint firstAttribute="trailing" secondItem="aaV-94-Lkh" secondAttribute="trailing" constant="8" id="BCg-YG-fZW"/>
                                     <constraint firstItem="aaV-94-Lkh" firstAttribute="leading" secondItem="1Oq-yD-GAv" secondAttribute="leading" constant="8" id="Ezk-gg-QAM"/>
+                                    <constraint firstItem="2jn-wJ-qah" firstAttribute="top" secondItem="T0a-wN-ysD" secondAttribute="top" id="FYu-Ub-1qz"/>
                                     <constraint firstItem="7F8-TJ-GwJ" firstAttribute="centerY" secondItem="1Oq-yD-GAv" secondAttribute="centerY" id="Hmp-yG-nR4"/>
                                     <constraint firstItem="I1o-RC-5xK" firstAttribute="top" secondItem="aaV-94-Lkh" secondAttribute="bottom" constant="12" id="Mcb-Ol-Z8W"/>
                                     <constraint firstItem="7F8-TJ-GwJ" firstAttribute="centerX" secondItem="1Oq-yD-GAv" secondAttribute="centerX" id="Xig-Sy-xPV"/>
-                                    <constraint firstAttribute="trailing" secondItem="T0a-wN-ysD" secondAttribute="trailing" constant="8" id="egU-ic-OK2"/>
-                                    <constraint firstAttribute="trailing" secondItem="2jn-wJ-qah" secondAttribute="trailing" constant="356" id="o90-7f-6FY"/>
+                                    <constraint firstItem="2jn-wJ-qah" firstAttribute="leading" secondItem="1Oq-yD-GAv" secondAttribute="leading" constant="8" id="aVz-vm-hFo"/>
+                                    <constraint firstItem="T0a-wN-ysD" firstAttribute="top" secondItem="1Oq-yD-GAv" secondAttribute="top" constant="52" id="ku2-uR-Itu"/>
                                     <constraint firstItem="I1o-RC-5xK" firstAttribute="leading" secondItem="1Oq-yD-GAv" secondAttribute="leading" constant="8" id="pFa-1l-s3f"/>
-                                    <constraint firstAttribute="bottom" secondItem="T0a-wN-ysD" secondAttribute="bottom" constant="794" id="uC7-U8-Gvj"/>
                                     <constraint firstAttribute="trailing" secondItem="q3A-DB-Ukk" secondAttribute="trailing" constant="8" id="ujy-4Z-tms"/>
-                                    <constraint firstItem="2jn-wJ-qah" firstAttribute="top" secondItem="1Oq-yD-GAv" secondAttribute="top" constant="52" id="xdj-Sn-V16"/>
                                     <constraint firstAttribute="bottom" secondItem="q3A-DB-Ukk" secondAttribute="bottom" constant="42" id="ycM-Vf-YVO"/>
                                 </constraints>
                             </view>
@@ -370,6 +369,7 @@
                         <viewLayoutGuide key="safeArea" id="CjD-uc-2sE"/>
                     </view>
                     <connections>
+                        <outlet property="UploadButton" destination="T0a-wN-ysD" id="XT2-dy-XK0"/>
                         <outlet property="cancelButton" destination="2jn-wJ-qah" id="gCo-pe-bEM"/>
                         <outlet property="centerPlayButton" destination="7F8-TJ-GwJ" id="2Zy-rs-w43"/>
                         <outlet property="currentTimeLabel" destination="I1o-RC-5xK" id="RPQ-0M-ygu"/>

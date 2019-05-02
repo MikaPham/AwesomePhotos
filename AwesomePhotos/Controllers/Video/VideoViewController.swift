@@ -16,6 +16,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var movieFileOutput = AVCaptureMovieFileOutput()
     var videoCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
+    var stopWatch = VideoStopwatch()
     @IBOutlet weak var previewWiew: UIView!
     @IBOutlet weak var timeRecordedLbl: UILabel!
     @IBOutlet weak var switchToCameraButton: UIButton!
@@ -24,8 +25,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var darkButtomView: UIView!
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var darkBottomView: UIView!
-    
-    var stopWatch = VideoStopwatch()
     
     //MARK: - Initialization
     override func viewDidLoad() {
