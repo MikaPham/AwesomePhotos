@@ -31,7 +31,7 @@ class PreviewmageViewController : UIViewController{
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print("Upload to Firestore finished")
+                print("Upload to Firestore finished. ")
             }
         }
         
@@ -46,9 +46,19 @@ class PreviewmageViewController : UIViewController{
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    print("Upload to Firebase finished")
+                    print("Upload to Firebase Storage finished. ")
                 }
             }
+            let uploadPath = ["pathTo\(value)":uploadImageRef.fullPath]
+            db.collection("photos").document(ref!.documentID).setData(uploadPath) {
+                err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Path to storage sucessfully set. ")
+                }
+            }
+            
         }
     }
  
