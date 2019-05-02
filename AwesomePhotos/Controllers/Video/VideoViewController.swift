@@ -20,9 +20,10 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var timeRecordedLbl: UILabel!
     @IBOutlet weak var switchToCameraButton: UIButton!
     @IBOutlet weak var switchBetweenCameraDevices: UIButton!
-    @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var fileStorage: UIButton!
     @IBOutlet weak var darkButtomView: UIView!
+    @IBOutlet weak var recordingButton: UIButton!
+    @IBOutlet weak var darkBottomView: UIView!
     
     var stopWatch = VideoStopwatch()
     
@@ -208,10 +209,10 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Hides the buttons of the interface to make it more clean while recording
     func modifyButtonsWhileRecording(){
-        recordingButton.setImage(UIImage(named: "Recording"), for: .normal)
+        recordingButton.setImage(UIImage(named: "shutter"), for: .normal)
         switchToCameraButton.isHidden = true
         fileStorage.isHidden = true
-        darkButtomView.alpha = 0.2
+        darkBottomView.alpha = 0.2
     }
     
     // Shows the buttons when recording is stopped
@@ -220,7 +221,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
         switchToCameraButton.isHidden = false
         fileStorage.isHidden = false
-        darkButtomView.alpha = 0.7
+        darkBottomView.alpha = 0.7
     }
     
     //Sets the according position to the screen

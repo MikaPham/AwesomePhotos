@@ -3,28 +3,35 @@ import AVKit
 
 class PreviewVideoViewController : UIViewController
 {
+    //MARK: - Properties
     var videoURL : URL!
     var avPlayer : AVPlayer?
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var playAndPauseButton: UIButton!
     @IBOutlet weak var centerPlayButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var totalDurationLabal: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
         configurePreviewView()
         trackTimeProgress()
     }
 
-    //Sets up the video preview
+    //MARK: - Methods
+
+    //1. Sets up the video preview configuration
     fileprivate func configurePreviewView(){
         avPlayer = AVPlayer(url: videoURL)
+        //Checks to see if video has loaded and is ready to be played
+        //avPlayer!.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+
+        //View setup
         let avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer.frame = view.bounds
         avPlayerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -35,8 +42,17 @@ class PreviewVideoViewController : UIViewController
         let playerItem = AVPlayerItem(url: videoURL as URL)
         avPlayer!.replaceCurrentItem(with: playerItem)
         avPlayer!.pause()
-        }
+    }
     
+    //2. Checks to see if the video has been loaded and is ready to play
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "currentItem.loadedTimeRanges"{
+//            activityIndicator.stopAnimating()
+//            containerView.isHidden = true
+//        }
+//    }
+    
+    //2. Tracks the duration of time played in the video
     fileprivate func trackTimeProgress(){
         
         //Defines the seconds to increment by 1+
@@ -50,9 +66,7 @@ class PreviewVideoViewController : UIViewController
             let secondsText = String(format: "%02d", Int(seconds) % 60)
             let minutesText = String(format: "%02d", Int(seconds) / 60)
             self.currentTimeLabel.text = "\(minutesText):\(secondsText)"
-            
-            print(secondsText)
-            
+
             // Moving the thumb on the slider
             if let duration = self.avPlayer?.currentItem?.duration{
                 let durationSeconds = CMTimeGetSeconds(duration)
@@ -62,11 +76,10 @@ class PreviewVideoViewController : UIViewController
             }
         })
     }
-    
-    
+
     var isPlaying = false
-    
-    //Start the video
+
+    //3. Start the video when pressed and stops it again
     @IBAction func playButtonPressed(_ sender: UIButton) {
         
         //Sets the duration of the entire video
@@ -76,26 +89,26 @@ class PreviewVideoViewController : UIViewController
             let minutesDisplayed = String(format: "%02d", Int(seconds) / 60)
             totalDurationLabal.text = "\(minutesDisplayed):\(secondsDisplayed)"
         }
-        centerPlayButton.isHidden = true
-        playAndPauseButton.isHidden = false
 
         if isPlaying == false{
             avPlayer!.play()
-            playAndPauseButton.setImage(UIImage(named: "icons8-pause"), for: .normal)
+            centerPlayButton.setImage(UIImage(named: "icons8-pause_filled"), for: .normal)
+            slider.thumbTintColor = .clear
             isPlaying = true
         }
         else{
             avPlayer!.pause()
-            playAndPauseButton.setImage(UIImage(named: "icons8-start"), for: .normal)
+            centerPlayButton.setImage(UIImage(named: "icons8-play_filled"), for: .normal)
             isPlaying = false
         }
     }
     
+    //4. Set new playtime of video with slider
     @IBAction func changeSliderDurationPressed(_ sender: UISlider) {
-        
         slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
     }
     
+    //5. Handles the slider logic to a specific time in the slider
     @objc func handleSliderChange(){
 
         //Gets the total duration of the video
@@ -103,17 +116,40 @@ class PreviewVideoViewController : UIViewController
             let totalDuration = CMTimeGetSeconds(duration)
             
             let sliderValue = Float64(slider.value) * totalDuration
-            
-            
             let seekTime = CMTime(value: Int64(sliderValue), timescale: 1)
             
             //sets the video to the selected slider value
             avPlayer?.seek(to: seekTime, completionHandler: { (completedSeek) in
-                
             })
         }
     }
     
+    //6.  Hides or shows controls depending on touch
+    var isDismissed = false
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        centerPlayButton.isHidden = false
+        if isDismissed == false {
+            cancelButton.isHidden = true
+            centerPlayButton.isHidden = true
+            slider.isHidden = true
+            totalDurationLabal.isHidden = true
+            currentTimeLabel.isHidden = true
+            slider.thumbTintColor = .clear
+            isDismissed = true
+        }
+        else{
+            cancelButton.isHidden = false
+            centerPlayButton.isHidden = false
+            slider.isHidden = false
+            totalDurationLabal.isHidden = false
+            currentTimeLabel.isHidden = false
+            slider.thumbTintColor = .red
+            isDismissed = false
+        }
+    }
+    
+    //7. Dismisses the video preview
     @IBAction func dismissPreviewButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }

@@ -18,8 +18,8 @@ class PreviewmageViewController : UIViewController{
     
     //MARK: - Methods
     
-    //Uploads the taken photo to Firebase Storage
-    @IBAction func savePhotoBtnPressed(_ sender: UIButton) {
+    //1. Uploads the taken photo to Firebase Storage
+    @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
         let id = UUID()
         let photoName = id.uuidString
         guard let imageData = image.jpegData(compressionQuality: 0.55) else { return }
@@ -49,23 +49,26 @@ class PreviewmageViewController : UIViewController{
                     print("Upload to Firebase finished")
                 }
             }
-            
+        }
+    }
+ 
+    //2. Saves the photo to local storage
+    @IBAction func saveToLocalStorageButtonPressed(_ sender: UIButton) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //3. Returns the users to the camera
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+                dismiss(animated: true, completion: nil)
+    }
+}
+
+
+//!! Tracks progress of image uplaoding -- might be used for later 
 //            uploadTask.observe(.progress){ (snapshot) in
 //                print(snapshot.progress ?? "Progress cancelled")
 //            }
 //            uploadTask.resume()
 //            dismiss(animated: true, completion: nil)
-        }
-    }
-    //Saves the photo to local storage
-    @IBAction func saveToLocalButtonPressed(_ sender: UIButton) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        dismiss(animated: true, completion: nil)
-    }
-
-    
-    //Returns the users to the camera
-    @IBAction func cancelBtnPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-}
+//       }
