@@ -47,6 +47,10 @@
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
+		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
+		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
+		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
+		CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2250DB227C261F00C7322A /* TabBar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +98,10 @@
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		CE2250DA227C261F00C7322A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBar.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +192,10 @@
 		189A2430226C26CB0017CA03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CE2250D7227C161100C7322A /* CustomButton.swift */,
 				183E5B032249BC8600F7309E /* HomeController.swift */,
+				CE2250D3227C11D500C7322A /* TabBarController.swift */,
+				CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -311,6 +322,7 @@
 				18D839412277E49F00D4BBB8 /* Settings */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
 				18D8393E2277E47000D4BBB8 /* Camera */,
+				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -411,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */,
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
 				5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
@@ -516,18 +529,21 @@
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
+				CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				879706342265B2870036FA2B /* Photo.swift in Sources */,
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
+				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
 				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
+				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
 				18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,
@@ -551,6 +567,14 @@
 				183E5AF72249BBC200F7309E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CE2250DB227C261F00C7322A /* TabBar.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE2250DA227C261F00C7322A /* Base */,
+			);
+			name = TabBar.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
