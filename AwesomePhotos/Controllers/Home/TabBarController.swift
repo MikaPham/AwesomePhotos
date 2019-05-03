@@ -13,7 +13,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     
     var dataArray = [
-        ["camera", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2" ],
+        ["2", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2" ],
         ["2"]
     ]
     
