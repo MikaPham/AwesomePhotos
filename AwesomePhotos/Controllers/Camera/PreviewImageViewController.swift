@@ -25,7 +25,7 @@ class PreviewmageViewController : UIViewController{
         guard let imageData = image.jpegData(compressionQuality: 0.55) else { return }
         
         //Upload to Firestore
-        let data = ["name": photoName + ".jpg"]
+        let data: [String:Any] = ["name": photoName + ".jpg", "pathToog":[], "pathTowm":[], "pathTonwm":[]]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {
@@ -37,8 +37,10 @@ class PreviewmageViewController : UIViewController{
         
         //Upload to Firebase
         for (_,value) in PhotoTypesConstants {
-            let storageReference : StorageReference = {
-                return Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child("User/doc12/Uploads/Photo/\((ref?.documentID)!)/\(value)")
+            let storageReference: StorageReference = {
+                return Storage.storage()
+                    .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                    .child("User/doc12/Uploads/Photo/\((ref?.documentID)!)/\(value)")
             }()
             
             let uploadImageRef = storageReference.child(id.uuidString + "-\(value).jpg")
@@ -49,8 +51,9 @@ class PreviewmageViewController : UIViewController{
                     print("Upload to Firebase Storage finished. ")
                 }
             }
-            let uploadPath = ["pathTo\(value)":uploadImageRef.fullPath]
-            db.collection("photos").document(ref!.documentID).setData(uploadPath) {
+            
+            let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadImageRef.fullPath]
+            db.collection("photos").document(ref!.documentID).updateData(uploadPath) {
                 err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -61,7 +64,7 @@ class PreviewmageViewController : UIViewController{
             
         }
     }
- 
+    
     //2. Saves the photo to local storage
     @IBAction func saveToLocalStorageButtonPressed(_ sender: UIButton) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
@@ -70,7 +73,7 @@ class PreviewmageViewController : UIViewController{
     
     //3. Returns the users to the camera
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-                dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
