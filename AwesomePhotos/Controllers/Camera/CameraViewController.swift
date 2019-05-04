@@ -119,7 +119,11 @@ class CameraViewController : UIViewController
     
     //9. Goes back to the home screen
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueToHome", sender: self)
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        
+        let navController = UINavigationController(rootViewController: customBtnController)
+        self.present(navController, animated: true, completion: nil)
     }
     
     //10. Go to video view to record video
