@@ -11,6 +11,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
 
     @IBOutlet weak var libraryCollectionView: UICollectionView!
+    @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     
     var dataArray = [
         ["2", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2" ],
@@ -48,8 +49,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     //        cell.myRecentImage.image = UIImage(named: dataArray[p][indexPath.row])
     //        return cell
     //    }
-    
-    
     
     
     @IBAction func switchCustom(_ sender: UISegmentedControl) {

@@ -34,16 +34,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hd3-yU-Zi7">
-                                <rect key="frame" x="80" y="149" width="254" height="29"/>
-                                <segments>
-                                    <segment title="My files"/>
-                                    <segment title="Shared files"/>
-                                </segments>
-                                <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ho-Df-c94">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ho-Df-c94">
                                 <rect key="frame" x="0.0" y="185" width="414" height="711"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Hvg-bB-CN8">
                                     <size key="itemSize" width="130" height="130"/>
@@ -80,26 +73,25 @@
                                     <outlet property="delegate" destination="71L-gT-JkR" id="qsQ-ch-gje"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ciq-xW-muD">
+                                <rect key="frame" x="362" y="147" width="32" height="32"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="Filter"/>
+                                <connections>
+                                    <action selector="filterAction:" destination="71L-gT-JkR" eventType="touchUpInside" id="FtD-gS-ekl"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="eyl-YL-ZbR">
-                                <rect key="frame" x="0.0" y="149" width="414" height="32"/>
+                                <rect key="frame" x="200" y="185" width="194" height="0.0"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ciq-xW-muD">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
-                                        <state key="normal" image="Filter"/>
-                                        <connections>
-                                            <action selector="filterAction:" destination="71L-gT-JkR" eventType="touchUpInside" id="FtD-gS-ekl"/>
-                                        </connections>
-                                    </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbX-QS-P89">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="50"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NaI-fb-cfN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title=" Photos" image="Photo">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -108,72 +100,84 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSx-pO-Ggi">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="50"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="LYa-cm-Jy1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title=" Videos" image="Video">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPe-Ky-PUv">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="50"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="M8U-iF-4CK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title=" Location" image="Location">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYM-Km-oRo">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="50"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="nih-Ng-i2w"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Clear all" image="Close">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Ciq-xW-muD" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="LtF-2d-9he"/>
-                                    <constraint firstItem="UbX-QS-P89" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="Un8-aX-bgP"/>
-                                    <constraint firstItem="zPe-Ky-PUv" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="dhM-xK-HdK"/>
-                                    <constraint firstItem="RYM-Km-oRo" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="gn9-ED-jqQ"/>
-                                    <constraint firstItem="cSx-pO-Ggi" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="m7Y-RW-xaI"/>
+                                    <constraint firstItem="cSx-pO-Ggi" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="2cf-n9-LrX"/>
+                                    <constraint firstAttribute="trailing" secondItem="RYM-Km-oRo" secondAttribute="trailing" id="65c-Ek-SyU"/>
+                                    <constraint firstItem="zPe-Ky-PUv" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="NZO-8f-6Mb"/>
+                                    <constraint firstAttribute="trailing" secondItem="UbX-QS-P89" secondAttribute="trailing" id="VEr-Pt-Tps"/>
+                                    <constraint firstItem="RYM-Km-oRo" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="XxV-zS-ccO"/>
+                                    <constraint firstAttribute="trailing" secondItem="zPe-Ky-PUv" secondAttribute="trailing" id="hq6-dE-XnA"/>
+                                    <constraint firstAttribute="trailing" secondItem="cSx-pO-Ggi" secondAttribute="trailing" id="olU-Rx-YWe"/>
+                                    <constraint firstItem="UbX-QS-P89" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="rzw-KR-L1n"/>
                                 </constraints>
                             </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hd3-yU-Zi7">
+                                <rect key="frame" x="80" y="149" width="254" height="29"/>
+                                <segments>
+                                    <segment title="My files"/>
+                                    <segment title="Shared files"/>
+                                </segments>
+                                <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="switchCustom:" destination="71L-gT-JkR" eventType="valueChanged" id="SZz-Vs-Tr4"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="centerX" secondItem="38q-xe-NZY" secondAttribute="centerX" id="2Cm-wg-xhV"/>
-                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="top" secondItem="eyl-YL-ZbR" secondAttribute="top" id="3R5-vw-otL"/>
-                            <constraint firstItem="eyl-YL-ZbR" firstAttribute="top" secondItem="o2e-8z-3Aw" secondAttribute="top" constant="9" id="CNe-Nw-c6W"/>
-                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="o2e-8z-3Aw" secondAttribute="leading" constant="80" id="K4E-Ir-Wu8"/>
-                            <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" secondItem="eyl-YL-ZbR" secondAttribute="trailing" id="ORt-Uy-4mN"/>
-                            <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Hd3-yU-Zi7" secondAttribute="trailing" constant="80" id="VRV-i6-Abk"/>
-                            <constraint firstAttribute="bottom" secondItem="7ho-Df-c94" secondAttribute="bottom" id="deK-qq-l4L"/>
-                            <constraint firstItem="7ho-Df-c94" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="eIn-iB-jZv"/>
-                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="centerX" secondItem="7ho-Df-c94" secondAttribute="centerX" id="ecU-Mu-kLc"/>
-                            <constraint firstItem="eyl-YL-ZbR" firstAttribute="leading" secondItem="o2e-8z-3Aw" secondAttribute="leading" id="kPv-PX-jMu"/>
-                            <constraint firstItem="7ho-Df-c94" firstAttribute="top" secondItem="Hd3-yU-Zi7" secondAttribute="bottom" constant="8" symbolic="YES" id="q7f-7q-jE8"/>
+                            <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" secondItem="Ciq-xW-muD" secondAttribute="trailing" constant="20" id="0iA-aK-aCS"/>
+                            <constraint firstItem="eyl-YL-ZbR" firstAttribute="leading" secondItem="o2e-8z-3Aw" secondAttribute="leading" constant="200" id="8gL-pV-q1w"/>
+                            <constraint firstItem="Ciq-xW-muD" firstAttribute="top" secondItem="o2e-8z-3Aw" secondAttribute="top" constant="7" id="9la-EB-ZFi"/>
+                            <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" secondItem="eyl-YL-ZbR" secondAttribute="trailing" constant="20" id="9zi-e0-4ua"/>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="leading" secondItem="o2e-8z-3Aw" secondAttribute="leading" constant="80" id="aV1-jS-see"/>
+                            <constraint firstItem="eyl-YL-ZbR" firstAttribute="top" secondItem="Hd3-yU-Zi7" secondAttribute="bottom" constant="8" id="ejH-Rt-FMM"/>
+                            <constraint firstItem="Ciq-xW-muD" firstAttribute="leading" secondItem="Hd3-yU-Zi7" secondAttribute="trailing" constant="28" id="hgB-XU-Bxe"/>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="top" secondItem="o2e-8z-3Aw" secondAttribute="top" constant="9" id="wag-ih-R8Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o2e-8z-3Aw"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="All" id="wA0-ge-IrK"/>
+                    <navigationItem key="navigationItem" title="All" largeTitleDisplayMode="always" id="wA0-ge-IrK"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="libraryCollectionView" destination="7ho-Df-c94" id="oZd-k9-cNr"/>
+                        <outlet property="mySegmentedControl" destination="Hd3-yU-Zi7" id="oy3-Wa-75X"/>
                         <outletCollection property="filterChoices" destination="UbX-QS-P89" collectionClass="NSMutableArray" id="oaG-l9-Rw5"/>
                         <outletCollection property="filterChoices" destination="UbX-QS-P89" collectionClass="NSMutableArray" id="hgj-lp-jQr"/>
                         <outletCollection property="filterChoices" destination="cSx-pO-Ggi" collectionClass="NSMutableArray" id="qA3-2g-r82"/>
