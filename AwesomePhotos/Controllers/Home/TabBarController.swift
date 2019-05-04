@@ -23,7 +23,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         p = 0
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

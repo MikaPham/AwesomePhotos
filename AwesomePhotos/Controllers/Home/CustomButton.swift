@@ -14,6 +14,7 @@ class CustomButton: UITabBarController{
     override func viewDidLoad() { // Called when tab bar loads
         super.viewDidLoad()
         self.setupMiddleButton() // Sets up button
+        navigationController?.navigationBar.isHidden = true
     }
     
     func setupMiddleButton() {
@@ -41,5 +42,11 @@ class CustomButton: UITabBarController{
     
     @objc func menuButtonAction(sender: UIButton) {
         self.selectedIndex = 2
+        
+        let cameraStoryboard: UIStoryboard = UIStoryboard(name: "Camera", bundle: nil)
+        let cameraController: CameraViewController = cameraStoryboard.instantiateViewController(withIdentifier: "CameraController") as! CameraViewController
+        
+        let navController = UINavigationController(rootViewController: cameraController)
+        self.present(navController, animated: true, completion: nil)
     }
 }

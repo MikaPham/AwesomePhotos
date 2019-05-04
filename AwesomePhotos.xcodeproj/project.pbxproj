@@ -295,6 +295,14 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		18DDB8B1227D225400C07950 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		5D10BA172266D63C0011237D /* Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,11 +326,11 @@
 		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				18DDB8B1227D225400C07950 /* Home */,
 				18D839422277E4AB00D4BBB8 /* Alert */,
 				18D839412277E49F00D4BBB8 /* Settings */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
 				18D8393E2277E47000D4BBB8 /* Camera */,
-				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -702,7 +710,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MZD4V9J498;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -721,7 +729,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MZD4V9J498;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

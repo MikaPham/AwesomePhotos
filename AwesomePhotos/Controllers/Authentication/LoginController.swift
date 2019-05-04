@@ -67,8 +67,10 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
                 return
             }
             DispatchQueue.main.async {
-                let navController = UINavigationController(rootViewController: DeleteAccountController())
-                navController.navigationBar.barStyle = .black
+                let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+                let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+                
+                let navController = UINavigationController(rootViewController: customBtnController)
                 self.present(navController, animated: true, completion: nil)
             }
         }

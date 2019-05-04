@@ -68,7 +68,10 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             }
             
             //If updates succeeds directs user to HomeController
-            let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Sign up success",message: "Welcome aboard! We will direct you to your homescreen", currentScreen: self, nextScreen: HomeController())
+            let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+            let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+            
+            let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Sign up success",message: "Welcome aboard! We will direct you to your homescreen", currentScreen: self, nextScreen: customBtnController)
             self.present(alert,animated: true)
         }
     }

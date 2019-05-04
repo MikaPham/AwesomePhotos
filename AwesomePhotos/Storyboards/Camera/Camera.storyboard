@@ -13,7 +13,7 @@
         <!--Camera View Controller-->
         <scene sceneID="7nW-59-aVy">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="DGd-Jb-BAz" customClass="CameraViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraController" hidesBottomBarWhenPushed="YES" id="DGd-Jb-BAz" customClass="CameraViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="snm-0Y-SBA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

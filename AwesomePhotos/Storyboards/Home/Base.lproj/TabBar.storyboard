@@ -29,23 +29,21 @@
         <!--All-->
         <scene sceneID="cyW-Hy-NYx">
             <objects>
-                <viewController id="71L-gT-JkR" customClass="TabBarController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TabBarController" id="71L-gT-JkR" customClass="TabBarController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="38q-xe-NZY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hd3-yU-Zi7">
-                                <rect key="frame" x="85" y="149" width="244" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hd3-yU-Zi7">
+                                <rect key="frame" x="80" y="149" width="254" height="29"/>
                                 <segments>
                                     <segment title="My files"/>
-                                    <segment title="Shared with"/>
+                                    <segment title="Shared files"/>
                                 </segments>
                                 <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ho-Df-c94">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ho-Df-c94">
                                 <rect key="frame" x="0.0" y="185" width="414" height="711"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="Hvg-bB-CN8">
                                     <size key="itemSize" width="130" height="130"/>
@@ -61,12 +59,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mrv-hc-1bD">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mrv-hc-1bD">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="Mrv-hc-1bD" firstAttribute="top" secondItem="oZD-Dd-1kr" secondAttribute="top" id="SOM-g2-Gl6"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Mrv-hc-1bD" secondAttribute="bottom" constant="-6" id="alm-ed-c1l"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mrv-hc-1bD" secondAttribute="trailing" id="cRX-Mg-PvI"/>
+                                            <constraint firstItem="Mrv-hc-1bD" firstAttribute="leading" secondItem="oZD-Dd-1kr" secondAttribute="leading" id="xDb-10-UAn"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="myImage" destination="Mrv-hc-1bD" id="XUU-0v-3Qe"/>
                                         </connections>
@@ -95,6 +98,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NaI-fb-cfN"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title=" Photos" image="Photo">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,7 +139,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title=" Clear all" image="Close">
+                                        <state key="normal" title="Clear all" image="Close">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -151,9 +155,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="centerX" secondItem="38q-xe-NZY" secondAttribute="centerX" id="2Cm-wg-xhV"/>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="top" secondItem="eyl-YL-ZbR" secondAttribute="top" id="3R5-vw-otL"/>
                             <constraint firstItem="eyl-YL-ZbR" firstAttribute="top" secondItem="o2e-8z-3Aw" secondAttribute="top" constant="9" id="CNe-Nw-c6W"/>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="o2e-8z-3Aw" secondAttribute="leading" constant="80" id="K4E-Ir-Wu8"/>
                             <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" secondItem="eyl-YL-ZbR" secondAttribute="trailing" id="ORt-Uy-4mN"/>
+                            <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Hd3-yU-Zi7" secondAttribute="trailing" constant="80" id="VRV-i6-Abk"/>
+                            <constraint firstAttribute="bottom" secondItem="7ho-Df-c94" secondAttribute="bottom" id="deK-qq-l4L"/>
+                            <constraint firstItem="7ho-Df-c94" firstAttribute="leading" secondItem="eyl-YL-ZbR" secondAttribute="leading" id="eIn-iB-jZv"/>
+                            <constraint firstItem="Hd3-yU-Zi7" firstAttribute="centerX" secondItem="7ho-Df-c94" secondAttribute="centerX" id="ecU-Mu-kLc"/>
                             <constraint firstItem="eyl-YL-ZbR" firstAttribute="leading" secondItem="o2e-8z-3Aw" secondAttribute="leading" id="kPv-PX-jMu"/>
+                            <constraint firstItem="7ho-Df-c94" firstAttribute="top" secondItem="Hd3-yU-Zi7" secondAttribute="bottom" constant="8" symbolic="YES" id="q7f-7q-jE8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o2e-8z-3Aw"/>
                     </view>
@@ -177,7 +189,7 @@
         <!--Custom Button-->
         <scene sceneID="zZR-ey-QgZ">
             <objects>
-                <tabBarController id="ovq-6k-SRl" customClass="CustomButton" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CustomButton" id="ovq-6k-SRl" customClass="CustomButton" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CUc-se-zqx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
