@@ -42,11 +42,16 @@
 		5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA302266DC7D0011237D /* RoundButton.swift */; };
 		5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA312266DC7D0011237D /* VideoStopwatch.swift */; };
 		5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */; };
-		5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */; };
 		5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */; };
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
+		C4BDC295227ECBDF00596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC292227ECBDF00596D67 /* SettingsSection.swift */; };
+		C4BDC296227ECBDF00596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */; };
+		C4BDC29B227ECC0400596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC298227ECC0400596D67 /* ProfileViewController.swift */; };
+		C4BDC29D227ECC0400596D67 /* ProfileViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */; };
+		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
+		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
 		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
@@ -91,13 +96,18 @@
 		5D10BA302266DC7D0011237D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
 		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C80856E829A27F51A5C577 /* Pods-AwesomePhotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.release.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.release.xcconfig"; sourceTree = "<group>"; };
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C4BDC292227ECBDF00596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsSection.swift; path = ../../../../ProfilePage/ProfilePage/SettingsSection.swift; sourceTree = "<group>"; };
+		C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../ProfilePage/ProfilePage/SettingsViewController.swift; sourceTree = "<group>"; };
+		C4BDC298227ECC0400596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../../../../ProfilePage/ProfilePage/ProfileViewController.swift; sourceTree = "<group>"; };
+		C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProfileViewController+NavBar.swift"; path = "../../../../ProfilePage/ProfilePage/ProfileViewController+NavBar.swift"; sourceTree = "<group>"; };
+		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
 		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -252,6 +262,8 @@
 		18CBCDA7224C648E00420484 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4BDC291227ECBB800596D67 /* Profile */,
+				C4BDC290227ECBAC00596D67 /* Settings */,
 				182060BE226EB2310058ACAA /* UI */,
 				189A2430226C26CB0017CA03 /* Home */,
 				189A242F226C26B90017CA03 /* Sharing */,
@@ -277,14 +289,6 @@
 				18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */,
 			);
 			path = Sharing;
-			sourceTree = "<group>";
-		};
-		18D839412277E49F00D4BBB8 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				5DA8C6AD226B06FC00E6FE21 /* Settings.storyboard */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		18D839422277E4AB00D4BBB8 /* Alert */ = {
@@ -328,7 +332,6 @@
 			children = (
 				18DDB8B1227D225400C07950 /* Home */,
 				18D839422277E4AB00D4BBB8 /* Alert */,
-				18D839412277E49F00D4BBB8 /* Settings */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
 				18D8393E2277E47000D4BBB8 /* Camera */,
 			);
@@ -339,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				5D10BA302266DC7D0011237D /* RoundButton.swift */,
+				C4BDC29E227ECC9200596D67 /* SettingsCell.swift */,
+				C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */,
 				18C9FF4A22605A2F0003B347 /* CellWithButton.swift */,
 			);
 			path = Design;
@@ -368,6 +373,24 @@
 				18C6BADE226DA6BF00C29F4F /* AlertService.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		C4BDC290227ECBAC00596D67 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C4BDC292227ECBDF00596D67 /* SettingsSection.swift */,
+				C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C4BDC291227ECBB800596D67 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C4BDC298227ECC0400596D67 /* ProfileViewController.swift */,
+				C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,7 +458,6 @@
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
 				5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
-				5DA8C6AE226B06FC00E6FE21 /* Settings.storyboard in Resources */,
 				182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
@@ -530,8 +552,11 @@
 				1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */,
 				18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
+				C4BDC295227ECBDF00596D67 /* SettingsSection.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
+				C4BDC29D227ECC0400596D67 /* ProfileViewController+NavBar.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
+				C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
@@ -544,7 +569,9 @@
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
+				C4BDC296227ECBDF00596D67 /* SettingsViewController.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
+				C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
@@ -553,6 +580,7 @@
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
+				C4BDC29B227ECC0400596D67 /* ProfileViewController.swift in Sources */,
 				18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,
 			);
@@ -710,13 +738,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -729,13 +757,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

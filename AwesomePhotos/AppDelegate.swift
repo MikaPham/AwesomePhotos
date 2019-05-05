@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        window = UIWindow()
-        window?.makeKeyAndVisible()
         
         // Do this if you need to instantiate the storyboard
         let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
@@ -35,10 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         //  Remember to set the rootViewController to the screen you want to test
         let navController = UINavigationController(rootViewController: libraryController)
+        
+///         To launch with ProfileViewController.
+//        let navController = UINavigationController(rootViewController: ProfileViewController())
+
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
+        
+        window = UIWindow()
+        window?.makeKeyAndVisible()
         window?.rootViewController = navController
-
         return true
     }
     
