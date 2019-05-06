@@ -46,12 +46,13 @@
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
-		C4BDC295227ECBDF00596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC292227ECBDF00596D67 /* SettingsSection.swift */; };
-		C4BDC296227ECBDF00596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */; };
-		C4BDC29B227ECC0400596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC298227ECC0400596D67 /* ProfileViewController.swift */; };
-		C4BDC29D227ECC0400596D67 /* ProfileViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */; };
 		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
 		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
+		C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A22280001300596D67 /* ProfileView.swift */; };
+		C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */; };
+		C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AD2280074000596D67 /* SettingsSection.swift */; };
+		C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B02280075E00596D67 /* ProfileViewController.swift */; };
+		C4BDC2B32280075F00596D67 /* ProfileViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */; };
 		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
@@ -102,12 +103,13 @@
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		C4BDC292227ECBDF00596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsSection.swift; path = ../../../../ProfilePage/ProfilePage/SettingsSection.swift; sourceTree = "<group>"; };
-		C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../ProfilePage/ProfilePage/SettingsViewController.swift; sourceTree = "<group>"; };
-		C4BDC298227ECC0400596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../../../../ProfilePage/ProfilePage/ProfileViewController.swift; sourceTree = "<group>"; };
-		C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProfileViewController+NavBar.swift"; path = "../../../../ProfilePage/ProfilePage/ProfileViewController+NavBar.swift"; sourceTree = "<group>"; };
 		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
+		C4BDC2A22280001300596D67 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C4BDC2AD2280074000596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		C4BDC2B02280075E00596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+NavBar.swift"; sourceTree = "<group>"; };
 		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -155,11 +157,11 @@
 		183E5AEC2249BBC100F7309E /* AwesomePhotos */ = {
 			isa = PBXGroup;
 			children = (
-				189A2435226C27670017CA03 /* Global */,
 				5D10BA1B2266D7620011237D /* Storyboards */,
-				18C9FF49226043BB0003B347 /* Models */,
-				18CBCDA7224C648E00420484 /* Controllers */,
 				18CBCDA5224C647500420484 /* Views */,
+				18CBCDA7224C648E00420484 /* Controllers */,
+				189A2435226C27670017CA03 /* Global */,
+				18C9FF49226043BB0003B347 /* Models */,
 				183E5AED2249BBC100F7309E /* AppDelegate.swift */,
 				183E5AF12249BBC100F7309E /* Main.storyboard */,
 				183E5AF42249BBC200F7309E /* Assets.xcassets */,
@@ -378,8 +380,8 @@
 		C4BDC290227ECBAC00596D67 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C4BDC292227ECBDF00596D67 /* SettingsSection.swift */,
-				C4BDC293227ECBDF00596D67 /* SettingsViewController.swift */,
+				C4BDC2AD2280074000596D67 /* SettingsSection.swift */,
+				C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -387,8 +389,9 @@
 		C4BDC291227ECBB800596D67 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C4BDC298227ECC0400596D67 /* ProfileViewController.swift */,
-				C4BDC29A227ECC0400596D67 /* ProfileViewController+NavBar.swift */,
+				C4BDC2B02280075E00596D67 /* ProfileViewController.swift */,
+				C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */,
+				C4BDC2A22280001300596D67 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -552,10 +555,9 @@
 				1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */,
 				18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */,
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
-				C4BDC295227ECBDF00596D67 /* SettingsSection.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
-				C4BDC29D227ECC0400596D67 /* ProfileViewController+NavBar.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
+				C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */,
 				C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
@@ -569,18 +571,20 @@
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
-				C4BDC296227ECBDF00596D67 /* SettingsViewController.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
 				C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */,
+				C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
 				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
+				C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
+				C4BDC2B32280075F00596D67 /* ProfileViewController+NavBar.swift in Sources */,
 				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
-				C4BDC29B227ECC0400596D67 /* ProfileViewController.swift in Sources */,
+				C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */,
 				18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */,
 				183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */,
 			);
