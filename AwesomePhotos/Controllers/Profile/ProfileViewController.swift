@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: GenericViewController<ProfileView> {
     
@@ -28,14 +29,15 @@ class ProfileViewController: GenericViewController<ProfileView> {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavBar()
+        fetchCurrentUserData()
 
     }
     
     func setupNavBar(){
         
         // Set up navigation bar
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
         navigationController?.navigationBar.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
@@ -87,6 +89,22 @@ class ProfileViewController: GenericViewController<ProfileView> {
     }
     @objc func showAllShared(){
         print ("Move to all Shared")
+    }
+    
+    
+    // MARK: - API
+    // Fetch user data.
+    func fetchCurrentUserData() {
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+       
+        Database.database().reference().child("users").child(currentUID).child("email").observeSingleEvent(of: .value) { (snapshot) in
+            
+            // Change emailLabel title.
+            guard let userEmail = snapshot.value as? String else { return }
+            self.contentView.emailLabel.text = userEmail
+            
+        }
+        
     }
 }
 

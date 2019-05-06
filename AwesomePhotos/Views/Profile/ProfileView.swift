@@ -54,7 +54,6 @@ class ProfileView: GenericView {
     let emailLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "TaylorSwiftFan9x@gmail.com"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .white
         return label
