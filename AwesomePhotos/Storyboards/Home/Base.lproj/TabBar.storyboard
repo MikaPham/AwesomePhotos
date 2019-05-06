@@ -246,7 +246,8 @@
         <!--Profile-->
         <scene sceneID="oH3-8p-ToJ">
             <objects>
-                <viewController id="Jfq-NB-MES" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZT-aj-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Jfq-NB-MES" customClass="ProfileViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x5I-qE-lbu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +256,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="Account" landscapeImage="Account" id="KX3-2G-wg3"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bZT-aj-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="357" y="321"/>
         </scene>
