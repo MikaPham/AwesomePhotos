@@ -47,11 +47,12 @@ class SettingsViewController: UIViewController{
     
     func setupSettingsUI(){
         // Sets up Settings navigation bar
+        navigationController?.navigationBar.isHidden = false
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .mainRed()
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)]
         navigationController?.navigationBar.largeTitleTextAttributes =

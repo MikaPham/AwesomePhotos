@@ -16,7 +16,9 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "Reset Password"
+
         //To lock screen in portrait mode
         super.viewWillAppear(animated)
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -48,7 +50,6 @@ class ForgotPasswordController : GenericViewController<ForgotPasswordView>, UITe
     }
     
     @objc override func handleGoBack() {
-        navigationController?.navigationBar.isHidden = true
         navigationController?.popViewController(animated: true)
     }
 
