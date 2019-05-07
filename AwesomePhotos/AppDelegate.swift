@@ -13,7 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        FirebaseApp.configure()
         // Do this if you need to instantiate the storyboard
 //        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
 //        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let navController = UINavigationController(rootViewController: CameraViewController())
         
 ///         To launch with ProfileViewController.
-        let navController = UINavigationController(rootViewController: libraryController)
+        let loginController = LoginController()
+        let navController = UINavigationController(rootViewController: loginController)
 
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
