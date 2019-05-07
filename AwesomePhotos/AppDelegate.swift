@@ -32,10 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let deleteAccountController = DeleteAccountController()
  
         //  Remember to set the rootViewController to the screen you want to test
-        let navController = UINavigationController(rootViewController: libraryController)
+//        let navController = UINavigationController(rootViewController: CameraViewController())
         
 ///         To launch with ProfileViewController.
-//        let navController = UINavigationController(rootViewController: ProfileViewController())
+        let navController = UINavigationController(rootViewController: loginController)
 
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]

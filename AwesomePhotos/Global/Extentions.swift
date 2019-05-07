@@ -95,6 +95,7 @@ extension UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.lightGray()
         
         // Set up navigation bar back button
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleGoBack))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
         

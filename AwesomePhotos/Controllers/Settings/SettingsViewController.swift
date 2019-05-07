@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController{
         settingsTableView = UITableView()
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
-        settingsTableView.estimatedRowHeight = 100
+//        settingsTableView.estimatedRowHeight = 100
         settingsTableView.rowHeight = UITableView.automaticDimension
         settingsTableView.separatorStyle = .none
         settingsTableView.tableFooterView = UIView()
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController{
     func setupSettingsUI(){
         // Sets up Settings navigation bar
         navigationController?.navigationBar.isHidden = false
-        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
@@ -119,8 +119,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingsCell
         cell.selectionStyle = .default
-//        cell.textLabel!.lineBreakMode = .byWordWrapping
-//        cell.textLabel!.numberOfLines = 0
+        cell.isHighlighted = false
 
 
         guard let section = SettingsSection(rawValue: indexPath.section) else { return UITableViewCell() }
@@ -135,7 +134,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             case .cameraUploadSubtitle?, .saveToPhotosSubtitle?:
                 cell.textLabel?.textColor = .lightGray
             case .spacing1?, .spacing2?:
-                cell.anchor(height: 22)
+                cell.anchor(height: 10)
             default : cell.textLabel?.textColor = .black
             }
         
@@ -149,9 +148,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.sectionType = more
             
             switch more {
+            case .spacing?:
+                cell.heightAnchor.constraint(equalToConstant: 10)
             case .deleteAccount?, .signOut?:
                 cell.textLabel?.textColor = .red
-            default : cell.textLabel?.textColor = .black
+            default :
+                cell.textLabel?.textColor = .black
+                cell.textLabel!.lineBreakMode = .byWordWrapping
+                cell.textLabel!.numberOfLines = 2
             }
         }
         return cell
@@ -168,10 +172,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             switch more{
             case .deleteAccount?:
                 navigationController?.pushViewController( DeleteAccountController(), animated: true)
-
+                
             case .signOut?:
-//                let alert = AlertService.alertNextScreen(imgName: "SleepFace",title: "Sign Out",message: "Do you want to sign out of AwesomePhotos", currentScreen: self, nextScreen: LoginController())
-//                self.present(alert,animated: true)
                 handleSignOut()
             default: break
             }
@@ -184,8 +186,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
                 navigationController?.pushViewController( ForgotPasswordController(), animated: true)
             default: break
             }
-
-
         default: break
         }
     }

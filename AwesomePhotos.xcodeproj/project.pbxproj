@@ -52,7 +52,6 @@
 		C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */; };
 		C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AD2280074000596D67 /* SettingsSection.swift */; };
 		C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B02280075E00596D67 /* ProfileViewController.swift */; };
-		C4BDC2B32280075F00596D67 /* ProfileViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */; };
 		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
@@ -109,7 +108,6 @@
 		C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4BDC2AD2280074000596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		C4BDC2B02280075E00596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+NavBar.swift"; sourceTree = "<group>"; };
 		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -255,6 +253,7 @@
 		18CBCDA5224C647500420484 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C49A6DD622803BB400AB41B2 /* Profile */,
 				189A2432226C26EB0017CA03 /* Home */,
 				189A2431226C26DE0017CA03 /* Authentication */,
 			);
@@ -377,6 +376,14 @@
 			path = Functions;
 			sourceTree = "<group>";
 		};
+		C49A6DD622803BB400AB41B2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C4BDC2A22280001300596D67 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C4BDC290227ECBAC00596D67 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,8 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				C4BDC2B02280075E00596D67 /* ProfileViewController.swift */,
-				C4BDC2B12280075E00596D67 /* ProfileViewController+NavBar.swift */,
-				C4BDC2A22280001300596D67 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -581,7 +586,6 @@
 				C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
-				C4BDC2B32280075F00596D67 /* ProfileViewController+NavBar.swift in Sources */,
 				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
 				C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */,

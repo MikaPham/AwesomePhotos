@@ -36,16 +36,13 @@ class ProfileViewController: GenericViewController<ProfileView> {
     func setupNavBar(){
         
         // Set up navigation bar
+        configureNavBar(title: "Profile")
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
-        navigationController?.navigationBar.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
         navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
-        navigationItem.title = "Profile"
+//        navigationItem.title = "Profile"
         setupNavigationBarItems()
     }
 
