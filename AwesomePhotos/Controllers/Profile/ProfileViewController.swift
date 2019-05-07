@@ -31,6 +31,8 @@ class ProfileViewController: GenericViewController<ProfileView> {
         setupNavBar()
         fetchCurrentUserData()
 
+//        self.tabBarController?.tabBar.isHidden = true
+        
     }
     
     func setupNavBar(){
