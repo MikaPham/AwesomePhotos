@@ -30,7 +30,6 @@ class ProfileViewController: GenericViewController<ProfileView> {
         view.backgroundColor = .white
         setupNavBar()
         fetchCurrentUserData()
-
     }
     
     func setupNavBar(){
