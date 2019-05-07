@@ -210,7 +210,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     @objc func backHome(){
-        let navController = UINavigationController(rootViewController: TabBarController())
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        
+        let navController = UINavigationController(rootViewController: customBtnController)
         self.present(navController, animated: true, completion: nil)
     }
     
