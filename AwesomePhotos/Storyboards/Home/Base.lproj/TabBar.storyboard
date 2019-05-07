@@ -204,7 +204,7 @@
                         <segue destination="57p-1r-tau" kind="relationship" relationship="viewControllers" id="XUe-mV-E50"/>
                         <segue destination="jdQ-18-H4V" kind="relationship" relationship="viewControllers" id="ZaL-ad-mb4"/>
                         <segue destination="UZM-Ff-hgv" kind="relationship" relationship="viewControllers" id="B5g-wJ-SzD"/>
-                        <segue destination="Jfq-NB-MES" kind="relationship" relationship="viewControllers" id="0XX-V0-oq8"/>
+                        <segue destination="Iy7-9D-gqG" kind="relationship" relationship="viewControllers" id="0XX-V0-oq8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4R-Gr-Lhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,10 +243,9 @@
             </objects>
             <point key="canvasLocation" x="-746" y="866"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="oH3-8p-ToJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bZT-aj-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Jfq-NB-MES" customClass="ProfileViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x5I-qE-lbu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -254,10 +253,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ufw-hP-Xzd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Account" landscapeImage="Account" id="KX3-2G-wg3"/>
+                    <navigationItem key="navigationItem" id="xTE-RP-4WJ"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZT-aj-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="321"/>
+            <point key="canvasLocation" x="1266.6666666666667" y="320.75892857142856"/>
         </scene>
         <!--Library-->
         <scene sceneID="x5q-AW-Sr6">
@@ -283,6 +283,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSb-ra-jFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="357.97101449275362" y="-527.00892857142856"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="bDP-5l-R1L">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iy7-9D-gqG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Account" landscapeImage="Account" id="KX3-2G-wg3"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ttV-cG-TFv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jfq-NB-MES" kind="relationship" relationship="rootViewController" id="FWk-cc-0zb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UpR-pq-nJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356.52173913043481" y="320.75892857142856"/>
         </scene>
     </scenes>
     <resources>

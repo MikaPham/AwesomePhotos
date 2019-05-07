@@ -24,6 +24,10 @@ class CameraViewController : UIViewController
         startRunningSession()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    
     //MARK: - Methods
     
     

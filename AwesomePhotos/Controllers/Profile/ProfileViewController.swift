@@ -67,11 +67,10 @@ class ProfileViewController: GenericViewController<ProfileView> {
 
     // Add action to settings button
     @objc func moveToSettings(){
-        let settingsVC = SettingsViewController()
-        navigationController?.pushViewController(settingsVC, animated: true)
+        let navController = UINavigationController(rootViewController: SettingsViewController())
+        self.present(navController, animated: true, completion: nil)
     }
     
-//     Add action to settings button
 //    @objc func moveToEditProfile(){
 //        let editProfileVC = EditProfileViewController()
 //        navigationController?.pushViewController(editProfileVC, animated: true)

@@ -58,7 +58,12 @@ class SettingsViewController: UIViewController{
             [NSAttributedString.Key.foregroundColor: UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)]
         navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)]
+        // Set up navigation bar back button
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+        
+    
         navigationItem.title = "Settings"
         configureSettingsTableView()
     }
@@ -202,6 +207,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     
     @objc func alertClose(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func backHome(){
+        let navController = UINavigationController(rootViewController: TabBarController())
+        self.present(navController, animated: true, completion: nil)
     }
     
     func signOut() {
