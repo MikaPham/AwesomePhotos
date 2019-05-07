@@ -32,9 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let navController = UINavigationController(rootViewController: CameraViewController())
         
 ///         To launch with ProfileViewController.
-        FirebaseApp.configure()
-        let loginController = LoginController()
-        let navController = UINavigationController(rootViewController: loginController)
+        let navController = UINavigationController(rootViewController: libraryController)
+
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         

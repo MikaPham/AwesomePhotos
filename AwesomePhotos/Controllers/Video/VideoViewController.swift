@@ -103,7 +103,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             stopWatch.stop()
             
             //Upload video to firestorage
-            let uploadRef = videoStorageReference.child("getit.mp4")
+            let uploadRef = videoStorageReference.child("rat.mp4")
             //let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
             let uploadVideoTask = uploadRef.putFile(from: self.videoLocation()!, metadata: nil)
             uploadVideoTask.observe(.progress) { (snapshot) in
@@ -126,7 +126,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //7. Stores the video in this temporary directory in the cache
     func videoLocation() -> URL?{
-        let directory = NSTemporaryDirectory().appending("getit.mp4")
+        let directory = NSTemporaryDirectory().appending("rat.mp4")
         return URL(fileURLWithPath: directory)
         
     }

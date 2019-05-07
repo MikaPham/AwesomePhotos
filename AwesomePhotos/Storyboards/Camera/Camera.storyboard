@@ -22,17 +22,59 @@
                                 <rect key="frame" x="0.0" y="751" width="414" height="145"/>
                                 <subviews>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npe-8u-KB3">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
+                                        <rect key="frame" x="0.0" y="1" width="414" height="110"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-ZN-jku" userLabel="Capture">
-                                                <rect key="frame" x="170" y="35" width="75" height="75"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MC-kd-kUb">
+                                                <rect key="frame" x="270" y="37.5" width="37" height="37"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="75" id="UOJ-Re-EsJ"/>
-                                                    <constraint firstAttribute="width" constant="75" id="kpS-lV-6At"/>
+                                                    <constraint firstAttribute="width" constant="37" id="Smy-eR-py9"/>
+                                                    <constraint firstAttribute="height" constant="37" id="kAj-6z-e4D"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="icons8-final_state"/>
+                                                <state key="normal" image="Record"/>
+                                                <connections>
+                                                    <action selector="switchToVideoModeButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="qr7-ca-aim"/>
+                                                    <segue destination="4Fv-LI-hsr" kind="show" identifier="segueToVideo" id="qFT-Uf-T54"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPI-vf-cBp" userLabel="SwitchCameras">
+                                                <rect key="frame" x="361" y="40.5" width="33" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="33" id="KSc-lX-ld5"/>
+                                                    <constraint firstAttribute="height" constant="33" id="OYY-1j-eRe"/>
+                                                </constraints>
+                                                <state key="normal" image="CameraView"/>
+                                                <connections>
+                                                    <action selector="switchCameraButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="Q69-OP-8A6"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-lT-C2I" userLabel="RecordingBtn" customClass="RoundedButton" customModule="AwesomePhotos">
+                                                <rect key="frame" x="20" y="33" width="48" height="48"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="J2Q-HX-IRf"/>
+                                                    <constraint firstAttribute="height" constant="48" id="Uab-da-Z0p"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="2"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-ZN-jku" userLabel="Capture">
+                                                <rect key="frame" x="172" y="21" width="70" height="70"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="UOJ-Re-EsJ"/>
+                                                    <constraint firstAttribute="width" constant="70" id="kpS-lV-6At"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="WhiteCamera"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="35"/>
@@ -48,87 +90,49 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="414" id="HTv-F4-pNF"/>
-                                            <constraint firstAttribute="bottom" secondItem="HV8-ZN-jku" secondAttribute="bottom" constant="35" id="Lfo-6H-rxK"/>
-                                            <constraint firstAttribute="height" constant="145" id="OzT-g9-os5"/>
-                                            <constraint firstItem="HV8-ZN-jku" firstAttribute="leading" secondItem="Npe-8u-KB3" secondAttribute="leading" constant="170" id="lxT-zM-6lo"/>
+                                            <constraint firstItem="ZPI-vf-cBp" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" constant="1" id="8ig-Pt-u6u"/>
+                                            <constraint firstItem="bcv-lT-C2I" firstAttribute="leading" secondItem="Npe-8u-KB3" secondAttribute="leading" constant="20" id="9O6-Gs-iIK"/>
+                                            <constraint firstItem="8MC-kd-kUb" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" id="MeC-4M-0hA"/>
+                                            <constraint firstAttribute="height" constant="110" id="OzT-g9-os5"/>
+                                            <constraint firstItem="8MC-kd-kUb" firstAttribute="leading" secondItem="HV8-ZN-jku" secondAttribute="trailing" constant="28" id="U0Y-si-oJ7"/>
+                                            <constraint firstItem="bcv-lT-C2I" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" constant="1" id="WSB-Uh-IgH"/>
+                                            <constraint firstItem="HV8-ZN-jku" firstAttribute="centerX" secondItem="Npe-8u-KB3" secondAttribute="centerX" id="bRE-jR-Mqi"/>
+                                            <constraint firstItem="HV8-ZN-jku" firstAttribute="top" secondItem="Npe-8u-KB3" secondAttribute="top" constant="21" id="pgP-G8-eTy"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPI-vf-cBp" userLabel="SwitchCameras">
-                                        <rect key="frame" x="342.5" y="53" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="KSc-lX-ld5"/>
-                                            <constraint firstAttribute="height" constant="50" id="OYY-1j-eRe"/>
-                                        </constraints>
-                                        <state key="normal" image="icons8-switch_camera"/>
-                                        <connections>
-                                            <action selector="switchCameraButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="Q69-OP-8A6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-lT-C2I" userLabel="RecordingBtn" customClass="RoundedButton" customModule="AwesomePhotos">
-                                        <rect key="frame" x="8" y="53" width="50" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="J2Q-HX-IRf"/>
-                                            <constraint firstAttribute="height" constant="50" id="Uab-da-Z0p"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="AwesomeLogo"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MC-kd-kUb">
-                                        <rect key="frame" x="268" y="69" width="34" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="Smy-eR-py9"/>
-                                            <constraint firstAttribute="height" constant="34" id="kAj-6z-e4D"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="Record"/>
-                                        <connections>
-                                            <action selector="switchToVideoModeButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="qr7-ca-aim"/>
-                                            <segue destination="4Fv-LI-hsr" kind="show" identifier="segueToVideo" id="qFT-Uf-T54"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Npe-8u-KB3" firstAttribute="leading" secondItem="I9u-qn-EC5" secondAttribute="leading" id="BYV-Iq-oy5"/>
-                                    <constraint firstAttribute="bottom" secondItem="Npe-8u-KB3" secondAttribute="bottom" id="Ede-Y8-VuK"/>
-                                    <constraint firstAttribute="bottom" secondItem="bcv-lT-C2I" secondAttribute="bottom" constant="42" id="IXI-q2-ZJk"/>
-                                    <constraint firstAttribute="bottom" secondItem="8MC-kd-kUb" secondAttribute="bottom" constant="42" id="Ixf-pg-HUM"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZPI-vf-cBp" secondAttribute="trailing" constant="21.5" id="O1W-3b-kny"/>
-                                    <constraint firstItem="bcv-lT-C2I" firstAttribute="leading" secondItem="I9u-qn-EC5" secondAttribute="leading" constant="8" id="aue-tr-ADz"/>
-                                    <constraint firstItem="8MC-kd-kUb" firstAttribute="leading" secondItem="bcv-lT-C2I" secondAttribute="trailing" constant="210" id="cky-JO-MUU"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZPI-vf-cBp" secondAttribute="bottom" constant="42" id="e1k-4h-qpB"/>
                                     <constraint firstAttribute="height" constant="145" id="lFb-MO-FHf"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOW-8y-gEJ" userLabel="Back">
-                                <rect key="frame" x="20" y="44" width="50" height="50"/>
+                                <rect key="frame" x="15" y="37" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Vp8-G1-e1W"/>
                                     <constraint firstAttribute="height" constant="50" id="fBk-k9-XZl"/>
                                 </constraints>
-                                <state key="normal" image="Close"/>
+                                <size key="titleShadowOffset" width="2" height="0.0"/>
+                                <state key="normal" image="Close">
+                                    <color key="titleShadowColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="OIn-Qj-C67"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5Vi-ag-A4e" firstAttribute="trailing" secondItem="ZPI-vf-cBp" secondAttribute="trailing" constant="20" id="2Im-XW-7uL"/>
                             <constraint firstItem="I9u-qn-EC5" firstAttribute="leading" secondItem="5Vi-ag-A4e" secondAttribute="leading" id="5p3-5C-YmB"/>
-                            <constraint firstItem="pOW-8y-gEJ" firstAttribute="top" secondItem="5Vi-ag-A4e" secondAttribute="top" id="8gu-uW-lkB"/>
-                            <constraint firstItem="pOW-8y-gEJ" firstAttribute="leading" secondItem="5Vi-ag-A4e" secondAttribute="leading" constant="20" id="RP9-bG-erP"/>
+                            <constraint firstItem="pOW-8y-gEJ" firstAttribute="top" secondItem="5Vi-ag-A4e" secondAttribute="top" constant="-7" id="8gu-uW-lkB"/>
+                            <constraint firstItem="pOW-8y-gEJ" firstAttribute="leading" secondItem="5Vi-ag-A4e" secondAttribute="leading" constant="15" id="RP9-bG-erP"/>
+                            <constraint firstItem="5Vi-ag-A4e" firstAttribute="trailing" secondItem="Npe-8u-KB3" secondAttribute="trailing" id="XPc-Fd-vF3"/>
                             <constraint firstItem="I9u-qn-EC5" firstAttribute="trailing" secondItem="5Vi-ag-A4e" secondAttribute="trailing" id="cii-cy-oZz"/>
+                            <constraint firstItem="Npe-8u-KB3" firstAttribute="leading" secondItem="5Vi-ag-A4e" secondAttribute="leading" id="hvL-Cf-nbV"/>
                             <constraint firstAttribute="bottom" secondItem="I9u-qn-EC5" secondAttribute="bottom" id="uBf-Gi-Kh9"/>
+                            <constraint firstItem="5Vi-ag-A4e" firstAttribute="bottom" secondItem="Npe-8u-KB3" secondAttribute="bottom" id="v45-xp-SOW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Vi-ag-A4e"/>
                     </view>
@@ -139,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yb7-sA-EuZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1236" y="1164"/>
+            <point key="canvasLocation" x="-1236.231884057971" y="1163.1696428571429"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="yju-eV-KSI">
@@ -500,15 +504,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="2" width="6016" height="4016"/>
         <image name="AwesomeLogo" width="512" height="512"/>
         <image name="Camera" width="48" height="48"/>
+        <image name="CameraView" width="30" height="23"/>
         <image name="Close" width="32" height="32"/>
         <image name="Record" width="48" height="48"/>
         <image name="RedRecord" width="72" height="72"/>
+        <image name="WhiteCamera" width="72" height="72"/>
         <image name="icons8-cancel" width="50" height="50"/>
-        <image name="icons8-final_state" width="75" height="75"/>
         <image name="icons8-play_filled" width="50" height="50"/>
-        <image name="icons8-switch_camera" width="50" height="50"/>
         <image name="icons8-upload" width="50" height="50"/>
     </resources>
 </document>
