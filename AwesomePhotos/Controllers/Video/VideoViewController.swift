@@ -15,6 +15,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var captureSession = AVCaptureSession()
     var movieFileOutput = AVCaptureMovieFileOutput()
     var videoCaptureDevice : AVCaptureDevice?
+    var audioCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
     var stopWatch = VideoStopwatch()
     @IBOutlet weak var previewWiew: UIView!
@@ -48,14 +49,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     func configureVideoInput()
     {
         let captureDevice = AVCaptureDevice.default(for: .video)
+        let audioCaptureDevice = AVCaptureDevice.default(for: .audio)
         
         do{
             let deviceInput = try AVCaptureDeviceInput(device: captureDevice!)
+            let audioDeviceInput = try AVCaptureDeviceInput(device: audioCaptureDevice!)
             captureSession.beginConfiguration()
             
             if captureSession.canAddInput(deviceInput) == true
             {
                 captureSession.addInput(deviceInput)
+                captureSession.addInput(audioDeviceInput)
             }
         }catch{
             print("No input found")
