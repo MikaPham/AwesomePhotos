@@ -9,6 +9,7 @@ class PreviewmageViewController : UIViewController{
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
     let db = Firestore.firestore()
+    let userUid = Auth.auth().currentUser?.uid
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class PreviewmageViewController : UIViewController{
         guard let imageData = image.jpegData(compressionQuality: 0.55) else { return }
         
         //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg", "pathToog":[], "pathTowm":[], "pathTonwm":[]]
+        let data: [String:Any] = ["name": photoName + ".jpg","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {
@@ -35,12 +36,17 @@ class PreviewmageViewController : UIViewController{
             }
         }
         
+        //Add to user document
+        self.db.collection("users").document(userUid!).updateData(
+            ["ownedPhotos":FieldValue.arrayUnion([ref!.documentID])]
+        )
+        
         //Upload to Firebase
         for (_,value) in PhotoTypesConstants {
             let storageReference: StorageReference = {
                 return Storage.storage()
                     .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                    .child("User/doc12/Uploads/Photo/\((ref?.documentID)!)/\(value)")
+                    .child("User/\(userUid!)/Uploads/Photo/\((ref?.documentID)!)/\(value)")
             }()
             
             let uploadImageRef = storageReference.child(id.uuidString + "-\(value).jpg")

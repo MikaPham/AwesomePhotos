@@ -9,9 +9,13 @@
 import Foundation
 
 class Photo: NSObject {
-    @objc var url: String?
+    @objc var uid: String?
+    @objc var pathToog: String?
+    @objc var pathTowm: String?
+    @objc var pathTonwm: String?
     @objc var owners: [String]?
     @objc var sharedWith: [String]?
+    @objc var sharedWM: [String]?
     @objc var size: NSNumber?
     @objc var name: String?
     @objc var width: NSNumber?

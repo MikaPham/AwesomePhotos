@@ -11,38 +11,37 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        FirebaseApp.configure()
-        
         // Do this if you need to instantiate the storyboard
-        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
-        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
-
-        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
-        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
-        
-        let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-        let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+//        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
+//        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
+//
+//        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+//        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+//
+//        let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+//        let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         
         // Do this if your view is made from code
-        let loginController = LoginController()
-        let deleteAccountController = DeleteAccountController()
+        
+//        let deleteAccountController = DeleteAccountController()
  
         //  Remember to set the rootViewController to the screen you want to test
 //        let navController = UINavigationController(rootViewController: CameraViewController())
         
 ///         To launch with ProfileViewController.
+        FirebaseApp.configure()
+        let loginController = LoginController()
         let navController = UINavigationController(rootViewController: loginController)
-
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
         
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = navController
+
         return true
     }
     
