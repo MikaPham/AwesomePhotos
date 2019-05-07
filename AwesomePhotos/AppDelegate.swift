@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
 //        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
 //
-//        let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-//        let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         
         // Do this if your view is made from code
         
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 ///         To launch with ProfileViewController.
         let loginController = LoginController()
-        let navController = UINavigationController(rootViewController: loginController)
+        let navController = UINavigationController(rootViewController: libraryController)
 
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
