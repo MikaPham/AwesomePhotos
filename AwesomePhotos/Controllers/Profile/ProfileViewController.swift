@@ -30,12 +30,6 @@ class ProfileViewController: GenericViewController<ProfileView> {
         view.backgroundColor = .white
         setupNavBar()
         fetchCurrentUserData()
-<<<<<<< HEAD
-
-//        self.tabBarController?.tabBar.isHidden = true
-        
-=======
->>>>>>> d831d032f1b942fd0c1d8c56166635fa9255354d
     }
     
     func setupNavBar(){
