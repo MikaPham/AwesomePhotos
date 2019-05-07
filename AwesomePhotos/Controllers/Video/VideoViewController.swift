@@ -4,14 +4,13 @@ import AVKit
 import CoreMedia
 import AVFoundation
 import FirebaseStorage
+import Firebase
 import MobileCoreServices
 
 class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelegate
 {
     //MARK: - Properties
-    let videoStorageReference : StorageReference = {
-        return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com").child("movieFolder")
-    }()
+    
     var captureSession = AVCaptureSession()
     var movieFileOutput = AVCaptureMovieFileOutput()
     var videoCaptureDevice : AVCaptureDevice?
@@ -29,7 +28,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        clearTmpDir()
+        //clearTmpDir()
         configureSession()
         configureVideoInput()
         configureVideoOutPut()
@@ -93,25 +92,63 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         self.captureSession.startRunning()
     }
     
+    var reference : DocumentReference? = nil
+    
+    func videoName() -> String{
+        
+        let id = UUID()
+        let videoName = id.uuidString
+        return videoName
+    }
+    
     //6. Recording video is pressed and when pressed again, it will stop and upload to firebase storage
     @IBAction func recordVideoButtonPressed(_ sender: UIButton) {
+        let id = UUID()
+        let videoName = id.uuidString
         
         if movieFileOutput.isRecording {
-            
             movieFileOutput.stopRecording()
             displayButtonsWhileNotRecording()
             stopWatch.stop()
             
             //Upload video to firestorage
-            let uploadRef = videoStorageReference.child("getit.mp4")
-            //let uploadVideoTask = uploadRef.putFile(from: URL(fileURLWithPath: self.videoLocation()), metadata: nil)
-            let uploadVideoTask = uploadRef.putFile(from: self.videoLocation()!, metadata: nil)
-            uploadVideoTask.observe(.progress) { (snapshot) in
-                print(snapshot.progress ?? "Progress cancelled")
+            let data = ["name": videoName + ".mov"]
+            
+            reference = db.collection("medias").addDocument(data: data) {(error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("Upload to Firestore finished")
+                }}
+            
+            for (_ , value) in PhotoTypesConstants{
+                let videoStorageReference : StorageReference = {
+                    return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("User/doc12/Uploads/Video/\((reference?.documentID)!)/\(value)")
+                }()
+                
+                let uploadImageRef = videoStorageReference.child(id.uuidString + "-\(value).mov")
+                
+                //let uploadRef = videoStorageReference.child("workplease.mp4")
+                let storageMetaData = StorageMetadata()
+                storageMetaData.contentType = "video/mov"
+                
+                
+                let uploadVideoTask = uploadImageRef.putFile(from: videoLocation()!, metadata: storageMetaData) { (metadata, error) in
+                    if (error != nil) {
+                        print("Error here")
+                        print(error?.localizedDescription as Any)
+                    }
+                    else {
+                        print("Upload completed! Metadata: \(metadata!)")
+                        print("Contenttype : \(metadata?.contentType ?? "No contenttype found")")
+                    }}
+                
+                uploadVideoTask.observe(.progress) { (snapshot) in print("Hello",snapshot.progress ?? "Progress cancelled")  }
+                uploadVideoTask.resume()
             }
-            uploadVideoTask.resume()
         }
-        else { //Starts the recording
+            
+        else{ //Starts the recording and the timer
             Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                  selector: #selector(updateElapsedTimeLabel(_:)),
                                  userInfo: nil,
@@ -120,15 +157,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             stopWatch.start()
             movieFileOutput.connection(with: .video)?.videoOrientation = self.videoOrientation()
             movieFileOutput.maxRecordedDuration = maxRecordedDuration()
-            movieFileOutput.startRecording(to: videoLocation()!, recordingDelegate: self)
+            movieFileOutput.startRecording(to: self.videoLocation()!, recordingDelegate: self)
+            //            print(movieFileOutput.metadata?., "Description here")
         }
     }
     
     //7. Stores the video in this temporary directory in the cache
     func videoLocation() -> URL?{
-        let directory = NSTemporaryDirectory().appending("getit.mp4")
-        return URL(fileURLWithPath: directory)
-        
+        let directory = NSTemporaryDirectory().appending("work")
+        let videoURL = URL(fileURLWithPath: directory).appendingPathExtension("mov")
+        print(videoURL)
+        return videoURL
     }
     
     //MARK: - Helper Methods
@@ -230,9 +269,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //returns to camera mode
     @IBAction func switchToCameraButtonPressed(_ sender: UIButton) {
-        captureSession.stopRunning()
         dismiss(animated: true, completion: nil)
-        //performSegue(withIdentifier: "segueToCameraMode", sender: self)
     }
     
     @IBAction func previewLatestFileButtonPressed(_ sender: UIButton) {
@@ -250,7 +287,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             print("Error found : Could not record video")
         }
         else{
-            
             let videoRecorded = videoLocation()! as URL
             performSegue(withIdentifier: "segueToPreviewVideo", sender: videoRecorded)
         }

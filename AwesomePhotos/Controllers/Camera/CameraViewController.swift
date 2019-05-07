@@ -24,6 +24,10 @@ class CameraViewController : UIViewController
         startRunningSession()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    
     //MARK: - Methods
     
     
@@ -143,8 +147,21 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
             image = UIImage(data: imageData)!
+            
+            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
+            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
+            image = UIImage.convert(from: mirroredImage)
             performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
         }
     }
 }
 
+extension UIImage{
+    
+    static func convert(from ciImage: CIImage) -> UIImage{
+        let context:CIContext = CIContext.init(options: nil)
+        let cgImage:CGImage = context.createCGImage(ciImage, from: ciImage.extent)!
+        let image:UIImage = UIImage.init(cgImage: cgImage)
+        return image
+    }
+}
