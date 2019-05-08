@@ -109,6 +109,7 @@ PODS:
   - gRPC-Core/Interface (1.17.0)
   - GTMSessionFetcher/Core (1.2.1)
   - leveldb-library (1.20)
+  - MediaWatermark (0.3.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -129,6 +130,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
+  - MediaWatermark
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -152,6 +154,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
+    - MediaWatermark
     - nanopb
     - Protobuf
     - RxAtomic
@@ -177,6 +180,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MediaWatermark: a66d86cd40bc01840c6f810ad036828c08408b8b
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
@@ -185,6 +189,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 340ad062bb7cfcbeffe950c320aa7b01ebcf9b5c
+PODFILE CHECKSUM: 6d0b8ab94ff2d2ddd5e383d9c75b4c7381a9271d
 
 COCOAPODS: 1.6.1
