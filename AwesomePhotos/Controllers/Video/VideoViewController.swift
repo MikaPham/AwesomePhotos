@@ -256,7 +256,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     // Hides the buttons of the interface to make it more clean while recording
     func modifyButtonsWhileRecording(){
         recordingButton.setImage(UIImage(named: "shutter"), for: .normal)
-//        switchToCameraBtn.isHidden = true
+        switchToCameraBtn.isHidden = true
         fileStorage.isHidden = true
         darkBottomView.alpha = 0.2
     }
@@ -264,7 +264,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     // Shows the buttons when recording is stopped
     func displayButtonsWhileNotRecording(){
         recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
-        fileStorage.isHidden = true
+        switchToCameraBtn.isHidden = false
+        fileStorage.isHidden = false
         darkBottomView.alpha = 0.7
     }
     
