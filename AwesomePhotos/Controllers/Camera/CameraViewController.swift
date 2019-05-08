@@ -111,6 +111,7 @@ class CameraViewController : UIViewController
     @IBAction func cameraButtonPressed(_ sender: RoundButton) {
         let setting = AVCapturePhotoSettings()
         photoOutPut?.capturePhoto(with: setting, delegate: self)
+    
     }
     
     //8. Transitions from CameraVC to PreviewVC and pass the taken image to the preview layer
@@ -152,6 +153,9 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
             image = UIImage(data: imageData)!
+            
+            //Save image to library
+            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
             
             let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
             let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
