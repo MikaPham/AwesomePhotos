@@ -25,7 +25,7 @@ class CameraViewController : UIViewController
     }
     
     override var prefersStatusBarHidden: Bool{
-        return false
+        return true
     }
     
     //MARK: - Methods
@@ -34,7 +34,7 @@ class CameraViewController : UIViewController
     // 1. Creating a capture session.
     func createCaptureSession()
     {
-        captureSession.sessionPreset = .photo
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
     }
     
     // 2. Identifying the necessary capture devices.
@@ -137,9 +137,14 @@ class CameraViewController : UIViewController
     }
 
     //11. Preview latest file taken
-    //    @IBAction previewLatestFileButtonPressed(){
-    //
-    //
+    @IBAction func previewLatestFileButtonPressed(_sender: UIButton){
+         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+    let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+    
+    let navController = UINavigationController(rootViewController: customBtnController)
+    self.present(navController, animated: true, completion: nil)
+//    
+    }
 
 }
 

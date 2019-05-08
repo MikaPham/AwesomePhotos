@@ -18,8 +18,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var stopWatch = VideoStopwatch()
     @IBOutlet weak var previewWiew: UIView!
     @IBOutlet weak var timeRecordedLbl: UILabel!
-    @IBOutlet weak var switchToCameraButton: UIButton!
-    @IBOutlet weak var switchBetweenCameraDevices: UIButton!
+    @IBOutlet weak var switchToCameraBtn: UIButton!
     @IBOutlet weak var fileStorage: UIButton!
     @IBOutlet weak var darkButtomView: UIView!
     @IBOutlet weak var recordingButton: UIButton!
@@ -36,6 +35,9 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         startSession()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
     //MARK: - Methods
     
     //1. Configures a capture session
@@ -87,8 +89,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //5. Starts the capture session
-    func startSession()
-    {
+    func startSession() {
         self.captureSession.startRunning()
     }
     
@@ -182,8 +183,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
+    // Handle BackButtonPressed
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        
+        let navController = UINavigationController(rootViewController: customBtnController)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     //9. Clears the cache so no videos is stored in the cache
-    func clearTmpDir(){
+    func clearTmpDir() {
         var removed: Int = 0
         do {
             let tmpDirURL = URL(string: NSTemporaryDirectory())!
@@ -208,8 +218,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //11. Sets the current rotation of the phone
-    func setVideoOrientation()
-    {
+    func setVideoOrientation() {
         if let connection = self.myPreviewLayer?.connection
         {
             if connection.isVideoOrientationSupported{
@@ -220,8 +229,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //12. The different positions the phone can be in, is used in the setVideoOrientation
-    func videoOrientation() -> AVCaptureVideoOrientation
-    {
+    func videoOrientation() -> AVCaptureVideoOrientation {
         var videoOrientation : AVCaptureVideoOrientation!
         
         let orientation : UIDeviceOrientation = UIDevice.current.orientation
@@ -248,16 +256,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     // Hides the buttons of the interface to make it more clean while recording
     func modifyButtonsWhileRecording(){
         recordingButton.setImage(UIImage(named: "shutter"), for: .normal)
-        switchToCameraButton.isHidden = true
+        switchToCameraBtn.isHidden = true
+        fileStorage.isHidden = true
         fileStorage.isHidden = true
         darkBottomView.alpha = 0.2
     }
     
     // Shows the buttons when recording is stopped
-    func displayButtonsWhileNotRecording()
-    {
+    func displayButtonsWhileNotRecording(){
         recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
-        switchToCameraButton.isHidden = false
+        switchToCameraBtn.isHidden = false
+        fileStorage.isHidden = true
         fileStorage.isHidden = false
         darkBottomView.alpha = 0.7
     }
@@ -269,17 +278,18 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //returns to camera mode
     @IBAction func switchToCameraButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+            captureSession.stopRunning()
+ performSegue(withIdentifier: "segueToCamera", sender: self)    }
+
     
     @IBAction func previewLatestFileButtonPressed(_ sender: UIButton) {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let previewVideoVC = segue.destination as! PreviewVideoViewController
-        previewVideoVC.videoURL = sender as? URL
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let previewVideoVC = segue.destination as! PreviewVideoViewController
+//        previewVideoVC.videoURL = sender as? URL
+//    }
     
     //Protocol for AVCaptureFileOutputRecordingDelegate.. Needed for it to work
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {

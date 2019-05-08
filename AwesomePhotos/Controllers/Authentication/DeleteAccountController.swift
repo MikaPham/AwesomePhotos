@@ -23,7 +23,9 @@ class DeleteAccountController : GenericViewController<DeleteAccountView> {
     //MARK: - Init
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .automatic
+
         //To lock screen in portrait mode
         super.viewWillAppear(animated)
         let appdelegate = UIApplication.shared.delegate as! AppDelegate

@@ -33,8 +33,6 @@ enum OptionOptions: Int, CaseIterable, SectionType {
     case spacing1
     case saveToPhotos
     case saveToPhotosSubtitle
-    case spacing2
-    case tutorialOnStartup
     
     var containsSwitch: Bool {
         switch self {
@@ -42,7 +40,6 @@ enum OptionOptions: Int, CaseIterable, SectionType {
         case .cameraUploadSubtitle: return false
         case .saveToPhotos: return true
         case .saveToPhotosSubtitle: return false
-        case .tutorialOnStartup: return true
         default : return false
 
         }
@@ -54,7 +51,6 @@ enum OptionOptions: Int, CaseIterable, SectionType {
         case .cameraUploadSubtitle: return "Turn on to automatically upload photos and videos to your storage."
         case .saveToPhotos: return "Save To Photos"
         case .saveToPhotosSubtitle: return "Turn on to automatically save photos and videos to your camera roll."
-        case .tutorialOnStartup: return "Tutorial on Start Up"
         default : return ""
 
         }

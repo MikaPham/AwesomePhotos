@@ -29,8 +29,8 @@ class SettingsViewController: UIViewController{
         settingsTableView = UITableView()
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
-//        settingsTableView.estimatedRowHeight = 100
         settingsTableView.rowHeight = UITableView.automaticDimension
+        settingsTableView.estimatedRowHeight = 44
         settingsTableView.separatorStyle = .none
         settingsTableView.tableFooterView = UIView()
         settingsTableView.register(SettingsCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -106,7 +106,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         // Creates autolayout constraints
         sectionHeader.translatesAutoresizingMaskIntoConstraints = false
         sectionHeader.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        sectionHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 19).isActive = true
+        sectionHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         return view
     }
     
@@ -123,7 +123,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingsCell
-        cell.selectionStyle = .default
+        cell.selectionStyle = .none
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.numberOfLines = 0
         cell.isHighlighted = false
 
 
@@ -138,7 +140,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             switch option{
             case .cameraUploadSubtitle?, .saveToPhotosSubtitle?:
                 cell.textLabel?.textColor = .lightGray
-            case .spacing1?, .spacing2?:
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+            case .spacing1?:
                 cell.anchor(height: 10)
             default : cell.textLabel?.textColor = .black
             }
@@ -159,8 +162,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.textLabel?.textColor = .red
             default :
                 cell.textLabel?.textColor = .black
-                cell.textLabel!.lineBreakMode = .byWordWrapping
-                cell.textLabel!.numberOfLines = 2
+                
             }
         }
         return cell
@@ -168,7 +170,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let section = SettingsSection(rawValue: indexPath.section)
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         // Add functions to specific rows.
         switch section {
 

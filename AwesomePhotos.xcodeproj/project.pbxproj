@@ -38,7 +38,6 @@
 		5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */; };
 		5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */; };
 		5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA192266D6BB0011237D /* CameraViewController.swift */; };
-		5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D10BA1E2266DBC80011237D /* Camera.storyboard */; };
 		5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA302266DC7D0011237D /* RoundButton.swift */; };
 		5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA312266DC7D0011237D /* VideoStopwatch.swift */; };
 		5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */; };
@@ -46,6 +45,7 @@
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
+		C47B15642282C94700466CB8 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47B15632282C94700466CB8 /* Camera.storyboard */; };
 		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
 		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
 		C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A22280001300596D67 /* ProfileView.swift */; };
@@ -92,7 +92,6 @@
 		5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA192266D6BB0011237D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		5D10BA1E2266DBC80011237D /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		5D10BA302266DC7D0011237D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
 		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C47B15632282C94700466CB8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
 		C4BDC2A22280001300596D67 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 		18D8393E2277E47000D4BBB8 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				5D10BA1E2266DBC80011237D /* Camera.storyboard */,
+				C47B15632282C94700466CB8 /* Camera.storyboard */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -464,12 +464,12 @@
 			files = (
 				CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */,
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
-				5D10BA1F2266DBC80011237D /* Camera.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				C47B15642282C94700466CB8 /* Camera.storyboard in Resources */,
 				18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -746,13 +746,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -765,13 +765,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -35,13 +35,12 @@ class ProfileViewController: GenericViewController<ProfileView> {
     func setupNavBar(){
         
         // Set up navigation bar
-        configureNavBar(title: "Profile")
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.largeTitleTextAttributes =
+        navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
-//        navigationItem.title = "Profile"
+        navigationItem.title = "Profile"
         setupNavigationBarItems()
     }
 
@@ -49,15 +48,18 @@ class ProfileViewController: GenericViewController<ProfileView> {
         
         // Configure and assign settingsButton into Nav bar
         let settingsButton = UIButton(type: .system)
-        settingsButton.setImage(#imageLiteral(resourceName: "Settings").withRenderingMode(.alwaysOriginal), for: .normal)
+        settingsButton.setImage(#imageLiteral(resourceName: "Settings").withRenderingMode(.alwaysTemplate), for: .normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.anchor(width: 28, height: 28)
+        settingsButton.anchor(width: 25, height: 25)
+        settingsButton.tintColor = .mainRed()
+
         // Add action to the button
         settingsButton.addTarget(self, action: #selector(ProfileViewController.moveToSettings), for: .touchUpInside)
         
         let editProfileButton = UIButton(type: .system)
-        editProfileButton.setImage(#imageLiteral(resourceName: "Edit").withRenderingMode(.alwaysOriginal), for: .normal)
-        editProfileButton.anchor(width: 28, height: 28)
+        editProfileButton.setImage(#imageLiteral(resourceName: "Edit").withRenderingMode(.alwaysTemplate), for: .normal)
+        editProfileButton.anchor(width: 25, height: 25)
+        editProfileButton.tintColor = .mainRed()
         
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: settingsButton),
