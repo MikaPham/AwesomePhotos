@@ -256,8 +256,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     // Hides the buttons of the interface to make it more clean while recording
     func modifyButtonsWhileRecording(){
         recordingButton.setImage(UIImage(named: "shutter"), for: .normal)
-        switchToCameraBtn.isHidden = true
-        fileStorage.isHidden = true
+//        switchToCameraBtn.isHidden = true
         fileStorage.isHidden = true
         darkBottomView.alpha = 0.2
     }
@@ -265,9 +264,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     // Shows the buttons when recording is stopped
     func displayButtonsWhileNotRecording(){
         recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
-        switchToCameraBtn.isHidden = false
         fileStorage.isHidden = true
-        fileStorage.isHidden = false
         darkBottomView.alpha = 0.7
     }
     
@@ -279,17 +276,20 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     //returns to camera mode
     @IBAction func switchToCameraButtonPressed(_ sender: UIButton) {
             captureSession.stopRunning()
- performSegue(withIdentifier: "segueToCamera", sender: self)    }
+        performSegue(withIdentifier: "segueToCamera", sender: self)
+    }
 
     
     @IBAction func previewLatestFileButtonPressed(_ sender: UIButton) {
         
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let previewVideoVC = segue.destination as! PreviewVideoViewController
-//        previewVideoVC.videoURL = sender as? URL
-//    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToPreviewVideo" {
+            let previewVideoVC = segue.destination as! PreviewVideoViewController
+            previewVideoVC.videoURL = sender as? URL
+        }
+    }
     
     //Protocol for AVCaptureFileOutputRecordingDelegate.. Needed for it to work
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {

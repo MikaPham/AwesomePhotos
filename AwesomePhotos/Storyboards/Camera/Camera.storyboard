@@ -208,7 +208,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXS-bq-n9K" userLabel="FileStorage">
-                                        <rect key="frame" x="20" y="32" width="48" height="48"/>
+                                        <rect key="frame" x="20" y="33" width="48" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="PCf-5E-7Or"/>
@@ -235,7 +235,7 @@
                                     <constraint firstItem="UXS-bq-n9K" firstAttribute="leading" secondItem="wST-ud-dK4" secondAttribute="leading" constant="20" id="ndV-G5-3F2"/>
                                     <constraint firstAttribute="width" constant="414" id="pAb-Hu-5kc"/>
                                     <constraint firstItem="CJ2-5e-ugd" firstAttribute="centerX" secondItem="Hah-cU-oBI" secondAttribute="centerX" id="rSE-WG-apE"/>
-                                    <constraint firstItem="UXS-bq-n9K" firstAttribute="centerY" secondItem="CJ2-5e-ugd" secondAttribute="centerY" id="sxZ-ai-g52"/>
+                                    <constraint firstItem="UXS-bq-n9K" firstAttribute="centerY" secondItem="CJ2-5e-ugd" secondAttribute="centerY" constant="1" id="sxZ-ai-g52"/>
                                     <constraint firstAttribute="height" constant="145" id="wrJ-35-jyH"/>
                                 </constraints>
                             </view>
