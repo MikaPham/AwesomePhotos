@@ -146,7 +146,7 @@
                     <navigationItem key="navigationItem" id="zjN-8f-DJk"/>
                     <connections>
                         <segue destination="XcJ-8d-f5M" kind="presentation" identifier="segueToShowPhoto" id="7Dr-gv-PGU"/>
-                        <segue destination="4Fv-LI-hsr" kind="presentation" identifier="segueToVideo" modalTransitionStyle="crossDissolve" id="Yra-OI-dM6"/>
+                        <segue destination="4Fv-LI-hsr" kind="presentation" identifier="segueToVideo" modalTransitionStyle="flipHorizontal" id="Yra-OI-dM6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yb7-sA-EuZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +272,7 @@
                         <outlet property="switchToCameraBtn" destination="iWF-eG-Q1I" id="PLO-0f-Gtv"/>
                         <outlet property="timeRecordedLbl" destination="l41-mq-Kqg" id="KnA-OA-lR4"/>
                         <segue destination="HJ6-xm-zRx" kind="presentation" identifier="segueToPreviewVideo" id="P1L-Vd-fAT"/>
-                        <segue destination="DGd-Jb-BAz" kind="presentation" identifier="segueToCamera" modalTransitionStyle="crossDissolve" id="b3w-9N-vT6"/>
+                        <segue destination="DGd-Jb-BAz" kind="presentation" identifier="segueToCamera" modalTransitionStyle="flipHorizontal" id="b3w-9N-vT6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99B-GQ-GAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
