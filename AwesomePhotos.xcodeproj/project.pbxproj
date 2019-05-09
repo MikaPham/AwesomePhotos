@@ -102,7 +102,7 @@
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C47B15632282C94700466CB8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
-		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCell.swift; path = ../../Controllers/Settings/SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
 		C4BDC2A22280001300596D67 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -342,8 +342,8 @@
 		5D10BA2F2266DC5F0011237D /* Design */ = {
 			isa = PBXGroup;
 			children = (
-				5D10BA302266DC7D0011237D /* RoundButton.swift */,
 				C4BDC29E227ECC9200596D67 /* SettingsCell.swift */,
+				5D10BA302266DC7D0011237D /* RoundButton.swift */,
 				C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */,
 				18C9FF4A22605A2F0003B347 /* CellWithButton.swift */,
 			);
