@@ -6,12 +6,13 @@ class CameraViewController : UIViewController
     // MARK: - Properties
     var captureSession = AVCaptureSession()
     
-    var frontCamera : AVCaptureDevice?
-    var backCamera : AVCaptureDevice?
     var currentCamera : AVCaptureDevice?
     var photoOutPut : AVCapturePhotoOutput?
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     var image : UIImage?
+    var avCaptureConnection : AVCaptureConnection?
+    var newInput : AVCaptureDeviceInput?
+    var newCamera : AVCaptureDevice?
     
     //MARK: - Initialization
     
@@ -72,6 +73,10 @@ class CameraViewController : UIViewController
     {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        if (cameraPreviewLayer!.connection!.isVideoMirroringSupported){
+            cameraPreviewLayer?.connection!.automaticallyAdjustsVideoMirroring = false
+            cameraPreviewLayer?.connection!.isVideoMirrored = false
+        }
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.view.frame
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
@@ -86,18 +91,16 @@ class CameraViewController : UIViewController
     //6. Switching the front and back camera
     @IBAction func switchCameraButtonPressed(_ sender: UIButton) {
         
-        let currentCamera : AVCaptureInput = captureSession.inputs[0]
-        captureSession.removeInput(currentCamera)
+        let currentCameraPosition : AVCaptureInput = captureSession.inputs[0]
+        captureSession.removeInput(currentCameraPosition)
         
-        var newCamera : AVCaptureDevice?
-        if (currentCamera as! AVCaptureDeviceInput).device.position == .back{
+        if (currentCameraPosition as! AVCaptureDeviceInput).device.position == .back{
             newCamera = self.configureCaptureDevices(position: .front)!
-        }else{
+        }
+        else{
             newCamera = self.configureCaptureDevices(position: .back)!
         }
-        var newInput : AVCaptureDeviceInput?
-        do
-        {
+        do{
             newInput = try AVCaptureDeviceInput(device: newCamera!)
         }catch{
             print("Error")
@@ -111,7 +114,6 @@ class CameraViewController : UIViewController
     @IBAction func cameraButtonPressed(_ sender: RoundButton) {
         let setting = AVCapturePhotoSettings()
         photoOutPut?.capturePhoto(with: setting, delegate: self)
-    
     }
     
     //8. Transitions from CameraVC to PreviewVC and pass the taken image to the preview layer
@@ -124,6 +126,7 @@ class CameraViewController : UIViewController
     
     //9. Goes back to the home screen
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        captureSession.stopRunning()
         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         
@@ -144,22 +147,22 @@ class CameraViewController : UIViewController
     
     let navController = UINavigationController(rootViewController: customBtnController)
     self.present(navController, animated: true, completion: nil)
-//    
     }
-
 }
+
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
             image = UIImage(data: imageData)!
-            
+        
             //Save image to library
-            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
-            
-            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
-            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
-            image = UIImage.convert(from: mirroredImage)
+              UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+
+//            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
+//            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
+//            image = UIImage.convert(from: mirroredImage)
+
             performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
         }
     }
