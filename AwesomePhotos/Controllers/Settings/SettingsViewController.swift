@@ -249,6 +249,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             let navController = UINavigationController(rootViewController: LoginController())
             navController.navigationBar.barStyle = .black
             self.present(navController, animated: true, completion: nil)
+            
         } catch let error as NSError{
             print("Failed to sign out with error", error)
             let alert = UIAlertController(title: "Sign out failed", message: "Failed to sign user out", preferredStyle: .alert)

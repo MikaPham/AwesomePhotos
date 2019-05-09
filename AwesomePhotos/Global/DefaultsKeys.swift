@@ -4,6 +4,7 @@
 //
 //  Created by Bob on 9/5/19.
 //
+import Foundation
 
 // UserDefaults keys
 let defaults = UserDefaults.standard
