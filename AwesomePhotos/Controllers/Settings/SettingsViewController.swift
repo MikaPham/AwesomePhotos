@@ -15,11 +15,37 @@ class SettingsViewController: UIViewController{
     //  MARK: - Properties
     var settingsTableView: UITableView!
     
+    let defaults = UserDefaults.standard
+    
+    // UserDefaults keys
+    struct keys {
+        static let autoUpload = "autoUpload"
+        static let autoSave = "autoSave"
+    }
+
+    
+    lazy var autoUploadSwitchControl: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isOn = true
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+        switchControl.addTarget(self, action: #selector(handleAutoUploadSwitchAction), for: .valueChanged)
+        return  switchControl
+    }()
+    
+    lazy var autoSaveSwitchControl: UISwitch = {
+        let switchControl = UISwitch()
+        switchControl.isOn = true
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+        switchControl.addTarget(self, action: #selector(handleAutoSaveSwitchAction), for: .valueChanged)
+        return  switchControl
+    }()
+    
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        checkSettingsPreferences()
         setupSettingsUI()
     }
     
@@ -41,7 +67,7 @@ class SettingsViewController: UIViewController{
         settingsTableView.translatesAutoresizingMaskIntoConstraints = false
         settingsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         settingsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        settingsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        settingsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         settingsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
     }
@@ -127,7 +153,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.numberOfLines = 0
         cell.isHighlighted = false
-
+//        autoUploadSwitchControl.translatesAutoresizingMaskIntoConstraints = false
+//        autoUploadSwitchControl.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
 
         guard let section = SettingsSection(rawValue: indexPath.section) else { return UITableViewCell() }
         
@@ -138,6 +165,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
 
             // "Option" section
             switch option{
+            case .cameraUpload?:
+                configureSwitchInCell(cell: cell, switchControl: autoUploadSwitchControl)
+                
+            case .saveToPhotos?:
+                configureSwitchInCell(cell: cell, switchControl: autoSaveSwitchControl)
+                
             case .cameraUploadSubtitle?, .saveToPhotosSubtitle?:
                 cell.textLabel?.textColor = .lightGray
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -233,6 +266,44 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
                 alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose)))
             })
         }
+    }
+    func configureSwitchInCell (cell: SettingsCell, switchControl: UISwitch){
+        cell.contentView.addSubview(switchControl)
+        switchControl.translatesAutoresizingMaskIntoConstraints = false
+        switchControl.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor).isActive = true
+        switchControl.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -15).isActive = true
+    }
+    
+    // Handle AutoUpload to Firebase switch action
+    @objc func handleAutoUploadSwitchAction(sender: UISwitch){
+        if sender.isOn {
+            print("AU is on")
+            defaults.set(true, forKey: keys.autoUpload)
+        } else {
+            print("AU is off")
+            defaults.set(false, forKey: keys.autoUpload)
+        }
+    }
+    
+    // Handle AutoSave to local switch action
+    @objc func handleAutoSaveSwitchAction(sender: UISwitch){
+        if sender.isOn {
+            print("AS is on")
+            defaults.set(true, forKey: keys.autoSave)
+        } else {
+            print("AS is off")
+            defaults.set(false, forKey: keys.autoSave)
+        }
+    }
+    
+    // Check defaults keys and apply preferences
+    func checkSettingsPreferences() {
+        let autoUploadPreference = defaults.bool(forKey: keys.autoUpload)
+        let autoSavePreference = defaults.bool(forKey: keys.autoSave)
+        
+        // Apply preferences
+        autoUploadSwitchControl.isOn = autoUploadPreference
+        autoSaveSwitchControl.isOn = autoSavePreference
     }
 }
 

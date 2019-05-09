@@ -6,9 +6,7 @@
 //
 import UIKit
 
-protocol SectionType: CustomStringConvertible {
-    var containsSwitch: Bool { get }
-}
+protocol SectionType: CustomStringConvertible { }
 
 enum SettingsSection: Int, CaseIterable, CustomStringConvertible {
     
@@ -33,18 +31,7 @@ enum OptionOptions: Int, CaseIterable, SectionType {
     case spacing1
     case saveToPhotos
     case saveToPhotosSubtitle
-    
-    var containsSwitch: Bool {
-        switch self {
-        case .cameraUpload: return true
-        case .cameraUploadSubtitle: return false
-        case .saveToPhotos: return true
-        case .saveToPhotosSubtitle: return false
-        default : return false
 
-        }
-    }
-    
     var description: String{
         switch self {
         case .cameraUpload: return "Camera Upload"
@@ -52,17 +39,14 @@ enum OptionOptions: Int, CaseIterable, SectionType {
         case .saveToPhotos: return "Save To Photos"
         case .saveToPhotosSubtitle: return "Turn on to automatically save photos and videos to your camera roll."
         default : return ""
-
         }
     }
-    
 }
+
 
 // Describes option for Login section
 enum LoginOptions: Int, CaseIterable, SectionType{
     case resetPassword
-    
-    var containsSwitch: Bool { return false }
     
     var description: String{
         switch self {
@@ -79,10 +63,7 @@ enum MoreOptions: Int, CaseIterable, SectionType{
     case spacing
     case deleteAccount
     case signOut
-    
-
-    var containsSwitch: Bool { return false }
-    
+        
     var description: String{
         switch self {
         case .version: return "Version"
