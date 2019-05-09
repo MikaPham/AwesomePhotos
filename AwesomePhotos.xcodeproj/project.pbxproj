@@ -45,6 +45,7 @@
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
+		C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4225EAF2284889C00D18815 /* DefaultsKeys.swift */; };
 		C47B15642282C94700466CB8 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47B15632282C94700466CB8 /* Camera.storyboard */; };
 		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
 		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
@@ -101,6 +102,7 @@
 		879706312265B1610036FA2B /* FirebaseFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctions.swift; sourceTree = "<group>"; };
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C4225EAF2284889C00D18815 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		C47B15632282C94700466CB8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCell.swift; path = ../../Controllers/Settings/SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				879706352265D6B60036FA2B /* Constant.swift */,
+				C4225EAF2284889C00D18815 /* DefaultsKeys.swift */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
 				879706302265B1330036FA2B /* Functions */,
 				5D10BA2F2266DC5F0011237D /* Design */,
@@ -579,6 +582,7 @@
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
+				C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */,
 				C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */,
 				C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */,
 				183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */,
