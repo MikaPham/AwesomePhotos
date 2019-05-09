@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let navController = UINavigationController(rootViewController: CameraViewController())
         
 ///         To launch with ProfileViewController.
-        let navController = UINavigationController(rootViewController: libraryController)
+        let navController = UINavigationController(rootViewController: loginController)
 
         navController.navigationBar.barTintColor = UIColor.lightGray()
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]

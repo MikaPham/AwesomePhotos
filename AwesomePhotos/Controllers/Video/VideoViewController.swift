@@ -6,6 +6,7 @@ import AVFoundation
 import FirebaseStorage
 import Firebase
 import MobileCoreServices
+import MediaWatermark
 
 class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelegate
 {
@@ -25,6 +26,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var darkBottomView: UIView!
     
     let userUid = Auth.auth().currentUser?.uid
+    let userEmail = Auth.auth().currentUser?.email
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -100,6 +102,15 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return videoName
     }
     
+    func prepareWatermark() -> MediaItem {
+        let video = MediaItem(url: self.videoLocation()!)
+        let logoImage = UIImage(named: "AwesomeLogo")
+        let firstElement = MediaElement(image: logoImage!)
+        firstElement.frame = CGRect(x: 0, y: 0, width: logoImage!.size.width/3, height: logoImage!.size.height/3)
+        video!.add(elements: [firstElement])
+        return video!
+    }
+    
     //6. Recording video is pressed and when pressed again, it will stop and upload to firebase storage
     @IBAction func recordVideoButtonPressed(_ sender: UIButton) {
         
@@ -123,7 +134,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                     print("Upload to Firestore finished")
                     
                     // Create FireStore path
-                    for (_ , value) in PhotoTypesConstants{
+                    for (key , value) in PhotoTypesConstants{
                         let videoStorageReference : StorageReference = {
                             return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("User/\(self.userUid!)/Uploads/Medias/\((self.reference?.documentID)!)/\(value)")  }()
             
@@ -131,20 +142,49 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                         storageMetaData.contentType = "video/quicktime"
                         
                         // Upload to Storage
-                        let uploadVideoPath = videoStorageReference.child(videoName + "-\(value).mov")
-                        _ = uploadVideoPath.putFile(from: self.videoLocation()!, metadata: storageMetaData){metadata, error in
-                            if (error != nil) {
-                                print("Error is", error as Any)
-                            } else {
-                                print("Upload to storage finished")
-                                
-                                let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
-                                db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
-                                    err in
-                                    if let err = err {
-                                        print("Error writing document: \(err)")
-                                    } else {
-                                        print("Path to storage sucessfully set. ")
+                        if key == "WatermarkPhoto" {
+                            let video = self.prepareWatermark()
+                            let mediaProcessor = MediaProcessor()
+                            mediaProcessor.processElements(item: video){(result, error) -> () in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    let uploadVideoPath = videoStorageReference.child(videoName + "-\(value).mov")
+                                    _ = uploadVideoPath.putFile(from: result.processedUrl!, metadata: storageMetaData){metadata, error in
+                                        if (error != nil) {
+                                            print("Error is", error as Any)
+                                        } else {
+                                            print("Upload to storage finished")
+                                            
+                                            let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
+                                            db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
+                                                err in
+                                                if let err = err {
+                                                    print("Error writing document: \(err)")
+                                                } else {
+                                                    print("Path to storage sucessfully set. ")
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            let uploadVideoPath = videoStorageReference.child(videoName + "-\(value).mov")
+                            _ = uploadVideoPath.putFile(from: self.videoLocation()!, metadata: storageMetaData){metadata, error in
+                                if (error != nil) {
+                                    print("Error is", error as Any)
+                                } else {
+                                    print("Upload to storage finished")
+                                    
+                                    let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
+                                    db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
+                                        err in
+                                        if let err = err {
+                                            print("Error writing document: \(err)")
+                                        } else {
+                                            print("Path to storage sucessfully set. ")
+                                        }
                                     }
                                 }
                             }
