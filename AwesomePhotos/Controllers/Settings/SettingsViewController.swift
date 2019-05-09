@@ -14,16 +14,7 @@ class SettingsViewController: UIViewController{
     
     //  MARK: - Properties
     var settingsTableView: UITableView!
-    
-    let defaults = UserDefaults.standard
-    
-    // UserDefaults keys
-    struct keys {
-        static let autoUpload = "autoUpload"
-        static let autoSave = "autoSave"
-    }
-
-    
+        
     lazy var autoUploadSwitchControl: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = true
@@ -277,10 +268,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     // Handle AutoUpload to Firebase switch action
     @objc func handleAutoUploadSwitchAction(sender: UISwitch){
         if sender.isOn {
-            print("AU is on")
+            print("AutoUpload is on")
             defaults.set(true, forKey: keys.autoUpload)
         } else {
-            print("AU is off")
+            print("AutoUpload is off")
             defaults.set(false, forKey: keys.autoUpload)
         }
     }
@@ -288,10 +279,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     // Handle AutoSave to local switch action
     @objc func handleAutoSaveSwitchAction(sender: UISwitch){
         if sender.isOn {
-            print("AS is on")
+            print("AutoSave is on")
             defaults.set(true, forKey: keys.autoSave)
         } else {
-            print("AS is off")
+            print("AutoSave is off")
             defaults.set(false, forKey: keys.autoSave)
         }
     }

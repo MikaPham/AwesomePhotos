@@ -12,7 +12,6 @@ import Firebase
 class ProfileViewController: GenericViewController<ProfileView> {
     
     // MARK: - Properties
-    
    
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {

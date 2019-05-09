@@ -73,6 +73,13 @@ class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {
             
             let alert = AlertService.alertNextScreen(imgName: "SmileFace",title: "Sign up success",message: "Welcome aboard! We will direct you to your homescreen", currentScreen: self, nextScreen: customBtnController)
             self.present(alert,animated: true)
+            resetSettingsPreferences()
         }
+    }
+    
+    // Reset Settings Preferences
+    func resetSettingsPreferences(){
+        defaults.set(true, forKey: keys.autoUpload)
+        defaults.set(true, forKey: keys.autoSave)
     }
 }
