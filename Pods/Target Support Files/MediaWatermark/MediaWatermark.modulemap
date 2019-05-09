@@ -1,0 +1,6 @@
+framework module MediaWatermark {
+  umbrella header "MediaWatermark-umbrella.h"
+
+  export *
+  module * { export * }
+}

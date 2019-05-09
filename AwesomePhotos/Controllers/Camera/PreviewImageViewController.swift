@@ -2,14 +2,17 @@ import Foundation
 import UIKit
 import FirebaseStorage
 import Firebase
+import MediaWatermark
 
 class PreviewmageViewController : UIViewController{
     
     //MARK: - Properties
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
+    var wmImage: UIImage!
     let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
+    let userEmail = Auth.auth().currentUser?.email
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -20,10 +23,28 @@ class PreviewmageViewController : UIViewController{
     //MARK: - Methods
     
     //1. Uploads the taken photo to Firebase Storage
+    fileprivate func makeWmCopyOfImage() {
+        let item = MediaItem(image: image)
+        let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
+        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100) ]
+        let attrStr = NSAttributedString(string: watermarkString, attributes: attributes)
+        let secondElement = MediaElement(text: attrStr)
+        secondElement.frame = CGRect(x: image!.size.width/2 - image!.size.width/6, y: image!.size.height-400, width: image!.size.width, height: image!.size.height)
+        item.add(elements: [secondElement])
+        let mediaProcessor = MediaProcessor()
+        mediaProcessor.processElements(item: item) { [weak self] (result, error) in
+            self?.wmImage = result.image
+        }
+    }
+    
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
         let id = UUID()
         let photoName = id.uuidString
+        
+        makeWmCopyOfImage()
+        
         guard let imageData = image.jpegData(compressionQuality: 0.55) else { return }
+        guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
         let data: [String:Any] = ["name": photoName + ".jpg","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
@@ -42,7 +63,7 @@ class PreviewmageViewController : UIViewController{
         )
         
         //Upload to Firebase
-        for (_,value) in PhotoTypesConstants {
+        for (key,value) in PhotoTypesConstants {
             let storageReference: StorageReference = {
                 return Storage.storage()
                     .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
@@ -50,7 +71,7 @@ class PreviewmageViewController : UIViewController{
             }()
             
             let uploadImageRef = storageReference.child(id.uuidString + "-\(value).jpg")
-            _ = uploadImageRef.putData(imageData, metadata : nil) { (metadata, error) in
+            _ = uploadImageRef.putData(key == "WatermarkPhoto" ? imageDataWm : imageData, metadata : nil) { (metadata, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {

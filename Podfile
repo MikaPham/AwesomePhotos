@@ -15,4 +15,5 @@ target 'AwesomePhotos' do
   pod 'TextFieldEffects'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'MediaWatermark'
 end
