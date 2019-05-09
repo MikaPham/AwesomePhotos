@@ -24,14 +24,16 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var darkBottomView: UIView!
     
+    let userUid = Auth.auth().currentUser?.uid
+    
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        //clearTmpDir()
         configureSession()
         configureVideoInput()
         configureVideoOutPut()
         configurePreviewLayer()
+        clearTmpDir()
         startSession()
     }
     
@@ -40,20 +42,18 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     //MARK: - Methods
     
+    /// RECORDING VIDEO
     //1. Configures a capture session
     func configureSession(){
         self.captureSession.sessionPreset = .high
     }
     
     //2. Configures the video input
-    func configureVideoInput()
-    {
+    func configureVideoInput() {
         let captureDevice = AVCaptureDevice.default(for: .video)
-        
         do{
             let deviceInput = try AVCaptureDeviceInput(device: captureDevice!)
             captureSession.beginConfiguration()
-            
             if captureSession.canAddInput(deviceInput) == true
             {
                 captureSession.addInput(deviceInput)
@@ -64,8 +64,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //3. Configures the video output
-    func configureVideoOutPut(){
-        
+    func configureVideoOutPut() {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString) : NSNumber(value: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange as UInt32)] as [String : Any]
         dataOutput.alwaysDiscardsLateVideoFrames = true
@@ -80,7 +79,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //4. Configures the preview layer
-    func configurePreviewLayer(){
+    func configurePreviewLayer() {
         myPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         myPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         myPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
@@ -96,7 +95,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var reference : DocumentReference? = nil
     
     func videoName() -> String{
-        
         let id = UUID()
         let videoName = id.uuidString
         return videoName
@@ -104,74 +102,67 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //6. Recording video is pressed and when pressed again, it will stop and upload to firebase storage
     @IBAction func recordVideoButtonPressed(_ sender: UIButton) {
+        
         let id = UUID()
         let videoName = id.uuidString
+        print(movieFileOutput.isRecording)
         
+       
         if movieFileOutput.isRecording {
+            // Stop Recording
             movieFileOutput.stopRecording()
             displayButtonsWhileNotRecording()
             stopWatch.stop()
             
             //Upload video to firestorage
             let data = ["name": videoName + ".mov"]
-            
             reference = db.collection("medias").addDocument(data: data) {(error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     print("Upload to Firestore finished")
-                }}
+                    
+                    // Create FireStore path
+                    for (_ , value) in PhotoTypesConstants{
+                        let videoStorageReference : StorageReference = {
+                            return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("User/\(self.userUid!)/Uploads/Medias/\((self.reference?.documentID)!)/\(value)")  }()
             
-            for (_ , value) in PhotoTypesConstants{
-                let videoStorageReference : StorageReference = {
-                    return Storage.storage().reference(forURL : "gs://awesomephotos-b794e.appspot.com/").child("User/doc12/Uploads/Video/\((reference?.documentID)!)/\(value)")
-                }()
-                
-                let uploadImageRef = videoStorageReference.child(id.uuidString + "-\(value).mov")
-                
-                //let uploadRef = videoStorageReference.child("workplease.mp4")
-                let storageMetaData = StorageMetadata()
-                storageMetaData.contentType = "video/mov"
-                
-                
-                let uploadVideoTask = uploadImageRef.putFile(from: videoLocation()!, metadata: storageMetaData) { (metadata, error) in
-                    if (error != nil) {
-                        print("Error here")
-                        print(error?.localizedDescription as Any)
+                        let storageMetaData = StorageMetadata()
+                        storageMetaData.contentType = "video/quicktime"
+                        
+                        // Upload to Storage
+                        let uploadVideoPath = videoStorageReference.child(videoName + "-\(value).mov")
+                        _ = uploadVideoPath.putFile(from: self.videoLocation()!, metadata: storageMetaData){metadata, error in
+                            if (error != nil) {
+                                print("Error is", error as Any)
+                            } else {
+                                print("Upload to storage finished") }
+                        }
                     }
-                    else {
-                        print("Upload completed! Metadata: \(metadata!)")
-                        print("Contenttype : \(metadata?.contentType ?? "No contenttype found")")
-                    }}
-                
-                uploadVideoTask.observe(.progress) { (snapshot) in print("Hello",snapshot.progress ?? "Progress cancelled")  }
-                uploadVideoTask.resume()
+                }
             }
         }
             
-        else{ //Starts the recording and the timer
-            Timer.scheduledTimer(timeInterval: 0.1, target: self,
-                                 selector: #selector(updateElapsedTimeLabel(_:)),
-                                 userInfo: nil,
-                                 repeats: true)
+        else {
+            // Start Recording
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateElapsedTimeLabel(_:)), userInfo: nil, repeats: true)
             modifyButtonsWhileRecording()
             stopWatch.start()
             movieFileOutput.connection(with: .video)?.videoOrientation = self.videoOrientation()
-            movieFileOutput.maxRecordedDuration = maxRecordedDuration()
             movieFileOutput.startRecording(to: self.videoLocation()!, recordingDelegate: self)
-            //            print(movieFileOutput.metadata?., "Description here")
         }
     }
     
     //7. Stores the video in this temporary directory in the cache
-    func videoLocation() -> URL?{
-        let directory = NSTemporaryDirectory().appending("work")
+    func videoLocation() -> URL? {
+        let directory = NSTemporaryDirectory().appending("tempWork")
         let videoURL = URL(fileURLWithPath: directory).appendingPathExtension("mov")
-        print(videoURL)
+        do {
+            let data = try Data(contentsOf: videoURL)
+            print("data is", data)
+        } catch  _ { }
         return videoURL
     }
-    
-    //MARK: - Helper Methods
     
     //8. Updates the time recorded and resets it, if video stopped recording
     @objc func updateElapsedTimeLabel(_ timer: Timer) {
@@ -201,6 +192,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             // print("\(tmpFiles.count") temporary files found")
             for url in tmpFiles {
                 removed += 1
+                print(url.absoluteString)
                 try FileManager.default.removeItem(at: url)
             }
             print("\(removed) temporary files removed")
@@ -211,11 +203,11 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     //10. Sets the duration time to the maximum of 5 min
-    func maxRecordedDuration() -> CMTime{
-        let recordtime : Int64 = 300
-        let preferedTimescale : Int32 = 1
-        return CMTimeMake(value: recordtime, timescale: preferedTimescale)
-    }
+    //    func maxRecordedDuration() -> CMTime {
+    //        let recordtime : Int64 = 300
+    //        let preferedTimescale : Int32 = 1
+    //        return CMTimeMake(value: recordtime, timescale: preferedTimescale)
+    //    }
     
     //11. Sets the current rotation of the phone
     func setVideoOrientation() {
@@ -276,15 +268,15 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //returns to camera mode
     @IBAction func switchToCameraButtonPressed(_ sender: UIButton) {
-            captureSession.stopRunning()
+        captureSession.stopRunning()
         performSegue(withIdentifier: "segueToCamera", sender: self)
     }
-
+    
     
     @IBAction func previewLatestFileButtonPressed(_ sender: UIButton) {
         
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToPreviewVideo" {
             let previewVideoVC = segue.destination as! PreviewVideoViewController
