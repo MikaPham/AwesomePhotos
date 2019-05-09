@@ -136,7 +136,18 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                             if (error != nil) {
                                 print("Error is", error as Any)
                             } else {
-                                print("Upload to storage finished") }
+                                print("Upload to storage finished")
+                                
+                                let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
+                                db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
+                                    err in
+                                    if let err = err {
+                                        print("Error writing document: \(err)")
+                                    } else {
+                                        print("Path to storage sucessfully set. ")
+                                    }
+                                }
+                            }
                         }
                     }
                 }
