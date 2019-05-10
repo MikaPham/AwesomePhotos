@@ -30,17 +30,13 @@ class CameraViewController : UIViewController
     }
     
     //MARK: - Methods
-    
-    
     // 1. Creating a capture session.
-    func createCaptureSession()
-    {
+    func createCaptureSession(){
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
     }
     
     // 2. Identifying the necessary capture devices.
-    func configureCaptureDevices(position: AVCaptureDevice.Position) -> AVCaptureDevice?
-    {
+    func configureCaptureDevices(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession( deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: position)
         
         if let device = deviceDiscoverySession.devices.first
@@ -52,11 +48,9 @@ class CameraViewController : UIViewController
     
     // 3. Creating inputs using the capture devices.
     // and outputs the photo to be shown later in the previewLayer
-    func configureInputOutput()
-    {
+    func configureInputOutput() {
         currentCamera = AVCaptureDevice.default(for: AVMediaType.video)
-        do
-        {
+        do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutPut = AVCapturePhotoOutput()
@@ -69,8 +63,7 @@ class CameraViewController : UIViewController
     }
     
     // 4. Configures the image to fit the preview layer
-    func configurePreviewLayer()
-    {
+    func configurePreviewLayer() {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         if (cameraPreviewLayer!.connection!.isVideoMirroringSupported){
@@ -83,8 +76,7 @@ class CameraViewController : UIViewController
     }
     
     // 5. Starting the camera session
-    func startRunningSession()
-    {
+    func startRunningSession() {
         captureSession.startRunning()
     }
     
@@ -139,41 +131,45 @@ class CameraViewController : UIViewController
         captureSession.stopRunning()
         performSegue(withIdentifier: "segueToVideo", sender: self)
     }
-
-    //11. Preview latest file taken
-    @IBAction func previewLatestFileButtonPressed(_sender: UIButton){
-         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-    let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
     
-    let navController = UINavigationController(rootViewController: customBtnController)
-    self.present(navController, animated: true, completion: nil)
+    //11. Preview latest file taken
+    @IBAction func previewLatestFileButtonPressed(_sender: UIButton) {
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        let navController = UINavigationController(rootViewController: customBtnController)
+        self.present(navController, animated: true, completion: nil)
     }
 }
-
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
             image = UIImage(data: imageData)!
-        
-            //Save image to library
-              UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
-
-//            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
-//            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
-//            image = UIImage.convert(from: mirroredImage)
-
-            performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
+            
+            /// Image handler
+            if defaults.bool(forKey: keys.autoSave) == true {
+                UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+            } else {
+                performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
+            }
+            
+            if defaults.bool(forKey: keys.autoUpload) == true {
+                
+            } else{
+                performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
+            }
         }
     }
 }
 
 extension UIImage{
-    
     static func convert(from ciImage: CIImage) -> UIImage{
         let context:CIContext = CIContext.init(options: nil)
         let cgImage:CGImage = context.createCGImage(ciImage, from: ciImage.extent)!
         let image:UIImage = UIImage.init(cgImage: cgImage)
         return image
     }
+    //            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
+    //            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
+    //            image = UIImage.convert(from: mirroredImage)
 }

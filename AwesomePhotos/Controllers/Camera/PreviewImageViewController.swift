@@ -38,6 +38,10 @@ class PreviewmageViewController : UIViewController{
     }
     
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
+        uploadImage()
+    }
+    
+    func uploadImage() {
         let id = UUID()
         let photoName = id.uuidString
         
