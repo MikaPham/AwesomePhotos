@@ -25,6 +25,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var darkBottomView: UIView!
     
+    let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
     
@@ -161,7 +162,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                                             print("Upload to storage finished")
                                             
                                             let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
-                                            db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
+                                            self.db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
                                                 err in
                                                 if let err = err {
                                                     print("Error writing document: \(err)")
@@ -182,7 +183,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                                     print("Upload to storage finished")
                                     
                                     let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadVideoPath.fullPath]
-                                    db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
+                                    self.db.collection("medias").document(self.reference!.documentID).updateData(uploadPath) {
                                         err in
                                         if let err = err {
                                             print("Error writing document: \(err)")
@@ -196,6 +197,9 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                     }
                 }
             }
+            
+            self.db.collection("users").document(userUid!).updateData(
+                ["ownedVideos":FieldValue.arrayUnion([reference!.documentID])])
         }
             
         else {
