@@ -49,7 +49,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         let settingsButton = UIButton(type: .system)
         settingsButton.setImage(#imageLiteral(resourceName: "Settings").withRenderingMode(.alwaysTemplate), for: .normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.anchor(width: 25, height: 25)
+        settingsButton.anchor(width: 30, height: 30)
         settingsButton.tintColor = .mainRed()
 
         // Add action to the button
@@ -57,7 +57,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         
         let editProfileButton = UIButton(type: .system)
         editProfileButton.setImage(#imageLiteral(resourceName: "Edit").withRenderingMode(.alwaysTemplate), for: .normal)
-        editProfileButton.anchor(width: 25, height: 25)
+        editProfileButton.anchor(width: 30, height: 30)
         editProfileButton.tintColor = .mainRed()
         
         

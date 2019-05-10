@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController{
     
     //  MARK: - Properties
     var settingsTableView: UITableView!
-        
+    
     lazy var autoUploadSwitchControl: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = true
@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController{
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         checkSettingsPreferences()
         setupSettingsUI()
@@ -51,7 +51,7 @@ class SettingsViewController: UIViewController{
         settingsTableView.separatorStyle = .none
         settingsTableView.tableFooterView = UIView()
         settingsTableView.register(SettingsCell.self, forCellReuseIdentifier: reuseIdentifier)
-
+        
         view.addSubview(settingsTableView)
         
         // Configure constraint
@@ -60,7 +60,6 @@ class SettingsViewController: UIViewController{
         settingsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         settingsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         settingsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
     }
     
     func setupSettingsUI(){
@@ -80,11 +79,11 @@ class SettingsViewController: UIViewController{
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
         
-    
+        
         navigationItem.title = "Settings"
         configureSettingsTableView()
     }
-
+    
 }
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -144,16 +143,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.numberOfLines = 0
         cell.isHighlighted = false
-//        autoUploadSwitchControl.translatesAutoresizingMaskIntoConstraints = false
-//        autoUploadSwitchControl.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
-
+        
         guard let section = SettingsSection(rawValue: indexPath.section) else { return UITableViewCell() }
         
         switch section {
         case .Option:
             let option = OptionOptions(rawValue: indexPath.row)
             cell.sectionType = option
-
+            
             // "Option" section
             switch option{
             case .cameraUpload?:
@@ -169,12 +166,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.anchor(height: 10)
             default : cell.textLabel?.textColor = .black
             }
-        
+            
         case .Login:
             let login = LoginOptions(rawValue: indexPath.row)
             cell.sectionType = login
             
-            // "More" section.
+        // "More" section.
         case .More:
             let more = MoreOptions(rawValue: indexPath.row)
             cell.sectionType = more
@@ -197,7 +194,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRow(at: indexPath, animated: true)
         // Add functions to specific rows.
         switch section {
-
+            
         case .More?:
             let more = MoreOptions(rawValue: indexPath.row)
             switch more{
@@ -208,8 +205,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
                 handleSignOut()
             default: break
             }
-
-
+            
+            
         case .Login?:
             let login = LoginOptions(rawValue: indexPath.row)
             switch login{
@@ -225,7 +222,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
     func handleSignOut() {
         let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
-        self.signOut()
+            self.signOut()
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
@@ -243,13 +240,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         self.present(navController, animated: true, completion: nil)
     }
     
+    // Handle SignOut
     func signOut() {
         do {
             try Auth.auth().signOut()
-            let navController = UINavigationController(rootViewController: LoginController())
-            navController.navigationBar.barStyle = .black
-            self.present(navController, animated: true, completion: nil)
             
+            // Set loggedIn state to false
+            defaults.set(false, forKey: keys.isLoggedIn)
+            
+            let loginController = LoginController()
+            self.present(loginController, animated: true, completion: nil)
         } catch let error as NSError{
             print("Failed to sign out with error", error)
             let alert = UIAlertController(title: "Sign out failed", message: "Failed to sign user out", preferredStyle: .alert)
@@ -259,6 +259,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
             })
         }
     }
+    
+    // Configure SwitchControls constraints
     func configureSwitchInCell (cell: SettingsCell, switchControl: UISwitch){
         cell.contentView.addSubview(switchControl)
         switchControl.translatesAutoresizingMaskIntoConstraints = false

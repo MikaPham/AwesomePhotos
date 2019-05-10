@@ -31,19 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Do this if your view is made from code
         let loginController = LoginController()
         let deleteAccountController = DeleteAccountController()
- 
-        //  Remember to set the rootViewController to the screen you want to test
-//        let navController = UINavigationController(rootViewController: CameraViewController())
-        
-///         To launch with ProfileViewController.
-        let navController = UINavigationController(rootViewController: loginController)
 
-        navController.navigationBar.barTintColor = UIColor.lightGray()
-        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.mainRed()]
-        
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = navController
+        if defaults.bool(forKey: keys.isLoggedIn) == false {
+            let navController = UINavigationController(rootViewController: loginController)
+            window?.rootViewController = navController
+        } else {
+            let navController = UINavigationController(rootViewController: libraryController)
+            window?.rootViewController = navController
+        }
         return true
     }
     

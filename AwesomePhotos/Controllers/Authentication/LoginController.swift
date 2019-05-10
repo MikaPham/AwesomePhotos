@@ -56,7 +56,6 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
         navigationController?.pushViewController(ForgotPasswordController(), animated: true)
     }
     
-    
     //MARK: - API
     func logUserIn(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) {(result,error) in //Attempt log user in
@@ -69,6 +68,9 @@ class LoginController: GenericViewController<LogInView>, UITextFieldDelegate {
             DispatchQueue.main.async {
                 let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
                 let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+                
+                // Set loggedIn state to true
+                defaults.set(true, forKey: keys.isLoggedIn)
                 
                 let navController = UINavigationController(rootViewController: customBtnController)
                 self.present(navController, animated: true, completion: nil)

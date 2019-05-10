@@ -12,4 +12,5 @@ let defaults = UserDefaults.standard
 struct keys {
     static let autoUpload = "autoUpload"
     static let autoSave = "autoSave"
+    static let isLoggedIn = "isLoggedIn"
 }
