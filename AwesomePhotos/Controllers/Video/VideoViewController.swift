@@ -52,13 +52,17 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     //2. Configures the video input
     func configureVideoInput() {
-        let captureDevice = AVCaptureDevice.default(for: .video)
+        let videoCaptureDevice = AVCaptureDevice.default(for: .video)
+        let audioCaptureDevice = AVCaptureDevice.default(for: .audio)
         do{
-            let deviceInput = try AVCaptureDeviceInput(device: captureDevice!)
+            let videoDeviceInput = try AVCaptureDeviceInput(device: videoCaptureDevice!)
+            let audioDeviceInput = try AVCaptureDeviceInput(device: audioCaptureDevice!)
             captureSession.beginConfiguration()
-            if captureSession.canAddInput(deviceInput) == true
+            
+            if captureSession.canAddInput(videoDeviceInput) == true  && captureSession.canAddInput(audioDeviceInput) == true
             {
-                captureSession.addInput(deviceInput)
+                captureSession.addInput(videoDeviceInput)
+                captureSession.addInput(audioDeviceInput)
             }
         }catch{
             print("No input found")
