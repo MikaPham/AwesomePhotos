@@ -232,12 +232,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Go back to previous screen (Profile)
     @objc func backHome(){
-        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
-        
-        let navController = UINavigationController(rootViewController: customBtnController)
-        self.present(navController, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Handle SignOut
