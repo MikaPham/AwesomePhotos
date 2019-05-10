@@ -4,7 +4,7 @@ import FirebaseStorage
 import Firebase
 import MediaWatermark
 
-class PreviewmageViewController : UIViewController{
+class PreviewmageViewController : UIViewController {
     
     //MARK: - Properties
     @IBOutlet weak var photo: UIImageView!
