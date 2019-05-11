@@ -123,7 +123,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         let videoName = id.uuidString
         print(movieFileOutput.isRecording)
         
-       
         if movieFileOutput.isRecording {
             // Stop Recording
             movieFileOutput.stopRecording()
@@ -261,13 +260,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
-    //10. Sets the duration time to the maximum of 5 min
-    //    func maxRecordedDuration() -> CMTime {
-    //        let recordtime : Int64 = 300
-    //        let preferedTimescale : Int32 = 1
-    //        return CMTimeMake(value: recordtime, timescale: preferedTimescale)
-    //    }
-    
     //11. Sets the current rotation of the phone
     func setVideoOrientation() {
         if let connection = self.myPreviewLayer?.connection
@@ -337,6 +329,22 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let autoUpload = defaults.bool(forKey: keys.autoUpload)
+        let autoSave = defaults.bool(forKey: keys.autoSave)
+        
+        if autoSave == true && autoUpload == true {
+            uploadImage()
+            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+            print("Image Saved and Uploaded")
+        } else if autoUpload == true && autoSave == false {
+            uploadImage()
+            print("Image Uploaded")
+        } else {
+            performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
+            print("Going To Preview")
+        }
+        
         if segue.identifier == "segueToPreviewVideo" {
             let previewVideoVC = segue.destination as! PreviewVideoViewController
             previewVideoVC.videoURL = sender as? URL

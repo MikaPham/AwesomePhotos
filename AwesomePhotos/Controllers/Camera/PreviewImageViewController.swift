@@ -11,6 +11,7 @@ protocol UploadImageDelegate: class {
 class PreviewmageViewController : UIViewController {
     
     //MARK: - Properties
+    
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
     var wmImage: UIImage!
@@ -24,21 +25,34 @@ class PreviewmageViewController : UIViewController {
         photo.image = self.image
     }
     
+    // Hide statusBar
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
     //MARK: - Methods
     
     //1. Uploads the taken photo to Firebase Storage
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
-    self.delegate?.uploadImage()
+        self.delegate?.uploadImage()
+        print("Uploading to Storage")
     }
     
     //2. Saves the photo to local storage
     @IBAction func saveToLocalStorageButtonPressed(_ sender: UIButton) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        dismiss(animated: true, completion: nil)
+        print("Saving to Local")
     }
     
     //3. Returns the users to the camera
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+
+    @IBAction func discardButtonPressed(_ sender: UIButton) {
+        print("Discarded")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func backToCamera(_ sender: UIButton) {
+        print("Returning to Camera")
         dismiss(animated: true, completion: nil)
     }
 }
