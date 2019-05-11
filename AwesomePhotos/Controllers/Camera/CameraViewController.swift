@@ -6,6 +6,9 @@ import MediaWatermark
 
 class CameraViewController : UIViewController
 {
+
+    
+   
     // MARK: - Properties
     var captureSession = AVCaptureSession()
     
@@ -35,7 +38,6 @@ class CameraViewController : UIViewController
     override var prefersStatusBarHidden: Bool{
         return true
     }
-    
     //MARK: - Methods
     // 1. Creating a capture session.
     func createCaptureSession(){
@@ -87,6 +89,8 @@ class CameraViewController : UIViewController
         captureSession.startRunning()
     }
     
+  
+    
     //6. Switching the front and back camera
     @IBAction func switchCameraButtonPressed(_ sender: UIButton) {
         
@@ -120,6 +124,7 @@ class CameraViewController : UIViewController
         if segue.identifier == "segueToShowPhoto"{
             let previewVC = segue.destination as! PreviewmageViewController
             previewVC.image = self.image
+            previewVC.delegate = self
         }
     }
     
@@ -149,42 +154,30 @@ class CameraViewController : UIViewController
     
 }
 
-extension CameraViewController : AVCapturePhotoCaptureDelegate {
+extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDelegate {
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
-            image = UIImage(data: imageData)!
-            
-            /// Image flow handler
-            let autoUpload = defaults.bool(forKey: keys.autoUpload)
-            let autoSave = defaults.bool(forKey: keys.autoSave)
-            
-            if autoSave == true && autoUpload == true {
-                uploadImage()
-                UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
-                print("Image Saved and Uploaded")
-            } else if autoUpload == true && autoSave == false {
-                uploadImage()
-                print("Image Uploaded")
-            } else {
-                performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
-                print("Going To Preview")
-            }
+            image = UIImage(data: imageData)
+    }
+        
+        /// Image flow handler
+        let autoUpload = defaults.bool(forKey: keys.autoUpload)
+        let autoSave = defaults.bool(forKey: keys.autoSave)
+        
+        if autoSave == true && autoUpload == true {
+            uploadImage()
+            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+            print("Image Saved and Uploaded")
+        } else if autoUpload == true && autoSave == false {
+            uploadImage()
+            print("Image Uploaded")
+        } else {
+            performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
+            print("Going To Preview")
         }
     }
     
-    fileprivate func makeWmCopyOfImage() {
-        let item = MediaItem(image: image!)
-        let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
-        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100) ]
-        let attrStr = NSAttributedString(string: watermarkString, attributes: attributes)
-        let secondElement = MediaElement(text: attrStr)
-        secondElement.frame = CGRect(x: image!.size.width/2 - image!.size.width/6, y: image!.size.height-400, width: image!.size.width, height: image!.size.height)
-        item.add(elements: [secondElement])
-        let mediaProcessor = MediaProcessor()
-        mediaProcessor.processElements(item: item) { [weak self] (result, error) in
-            self?.wmImage = result.image
-        }
-    }
     
     func uploadImage() {
         let id = UUID()
@@ -192,8 +185,8 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
         
         makeWmCopyOfImage()
         
-        guard let imageData = image!.jpegData(compressionQuality: 0.55) else { return }
-        guard let imageDataWm = wmImage!.jpegData(compressionQuality: 0.55) else {return}
+        guard let imageData = self.image?.jpegData(compressionQuality: 0.55) else { return }
+        guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
         let data: [String:Any] = ["name": photoName + ".jpg","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
@@ -240,6 +233,21 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
             
         }
     }
+    
+    fileprivate func makeWmCopyOfImage() {
+        let item = MediaItem(image: image!)
+        let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
+        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100) ]
+        let attrStr = NSAttributedString(string: watermarkString, attributes: attributes)
+        let secondElement = MediaElement(text: attrStr)
+        secondElement.frame = CGRect(x: image!.size.width/2 - image!.size.width/6, y: image!.size.height-400, width: image!.size.width, height: image!.size.height)
+        item.add(elements: [secondElement])
+        let mediaProcessor = MediaProcessor()
+        mediaProcessor.processElements(item: item) { [weak self] (result, error) in
+            self?.wmImage = result.image
+        }
+    }
+    
 }
 
 extension UIImage{

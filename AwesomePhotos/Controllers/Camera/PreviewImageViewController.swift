@@ -2,7 +2,12 @@ import Foundation
 import UIKit
 import FirebaseStorage
 import Firebase
-import MediaWatermark
+
+
+protocol UploadImageDelegate: class {
+    func uploadImage()
+    func printNumber()
+}
 
 class PreviewmageViewController : UIViewController {
     
@@ -10,90 +15,24 @@ class PreviewmageViewController : UIViewController {
     @IBOutlet weak var photo: UIImageView!
     var image : UIImage!
     var wmImage: UIImage!
-    let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
+    weak var delegate: UploadImageDelegate! = nil
     
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        print (delegate as Any)
+        self.delegate?.printNumber()
         photo.image = self.image
     }
     
     //MARK: - Methods
     
     //1. Uploads the taken photo to Firebase Storage
-    fileprivate func makeWmCopyOfImage() {
-        let item = MediaItem(image: image)
-        let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
-        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100) ]
-        let attrStr = NSAttributedString(string: watermarkString, attributes: attributes)
-        let secondElement = MediaElement(text: attrStr)
-        secondElement.frame = CGRect(x: image!.size.width/2 - image!.size.width/6, y: image!.size.height-400, width: image!.size.width, height: image!.size.height)
-        item.add(elements: [secondElement])
-        let mediaProcessor = MediaProcessor()
-        mediaProcessor.processElements(item: item) { [weak self] (result, error) in
-            self?.wmImage = result.image
-        }
-    }
-    
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
-        uploadImage()
-    }
-    
-    func uploadImage() {
-        let id = UUID()
-        let photoName = id.uuidString
-        
-        makeWmCopyOfImage()
-        
-        guard let imageData = image.jpegData(compressionQuality: 0.55) else { return }
-        guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
-        
-        //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
-        var ref: DocumentReference? = nil
-        ref = db.collection("photos").addDocument(data: data) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Upload to Firestore finished. ")
-            }
-        }
-        
-        //Add to user document
-        self.db.collection("users").document(userUid!).updateData(
-            ["ownedPhotos":FieldValue.arrayUnion([ref!.documentID])]
-        )
-        
-        //Upload to Firebase
-        for (key,value) in PhotoTypesConstants {
-            let storageReference: StorageReference = {
-                return Storage.storage()
-                    .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                    .child("User/\(userUid!)/Uploads/Photo/\((ref?.documentID)!)/\(value)")
-            }()
-            
-            let uploadImageRef = storageReference.child(id.uuidString + "-\(value).jpg")
-            _ = uploadImageRef.putData(key == "WatermarkPhoto" ? imageDataWm : imageData, metadata : nil) { (metadata, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("Upload to Firebase Storage finished. ")
-                }
-            }
-            
-            let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadImageRef.fullPath]
-            db.collection("photos").document(ref!.documentID).updateData(uploadPath) {
-                err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Path to storage sucessfully set. ")
-                }
-            }
-            
-        }
+        print ("Pressing Upload")
+            self.delegate?.uploadImage()
     }
     
     //2. Saves the photo to local storage

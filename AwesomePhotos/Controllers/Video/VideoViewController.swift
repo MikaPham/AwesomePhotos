@@ -131,7 +131,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             stopWatch.stop()
             
             //Upload video to firestorage
-            let data: [String:Any] = ["name": videoName + ".mov","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
+            let data: [String:Any] = ["name": videoName + ".mov","owners":[userUid],"sharedWith":[], "sharedWM":[]]
             reference = db.collection("medias").addDocument(data: data) {(error) in
                 if let error = error {
                     print(error.localizedDescription)

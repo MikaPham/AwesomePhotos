@@ -401,39 +401,10 @@
             </objects>
             <point key="canvasLocation" x="-407.24637681159425" y="2109.375"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="280-EE-KKZ">
-            <objects>
-                <viewController id="Hes-Aa-cV6" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Th-Jl-5cp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AOj-3q-rQT" userLabel="Container view">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9fV-DG-mf2">
-                                        <rect key="frame" x="189" y="430" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="color" red="0.89396136999999998" green="0.26227232810000001" blue="0.1766711473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ZjP-KK-jND"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xkb-QS-ZJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="393" y="2109"/>
-        </scene>
         <!--Previewmage View Controller-->
         <scene sceneID="kNI-Zk-r02">
             <objects>
-                <viewController id="XcJ-8d-f5M" customClass="PreviewmageViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewImageSB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XcJ-8d-f5M" customClass="PreviewmageViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bg1-oO-AIe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
