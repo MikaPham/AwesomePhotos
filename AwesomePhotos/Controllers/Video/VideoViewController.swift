@@ -122,7 +122,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         let id = UUID()
         let videoName = id.uuidString
         print(movieFileOutput.isRecording)
-        
+       
         if movieFileOutput.isRecording {
             // Stop Recording
             movieFileOutput.stopRecording()
@@ -329,21 +329,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let autoUpload = defaults.bool(forKey: keys.autoUpload)
-        let autoSave = defaults.bool(forKey: keys.autoSave)
-        
-        if autoSave == true && autoUpload == true {
-            uploadImage()
-            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
-            print("Image Saved and Uploaded")
-        } else if autoUpload == true && autoSave == false {
-            uploadImage()
-            print("Image Uploaded")
-        } else {
-            performSegue(withIdentifier: "segueToShowPhoto", sender: nil)
-            print("Going To Preview")
-        }
         
         if segue.identifier == "segueToPreviewVideo" {
             let previewVideoVC = segue.destination as! PreviewVideoViewController
