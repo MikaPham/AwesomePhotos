@@ -6,9 +6,6 @@ import MediaWatermark
 
 class CameraViewController : UIViewController
 {
-
-    
-   
     // MARK: - Properties
     var captureSession = AVCaptureSession()
     
@@ -25,7 +22,6 @@ class CameraViewController : UIViewController
     let userEmail = Auth.auth().currentUser?.email
     
     //MARK: - Initialization
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -88,8 +84,6 @@ class CameraViewController : UIViewController
     func startRunningSession() {
         captureSession.startRunning()
     }
-    
-  
     
     //6. Switching the front and back camera
     @IBAction func switchCameraButtonPressed(_ sender: UIButton) {
@@ -155,7 +149,7 @@ class CameraViewController : UIViewController
 }
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDelegate {
-    
+
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation(){
             image = UIImage(data: imageData)
@@ -189,7 +183,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg","onwers":[userUid],"sharedWith":[], "sharedWM":[]]
+        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid],"sharedWith":[], "sharedWM":[]]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {

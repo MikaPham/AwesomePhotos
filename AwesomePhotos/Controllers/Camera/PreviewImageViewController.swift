@@ -6,7 +6,6 @@ import Firebase
 
 protocol UploadImageDelegate: class {
     func uploadImage()
-    func printNumber()
 }
 
 class PreviewmageViewController : UIViewController {
@@ -22,8 +21,6 @@ class PreviewmageViewController : UIViewController {
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (delegate as Any)
-        self.delegate?.printNumber()
         photo.image = self.image
     }
     
@@ -31,8 +28,7 @@ class PreviewmageViewController : UIViewController {
     
     //1. Uploads the taken photo to Firebase Storage
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
-        print ("Pressing Upload")
-            self.delegate?.uploadImage()
+    self.delegate?.uploadImage()
     }
     
     //2. Saves the photo to local storage
