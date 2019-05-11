@@ -1,21 +1,25 @@
 import UIKit
 import AVKit
 
+protocol UploadVideoDelegate: class {
+    func uploadVideo()
+    func clearTmpDir()
+}
+
+
 class PreviewVideoViewController : UIViewController
 {
     //MARK: - Properties
     var videoURL : URL!
     var avPlayer : AVPlayer?
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var playAndPauseButton: UIButton!
     @IBOutlet weak var centerPlayButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var totalDurationLabal: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var UploadButton: UIButton!
+    weak var delegate: UploadVideoDelegate? = nil
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -23,12 +27,17 @@ class PreviewVideoViewController : UIViewController
         configurePreviewView()
         trackTimeProgress()
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     //MARK: - Methods
 
     //1. Sets up the video preview configuration
     fileprivate func configurePreviewView(){
         avPlayer = AVPlayer(url: videoURL)
+        
         //Checks to see if video has loaded and is ready to be played
         //avPlayer!.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
 
@@ -83,7 +92,7 @@ class PreviewVideoViewController : UIViewController
             self.avPlayer?.seek(to: CMTime.zero)
             self.isPlaying = false
             self.avPlayer?.pause()
-            self.centerPlayButton.setImage(UIImage(named: "icons8-play_filled"), for: .normal)
+            self.centerPlayButton.setImage(UIImage(named: "Play"), for: .normal)
         }
     }
 
@@ -102,13 +111,14 @@ class PreviewVideoViewController : UIViewController
 
         if isPlaying == false{
             avPlayer!.play()
-            centerPlayButton.setImage(UIImage(named: "icons8-pause_filled"), for: .normal)
+            centerPlayButton.setImage(UIImage(named: "Pause"), for: .normal)
+            centerPlayButton.tintColor = .white
             slider.thumbTintColor = .clear
             isPlaying = true
         }
         else{
             avPlayer!.pause()
-            centerPlayButton.setImage(UIImage(named: "icons8-play_filled"), for: .normal)
+            centerPlayButton.setImage(UIImage(named: "Play"), for: .normal)
             isPlaying = false
         }
     }
@@ -161,8 +171,12 @@ class PreviewVideoViewController : UIViewController
         }
     }
     
+    @IBAction func uploadButtonPressed(_ sender: UIButton) {
+        self.delegate?.uploadVideo()
+    }
     //7. Dismisses the video preview
     @IBAction func dismissPreviewButtonPressed(_ sender: UIButton) {
+        self.delegate?.clearTmpDir()
         dismiss(animated: true, completion: nil)
     }
 }

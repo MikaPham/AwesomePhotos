@@ -266,6 +266,7 @@
                         <viewLayoutGuide key="safeArea" id="TsM-zX-2Lc"/>
                     </view>
                     <connections>
+                        <outlet property="closeBtn" destination="fKC-hb-46N" id="eI0-1F-XVN"/>
                         <outlet property="darkBottomView" destination="Hah-cU-oBI" id="Anb-T4-6zV"/>
                         <outlet property="fileStorage" destination="UXS-bq-n9K" id="bso-hO-SDO"/>
                         <outlet property="recordingButton" destination="CJ2-5e-ugd" id="g0b-ko-1dU"/>
@@ -297,7 +298,9 @@
                                             <constraint firstAttribute="width" constant="50" id="xne-AV-tqP"/>
                                         </constraints>
                                         <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="Close"/>
+                                        <state key="normal" image="Back">
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="pOM-pw-XrP"/>
                                             <action selector="dismissPreviewButtonPressed:" destination="HJ6-xm-zRx" eventType="touchUpInside" id="z2c-e5-Fmb"/>
@@ -357,9 +360,11 @@
                                             <constraint firstAttribute="height" constant="40" id="Lxt-pP-PEG"/>
                                             <constraint firstAttribute="width" constant="40" id="xZX-9x-U4g"/>
                                         </constraints>
-                                        <state key="normal" image="Upload"/>
+                                        <state key="normal" image="Upload">
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <action selector="dismissPreviewButtonPressed:" destination="HJ6-xm-zRx" eventType="touchUpInside" id="Vnu-Nr-xrX"/>
+                                            <action selector="uploadButtonPressed:" destination="HJ6-xm-zRx" eventType="touchUpInside" id="O0P-n2-ARz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -391,7 +396,7 @@
                         <viewLayoutGuide key="safeArea" id="CjD-uc-2sE"/>
                     </view>
                     <connections>
-                        <outlet property="UploadButton" destination="T0a-wN-ysD" id="XT2-dy-XK0"/>
+                        <outlet property="UploadButton" destination="T0a-wN-ysD" id="Kbn-yU-rWl"/>
                         <outlet property="cancelButton" destination="2jn-wJ-qah" id="gCo-pe-bEM"/>
                         <outlet property="centerPlayButton" destination="7F8-TJ-GwJ" id="2Zy-rs-w43"/>
                         <outlet property="currentTimeLabel" destination="I1o-RC-5xK" id="RPQ-0M-ygu"/>
@@ -413,7 +418,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-Ta-MXs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="742"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0re-Iz-uBa" userLabel="Back">
                                 <rect key="frame" x="4" y="52" width="50" height="50"/>
@@ -422,7 +427,9 @@
                                     <constraint firstAttribute="height" constant="50" id="WYL-T1-8yf"/>
                                 </constraints>
                                 <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="Back"/>
+                                <state key="normal" image="Back">
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="backToCamera:" destination="XcJ-8d-f5M" eventType="touchUpInside" id="Kbb-ly-MrK"/>
                                 </connections>
@@ -529,7 +536,6 @@
                             <constraint firstItem="1z4-0T-neV" firstAttribute="centerY" secondItem="JYa-yR-9BC" secondAttribute="centerY" id="Cso-jT-Pt4"/>
                             <constraint firstItem="4eV-Ta-MXs" firstAttribute="leading" secondItem="Bg1-oO-AIe" secondAttribute="leading" id="D8h-5w-0x5"/>
                             <constraint firstItem="phz-Lp-QrV" firstAttribute="bottom" secondItem="Bg1-oO-AIe" secondAttribute="bottom" id="DYY-Di-z7q"/>
-                            <constraint firstItem="JYa-yR-9BC" firstAttribute="top" secondItem="4eV-Ta-MXs" secondAttribute="bottom" id="Frb-2U-tky"/>
                             <constraint firstItem="phz-Lp-QrV" firstAttribute="top" secondItem="ieW-OW-rMf" secondAttribute="bottom" id="JQO-uK-g2Y"/>
                             <constraint firstItem="2Mj-0F-pAE" firstAttribute="centerY" secondItem="rlv-N6-cb8" secondAttribute="centerY" id="N4U-cP-7xd"/>
                             <constraint firstItem="1z4-0T-neV" firstAttribute="leading" secondItem="PTl-am-dvk" secondAttribute="trailing" constant="12" id="NlY-2D-oeq"/>
@@ -549,12 +555,24 @@
                             <constraint firstItem="9up-nL-VEG" firstAttribute="leading" secondItem="wQm-hD-R2p" secondAttribute="leading" constant="30" id="tW6-JK-O8V"/>
                             <constraint firstItem="rlv-N6-cb8" firstAttribute="leading" secondItem="Bg1-oO-AIe" secondAttribute="leading" id="ujk-AH-VWM"/>
                             <constraint firstItem="wQm-hD-R2p" firstAttribute="bottom" secondItem="ieW-OW-rMf" secondAttribute="bottom" id="w1y-w9-rAE"/>
+                            <constraint firstItem="4eV-Ta-MXs" firstAttribute="bottom" secondItem="Bg1-oO-AIe" secondAttribute="bottom" id="wf7-ut-In0"/>
                             <constraint firstAttribute="trailing" secondItem="phz-Lp-QrV" secondAttribute="trailing" id="zOM-LE-opj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wQm-hD-R2p"/>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="0re-Iz-uBa" id="ZOm-ln-kBF"/>
+                        <outlet property="discardBtn" destination="ieW-OW-rMf" id="r3R-QB-lUD"/>
+                        <outlet property="discardIcon" destination="9up-nL-VEG" id="jKj-yj-qZY"/>
+                        <outlet property="discardLbl" destination="I6K-fI-Jyp" id="JRV-nk-hfj"/>
                         <outlet property="photo" destination="4eV-Ta-MXs" id="rBA-Rd-IhR"/>
+                        <outlet property="saveBtn" destination="JYa-yR-9BC" id="TPg-9k-nyx"/>
+                        <outlet property="saveIcon" destination="PTl-am-dvk" id="60a-q7-Y4c"/>
+                        <outlet property="saveLabel" destination="1z4-0T-neV" id="LAG-X1-lRR"/>
+                        <outlet property="uploadBtn" destination="rlv-N6-cb8" id="0xf-MF-iqA"/>
+                        <outlet property="uploadIcon" destination="2Mj-0F-pAE" id="LxW-aA-KnE"/>
+                        <outlet property="uploadLbl" destination="n5v-zh-5mJ" id="szY-VO-QS8"/>
+                        <outlet property="whiteHomeBG" destination="phz-Lp-QrV" id="SCp-z9-HAS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mae-Zi-SPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
