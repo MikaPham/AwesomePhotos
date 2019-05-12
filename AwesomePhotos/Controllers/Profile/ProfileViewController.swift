@@ -13,10 +13,28 @@ import FirebaseFirestore
 class ProfileViewController: GenericViewController<ProfileView> {
     
     // MARK: - Properties
+    var docRef: DocumentReference!
+    var currentUID: String!
+    var profileListener: ListenerRegistration!
+    
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        currentUID = Auth.auth().currentUser?.uid
+        docRef = Firestore.firestore().collection("users").document(currentUID!)
+        
+        // Add listener for any changes to Profile.
+        profileListener = docRef.addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot, snapshot.exists else { return }
+            let myData = snapshot.data()
+            let myEmail = myData?["email"] as? String ?? ""
+            let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
+            let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
+            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
+        }
+        
         
         //To lock screen in portrait mode
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -70,12 +88,14 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // Add action to settings button
     @objc func moveToSettings(){
         let navController = UINavigationController(rootViewController: SettingsViewController())
+        profileListener.remove()
         self.present(navController, animated: true, completion: nil)
     }
     
 //    @objc func moveToEditProfile(){
-//        let editProfileVC = EditProfileViewController()
-//        navigationController?.pushViewController(editProfileVC, animated: true)
+//        let navController = UINavigationController(rootViewController: editProfileViewController())
+//        profileListener.remove()
+//        navigationController?.pushViewController(navController, animated: true)
 //    }
     
     @objc func showAllPhotos(){
@@ -93,27 +113,23 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // Fetch user data.
     func fetchCurrentUserData() {
         // Create reference
-        let currentUID: String? = Auth.auth().currentUser?.uid
-        let docRef = Firestore.firestore().collection("users").document(currentUID!)
-        
         docRef.getDocument{ (snapshot, error) in
-            if let error = error {
-                print("Oh no! Got an error! \(error.localizedDescription)")
-                return
-            }
-            guard let snapshot = snapshot else { return }
+            guard let snapshot = snapshot, snapshot.exists else { return }
             let myData = snapshot.data()
-            let myEmail = myData?["email"] as? String
-            self.contentView.emailLabel.text = myEmail
-            let totalPhotos = (myData?["ownedPhotos"] as? [String])!.count
-            self.setTotalPhotosLabel(totalPhotos: totalPhotos)
-            let totalVideos = (myData?["ownedVideos"] as? [String])!.count
-            self.setTotalVideosLabel(totalVideos: totalVideos)
-            let totalShared = (myData?["sharedPhotos"] as? [String])!.count + (myData?["sharedPhotos"] as? [String])!.count
-            self.setTotalSharedLabel(totalShared: totalShared )
-            }
+            let myEmail = myData?["email"] as? String ?? ""
+            let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
+            let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
+            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
+        }
     }
     
+    func updateProfileContentView( userEmail: String,totalPhotos: Int, totalVideos: Int, totalShared: Int) {
+        contentView.emailLabel.text = userEmail
+        setTotalPhotosLabel(totalPhotos: totalPhotos)
+        setTotalVideosLabel(totalVideos: totalVideos)
+        setTotalSharedLabel(totalShared: totalShared)
+    }
     // Update totalPhotosButton
     func setTotalPhotosLabel(totalPhotos: Int) {
         let attributedTitle = NSMutableAttributedString(string: "\(totalPhotos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -135,5 +151,4 @@ class ProfileViewController: GenericViewController<ProfileView> {
         contentView.totalSharedButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
-
 
