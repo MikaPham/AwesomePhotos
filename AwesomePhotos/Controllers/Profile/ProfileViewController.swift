@@ -8,11 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class ProfileViewController: GenericViewController<ProfileView> {
     
     // MARK: - Properties
-   
+    
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,7 +50,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         let settingsButton = UIButton(type: .system)
         settingsButton.setImage(#imageLiteral(resourceName: "Settings").withRenderingMode(.alwaysTemplate), for: .normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.anchor(width: 30, height: 30)
+        settingsButton.anchor(width: 28, height: 28)
         settingsButton.tintColor = .mainRed()
 
         // Add action to the button
@@ -57,7 +58,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         
         let editProfileButton = UIButton(type: .system)
         editProfileButton.setImage(#imageLiteral(resourceName: "Edit").withRenderingMode(.alwaysTemplate), for: .normal)
-        editProfileButton.anchor(width: 30, height: 30)
+        editProfileButton.anchor(width: 28, height: 28)
         editProfileButton.tintColor = .mainRed()
         
         
@@ -91,16 +92,47 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // MARK: - API
     // Fetch user data.
     func fetchCurrentUserData() {
-        guard let currentUID = Auth.auth().currentUser?.uid else { return }
-       
-        Database.database().reference().child("users").child(currentUID).child("email").observeSingleEvent(of: .value) { (snapshot) in
-            
-            // Change emailLabel title.
-            guard let userEmail = snapshot.value as? String else { return }
-            self.contentView.emailLabel.text = userEmail
-            
-        }
+        // Create reference
+        let currentUID: String? = Auth.auth().currentUser?.uid
+        let docRef = Firestore.firestore().collection("users").document(currentUID!)
         
+        docRef.getDocument{ (snapshot, error) in
+            if let error = error {
+                print("Oh no! Got an error! \(error.localizedDescription)")
+                return
+            }
+            guard let snapshot = snapshot else { return }
+            let myData = snapshot.data()
+            let myEmail = myData?["email"] as? String
+            self.contentView.emailLabel.text = myEmail
+            let totalPhotos = (myData?["ownedPhotos"] as? [String])!.count
+            self.setTotalPhotosLabel(totalPhotos: totalPhotos)
+            let totalVideos = (myData?["ownedVideos"] as? [String])!.count
+            self.setTotalVideosLabel(totalVideos: totalVideos)
+            let totalShared = (myData?["sharedPhotos"] as? [String])!.count + (myData?["sharedPhotos"] as? [String])!.count
+            self.setTotalSharedLabel(totalShared: totalShared )
+            }
+    }
+    
+    // Update totalPhotosButton
+    func setTotalPhotosLabel(totalPhotos: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalPhotos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nPhotos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalPhotosButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    // Update totalVideosButton
+    func setTotalVideosLabel(totalVideos: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalVideos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nVideos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalVidesButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    // Update totalSharedButton
+    func setTotalSharedLabel(totalShared: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalShared)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nShared", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalSharedButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
 

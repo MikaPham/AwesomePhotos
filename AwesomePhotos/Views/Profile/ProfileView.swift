@@ -62,9 +62,7 @@ class ProfileView: GenericView {
     // Create Button to display total Photos
     let totalPhotosButton: CustomTotalButton = {
         let button = CustomTotalButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
-        attributedTitle.append(NSAttributedString(string: "Photos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        
         // Add action to the button
         button.addTarget(self, action: #selector(ProfileViewController.showAllPhotos), for: .touchUpInside)
         return button
@@ -73,10 +71,7 @@ class ProfileView: GenericView {
     // Create Button to display total Videos
     let totalVidesButton: CustomTotalButton = {
         let button = CustomTotalButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
-        attributedTitle.append(NSAttributedString(string: "Videos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        
+    
         // Add action to the button
         button.addTarget(self, action: #selector(ProfileViewController.showAllVideos), for: .touchUpInside)
         
@@ -86,9 +81,6 @@ class ProfileView: GenericView {
     // Create Button to display total Shared files
     let totalSharedButton: CustomTotalButton = {
         let button = CustomTotalButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
-        attributedTitle.append(NSAttributedString(string: "Shared", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        button.setAttributedTitle(attributedTitle, for: .normal)
         
         // Add action to the button
         button.addTarget(self, action: #selector(ProfileViewController.showAllShared), for: .touchUpInside)
@@ -113,5 +105,4 @@ class ProfileView: GenericView {
         self.addSubview(containerView)
         containerView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor, height: 300)
     }
-    
 }

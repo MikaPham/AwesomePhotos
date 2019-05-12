@@ -78,8 +78,8 @@ class SignUpView : GenericView {
         separator1.backgroundColor = UIColor.black
         dividerView.addSubview(separator1)
         separator1.snp.makeConstraints{(make) in
-            make.left.equalTo(dividerView.snp_left).offset(8)
-            make.right.equalTo(label.snp_left).offset(-8)
+            make.left.equalTo(dividerView.snp.left).offset(8)
+            make.right.equalTo(label.snp.left).offset(-8)
             make.height.equalTo(1.0)
             make.centerY.equalToSuperview()
         }
@@ -88,8 +88,8 @@ class SignUpView : GenericView {
         separator2.backgroundColor = UIColor.black
         dividerView.addSubview(separator2)
         separator2.snp.makeConstraints{(make) in
-            make.left.equalTo(label.snp_right).offset(8)
-            make.right.equalTo(dividerView.snp_right).offset(-8)
+            make.left.equalTo(label.snp.right).offset(8)
+            make.right.equalTo(dividerView.snp.right).offset(-8)
             make.height.equalTo(1.0)
             make.centerY.equalToSuperview()
         }
@@ -121,7 +121,7 @@ class SignUpView : GenericView {
         
         self.addSubview(passwordContainerView)
         passwordContainerView.snp.makeConstraints{(make) in
-            make.bottom.equalTo(loginButton.snp_top).offset(-32)
+            make.bottom.equalTo(loginButton.snp.top).offset(-32)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
@@ -129,7 +129,7 @@ class SignUpView : GenericView {
         
         self.addSubview(emailContainerView)
         emailContainerView.snp.makeConstraints{(make) in
-            make.bottom.equalTo(passwordContainerView.snp_top).offset(-16)
+            make.bottom.equalTo(passwordContainerView.snp.top).offset(-16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
@@ -137,7 +137,7 @@ class SignUpView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.bottom.equalTo(emailContainerView.snp_top).offset(-24)
+            make.bottom.equalTo(emailContainerView.snp.top).offset(-24)
             make.width.equalTo(150)
             make.height.equalTo(150)
             make.centerX.equalToSuperview()
@@ -145,14 +145,14 @@ class SignUpView : GenericView {
         
         self.addSubview(dividerView)
         dividerView.snp.makeConstraints{(make) in
-            make.top.equalTo(loginButton.snp_bottom).offset(60)
+            make.top.equalTo(loginButton.snp.bottom).offset(60)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
         }
         
         self.addSubview(dontHaveAccountButton)
-        dontHaveAccountButton.snp_makeConstraints{(make) in
+        dontHaveAccountButton.snp.makeConstraints{(make) in
             make.bottom.equalToSuperview().offset(-12)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)

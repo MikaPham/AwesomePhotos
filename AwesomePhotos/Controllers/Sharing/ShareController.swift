@@ -211,7 +211,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.searchBar
             .rx.text // Observable property from RxCocoa
             .orEmpty // Make it non-optional
-            .debounce(0.5, scheduler: MainScheduler.instance) //Wait 0.5s for changes
+            .debounce(.seconds(Int(0.5)), scheduler: MainScheduler.instance) //Wait 0.5s for changes
             .distinctUntilChanged() //If changes didn't occur, check if new value is the same as old value
             .filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
             .subscribe(onNext: {[unowned self] query in // Here we will be notified of every new value
