@@ -72,8 +72,8 @@ class CameraViewController : UIViewController
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         if (cameraPreviewLayer!.connection!.isVideoMirroringSupported){
-            cameraPreviewLayer?.connection!.automaticallyAdjustsVideoMirroring = false
-            cameraPreviewLayer?.connection!.isVideoMirrored = false
+            cameraPreviewLayer?.connection!.automaticallyAdjustsVideoMirroring = true
+            //cameraPreviewLayer?.connection!.isVideoMirrored = true
         }
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.view.frame
@@ -231,7 +231,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
     fileprivate func makeWmCopyOfImage() {
         let item = MediaItem(image: image!)
         let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
-        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100) ]
+        let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50) ]
         let attrStr = NSAttributedString(string: watermarkString, attributes: attributes)
         let secondElement = MediaElement(text: attrStr)
         secondElement.frame = CGRect(x: image!.size.width/2 - image!.size.width/6, y: image!.size.height-400, width: image!.size.width, height: image!.size.height)
