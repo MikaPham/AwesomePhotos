@@ -237,7 +237,10 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Handle BackButtonPressed
     @IBAction func backButtonPressed(_ sender: UIButton) {
-      dismiss(animated: true, completion: nil)
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        let navController = UINavigationController(rootViewController: customBtnController)
+        self.present(navController, animated: true, completion: nil)
     }
     
     //9. Clears the cache so no videos is stored in the cache

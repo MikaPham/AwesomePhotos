@@ -125,7 +125,10 @@ class CameraViewController : UIViewController
     //9. Goes back to the home screen
     @IBAction func backButtonPressed(_ sender: UIButton) {
         captureSession.stopRunning()
-        dismiss(animated: true, completion: nil)
+        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+        let navController = UINavigationController(rootViewController: customBtnController)
+        self.present(navController, animated: true, completion: nil)
     }
     
     //10. Go to video view to record video
@@ -136,6 +139,7 @@ class CameraViewController : UIViewController
     
     //11. Preview latest file taken
     @IBAction func previewLatestFileButtonPressed(_sender: UIButton) {
+        captureSession.stopRunning()
         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         let navController = UINavigationController(rootViewController: customBtnController)

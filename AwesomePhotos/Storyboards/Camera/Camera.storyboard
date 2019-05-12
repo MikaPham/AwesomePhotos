@@ -65,8 +65,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="previewLatestFileButtonPressedWithSender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="DCO-Fq-BxJ"/>
-                                                    <action selector="previewLatestFileButtonPressedWith_sender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="Htl-Ux-oGu"/>
+                                                    <action selector="previewLatestFileButtonPressedWith_sender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="MRv-29-J3M"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-ZN-jku" userLabel="Capture">

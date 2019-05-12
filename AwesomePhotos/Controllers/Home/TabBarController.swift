@@ -9,14 +9,14 @@ import UIKit
 import Firebase
 
 class TabBarController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
 
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     
-//    let db = Firestore.firestore()
-//    let userUid = Auth.auth().currentUser?.uid
-//    var ownedPhotosPaths: [String] = []
+    lazy var db = Firestore.firestore()
+    lazy var userUid = Auth.auth().currentUser?.uid
+    var ownedPhotosUid: [String] = []
+    var ownedVideoUid: [String] = []
     
     var dataArray = [
         ["2", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2" ],
@@ -29,6 +29,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         p = 0
+        fetchPhotos()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,18 +73,18 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     @IBAction func filterChoicesTapped(_ sender: UIButton) {
     }
     
-//    func fetchPhotos() {
-//        self.db.collection("users").document(userUid!).getDocument{document, error in
-//            if let document = document, document.exists {
-//                guard let data = document.data() else { return }
-//                self.ownedPhotosPaths = data["ownedPhotos"] as! [String]
-//                print(self.ownedPhotosPaths)
-//            } else {
-//                print("Document does not exist")
-//                return
-//            }
-//        }
-//    }
-    
+    func fetchPhotos() {
+        self.db.collection("users").document(userUid!).addSnapshotListener{snapshot, error in
+            if let document = snapshot, document.exists {
+                guard let data = document.data() else { return }
+                self.ownedPhotosUid = data["ownedPhotos"] as! [String]
+                self.ownedVideoUid = data["ownedVideos"] as! [String]
+                print(self.ownedPhotosUid)
+            } else {
+                print("Document does not exist")
+                return
+            }
+        }
+    }
 }
 
