@@ -13,7 +13,7 @@ import FirebaseFirestore
 class ProfileViewController: GenericViewController<ProfileView> {
     
     // MARK: - Properties
-    var docRef: DocumentReference!
+    var docRef: DocumentReference?
     var currentUID: String!
     var profileListener: ListenerRegistration!
     
@@ -25,8 +25,12 @@ class ProfileViewController: GenericViewController<ProfileView> {
         docRef = Firestore.firestore().collection("users").document(currentUID!)
         
         // Add listener for any changes to Profile.
-        profileListener = docRef.addSnapshotListener { (snapshot, error) in
-            guard let snapshot = snapshot, snapshot.exists else { return }
+        profileListener = docRef?.addSnapshotListener { [unowned self] (snapshot, error) in
+            if let error = error {
+                print("Oh no! Got an error! \(error.localizedDescription)")
+                return
+            }
+            guard let snapshot = snapshot else { return }
             let myData = snapshot.data()
             let myEmail = myData?["email"] as? String ?? ""
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
@@ -113,8 +117,12 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // Fetch user data.
     func fetchCurrentUserData() {
         // Create reference
-        docRef.getDocument{ (snapshot, error) in
-            guard let snapshot = snapshot, snapshot.exists else { return }
+        docRef?.getDocument{ [unowned self] (snapshot, error) in
+            if let error = error {
+                print("Oh no! Got an error! \(error.localizedDescription)")
+                return
+            }
+            guard let snapshot = snapshot else { return }
             let myData = snapshot.data()
             let myEmail = myData?["email"] as? String ?? ""
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
