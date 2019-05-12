@@ -15,7 +15,6 @@
 		183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF62249BBC200F7309E /* LaunchScreen.storyboard */; };
 		183E5B002249BC3000F7309E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5AFF2249BC3000F7309E /* LoginController.swift */; };
 		183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B012249BC5E00F7309E /* SignUpController.swift */; };
-		183E5B042249BC8600F7309E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B032249BC8600F7309E /* HomeController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
 		1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA852274703F00C0B1FB /* DeleteAccountView.swift */; };
@@ -26,7 +25,6 @@
 		18CBCDA9224C650700420484 /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDA8224C650700420484 /* GenericView.swift */; };
 		18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAA224C65BB00420484 /* LogInView.swift */; };
 		18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAC224C65C800420484 /* SignUpView.swift */; };
-		18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAE224C65CE00420484 /* HomeView.swift */; };
 		18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDB0224C6A2300420484 /* GenericViewController.swift */; };
 		18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */; };
 		18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */; };
@@ -70,7 +68,6 @@
 		183E5AF92249BBC200F7309E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183E5AFF2249BC3000F7309E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		183E5B012249BC5E00F7309E /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
-		183E5B032249BC8600F7309E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1897EA852274703F00C0B1FB /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
@@ -81,7 +78,6 @@
 		18CBCDA8224C650700420484 /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
 		18CBCDAA224C65BB00420484 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		18CBCDAC224C65C800420484 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		18CBCDAE224C65CE00420484 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18CBCDB0224C6A2300420484 /* GenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
 		18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditPermission.storyboard; sourceTree = "<group>"; };
 		18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPermissionController.swift; sourceTree = "<group>"; };
@@ -205,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				CE2250D7227C161100C7322A /* CustomButton.swift */,
-				183E5B032249BC8600F7309E /* HomeController.swift */,
 				CE2250D3227C11D500C7322A /* TabBarController.swift */,
 				CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */,
 			);
@@ -221,14 +216,6 @@
 				1897EA852274703F00C0B1FB /* DeleteAccountView.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		189A2432226C26EB0017CA03 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				18CBCDAE224C65CE00420484 /* HomeView.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		189A2435226C27670017CA03 /* Global */ = {
@@ -257,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				C49A6DD622803BB400AB41B2 /* Profile */,
-				189A2432226C26EB0017CA03 /* Home */,
 				189A2431226C26DE0017CA03 /* Authentication */,
 			);
 			path = Views;
@@ -557,7 +543,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
@@ -573,7 +558,6 @@
 				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
-				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
@@ -752,13 +736,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z7N93UZNQQ;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -771,13 +755,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z7N93UZNQQ;
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
