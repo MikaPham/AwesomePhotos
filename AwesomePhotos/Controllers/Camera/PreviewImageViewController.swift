@@ -28,8 +28,8 @@ class PreviewmageViewController : UIViewController {
     
     var image : UIImage!
     var wmImage: UIImage!
-    let userUid = Auth.auth().currentUser?.uid
-    let userEmail = Auth.auth().currentUser?.email
+    //let userUid = Auth.auth().currentUser?.uid
+    //let userEmail = Auth.auth().currentUser?.email
     weak var delegate: UploadImageDelegate! = nil
     
     //MARK: - Initialization
@@ -79,6 +79,7 @@ class PreviewmageViewController : UIViewController {
     //1. Uploads the taken photo to Firebase Storage
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
         self.delegate?.uploadImage()
+        performSegue(withIdentifier: "segueToProgress", sender: self)
         print("Uploading to Storage")
     }
     
