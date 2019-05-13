@@ -17,7 +17,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var shareTableView: UITableView!
     @IBOutlet weak var permissionSelector: UISegmentedControl!
-
+    @IBOutlet weak var imgView: UIImageView!
+    
     let db = Firestore.firestore()
     
     var users = [User]()
@@ -27,7 +28,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var alreadyOwned = [String]()
     var alreadySharedWm = [String]()
     var persmission = SharingPermissionConstants.OwnerPermission
-    var photoUid = "testphoto3"
+    var photoUid: String?
+    var filePath: String?
     
     // Bag of disposables to release them when view is being deallocated
     var disposeBag = DisposeBag()
@@ -73,12 +75,20 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
         UINavigationBar.appearance().tintColor = UIColor.mainRed()
     }
+    
+    fileprivate func loadImage() {
+        let reference = Storage.storage()
+            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+            .child(filePath!)
+        imgView.sd_setImage(with: reference)
+    }
 
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar(title: "Add people")
         configureTableViews()
+        loadImage()
         fetchUsers()
         makeObsSearchBar()
         configureShareButton()
@@ -110,7 +120,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch self.persmission {
             case SharingPermissionConstants.OwnerPermission:
                 if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
-                    self.db.collection("photos").document(photoUid).updateData(
+                    self.db.collection("photos").document(photoUid!).updateData(
                         ["owners" : FieldValue.arrayUnion(usersToShare)]
                     )
                     for uid in usersToShare {
@@ -125,7 +135,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
             
             case SharingPermissionConstants.NoWmPermission:
-                self.db.collection("photos").document(photoUid).updateData(
+                self.db.collection("photos").document(photoUid!).updateData(
                     ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
@@ -136,7 +146,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
             
             case SharingPermissionConstants.WmPermission:
-                self.db.collection("photos").document(photoUid).updateData(
+                self.db.collection("photos").document(photoUid!).updateData(
                     ["sharedWM":FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
@@ -225,7 +235,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: API
     func fetchAlreadySharedAndOwned() {
-        self.db.collection("photos").document(photoUid).addSnapshotListener{querySnapshot, error in
+        self.db.collection("photos").document(photoUid!).addSnapshotListener{querySnapshot, error in
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]
