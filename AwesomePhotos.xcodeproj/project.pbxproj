@@ -57,6 +57,8 @@
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
 		CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2250DB227C261F00C7322A /* TabBar.storyboard */; };
+		CE837289228735C10022F782 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE837288228735C10022F782 /* EditProfileViewController.swift */; };
+		CE83728B2287387F0022F782 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83728A2287387F0022F782 /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +116,8 @@
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CE2250DA227C261F00C7322A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBar.storyboard; sourceTree = "<group>"; };
+		CE837288228735C10022F782 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		CE83728A2287387F0022F782 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BDC2A22280001300596D67 /* ProfileView.swift */,
+				CE83728A2287387F0022F782 /* EditProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BDC2B02280075E00596D67 /* ProfileViewController.swift */,
+				CE837288228735C10022F782 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE83728B2287387F0022F782 /* EditProfileView.swift in Sources */,
 				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
@@ -571,6 +578,7 @@
 				C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
+				CE837289228735C10022F782 /* EditProfileViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
 				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
@@ -752,13 +760,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z7N93UZNQQ;
+				DEVELOPMENT_TEAM = JXDQ2F2M4A;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -771,13 +779,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z7N93UZNQQ;
+				DEVELOPMENT_TEAM = JXDQ2F2M4A;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

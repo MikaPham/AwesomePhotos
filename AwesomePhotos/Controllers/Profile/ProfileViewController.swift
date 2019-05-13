@@ -60,6 +60,8 @@ class ProfileViewController: GenericViewController<ProfileView> {
         editProfileButton.anchor(width: 30, height: 30)
         editProfileButton.tintColor = .mainRed()
         
+        editProfileButton.addTarget(self, action: #selector(ProfileViewController.moveToEditProfile), for: .touchUpInside)
+        
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: settingsButton),
                                               UIBarButtonItem(customView: editProfileButton)]
@@ -72,11 +74,12 @@ class ProfileViewController: GenericViewController<ProfileView> {
         self.present(navController, animated: true, completion: nil)
     }
     
-//    @objc func moveToEditProfile(){
-//        let editProfileVC = EditProfileViewController()
-//        navigationController?.pushViewController(editProfileVC, animated: true)
-//    }
-    
+    @objc func moveToEditProfile(){
+        let editProfileVC = UINavigationController(rootViewController: EditProfileViewController())
+        self.present(editProfileVC, animated: true, completion: nil)
+
+    }
+
     @objc func showAllPhotos(){
         print ("Move to all Photos")
     }
