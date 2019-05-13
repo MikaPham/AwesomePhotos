@@ -18,13 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
                                 <rect key="frame" x="20" y="123" width="374" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Owner"/>
                                     <segment title="Copy"/>
-                                    <segment title="Watermarked Copy"/>
+                                    <segment title="Watermarked"/>
                                 </segments>
                                 <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -32,7 +31,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-UA-gi1">
-                                <rect key="frame" x="0.0" y="178" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="159" width="414" height="737"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -79,6 +78,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l6y-a5-zQf" firstAttribute="top" secondItem="nKv-B4-lNM" secondAttribute="top" constant="35" id="PCP-GM-JJM"/>
+                            <constraint firstItem="l6y-a5-zQf" firstAttribute="leading" secondItem="nKv-B4-lNM" secondAttribute="leading" constant="20" id="Wn8-M8-o9K"/>
+                            <constraint firstItem="nKv-B4-lNM" firstAttribute="trailing" secondItem="l6y-a5-zQf" secondAttribute="trailing" constant="20" id="YWo-xU-hB4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nKv-B4-lNM"/>
                     </view>
                     <navigationItem key="navigationItem" id="jXH-yo-QXp"/>

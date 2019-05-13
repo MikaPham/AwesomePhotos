@@ -12,5 +12,4 @@ class LibraryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myImage: UIImageView!
     var filePath: String?
     var photoUid: String?
-    var imageName: String?
 }

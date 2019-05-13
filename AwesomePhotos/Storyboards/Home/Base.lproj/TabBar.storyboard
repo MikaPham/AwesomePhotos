@@ -153,8 +153,8 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hd3-yU-Zi7">
                                 <rect key="frame" x="80" y="149" width="254" height="29"/>
                                 <segments>
-                                    <segment title="My files"/>
-                                    <segment title="Shared files"/>
+                                    <segment title="Photos"/>
+                                    <segment title="Videos"/>
                                 </segments>
                                 <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>

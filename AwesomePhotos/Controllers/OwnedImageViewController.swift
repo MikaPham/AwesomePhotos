@@ -13,6 +13,7 @@ class OwnedImageViewController: UIViewController {
     
     var photoUid: String?
     var filePath: String?
+    var owned: Bool?
     @IBOutlet weak var selectedImage: UIImageView!
     lazy var db = Firestore.firestore()
     var userUid = Auth.auth().currentUser?.uid
@@ -85,10 +86,12 @@ class OwnedImageViewController: UIViewController {
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
         
         actionSheet.addAction(cancel)
-        actionSheet.addAction(sharePhotoAction)
-        actionSheet.addAction(editPerAction)
-        actionSheet.addAction(infoAction)
-        actionSheet.addAction(deleteAction)
+        if owned! {
+            actionSheet.addAction(sharePhotoAction)
+            actionSheet.addAction(editPerAction)
+            actionSheet.addAction(infoAction)
+            actionSheet.addAction(deleteAction)
+        }
         present(actionSheet, animated: true, completion: nil)
     }
     

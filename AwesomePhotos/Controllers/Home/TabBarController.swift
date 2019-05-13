@@ -16,9 +16,12 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
+    var photosUid: [String] = []
+    var videosUid: [String] = []
     var ownedPhotosUid: [String] = []
-    var ownedVideoUid: [String] = []
-    var showMyFiles = true
+    var nwmPhotosUid: [String] = []
+    var wmPhotosUid: [String] = []
+    var showPhotos = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +29,38 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if showMyFiles {
-            return ownedPhotosUid.count
+        if showPhotos {
+            return photosUid.count
         } else {
-            return 0
+            return videosUid.count
         }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
-        let photoUid = ownedPhotosUid[indexPath.row]
-        if showMyFiles {
+        let photoUid = photosUid[indexPath.row]
+        if showPhotos {
             self.db.collection("photos").document(photoUid).getDocument{document, error in
                 if let document = document, document.exists {
                     guard let data = document.data() else { return }
+                    var photoType: String
+                    if self.ownedPhotosUid.contains(photoUid) {
+                        photoType = "pathToOG"
+                    } else if self.nwmPhotosUid.contains(photoUid) {
+                        photoType = "pathToNWM"
+                    } else {
+                        print("wm")
+                        photoType = "pathToWM"
+                    }
                     let reference = Storage.storage()
                         .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                        .child(data["pathToOG"] as! String)
-                    cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "AwesomeLogo"))
-                    cell.filePath = data["pathToOG"] as? String
+                        .child(data[photoType] as! String)
+                    cell.filePath = data[photoType] as? String
                     cell.photoUid = photoUid
+                    DispatchQueue.main.async {
+                        cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "SleepFace"))
+                    }
                 } else {
                     print("Document does not exist")
                     return
@@ -59,30 +73,21 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Instatiate the image view
         let ownedImageViewStoryboard: UIStoryboard = UIStoryboard(name: "OwnedImageView", bundle: nil)
         let ownedImageViewController: OwnedImageViewController = ownedImageViewStoryboard.instantiateViewController(withIdentifier: "ownedImageViewController") as! OwnedImageViewController
         let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
+        // Pass properties
         ownedImageViewController.filePath = selectedCell.filePath
         ownedImageViewController.photoUid = selectedCell.photoUid
+        ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
+        // Move to image view
         let navController = UINavigationController(rootViewController: ownedImageViewController)
         self.present(navController, animated: true, completion: nil)
     }
-
-    
-    //        let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentCell", for: indexPath) as! RecentCollectionViewCell
-    //        cell1.myRecentImage.image = UIImage(named: dataArray[p][indexPath.row])
-    //        return cell1
-    
-    
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentCell", for: indexPath) as! RecentCollectionViewCell
-    //        cell.myRecentImage.image = UIImage(named: dataArray[p][indexPath.row])
-    //        return cell
-    //    }
-    
     
     @IBAction func switchCustom(_ sender: UISegmentedControl) {
-        showMyFiles = !showMyFiles
+        showPhotos = !showPhotos
         libraryCollectionView.reloadData()
     }
     
@@ -102,7 +107,11 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             if let document = snapshot, document.exists {
                 guard let data = document.data() else { return }
                 self.ownedPhotosUid = data["ownedPhotos"] as! [String]
-                self.ownedVideoUid = data["ownedVideos"] as! [String]
+                self.nwmPhotosUid = data["sharedPhotos"] as! [String]
+                self.wmPhotosUid = data["wmPhotos"] as! [String]
+                self.photosUid += data["ownedPhotos"] as! [String]
+                self.photosUid += data["sharedPhotos"] as! [String]
+                self.photosUid += data["wmPhotos"] as! [String]
             } else {
                 print("Document does not exist")
                 return

@@ -182,15 +182,15 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         guard let indexPath = button.indexPath else {return }
         if toBeShared.contains(shownUsers[button.tag]) {
             shownUsers.remove(at: button.tag) //remove from shownUsers
-            searchTableView.deleteRows(at: [indexPath], with: .top) //remove row from searchTableView
+            searchTableView.deleteRows(at: [indexPath], with: .bottom) //remove row from searchTableView
             searchTableView.reloadData() //reload data of searchTableView
             return
         }
         toBeShared.append(shownUsers[button.tag]) //add to toBeShared
         shownUsers.remove(at: button.tag) //remove from shownUsers
-        searchTableView.deleteRows(at: [indexPath], with: .top) //remove row from searchTableView
+        searchTableView.deleteRows(at: [indexPath], with: .bottom) //remove row from searchTableView
         searchTableView.reloadData() //reload data of searchTableView
-        shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .bottom) //insert row to shareTableView
+        shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .top) //insert row to shareTableView
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
         navigationItem.rightBarButtonItem?.isEnabled = true
     }
