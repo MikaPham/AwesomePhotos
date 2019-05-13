@@ -86,6 +86,9 @@
 		18F9E9E3225064B8003F09DA /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18F9E9E5225066BA003F09DA /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		25883CC4C68DB5A454A250F7 /* Pods-AwesomePhotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomePhotos.debug.xcconfig"; path = "Target Support Files/Pods-AwesomePhotos/Pods-AwesomePhotos.debug.xcconfig"; sourceTree = "<group>"; };
+		5D0CACC02289592900154869 /* Progress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Progress.storyboard; sourceTree = "<group>"; };
+		5D0CACC22289599100154869 /* ProgressTableViewCellControllerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCellControllerTableViewCell.swift; sourceTree = "<group>"; };
+		5D0CACC32289599100154869 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		5D10BA112266D5BB0011237D /* DownloadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA122266D5BD0011237D /* PreviewImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewImageViewController.swift; sourceTree = "<group>"; };
 		5D10BA192266D6BB0011237D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +255,7 @@
 		18CBCDA7224C648E00420484 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5D0CACBE2289590E00154869 /* Progress */,
 				C4BDC291227ECBB800596D67 /* Profile */,
 				C4BDC290227ECBAC00596D67 /* Settings */,
 				182060BE226EB2310058ACAA /* UI */,
@@ -297,6 +301,23 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		5D0CACBE2289590E00154869 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				5D0CACC22289599100154869 /* ProgressTableViewCellControllerTableViewCell.swift */,
+				5D0CACC32289599100154869 /* ProgressViewController.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		5D0CACBF2289591D00154869 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				5D0CACC02289592900154869 /* Progress.storyboard */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
 		5D10BA172266D63C0011237D /* Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +341,7 @@
 		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				5D0CACBF2289591D00154869 /* Progress */,
 				18DDB8B1227D225400C07950 /* Home */,
 				18D839422277E4AB00D4BBB8 /* Alert */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
@@ -458,6 +480,7 @@
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				5D0CACC12289592900154869 /* Progress.storyboard in Resources */,
 				C47B15642282C94700466CB8 /* Camera.storyboard in Resources */,
 				18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */,
 			);
@@ -545,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D0CACC42289599200154869 /* ProgressTableViewCellControllerTableViewCell.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
@@ -579,6 +603,7 @@
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
+				5D0CACC52289599200154869 /* ProgressViewController.swift in Sources */,
 				5D10BA162266D5BD0011237D /* PreviewImageViewController.swift in Sources */,
 				C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */,
 				18C9FF4B22605A2F0003B347 /* CellWithButton.swift in Sources */,
@@ -738,13 +763,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosRasmus1231;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -757,13 +782,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosRasmus1231;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
