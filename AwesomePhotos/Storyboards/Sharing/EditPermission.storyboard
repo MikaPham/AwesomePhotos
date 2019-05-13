@@ -18,13 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
                                 <rect key="frame" x="20" y="123" width="374" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Owner"/>
                                     <segment title="Copy"/>
-                                    <segment title="Watermarked Copy"/>
+                                    <segment title="Watermarked"/>
                                 </segments>
                                 <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -50,18 +49,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CircleAccount" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-rt-z4z">
+                                                    <rect key="frame" x="20" y="8" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP8-xS-Q6i" customClass="cellButton" customModule="AwesomePhotos" customModuleProvider="target">
-                                                    <rect key="frame" x="339" y="8" width="57" height="30"/>
+                                                    <rect key="frame" x="281" y="7" width="57" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <state key="normal" title="Remove">
                                                         <color key="titleColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CircleAccount" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-rt-z4z">
-                                                    <rect key="frame" x="20" y="8" width="28" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -79,6 +78,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l6y-a5-zQf" firstAttribute="leading" secondItem="nKv-B4-lNM" secondAttribute="leading" constant="20" id="Lrb-oU-X29"/>
+                            <constraint firstItem="nKv-B4-lNM" firstAttribute="trailing" secondItem="l6y-a5-zQf" secondAttribute="trailing" constant="20" id="Scn-lR-BkR"/>
+                            <constraint firstItem="l6y-a5-zQf" firstAttribute="top" secondItem="nKv-B4-lNM" secondAttribute="top" constant="35" id="a1H-4A-Nmz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nKv-B4-lNM"/>
                     </view>
                     <navigationItem key="navigationItem" id="jXH-yo-QXp"/>

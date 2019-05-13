@@ -27,7 +27,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if showMyFiles {
-            return ownedPhotosUid.count + ownedVideoUid.count
+            return ownedPhotosUid.count
         } else {
             return 0
         }
@@ -103,6 +103,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 guard let data = document.data() else { return }
                 self.ownedPhotosUid = data["ownedPhotos"] as! [String]
                 self.ownedVideoUid = data["ownedVideos"] as! [String]
+                print(self.ownedPhotosUid)
             } else {
                 print("Document does not exist")
                 return
