@@ -27,7 +27,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if showMyFiles {
-            return ownedPhotosUid.count + ownedVideoUid.count
+            return ownedPhotosUid.count
         } else {
             return 0
         }
