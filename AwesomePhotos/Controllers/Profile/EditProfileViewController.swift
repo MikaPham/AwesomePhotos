@@ -10,11 +10,21 @@ import Firebase
 
 class EditProfileViewController: GenericViewController<EditProfileView>, UITextFieldDelegate{
     
+    var user: User?
+    var userNewEmail: String?
+    var userNewPassword:String?
+    
+    var emailChanged = false
+    var passwordChanged = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+//        loadUserData()
         setupNavBar()
         contentView.emailTextField.delegate = self
+        
+        self.contentView.emailTextField.text = "user?.email"
         
 //        view.addSubview(containerView)
 //        containerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 300)
@@ -43,10 +53,8 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.tintColor = .mainRed()
         
-        // Add action to the button
-        doneButton.addTarget(self, action: #selector(EditProfileViewController.moveToProfile), for: .touchUpInside)
-        
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: doneButton)]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
     }
     
     // Add action to settings button
@@ -54,61 +62,57 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
         self.dismiss(animated: true, completion: nil)
     }
     
-//    // Create UIImageView for profile and configure its attributes
-//    let profileImageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.image = #imageLiteral(resourceName: "SleepFace")
-//        iv.contentMode = .scaleAspectFill
-//        iv.clipsToBounds = true
-//        iv.layer.masksToBounds = true
-//        iv.layer.borderWidth = 3
-//        iv.layer.borderColor = UIColor.white.cgColor
-//        iv.layer.shadowColor = UIColor.black.cgColor
-//        iv.layer.shadowOpacity = 1
-//        iv.layer.shadowOffset = CGSize(width: 0, height: 1)
-//        iv.layer.shadowRadius = 4
-//        return iv
-//    }()
-//    
-//    // Create top red background for profile
-//    lazy var containerView: UIView = {
-//        let view = UIView()
-////        view.backgroundColor = UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)
-//        
-//        // Add ProfileImageView into container + configure constraints
-//        view.addSubview(profileImageView)
-//        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        profileImageView.anchor(top: view.topAnchor, paddingTop: 28, width: 120, height: 120)
-//        profileImageView.layer.cornerRadius = 120/2
-//        
-//        return view
-//    }()
-//    
-//    lazy var emailContainerView: UIView = {
-//        let view = UIView()
-//        return view.textContainerView(view: view, UIImage(named:"icons8-new_post")!, emailTextField)
-//    }()
-//    
-//    lazy var passwordContainerView: UIView = {
-//        let view = UIView()
-//        return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, passwordTextField)
-//    }()
-//    
-//    lazy var emailTextField: UITextField = {
-//        let tf = UITextField()
-//        return tf.textField(withPlaceolder: "Email", isSecureTextEntry: false)
-//    }()
-//    
-//    lazy var usernameTextField: UITextField = {
-//        let tf = UITextField()
-//        return tf.textField(withPlaceolder: "Username", isSecureTextEntry: false)
-//    }()
-//    
-//    lazy var passwordTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.textContentType = .newPassword
-//        tf.passwordRules = UITextInputPasswordRules(descriptor: "minlength: 6;")
-//        return tf.textField(withPlaceolder: "Password", isSecureTextEntry: true)
-//    }()
+    // Go back to previous screen (Profile)
+    @objc func backHome(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    @objc func saveEdit(){
+        view.endEditing(true)
+        
+        if emailChanged {
+            updateEmail()
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func loadUserData(){
+        guard let user = self.user else {return}
+        
+        self.contentView.emailTextField.text = "useremail"
+        self.contentView.passwordTextField.text = "password"
+        
+    }
+    
+    func updateEmail(){
+        guard let userNewEmail = self.userNewEmail else {return}
+        guard let currentUid = Auth.auth().currentUser?.uid else {return}
+        
+        guard emailChanged == true else {return}
+        print(userNewEmail)
+        Firestore.firestore().collection("users").document(currentUid).updateData(["email": userNewEmail])
+        let profileVC = ProfileViewController()
+        profileVC.fetchCurrentUserData()
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func endEditing(_ textField: UITextField) {
+        let trimmedString = contentView.emailTextField.text?.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+        
+        guard user?.email != trimmedString else {
+            emailChanged = false
+            return
+            //add alert service
+        }
+        
+        guard trimmedString != "" else {
+            emailChanged = false
+            return
+            //add alert service
+        }
+        
+        self.userNewEmail = trimmedString?.lowercased()
+        emailChanged = true
+    }
 }
