@@ -51,24 +51,26 @@ class EditProfileView: GenericView {
         return iv
     }()
     
+    let saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Save", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: (button.titleLabel?.font.pointSize)!)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.mainRed()
+        button.addTarget(self, action: #selector(EditProfileViewController.saveEdit), for: .touchUpInside)
+        button.layer.cornerRadius = 14
+        return button
+    }()
+    
     override func configureView() {
         self.backgroundColor = UIColor.white
-        
-//        self.addSubview(loginButton)
-//        loginButton.snp.makeConstraints{(make) in
-//            make.top.equalTo(self.snp.centerY).offset(50)
-//            make.left.equalToSuperview().offset(120)
-//            make.right.equalToSuperview().offset(-120)
-//            make.height.equalTo(50)
-//        }
         
         self.addSubview(profileImageView)
         profileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         profileImageView.anchor(top: self.topAnchor, paddingTop: 28, width: 120, height: 120)
         profileImageView.layer.cornerRadius = 120/2
-//        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-//        profileImageView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor, height: 300)
-
+        
         self.addSubview(emailContainerView)
         emailContainerView.snp.makeConstraints{(make) in
             make.top.equalTo(profileImageView.snp.bottom).offset(32)
@@ -85,28 +87,13 @@ class EditProfileView: GenericView {
             make.height.equalTo(50)
         }
         
-//        self.addSubview(logoImageView)
-//        logoImageView.snp.makeConstraints{(make) in
-//            make.bottom.equalTo(emailContainerView.snp_top).offset(-24)
-//            make.width.equalTo(150)
-//            make.height.equalTo(150)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        self.addSubview(dividerView)
-//        dividerView.snp.makeConstraints{(make) in
-//            make.top.equalTo(loginButton.snp_bottom).offset(60)
-//            make.left.equalToSuperview().offset(32)
-//            make.right.equalToSuperview().offset(-32)
-//            make.height.equalTo(50)
-//        }
-//
-//        self.addSubview(dontHaveAccountButton)
-//        dontHaveAccountButton.snp_makeConstraints{(make) in
-//            make.bottom.equalToSuperview().offset(-12)
-//            make.left.equalToSuperview().offset(32)
-//            make.right.equalToSuperview().offset(-32)
-//            make.height.equalTo(50)
-//        }
+        self.addSubview(saveButton)
+        saveButton.snp.makeConstraints{(make) in
+            make.top.equalTo(passwordContainerView.snp.bottom).offset(48)
+            make.left.equalToSuperview().offset(120)
+            make.right.equalToSuperview().offset(-120)
+            make.height.equalTo(50)
+        }
+        
     }
 }
