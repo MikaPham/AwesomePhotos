@@ -38,7 +38,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CTD-5E-OpJ">
-                                <rect key="frame" x="0.0" y="551" width="414" height="237"/>
+                                <rect key="frame" x="0.0" y="551" width="414" height="345"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -136,6 +136,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="niX-zX-iNF"/>
                     <connections>
+                        <outlet property="imgView" destination="Z4b-Yn-Fh1" id="9ZJ-75-eQM"/>
                         <outlet property="permissionSelector" destination="YDt-1L-bVi" id="k3c-m0-eRV"/>
                         <outlet property="searchBar" destination="n2E-yB-4ho" id="1Ts-nW-IYF"/>
                         <outlet property="searchTableView" destination="CTD-5E-OpJ" id="rpa-Ob-T2R"/>

@@ -13,7 +13,8 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var permissionSelector: UISegmentedControl!
     @IBOutlet weak var usersTableView: UITableView!
     
-    let db = Firestore.firestore() 
+    let db = Firestore.firestore()
+    let userEmail = Auth.auth().currentUser?.email
     
     var owners = [User]()
     var noWm = [User]()
@@ -21,7 +22,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     var toBeRemovedOwners = [User]()
     var toBeRemovedNoWm = [User]()
     var toBeRemovedWm = [User]()
-    var photoUid = "testphoto3"
+    var photoUid: String?
     
     //MARK: UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,6 +43,9 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
         switch permissionSelector.selectedSegmentIndex {
             case 0:
                 cell.cellLabel?.text = owners[indexPath.row].email
+                if owners[indexPath.row].email == userEmail {
+                    cell.button.isHidden = true
+                }
                 break
             case 1:
                 cell.cellLabel?.text = noWm[indexPath.row].email
@@ -90,11 +94,12 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
             guard let uid = user.uid else { return }
             wmUid.append(uid)
         }
-        self.db.collection("photos").document(photoUid).updateData(
+        self.db.collection("photos").document(photoUid!).updateData(
         ["owners" : FieldValue.arrayRemove(ownersUid), "sharedWith": FieldValue.arrayRemove(noWmUid), "sharedWM": FieldValue.arrayRemove(wmUid)]
         )
         navigationItem.rightBarButtonItem?.isEnabled = false
         cleanUsersArrays()
+        
     }
     
     @objc func removeTapped(sender:cellButton!) {
@@ -148,7 +153,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     }
     
     fileprivate func fetchOwnersAndViewers() {
-        self.db.collection("photos").document(photoUid).getDocument{document, error in
+        self.db.collection("photos").document(photoUid!).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
                 for viewerUid in data["sharedWith"] as! [String] {
@@ -160,6 +165,10 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
                 for wmUid in data["sharedWM"] as! [String] {
                     self.wm.append(self.getUsersByUid(wmUid))
                 }
+//                DispatchQueue.main.async() {
+//                    self.usersTableView.reloadData()
+//                }
+
             } else {
                 print("Document does not exist")
                 return
