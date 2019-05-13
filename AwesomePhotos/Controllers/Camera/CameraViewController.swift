@@ -17,6 +17,7 @@ class CameraViewController : UIViewController
     var newInput : AVCaptureDeviceInput?
     var newCamera : AVCaptureDevice?
     var wmImage: UIImage!
+    var progressStatusCompleted : Float!
     let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
@@ -207,13 +208,32 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
             }()
             
             let uploadImageRef = storageReference.child(id.uuidString + "-\(value).jpg")
-            _ = uploadImageRef.putData(key == "WatermarkPhoto" ? imageDataWm : imageData, metadata : nil) { (metadata, error) in
+            let uploadTask = uploadImageRef.putData(key == "WatermarkPhoto" ? imageDataWm : imageData, metadata : nil) { (metadata, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     print("Upload to Firebase Storage finished. ")
                 }
             }
+            
+            
+            //Observes where the progress of the file is at in %
+            uploadTask.observe(.progress) { [weak self] (snapshot) in
+                guard let progressStatus = snapshot.progress else { return }
+                
+                self!.progressStatusCompleted = Float(progressStatus.fractionCompleted)
+                
+                //Adds observer to listen when photo is being uploaded
+                let progressName = Notification.Name(rawValue: progressCapturedKey)
+                let statuses = ["" : self!.progressStatusCompleted]
+                NotificationCenter.default.post(name: progressName, object: self, userInfo: statuses as [AnyHashable : Any])
+            }
+            
+            let thumbnailName = Notification.Name(rawValue: thumbnailCapturedKey)
+            NotificationCenter.default.post(name: thumbnailName, object: self)
+            
+            
+            
             
             let uploadPath: [String:Any] = ["pathTo\(value.uppercased())":uploadImageRef.fullPath]
             db.collection("photos").document(ref!.documentID).updateData(uploadPath) {
@@ -224,7 +244,6 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
                     print("Path to storage sucessfully set. ")
                 }
             }
-            
         }
     }
     
