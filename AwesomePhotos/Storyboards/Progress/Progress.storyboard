@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ayN-40-rG4">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Progress View Controller-->
+        <scene sceneID="BLL-E8-hUy">
+            <objects>
+                <tableViewController id="ayN-40-rG4" customClass="ProgressViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kw1-EM-2kB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0x2-nj-CGb" customClass="ProgressTableViewCellControllerTableViewCell" customModule="AwesomePhotos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0x2-nj-CGb" id="xmL-PM-OjJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="63" id="osJ-K0-KJE" customClass="ProgressTableViewCellControllerTableViewCell" customModule="AwesomePhotos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="63"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="osJ-K0-KJE" id="poy-U0-UzX">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="62.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="818-Xp-bqC">
+                                            <rect key="frame" x="66" y="32" width="290" height="16"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="nTO-Vt-aCP"/>
+                                            </constraints>
+                                            <color key="progressTintColor" red="0.67836625399999995" green="1" blue="0.5707260301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </progressView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kqy-8Y-LHY">
+                                            <rect key="frame" x="8" y="6" width="50" height="50"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="FLF-wk-YvY"/>
+                                                <constraint firstAttribute="width" constant="50" id="SbT-Gu-jXb"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MediaUpload.mov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpD-8j-FeX">
+                                            <rect key="frame" x="66" y="6" width="302" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="DVv-Ta-xZC"/>
+                                                <constraint firstAttribute="width" constant="302" id="f2S-jd-IR8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIF-Pp-RpG">
+                                            <rect key="frame" x="371" y="23" width="35" height="35"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="Zbd-jG-JIT"/>
+                                                <constraint firstAttribute="width" constant="35" id="pqf-ok-igO"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.89396136999999998" green="0.26227232810000001" blue="0.1766711473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Button" image="Close">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" red="0.89396136999999998" green="0.26227232810000001" blue="0.1766711473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="abortSequenceButtonPressed:" destination="osJ-K0-KJE" eventType="touchUpInside" id="OY7-bd-ah9"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Kqy-8Y-LHY" firstAttribute="leading" secondItem="poy-U0-UzX" secondAttribute="leading" constant="8" id="7dy-iE-zCO"/>
+                                        <constraint firstItem="gpD-8j-FeX" firstAttribute="top" secondItem="poy-U0-UzX" secondAttribute="top" constant="6" id="Gwd-tB-JMd"/>
+                                        <constraint firstItem="818-Xp-bqC" firstAttribute="top" secondItem="gpD-8j-FeX" secondAttribute="bottom" constant="8" id="OoX-kh-oWH"/>
+                                        <constraint firstItem="818-Xp-bqC" firstAttribute="leading" secondItem="Kqy-8Y-LHY" secondAttribute="trailing" constant="8" id="Qzb-nw-rtH"/>
+                                        <constraint firstItem="Kqy-8Y-LHY" firstAttribute="top" secondItem="poy-U0-UzX" secondAttribute="top" constant="6" id="TF7-rq-BhD"/>
+                                        <constraint firstItem="sIF-Pp-RpG" firstAttribute="leading" secondItem="818-Xp-bqC" secondAttribute="trailing" constant="15" id="W1x-zv-mCy"/>
+                                        <constraint firstItem="sIF-Pp-RpG" firstAttribute="top" secondItem="poy-U0-UzX" secondAttribute="topMargin" constant="12" id="WbS-67-1Vg"/>
+                                        <constraint firstItem="gpD-8j-FeX" firstAttribute="leading" secondItem="Kqy-8Y-LHY" secondAttribute="trailing" constant="8" id="WsF-B8-GkO"/>
+                                        <constraint firstAttribute="trailing" secondItem="sIF-Pp-RpG" secondAttribute="trailing" constant="8" id="dRg-af-gZz"/>
+                                        <constraint firstAttribute="bottom" secondItem="Kqy-8Y-LHY" secondAttribute="bottom" constant="6" id="gNn-gO-mlz"/>
+                                        <constraint firstItem="818-Xp-bqC" firstAttribute="leading" secondItem="poy-U0-UzX" secondAttribute="leadingMargin" constant="46" id="yB3-Es-K8b"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="abortButton" destination="sIF-Pp-RpG" id="7cf-fm-fuz"/>
+                                    <outlet property="progressBarView" destination="818-Xp-bqC" id="0Dn-Jy-ZaP"/>
+                                    <outlet property="thumbnailImage" destination="Kqy-8Y-LHY" id="jdk-b1-tvN"/>
+                                    <outlet property="uploadName" destination="gpD-8j-FeX" id="rUh-9E-837"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ayN-40-rG4" id="gVH-p4-w7A"/>
+                            <outlet property="delegate" destination="ayN-40-rG4" id="ib4-Lz-o5d"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="tableview" destination="kw1-EM-2kB" id="ujV-ie-SCO"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfF-kk-HlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-923.1884057971015" y="-277.23214285714283"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Close" width="32" height="32"/>
+    </resources>
+</document>
