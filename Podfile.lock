@@ -68,6 +68,9 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Storage (7.0.0):
+    - Firebase/Storage (~> 6.0)
+    - SDWebImage (~> 4.0)
   - GoogleAppMeasurement (6.0.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -123,6 +126,9 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
   - SnapKit (5.0.0)
   - TextFieldEffects (1.5.1)
 
@@ -132,6 +138,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
+  - FirebaseUI/Storage
   - MediaWatermark
   - RxCocoa
   - RxSwift
@@ -150,6 +157,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FirebaseUI
     - GoogleAppMeasurement
     - GoogleUtilities
     - "gRPC-C++"
@@ -162,6 +170,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SDWebImage
     - SnapKit
     - TextFieldEffects
 
@@ -176,6 +185,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 0537b2a960a4819fae2834e688e5daeb571c81d6
   FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
   FirebaseStorage: ff1e8f1f6cf1557a8694b0ef39d3e72cb60c42ac
+  FirebaseUI: aa1ffe07fad45c2e2271a8bfa429549ad260e77d
   GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
   GoogleUtilities: f1faafc033ea203adf1783ce00af455bb99d0e5b
   "gRPC-C++": 98be881723177d8c4faf5fdffacb582c7b4971a2
@@ -188,9 +198,10 @@ SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 6d0b8ab94ff2d2ddd5e383d9c75b4c7381a9271d
+PODFILE CHECKSUM: 22a9f4510c2f7624b7f1aace82f44481ecfd2ade
 
 COCOAPODS: 1.6.1

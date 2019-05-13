@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 
 class TabBarController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -18,30 +19,34 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     var ownedPhotosUid: [String] = []
     var ownedVideoUid: [String] = []
     
-    var dataArray = [
-        ["2", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2", "3", "2", "3", "3", "2", "2" ],
-        ["2"]
-    ]
-    
-    var p: Int!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        p = 0
         fetchPhotos()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataArray[p].count
+        return ownedPhotosUid.count + ownedVideoUid.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
-        cell.myImage.image = UIImage(named: dataArray[p][indexPath.row])
+        let photoUid = ownedPhotosUid[indexPath.row]
+        
+        self.db.collection("photos").document(photoUid).getDocument{document, error in
+            if let document = document, document.exists {
+                guard let data = document.data() else { return }
+                let reference = Storage.storage()
+                    .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                    .child(data["pathToOG"] as! String)
+                cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "AwesomeLogo"))
+            } else {
+                print("Document does not exist")
+                return
+            }
+        }
+        
         return cell
-
     }
     
     
@@ -58,7 +63,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     
     @IBAction func switchCustom(_ sender: UISegmentedControl) {
-        p = sender.selectedSegmentIndex
         libraryCollectionView.reloadData()
     }
     
@@ -79,7 +83,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 guard let data = document.data() else { return }
                 self.ownedPhotosUid = data["ownedPhotos"] as! [String]
                 self.ownedVideoUid = data["ownedVideos"] as! [String]
-                print(self.ownedPhotosUid)
             } else {
                 print("Document does not exist")
                 return
@@ -87,4 +90,5 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         }
     }
 }
+
 
