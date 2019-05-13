@@ -15,9 +15,10 @@
 		183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF62249BBC200F7309E /* LaunchScreen.storyboard */; };
 		183E5B002249BC3000F7309E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5AFF2249BC3000F7309E /* LoginController.swift */; };
 		183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B012249BC5E00F7309E /* SignUpController.swift */; };
-		183E5B042249BC8600F7309E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B032249BC8600F7309E /* HomeController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
+		1847E5EC2289283900CC7282 /* OwnedImageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */; };
+		1847E5EE2289295800CC7282 /* OwnedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */; };
 		1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA852274703F00C0B1FB /* DeleteAccountView.swift */; };
 		1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */; };
 		189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A2433226C272A0017CA03 /* Sharing.storyboard */; };
@@ -26,7 +27,6 @@
 		18CBCDA9224C650700420484 /* GenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDA8224C650700420484 /* GenericView.swift */; };
 		18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAA224C65BB00420484 /* LogInView.swift */; };
 		18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAC224C65C800420484 /* SignUpView.swift */; };
-		18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDAE224C65CE00420484 /* HomeView.swift */; };
 		18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBCDB0224C6A2300420484 /* GenericViewController.swift */; };
 		18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */; };
 		18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */; };
@@ -72,9 +72,10 @@
 		183E5AF92249BBC200F7309E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183E5AFF2249BC3000F7309E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		183E5B012249BC5E00F7309E /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
-		183E5B032249BC8600F7309E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OwnedImageView.storyboard; sourceTree = "<group>"; };
+		1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedImageViewController.swift; sourceTree = "<group>"; };
 		1897EA852274703F00C0B1FB /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountController.swift; sourceTree = "<group>"; };
 		189A2433226C272A0017CA03 /* Sharing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sharing.storyboard; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		18CBCDA8224C650700420484 /* GenericView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericView.swift; sourceTree = "<group>"; };
 		18CBCDAA224C65BB00420484 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		18CBCDAC224C65C800420484 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		18CBCDAE224C65CE00420484 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		18CBCDB0224C6A2300420484 /* GenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewController.swift; sourceTree = "<group>"; };
 		18D8393A2277E40000D4BBB8 /* EditPermission.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditPermission.storyboard; sourceTree = "<group>"; };
 		18D8393C2277E41900D4BBB8 /* EditPermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPermissionController.swift; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				CE2250D7227C161100C7322A /* CustomButton.swift */,
-				183E5B032249BC8600F7309E /* HomeController.swift */,
 				CE2250D3227C11D500C7322A /* TabBarController.swift */,
 				CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */,
 			);
@@ -225,14 +224,6 @@
 				1897EA852274703F00C0B1FB /* DeleteAccountView.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		189A2432226C26EB0017CA03 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				18CBCDAE224C65CE00420484 /* HomeView.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		189A2435226C27670017CA03 /* Global */ = {
@@ -261,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				C49A6DD622803BB400AB41B2 /* Profile */,
-				189A2432226C26EB0017CA03 /* Home */,
 				189A2431226C26DE0017CA03 /* Authentication */,
 			);
 			path = Views;
@@ -278,6 +268,7 @@
 				189A242E226C26A00017CA03 /* Authentication */,
 				5D10BA182266D64C0011237D /* Camera */,
 				5D10BA172266D63C0011237D /* Video */,
+				1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,6 +333,7 @@
 				18D839422277E4AB00D4BBB8 /* Alert */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
 				18D8393E2277E47000D4BBB8 /* Camera */,
+				1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -478,6 +470,7 @@
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				1847E5EC2289283900CC7282 /* OwnedImageView.storyboard in Resources */,
 				C47B15642282C94700466CB8 /* Camera.storyboard in Resources */,
 				18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */,
 			);
@@ -522,9 +515,10 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MediaWatermark/MediaWatermark.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -541,9 +535,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MediaWatermark.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
@@ -563,8 +558,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				CE83728B2287387F0022F782 /* EditProfileView.swift in Sources */,
 				18CBCDAF224C65CE00420484 /* HomeView.swift in Sources */,
+=======
+>>>>>>> master
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
@@ -574,6 +572,7 @@
 				18CBCDA9224C650700420484 /* GenericView.swift in Sources */,
 				18CBCDB1224C6A2300420484 /* GenericViewController.swift in Sources */,
 				18CBCDAB224C65BB00420484 /* LogInView.swift in Sources */,
+				1847E5EE2289295800CC7282 /* OwnedImageViewController.swift in Sources */,
 				C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */,
 				C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */,
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
@@ -581,7 +580,6 @@
 				CE837289228735C10022F782 /* EditProfileViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
-				183E5B042249BC8600F7309E /* HomeController.swift in Sources */,
 				CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
@@ -760,13 +758,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+=======
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
+>>>>>>> master
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+>>>>>>> master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -779,13 +785,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+=======
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
+>>>>>>> master
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+>>>>>>> master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

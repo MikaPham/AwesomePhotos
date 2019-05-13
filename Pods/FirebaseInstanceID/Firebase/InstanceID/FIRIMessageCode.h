@@ -71,12 +71,16 @@ typedef NS_ENUM(NSInteger, FIRInstanceIDMessageCode) {
   kFIRInstanceIDMessageCodeCheckinStore000 = 8000,
   kFIRInstanceIDMessageCodeCheckinStore001 = 8001,
   kFIRInstanceIDMessageCodeCheckinStore003 = 8003,
+  kFIRInstanceIDMessageCodeCheckinStoreCheckinPlistDeleted = 8009,
+  kFIRInstanceIDMessageCodeCheckinStoreCheckinPlistSaved = 8010,
   // FIRInstanceIDKeyPair.m
   // DO NOT USE 9001, 9003
   kFIRInstanceIDMessageCodeKeyPair000 = 9000,
   kFIRInstanceIDMessageCodeKeyPair002 = 9002,
   kFIRInstanceIDMessageCodeKeyPairMigrationError = 9004,
   kFIRInstanceIDMessageCodeKeyPairMigrationSuccess = 9005,
+  kFIRInstanceIDMessageCodeKeyPairNoLegacyKeyPair = 9006,
+
   // FIRInstanceIDKeyPairStore.m
   kFIRInstanceIDMessageCodeKeyPairStore000 = 10000,
   kFIRInstanceIDMessageCodeKeyPairStore001 = 10001,

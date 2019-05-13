@@ -29,7 +29,7 @@ extension UIView {
         view.addSubview(textField)
         textField.snp.makeConstraints{(make) in
             make.top.equalToSuperview()
-            make.left.equalTo(imageView.snp_right).offset(12)
+            make.left.equalTo(imageView.snp.right).offset(12)
             make.right.equalToSuperview().offset(-8)
             make.centerY.equalToSuperview()
         }

@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -19,19 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Do this if you need to instantiate the storyboard
-        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
-        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
-
-        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
-        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+//        let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
+//        let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
+//
+//        let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+//        let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
         
         let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         
         // Do this if your view is made from code
         let loginController = LoginController()
-        let deleteAccountController = DeleteAccountController()
-
         window = UIWindow()
         window?.makeKeyAndVisible()
         if defaults.bool(forKey: keys.isLoggedIn) == false {

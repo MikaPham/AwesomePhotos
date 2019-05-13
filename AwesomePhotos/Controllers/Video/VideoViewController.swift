@@ -239,7 +239,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBAction func backButtonPressed(_ sender: UIButton) {
         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
-        
         let navController = UINavigationController(rootViewController: customBtnController)
         self.present(navController, animated: true, completion: nil)
     }

@@ -86,7 +86,7 @@ class DeleteAccountView : GenericView {
         
         self.addSubview(label2)
         label2.snp.makeConstraints{(make) in
-            make.bottom.equalTo(label3.snp_top).offset(-2)
+            make.bottom.equalTo(label3.snp.top).offset(-2)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
@@ -94,7 +94,7 @@ class DeleteAccountView : GenericView {
         
         self.addSubview(label1)
         label1.snp.makeConstraints{(make) in
-            make.bottom.equalTo(label2.snp_top).offset(-8)
+            make.bottom.equalTo(label2.snp.top).offset(-8)
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
@@ -102,7 +102,7 @@ class DeleteAccountView : GenericView {
         
         self.addSubview(logoImageView)
         logoImageView.snp.makeConstraints{(make) in
-            make.bottom.equalTo(label1.snp_top).offset(-32)
+            make.bottom.equalTo(label1.snp.top).offset(-32)
             make.width.equalTo(120)
             make.height.equalTo(120)
             make.centerX.equalToSuperview()

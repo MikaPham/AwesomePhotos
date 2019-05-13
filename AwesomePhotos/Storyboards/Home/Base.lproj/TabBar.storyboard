@@ -312,14 +312,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Account" width="48" height="48"/>
+        <image name="Account" width="21" height="21"/>
         <image name="Close" width="32" height="32"/>
         <image name="Filter" width="32" height="32"/>
-        <image name="Library" width="32" height="32"/>
+        <image name="Library" width="25" height="20"/>
         <image name="Location" width="32" height="32"/>
         <image name="Photo" width="32" height="32"/>
         <image name="Progress" width="29" height="21"/>
-        <image name="Recent" width="32" height="32"/>
+        <image name="Recent" width="25" height="23"/>
         <image name="Video" width="32" height="32"/>
     </resources>
 </document>

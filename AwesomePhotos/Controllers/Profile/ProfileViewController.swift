@@ -8,14 +8,37 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class ProfileViewController: GenericViewController<ProfileView> {
     
     // MARK: - Properties
-   
+    var docRef: DocumentReference?
+    var currentUID: String!
+    var profileListener: ListenerRegistration!
+    
+    
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        currentUID = Auth.auth().currentUser?.uid
+        docRef = Firestore.firestore().collection("users").document(currentUID!)
+        
+        // Add listener for any changes to Profile.
+        profileListener = docRef?.addSnapshotListener { [unowned self] (snapshot, error) in
+            if let error = error {
+                print("Oh no! Got an error! \(error.localizedDescription)")
+                return
+            }
+            guard let snapshot = snapshot else { return }
+            let myData = snapshot.data()
+            let myEmail = myData?["email"] as? String ?? ""
+            let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
+            let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
+            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
+        }
+        
         
         //To lock screen in portrait mode
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -49,7 +72,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         let settingsButton = UIButton(type: .system)
         settingsButton.setImage(#imageLiteral(resourceName: "Settings").withRenderingMode(.alwaysTemplate), for: .normal)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.anchor(width: 30, height: 30)
+        settingsButton.anchor(width: 28, height: 28)
         settingsButton.tintColor = .mainRed()
 
         // Add action to the button
@@ -57,7 +80,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         
         let editProfileButton = UIButton(type: .system)
         editProfileButton.setImage(#imageLiteral(resourceName: "Edit").withRenderingMode(.alwaysTemplate), for: .normal)
-        editProfileButton.anchor(width: 30, height: 30)
+        editProfileButton.anchor(width: 28, height: 28)
         editProfileButton.tintColor = .mainRed()
         
         editProfileButton.addTarget(self, action: #selector(ProfileViewController.moveToEditProfile), for: .touchUpInside)
@@ -71,15 +94,25 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // Add action to settings button
     @objc func moveToSettings(){
         let navController = UINavigationController(rootViewController: SettingsViewController())
+        profileListener.remove()
         self.present(navController, animated: true, completion: nil)
     }
     
+<<<<<<< HEAD
     @objc func moveToEditProfile(){
         let editProfileVC = UINavigationController(rootViewController: EditProfileViewController())
         self.present(editProfileVC, animated: true, completion: nil)
 
     }
 
+=======
+//    @objc func moveToEditProfile(){
+//        let navController = UINavigationController(rootViewController: editProfileViewController())
+//        profileListener.remove()
+//        navigationController?.pushViewController(navController, animated: true)
+//    }
+    
+>>>>>>> master
     @objc func showAllPhotos(){
         print ("Move to all Photos")
     }
@@ -94,17 +127,47 @@ class ProfileViewController: GenericViewController<ProfileView> {
     // MARK: - API
     // Fetch user data.
     func fetchCurrentUserData() {
-        guard let currentUID = Auth.auth().currentUser?.uid else { return }
-       
-        Database.database().reference().child("users").child(currentUID).child("email").observeSingleEvent(of: .value) { (snapshot) in
-            
-            // Change emailLabel title.
-            guard let userEmail = snapshot.value as? String else { return }
-            self.contentView.emailLabel.text = userEmail
-            
+        // Create reference
+        docRef?.getDocument{ [unowned self] (snapshot, error) in
+            if let error = error {
+                print("Oh no! Got an error! \(error.localizedDescription)")
+                return
+            }
+            guard let snapshot = snapshot else { return }
+            let myData = snapshot.data()
+            let myEmail = myData?["email"] as? String ?? ""
+            let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
+            let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
+            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
         }
-        
+    }
+    
+    func updateProfileContentView( userEmail: String,totalPhotos: Int, totalVideos: Int, totalShared: Int) {
+        contentView.emailLabel.text = userEmail
+        setTotalPhotosLabel(totalPhotos: totalPhotos)
+        setTotalVideosLabel(totalVideos: totalVideos)
+        setTotalSharedLabel(totalShared: totalShared)
+    }
+    // Update totalPhotosButton
+    func setTotalPhotosLabel(totalPhotos: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalPhotos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nPhotos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalPhotosButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    // Update totalVideosButton
+    func setTotalVideosLabel(totalVideos: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalVideos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nVideos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalVidesButton.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
+    // Update totalSharedButton
+    func setTotalSharedLabel(totalShared: Int) {
+        let attributedTitle = NSMutableAttributedString(string: "\(totalShared)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "\nShared", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        contentView.totalSharedButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
-
 

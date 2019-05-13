@@ -65,8 +65,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="previewLatestFileButtonPressedWithSender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="DCO-Fq-BxJ"/>
-                                                    <action selector="previewLatestFileButtonPressedWith_sender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="Htl-Ux-oGu"/>
+                                                    <action selector="previewLatestFileButtonPressedWith_sender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="MRv-29-J3M"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-ZN-jku" userLabel="Capture">
@@ -289,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Oq-yD-GAv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jn-wJ-qah" userLabel="Back">
                                         <rect key="frame" x="10" y="54" width="50" height="50"/>
@@ -307,7 +306,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7F8-TJ-GwJ" userLabel="Play Button">
-                                        <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                        <rect key="frame" x="157" y="381" width="100" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="713-I5-Se2"/>
@@ -320,7 +319,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1o-RC-5xK">
-                                        <rect key="frame" x="21" y="808" width="65" height="35"/>
+                                        <rect key="frame" x="21" y="774" width="65" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="65" id="MKd-T7-iQg"/>
                                             <constraint firstAttribute="height" constant="35" id="Xme-5K-j5h"/>
@@ -330,7 +329,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aaV-94-Lkh">
-                                        <rect key="frame" x="6" y="777" width="402" height="31"/>
+                                        <rect key="frame" x="6" y="743" width="402" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="1" green="0.074452651019999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -345,7 +344,7 @@
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- : --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3A-DB-Ukk">
-                                        <rect key="frame" x="341" y="808" width="65" height="35"/>
+                                        <rect key="frame" x="341" y="774" width="65" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Y0a-HC-TJX"/>
                                             <constraint firstAttribute="width" constant="65" id="e7A-dW-Ho4"/>
@@ -388,7 +387,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1Oq-yD-GAv" firstAttribute="bottom" secondItem="CjD-uc-2sE" secondAttribute="bottom" constant="34" id="Dpg-ZK-OxQ"/>
+                            <constraint firstItem="1Oq-yD-GAv" firstAttribute="bottom" secondItem="CjD-uc-2sE" secondAttribute="bottom" id="Dpg-ZK-OxQ"/>
                             <constraint firstItem="CjD-uc-2sE" firstAttribute="top" secondItem="1Oq-yD-GAv" secondAttribute="top" constant="44" id="Ndr-iJ-ESa"/>
                             <constraint firstItem="CjD-uc-2sE" firstAttribute="trailing" secondItem="1Oq-yD-GAv" secondAttribute="trailing" id="hQi-tO-bRX"/>
                             <constraint firstItem="1Oq-yD-GAv" firstAttribute="leading" secondItem="CjD-uc-2sE" secondAttribute="leading" id="ol7-U1-4K7"/>
