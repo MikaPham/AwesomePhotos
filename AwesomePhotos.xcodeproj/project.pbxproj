@@ -48,6 +48,9 @@
 		C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4225EAF2284889C00D18815 /* DefaultsKeys.swift */; };
 		C439612C2289676400485710 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612B2289676400485710 /* EditProfileViewController.swift */; };
 		C439612E2289677B00485710 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612D2289677B00485710 /* EditProfileView.swift */; };
+		C439613B22897C8600485710 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439613922897C8500485710 /* ProgressViewController.swift */; };
+		C439613C22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439613A22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift */; };
+		C46A603A22897D43009D0CC3 /* Progress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46A603922897D43009D0CC3 /* Progress.storyboard */; };
 		C47B15642282C94700466CB8 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47B15632282C94700466CB8 /* Camera.storyboard */; };
 		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
 		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
@@ -107,6 +110,9 @@
 		C4225EAF2284889C00D18815 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		C439612B2289676400485710 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C439612D2289677B00485710 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		C439613922897C8500485710 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		C439613A22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCellControllerTableViewCell.swift; sourceTree = "<group>"; };
+		C46A603922897D43009D0CC3 /* Progress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Progress.storyboard; sourceTree = "<group>"; };
 		C47B15632282C94700466CB8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCell.swift; path = ../../Controllers/Settings/SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 		18CBCDA7224C648E00420484 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C439613822897C6B00485710 /* Progress */,
 				C4BDC291227ECBB800596D67 /* Profile */,
 				C4BDC290227ECBAC00596D67 /* Settings */,
 				182060BE226EB2310058ACAA /* UI */,
@@ -329,6 +336,7 @@
 		5D10BA1B2266D7620011237D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C46A603822897D22009D0CC3 /* Progress */,
 				18DDB8B1227D225400C07950 /* Home */,
 				18D839422277E4AB00D4BBB8 /* Alert */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
@@ -373,6 +381,23 @@
 				18C6BADE226DA6BF00C29F4F /* AlertService.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		C439613822897C6B00485710 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				C439613A22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift */,
+				C439613922897C8500485710 /* ProgressViewController.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		C46A603822897D22009D0CC3 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				C46A603922897D43009D0CC3 /* Progress.storyboard */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		C49A6DD622803BB400AB41B2 /* Profile */ = {
@@ -464,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */,
+				C46A603A22897D43009D0CC3 /* Progress.storyboard in Resources */,
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */,
@@ -561,6 +587,7 @@
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
+				C439613B22897C8600485710 /* ProgressViewController.swift in Sources */,
 				18C6BADF226DA6BF00C29F4F /* AlertService.swift in Sources */,
 				1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */,
 				18D8393D2277E41900D4BBB8 /* EditPermissionController.swift in Sources */,
@@ -582,6 +609,7 @@
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
+				C439613C22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
 				C439612E2289677B00485710 /* EditProfileView.swift in Sources */,
 				C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */,
