@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import Charts
 
 class ProfileViewController: GenericViewController<ProfileView> {
     
@@ -16,7 +17,12 @@ class ProfileViewController: GenericViewController<ProfileView> {
     var docRef: DocumentReference?
     var currentUID: String!
     var profileListener: ListenerRegistration!
-    
+    var photosStorage = PieChartDataEntry(value: 150)
+    var videosStorage = PieChartDataEntry(value : 100)
+    var availStorage: PieChartDataEntry?
+    var availableStorage = PieChartDataEntry(value: 0)
+    var numberOfStorage = [PieChartDataEntry]()
+
     
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
@@ -50,8 +56,25 @@ class ProfileViewController: GenericViewController<ProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        availableStorage.value = 300 - (photosStorage.value + videosStorage.value)
+
+        contentView.storagePieChart.chartDescription?.text = "So Cool"
+        photosStorage.label = "Photos"
+        videosStorage.label = "Videos"
+        numberOfStorage = [photosStorage,videosStorage,availableStorage]
+        updateChartData()
+
         setupNavBar()
         fetchCurrentUserData()
+    }
+    
+    func updateChartData(){
+        let chartDataSet = PieChartDataSet(entries: numberOfStorage, label: "nil")
+        let chartData = PieChartData(dataSet: chartDataSet)
+        let colors = [UIColor.mainRed(), UIColor.mainBlue(), UIColor.mainGray()]
+        chartDataSet.colors = colors
+        contentView.storagePieChart.data = chartData
     }
     
     func setupNavBar(){

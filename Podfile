@@ -17,4 +17,5 @@ target 'AwesomePhotos' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'MediaWatermark'
+  pod 'Charts'
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class ProfileView: GenericView {
     
@@ -33,6 +34,15 @@ class ProfileView: GenericView {
     
         return view
     }()
+    
+    
+    let storagePieChart: PieChartView = {
+        let storageChart = PieChartView()
+        storageChart.centerText = "Total"
+        storageChart.usePercentValuesEnabled = true
+        return storageChart
+    }()
+
     
     // Create UIImageView for profile and configure its attributes
     let profileImageView: UIImageView = {
@@ -104,5 +114,10 @@ class ProfileView: GenericView {
         // Add container and it's elements into ProfileVC
         self.addSubview(containerView)
         containerView.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, right: self.rightAnchor, height: 300)
+        
+        self.addSubview(storagePieChart)
+        storagePieChart.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        storagePieChart.anchor(top: containerView.bottomAnchor, paddingTop: 44,  width: 400, height: 400)
+       
     }
 }
