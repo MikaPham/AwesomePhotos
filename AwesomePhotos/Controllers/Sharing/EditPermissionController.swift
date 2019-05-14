@@ -42,15 +42,18 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath) as! CellWithButton
         switch permissionSelector.selectedSegmentIndex {
             case 0:
+                cell.button.isHidden = false
                 cell.cellLabel?.text = owners[indexPath.row].email
                 if owners[indexPath.row].email == userEmail {
                     cell.button.isHidden = true
                 }
                 break
             case 1:
+                cell.button.isHidden = false
                 cell.cellLabel?.text = noWm[indexPath.row].email
                 break
             case 2:
+                cell.button.isHidden = false
                 cell.cellLabel?.text = wm[indexPath.row].email
                 break
             default:

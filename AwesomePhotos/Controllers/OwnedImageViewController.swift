@@ -14,6 +14,8 @@ class OwnedImageViewController: UIViewController {
     var photoUid: String?
     var filePath: String?
     var owned: Bool?
+    var shared: Bool?
+    var wm: Bool?
     @IBOutlet weak var selectedImage: UIImageView!
     lazy var db = Firestore.firestore()
     var userUid = Auth.auth().currentUser?.uid
@@ -50,12 +52,28 @@ class OwnedImageViewController: UIViewController {
 
     
     fileprivate func deletePhoto() {
-        self.db.collection("users").document(self.userUid!).updateData(
-            ["ownedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
-        )
-        self.db.collection("photos").document(self.photoUid!).updateData(
-            ["owners" : FieldValue.arrayRemove([self.userUid!])]
-        )
+        if self.owned! {
+//            self.db.collection("users").document(self.userUid!).updateData(
+//                ["ownedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+//            )
+            self.db.collection("photos").document(self.photoUid!).updateData(
+                ["owners" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        } else if self.shared! {
+            self.db.collection("users").document(self.userUid!).updateData(
+                ["sharedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+            )
+            self.db.collection("photos").document(self.photoUid!).updateData(
+                ["sharedWith" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        } else if self.wm! {
+            self.db.collection("users").document(self.userUid!).updateData(
+                ["wmPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+            )
+            self.db.collection("photos").document(self.photoUid!).updateData(
+                ["sharedWM" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        }
         self.handleGoBack()
     }
     
@@ -71,7 +89,7 @@ class OwnedImageViewController: UIViewController {
             self.navigationController?.pushViewController(editPermissionController, animated: true)
         }
         let deleteAction = UIAlertAction(title: "Delete photo", style: .destructive) { action in
-            let deleteAlert = UIAlertController(title: "Delete this photo?", message: "This will only delete this copy of the photo for you. It will still be visible for other owners and shared users.", preferredStyle: .alert)
+            let deleteAlert = UIAlertController(title: "Delete this photo?", message: "This will only delete this copy of the photo for you. It will still be visible for photo owners and shared users.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
                 self.deletePhoto()
@@ -90,8 +108,8 @@ class OwnedImageViewController: UIViewController {
             actionSheet.addAction(sharePhotoAction)
             actionSheet.addAction(editPerAction)
             actionSheet.addAction(infoAction)
-            actionSheet.addAction(deleteAction)
         }
+        actionSheet.addAction(deleteAction)
         present(actionSheet, animated: true, completion: nil)
     }
     

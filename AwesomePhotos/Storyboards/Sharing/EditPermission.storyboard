@@ -50,7 +50,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP8-xS-Q6i" customClass="cellButton" customModule="AwesomePhotos" customModuleProvider="target">
-                                                    <rect key="frame" x="339" y="8" width="57" height="30"/>
+                                                    <rect key="frame" x="339" y="7" width="57" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <state key="normal" title="Remove">
@@ -58,7 +58,7 @@
                                                     </state>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CircleAccount" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-rt-z4z">
-                                                    <rect key="frame" x="20" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="0.0" y="8" width="48" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
