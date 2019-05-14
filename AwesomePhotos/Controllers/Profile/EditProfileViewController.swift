@@ -10,29 +10,29 @@ import Firebase
 
 class EditProfileViewController: GenericViewController<EditProfileView>, UITextFieldDelegate{
     
-    var user: User?
+    var myEmail: String?
     var userNewEmail: String?
     var userNewPassword:String?
-    
-    var emailChanged = false
-    var passwordChanged = false
+    var userOldPassword: String?
+    var docRef: DocumentReference?
+    lazy var currentUser = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        loadUserData()
+        loadUserData()
         setupNavBar()
+        
+        // Load user
         contentView.emailTextField.delegate = self
-        
-        self.contentView.emailTextField.text = "user?.email"
-        
-//        view.addSubview(containerView)
-//        containerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 300)
+        contentView.oldPasswordTextField.delegate = self
+        contentView.newPasswordTextField.delegate = self
         }
-
-
-//        fetchCurrentUserData()
     
+    // Go back to previous screen (Profile)
+    @objc func backHome(){
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func setupNavBar(){
         // Set up navigation bar
@@ -56,61 +56,57 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
     }
-    
-    // Add action to settings button
-    @objc func moveToProfile(){
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    // Go back to previous screen (Profile)
-    @objc func backHome(){
-        self.dismiss(animated: true, completion: nil)
-    }
+   
 
     @objc func saveEdit(){
         view.endEditing(true)
-        
-        if emailChanged {
-            updateEmail()
-        }
-        self.dismiss(animated: true, completion: nil)
+        updateUser()
     }
     
+    //fetch current useremail to email text field
     func loadUserData(){
-        self.contentView.emailTextField.text = "useremail"
-        self.contentView.passwordTextField.text = "password"
-        
+        self.myEmail = currentUser?.email
+        self.contentView.emailTextField.text = myEmail
     }
     
-    func updateEmail(){
-        guard let userNewEmail = self.userNewEmail else {return}
-        guard let currentUid = Auth.auth().currentUser?.uid else {return}
+    //handles profile changes
+    func updateUser(){
         
-        guard emailChanged == true else {return}
-        print(userNewEmail)
-        Firestore.firestore().collection("users").document(currentUid).updateData(["email": userNewEmail])
-        let profileVC = ProfileViewController()
-        profileVC.fetchCurrentUserData()
+        guard let email = contentView.emailTextField.text else { return }
+        guard let oldPassword = contentView.oldPasswordTextField.text else { return }
+        guard let newPassword = contentView.newPasswordTextField.text else { return }
+
+        //check authentication before making changes
+        let credential = EmailAuthProvider.credential(withEmail: self.myEmail!, password: oldPassword)
+
+        currentUser?.reauthenticate(with: credential, completion: { (AuthResultCallback, error) in
         
-        self.dismiss(animated: true, completion: nil)
+        //Alert user if succeeded or failed
+            // If update fails
+            if let error = error {
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Changes could not be saved", message: "The email or password you entered is incorrect")
+                self.present(alert, animated: true)
+                return
+            }
+            //If updates succeeds
+            self.currentUser?.updateEmail(to: email)
+            self.currentUser?.updatePassword(to: newPassword)
+            let alert = AlertService.basicAlert(imgName: "SmileFace", title: "Changes Saved", message: "Your account has been updated.")
+            self.present(alert, animated: true)
+        })
     }
     
-    func endEditing(_ textField: UITextField) {
-        let trimmedString = contentView.emailTextField.text?.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
-        
-        guard user?.email != trimmedString else {
-            emailChanged = false
-            return
-            //add alert service
-        }
-        
-        guard trimmedString != "" else {
-            emailChanged = false
-            return
-            //add alert service
-        }
-        
-        self.userNewEmail = trimmedString?.lowercased()
-        emailChanged = true
+    //Function to make keyboard disappear when tap Return on keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        contentView.emailTextField.resignFirstResponder()
+        contentView.newPasswordTextField.resignFirstResponder()
+        contentView.oldPasswordTextField.resignFirstResponder()
+
+        return true
     }
+    
+    
 }
+    
+
+
