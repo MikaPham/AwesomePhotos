@@ -72,7 +72,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                     } else {
                         photoType = "pathToWM"
                     }
-                    if photoType == "" { return }
                     let reference = Storage.storage()
                         .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
                         .child(data[photoType] as! String)
@@ -97,7 +96,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         self.db.collection("medias").document(videoUid).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
-                var videoType: String
+                var videoType = ""
                 if self.ownedVideosUid.contains(videoUid) {
                     videoType = "pathToOG"
                 } else if self.nwmVideosUid.contains(videoUid) {
@@ -105,6 +104,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 } else {
                     videoType = "pathToWM"
                 }
+                if videoType == "" { return }
                 // If there is cache
                 if let imageFromCache = self.thumbnailCache.object(forKey: videoUid as NSString) {
                     cell.myImage.image = imageFromCache
