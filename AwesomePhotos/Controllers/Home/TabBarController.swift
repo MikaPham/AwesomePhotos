@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import AVFoundation
+import MediaWatermark
 
 class TabBarController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -16,11 +18,17 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
+    
     var photosUid: [String] = []
-    var videosUid: [String] = []
     var ownedPhotosUid: [String] = []
     var nwmPhotosUid: [String] = []
     var wmPhotosUid: [String] = []
+    
+    var videosUid: [String] = []
+    var ownedVideosUid: [String] = []
+    var nwmVideosUid: [String] = []
+    var wmVideosUid: [String] = []
+    
     var showPhotos = true
     
     lazy var refreshControl: UIRefreshControl = {
@@ -80,25 +88,96 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             }
         // Show Videos
         } else {
-            
+            let videoUid = videosUid[indexPath.row]
+            cell.myImage.image = nil
+            DispatchQueue.global().async {
+                self.db.collection("medias").document(videoUid).getDocument{document, error in
+                    if let document = document, document.exists {
+                        guard let data = document.data() else { return }
+                        var videoType: String
+                        if self.ownedVideosUid.contains(videoUid) {
+                            videoType = "pathToOG"
+                        } else if self.nwmVideosUid.contains(videoUid) {
+                            videoType = "pathToNWM"
+                        } else {
+                            videoType = "pathToWM"
+                        }
+                        if data[videoType] != nil {
+                            let reference = Storage.storage()
+                                .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                                .child(data[videoType] as! String)
+                            reference.downloadURL { url, error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    let downloadURL = url
+                                    let thumbnail = self.createThumbnailOfVideoFromRemoteUrl(url: downloadURL!.absoluteString)
+                                    if thumbnail != nil {
+                                        let mediaProcessor = MediaProcessor()
+                                        mediaProcessor.processElements(item: self.makeWmCopyOfImage(thumbnail: thumbnail!)) {(result, error) in
+                                            DispatchQueue.main.async {
+                                                cell.myImage.image = result.image
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        cell.filePath = data[videoType] as? String
+                        cell.photoUid = videoUid
+                    } else {
+                        print("Document does not exist")
+                        return
+                    }
+                }
+            }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Instatiate the image view
-        let ownedImageViewStoryboard: UIStoryboard = UIStoryboard(name: "OwnedImageView", bundle: nil)
-        let ownedImageViewController: OwnedImageViewController = ownedImageViewStoryboard.instantiateViewController(withIdentifier: "ownedImageViewController") as! OwnedImageViewController
-        let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
-        // Pass properties
-        ownedImageViewController.filePath = selectedCell.filePath
-        ownedImageViewController.photoUid = selectedCell.photoUid
-        ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
-        ownedImageViewController.shared = nwmPhotosUid.contains(selectedCell.photoUid!)
-        ownedImageViewController.wm = wmPhotosUid.contains(selectedCell.photoUid!)
-        // Move to image view
-        let navController = UINavigationController(rootViewController: ownedImageViewController)
-        self.present(navController, animated: true, completion: nil)
+        if showPhotos {
+            // Instatiate the image view
+            let ownedImageViewStoryboard: UIStoryboard = UIStoryboard(name: "OwnedImageView", bundle: nil)
+            let ownedImageViewController: OwnedImageViewController = ownedImageViewStoryboard.instantiateViewController(withIdentifier: "ownedImageViewController") as! OwnedImageViewController
+            let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
+            // Pass properties
+            ownedImageViewController.filePath = selectedCell.filePath
+            ownedImageViewController.photoUid = selectedCell.photoUid
+            ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
+            ownedImageViewController.shared = nwmPhotosUid.contains(selectedCell.photoUid!)
+            ownedImageViewController.wm = wmPhotosUid.contains(selectedCell.photoUid!)
+            // Move to image view
+            let navController = UINavigationController(rootViewController: ownedImageViewController)
+            self.present(navController, animated: true, completion: nil)
+        } else {
+            print("video playback")
+        }
+    }
+    
+    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
+        let asset = AVAsset(url: URL(string: url)!)
+        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+        assetImgGenerate.appliesPreferredTrackTransform = true
+        let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 100)
+        do {
+            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+            let thumbnail = UIImage(cgImage: img)
+            return thumbnail
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    fileprivate func makeWmCopyOfImage(thumbnail: UIImage) -> MediaItem {
+        let item = MediaItem(image: thumbnail)
+        let playIcon = UIImage(named: "icons8-play_filled")
+        let firstElement = MediaElement(image: playIcon!)
+        firstElement.frame = CGRect(x: item.size.width/2-item.size.width/11, y: item.size.height/2-item.size.height/11, width: item.size.width/5, height: item.size.height/5)
+        item.add(elements: [firstElement])
+        return item
     }
     
     @IBAction func switchCustom(_ sender: UISegmentedControl) {
@@ -129,12 +208,22 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             self.clearArrays()
             if let document = snapshot, document.exists {
                 guard let data = document.data() else { return }
+                // Photos
                 self.ownedPhotosUid = data["ownedPhotos"] as! [String]
                 self.nwmPhotosUid = data["sharedPhotos"] as! [String]
                 self.wmPhotosUid = data["wmPhotos"] as! [String]
                 self.photosUid += data["ownedPhotos"] as! [String]
                 self.photosUid += data["sharedPhotos"] as! [String]
                 self.photosUid += data["wmPhotos"] as! [String]
+                
+                // Videos
+                self.ownedVideosUid = data["ownedVideos"] as! [String]
+                self.nwmVideosUid = data["sharedVideos"] as! [String]
+                self.wmVideosUid = data["wmVideos"] as! [String]
+                self.videosUid += data["ownedVideos"] as! [String]
+                self.videosUid += data["sharedVideos"] as! [String]
+                self.videosUid += data["wmVideos"] as! [String]
+                
             } else {
                 print("Document does not exist")
                 return
