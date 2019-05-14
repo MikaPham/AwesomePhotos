@@ -67,6 +67,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
         } else if (tableView.tag == 2)
         { //searchTableView
+            
+            searchTableView.isHidden = !searchTableView.isHidden
             cell.cellLabel?.text = shownUsers[indexPath.row].email
             cell.button?.tag = indexPath.row
             cell.button?.indexPath = indexPath
@@ -189,6 +191,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @objc func addTapped(sender:cellButton!) {
+//        searchTableView.isHidden = true
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else {return }
         if toBeShared.contains(shownUsers[button.tag]) {
@@ -200,6 +203,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         toBeShared.append(shownUsers[button.tag]) //add to toBeShared
         shownUsers.remove(at: button.tag) //remove from shownUsers
         searchTableView.deleteRows(at: [indexPath], with: .bottom) //remove row from searchTableView
+        searchTableView.isHidden = true
         searchTableView.reloadData() //reload data of searchTableView
         shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .top) //insert row to shareTableView
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
