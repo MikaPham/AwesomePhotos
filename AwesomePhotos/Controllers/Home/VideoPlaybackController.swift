@@ -1,6 +1,7 @@
 import UIKit
 import AVKit
-
+import Firebase
+import Photos
 
 class VideoPlaybackController : UIViewController
 {
@@ -13,6 +14,14 @@ class VideoPlaybackController : UIViewController
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     
+    var owned: Bool?
+    var shared: Bool?
+    var wm: Bool?
+    var thumbnail: UIImage?
+    var videoUid: String?
+    let db = Firestore.firestore()
+    let userUid = Auth.auth().currentUser?.uid
+    
     //MARK: - UI
     override func handleGoBack() {
         DispatchQueue.main.async {
@@ -23,22 +32,135 @@ class VideoPlaybackController : UIViewController
         }
     }
     
+    fileprivate func configureNavBar() {
+        configureNavBar(title: "")
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar(title: "")
+        centerPlayButton.isHidden = true
+        configureNavBar()
         configurePreviewView()
         trackTimeProgress()
     }
     
     //MARK: - Methods
+    @objc func showMoreActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let sharePhotoAction = UIAlertAction(title: "Share", style: .default) {[unowned self] action in
+            self.showShareOptions()
+        }
+        let deleteAction = UIAlertAction(title: "Delete video", style: .destructive) { action in
+            let deleteAlert = UIAlertController(title: "Delete this video?", message: "This will only delete this copy of the video for you. It will still be visible for photo owners and shared users.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) {[unowned self] action in
+                self.deleteVideo()
+            }
+            deleteAlert.addAction(cancelAction)
+            deleteAlert.addAction(deleteAction)
+            self.present(deleteAlert, animated: true, completion: nil)
+        }
+        let infoAction = UIAlertAction(title: "Get info", style: .default) { action in
+            print("Get info")
+        }
+        let downloadAction = UIAlertAction(title: "Download", style: .default) {[unowned self] action in
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.videoURL!)
+            }) { saved, error in
+                if saved {
+                    let fetchOptions = PHFetchOptions()
+                    fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                    
+                    // After uploading we fetch the PHAsset for most recent video and then get its current location url
+                    
+                    let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                    PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                        let newObj = avurlAsset as! AVURLAsset
+                        print(newObj.url)
+                        // This is the URL we need now to access the video from gallery directly.
+                    })
+                }
+            }
+        }
+        let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(cancel)
+        if owned! {
+            actionSheet.addAction(sharePhotoAction)
+            actionSheet.addAction(infoAction)
+        }
+        actionSheet.addAction(downloadAction)
+        actionSheet.addAction(deleteAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    fileprivate func deleteVideo() {
+        if self.owned! {
+            //            self.db.collection("users").document(self.userUid!).updateData(
+            //                ["ownedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+            //            )
+            self.db.collection("medias").document(self.videoUid!).updateData(
+                ["owners" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        } else if self.shared! {
+            //            self.db.collection("users").document(self.userUid!).updateData(
+            //                ["sharedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+            //            )
+            self.db.collection("medias").document(self.videoUid!).updateData(
+                ["sharedWith" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        } else if self.wm! {
+            //            self.db.collection("users").document(self.userUid!).updateData(
+            //                ["wmPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+            //            )
+            self.db.collection("medias").document(self.videoUid!).updateData(
+                ["sharedWM" : FieldValue.arrayRemove([self.userUid!])]
+            )
+        }
+        self.handleGoBack()
+    }
+    
+    func showShareOptions() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editPerAction = UIAlertAction(title: "Edit permission", style: .default) {[unowned self] action in
+            let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
+            let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
+            editPermissionController.photoUid = self.videoUid!
+            editPermissionController.isImage = false
+            self.navigationController?.pushViewController(editPermissionController, animated: true)
+        }
+        let shareInAppAction = UIAlertAction(title: "Share in-app", style: .default) {[unowned self] action in
+            let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
+            let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+            shareController.isImage = false
+            shareController.photoUid = self.videoUid!
+            shareController.thumbnail = self.thumbnail
+            self.navigationController?.pushViewController(shareController, animated: true)
+        }
+        let copyLinkAction = UIAlertAction(title: "Copy link", style: .default) {[unowned self] action in
+            UIPasteboard.general.url = self.videoURL
+            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "The download link for the non-waterarked copy of this photo has been copied to your clipboard."), animated: true, completion: nil)
+        }
+        let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(cancel)
+        actionSheet.addAction(shareInAppAction)
+        actionSheet.addAction(editPerAction)
+        actionSheet.addAction(copyLinkAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
     
     //1. Sets up the video preview configuration
     fileprivate func configurePreviewView(){
         avPlayer = AVPlayer(url: videoURL)
         
         //Checks to see if video has loaded and is ready to be played
-        //avPlayer!.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+        avPlayer!.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
         
         //View setup
         let avPlayerLayer = AVPlayerLayer(player: avPlayer)
@@ -54,12 +176,11 @@ class VideoPlaybackController : UIViewController
     }
     
     //2. Checks to see if the video has been loaded and is ready to play
-    //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    //        if keyPath == "currentItem.loadedTimeRanges"{
-    //            activityIndicator.stopAnimating()
-    //            containerView.isHidden = true
-    //        }
-    //    }
+        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+            if keyPath == "currentItem.loadedTimeRanges"{
+                centerPlayButton.isHidden = false
+            }
+        }
     
     //2. Tracks the duration of time played in the video
     fileprivate func trackTimeProgress(){
@@ -103,6 +224,7 @@ class VideoPlaybackController : UIViewController
         //Sets the duration of the entire video
         if let duration = avPlayer?.currentItem?.duration{
             let seconds = CMTimeGetSeconds(duration)
+            if seconds.isNaN { return }
             let secondsDisplayed = String(format: "%02d", Int(seconds) % 60)
             let minutesDisplayed = String(format: "%02d", Int(seconds) / 60)
             totalDurationLabal.text = "\(minutesDisplayed):\(secondsDisplayed)"

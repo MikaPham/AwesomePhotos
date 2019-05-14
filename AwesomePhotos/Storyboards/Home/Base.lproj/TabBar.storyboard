@@ -157,6 +157,10 @@
                                     <action selector="switchCustom:" destination="71L-gT-JkR" eventType="valueChanged" id="SZz-Vs-Tr4"/>
                                 </connections>
                             </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="n4Q-O1-h4z">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -166,11 +170,13 @@
                             <constraint firstItem="o2e-8z-3Aw" firstAttribute="trailing" secondItem="eyl-YL-ZbR" secondAttribute="trailing" id="9zi-e0-4ua"/>
                             <constraint firstItem="7ho-Df-c94" firstAttribute="leading" secondItem="38q-xe-NZY" secondAttribute="leading" id="BzR-6q-oYx"/>
                             <constraint firstItem="Hd3-yU-Zi7" firstAttribute="leading" secondItem="o2e-8z-3Aw" secondAttribute="leading" constant="80" id="aV1-jS-see"/>
+                            <constraint firstItem="n4Q-O1-h4z" firstAttribute="centerX" secondItem="38q-xe-NZY" secondAttribute="centerX" id="cX7-W2-wfk"/>
                             <constraint firstItem="7ho-Df-c94" firstAttribute="top" secondItem="Hd3-yU-Zi7" secondAttribute="bottom" constant="8" id="dZp-b0-IXK"/>
                             <constraint firstItem="eyl-YL-ZbR" firstAttribute="top" secondItem="Hd3-yU-Zi7" secondAttribute="bottom" constant="8" id="ejH-Rt-FMM"/>
                             <constraint firstItem="Ciq-xW-muD" firstAttribute="leading" secondItem="Hd3-yU-Zi7" secondAttribute="trailing" constant="28" id="hgB-XU-Bxe"/>
                             <constraint firstAttribute="bottom" secondItem="7ho-Df-c94" secondAttribute="bottom" id="rHO-gY-Drl"/>
                             <constraint firstItem="7ho-Df-c94" firstAttribute="centerX" secondItem="Hd3-yU-Zi7" secondAttribute="centerX" id="rps-wT-ZxZ"/>
+                            <constraint firstItem="n4Q-O1-h4z" firstAttribute="centerY" secondItem="38q-xe-NZY" secondAttribute="centerY" id="set-1l-XUh"/>
                             <constraint firstItem="Hd3-yU-Zi7" firstAttribute="top" secondItem="o2e-8z-3Aw" secondAttribute="top" constant="9" id="wag-ih-R8Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o2e-8z-3Aw"/>
@@ -179,6 +185,7 @@
                     <navigationItem key="navigationItem" title="All" largeTitleDisplayMode="always" id="wA0-ge-IrK"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="n4Q-O1-h4z" id="2m1-8f-8aO"/>
                         <outlet property="libraryCollectionView" destination="7ho-Df-c94" id="oZd-k9-cNr"/>
                         <outlet property="mySegmentedControl" destination="Hd3-yU-Zi7" id="oy3-Wa-75X"/>
                         <outletCollection property="filterChoices" destination="UbX-QS-P89" collectionClass="NSMutableArray" id="oaG-l9-Rw5"/>

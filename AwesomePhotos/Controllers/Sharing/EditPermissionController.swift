@@ -23,6 +23,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     var toBeRemovedNoWm = [User]()
     var toBeRemovedWm = [User]()
     var photoUid: String?
+    var isImage: Bool?
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -106,12 +107,12 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
             guard let uid = user.uid else { return }
             wmUid.append(uid)
         }
-        self.db.collection("photos").document(photoUid!).updateData(
+        self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
         ["owners" : FieldValue.arrayRemove(ownersUid), "sharedWith": FieldValue.arrayRemove(noWmUid), "sharedWM": FieldValue.arrayRemove(wmUid)]
         )
         navigationItem.rightBarButtonItem?.isEnabled = false
         cleanUsersArrays()
-        self.present(AlertService.basicAlert(imgName: "WinkFace", title: "Done!", message: "The permission for this photo has been updated."), animated: true, completion: nil)
+        self.present(AlertService.basicAlert(imgName: "WinkFace", title: "Done!", message: "The permission for this file has been updated. It may take a moment for changes to show."), animated: true, completion: nil)
     }
     
     @objc func removeTapped(sender:cellButton!) {
@@ -171,7 +172,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     }
     
     fileprivate func fetchOwnersAndViewers() {
-        self.db.collection("photos").document(photoUid!).getDocument{document, error in
+        self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
                 for viewerUid in data["sharedWith"] as! [String] {
@@ -183,10 +184,6 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
                 for wmUid in data["sharedWM"] as! [String] {
                     self.wm.append(self.getUsersByUid(wmUid))
                 }
-//                DispatchQueue.main.async() {
-//                    self.usersTableView.reloadData()
-//                }
-
             } else {
                 print("Document does not exist")
                 return

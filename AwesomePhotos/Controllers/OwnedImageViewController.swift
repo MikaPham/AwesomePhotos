@@ -60,16 +60,16 @@ class OwnedImageViewController: UIViewController {
                 ["owners" : FieldValue.arrayRemove([self.userUid!])]
             )
         } else if self.shared! {
-            self.db.collection("users").document(self.userUid!).updateData(
-                ["sharedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
-            )
+//            self.db.collection("users").document(self.userUid!).updateData(
+//                ["sharedPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+//            )
             self.db.collection("photos").document(self.photoUid!).updateData(
                 ["sharedWith" : FieldValue.arrayRemove([self.userUid!])]
             )
         } else if self.wm! {
-            self.db.collection("users").document(self.userUid!).updateData(
-                ["wmPhotos" : FieldValue.arrayRemove([self.photoUid!])]
-            )
+//            self.db.collection("users").document(self.userUid!).updateData(
+//                ["wmPhotos" : FieldValue.arrayRemove([self.photoUid!])]
+//            )
             self.db.collection("photos").document(self.photoUid!).updateData(
                 ["sharedWM" : FieldValue.arrayRemove([self.userUid!])]
             )
@@ -129,20 +129,22 @@ class OwnedImageViewController: UIViewController {
     
     func showShareOptions() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editPerAction = UIAlertAction(title: "Edit permission", style: .default) { action in
+        let editPerAction = UIAlertAction(title: "Edit permission", style: .default) {[unowned self] action in
             let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
             let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
             editPermissionController.photoUid = self.photoUid!
+            editPermissionController.isImage = true
             self.navigationController?.pushViewController(editPermissionController, animated: true)
         }
-        let shareInAppAction = UIAlertAction(title: "Share in-app", style: .default) { action in
+        let shareInAppAction = UIAlertAction(title: "Share in-app", style: .default) {[unowned self] action in
             let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
             let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
+            shareController.isImage = true
             shareController.photoUid = self.photoUid!
             shareController.filePath = self.filePath!
             self.navigationController?.pushViewController(shareController, animated: true)
         }
-        let copyLinkAction = UIAlertAction(title: "Copy link", style: .default) { action in
+        let copyLinkAction = UIAlertAction(title: "Copy link", style: .default) {[unowned self] action in
             self.createDownloadLink()
         }
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)

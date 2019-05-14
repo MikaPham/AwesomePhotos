@@ -15,6 +15,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
 
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
@@ -37,7 +38,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:#selector(handleRefresh),for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.mainRed()
-        
         return refreshControl
     }()
     
@@ -57,6 +57,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     
     fileprivate func showPhotos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
+        self.activityIndicator.startAnimating()
         let photoUid = photosUid[indexPath.row]
         cell.myImage.image = nil
         DispatchQueue.global().async {
@@ -78,6 +79,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                     cell.photoUid = photoUid
                     DispatchQueue.main.async {
                         cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "SleepFace"))
+                        self.activityIndicator.stopAnimating()
                     }
                 } else {
                     print("Document does not exist")
@@ -88,9 +90,9 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
+        self.activityIndicator.startAnimating()
         let videoUid = videosUid[indexPath.row]
         cell.myImage.image = nil
-        
         self.db.collection("medias").document(videoUid).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
@@ -105,7 +107,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 // If there is cache
                 if let imageFromCache = self.thumbnailCache.object(forKey: videoUid as NSString) {
                     cell.myImage.image = imageFromCache
-                    
+                    self.activityIndicator.stopAnimating()
                 // If the is no cache
                 } else {
                     let reference = Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child(data[videoType] as! String)
@@ -122,6 +124,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                                         DispatchQueue.main.async {
                                             self.thumbnailCache.setObject(result.image!, forKey: videoUid as NSString)
                                             cell.myImage.image = result.image
+                                            self.activityIndicator.stopAnimating()
                                         }
                                     }
                                 }
@@ -174,13 +177,18 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
             .child(selectedCell.filePath!)
         // Fetch the download URL
-        reference.downloadURL { url, error in
+        reference.downloadURL {[unowned self] (url, error) in
             if let error = error {
                 self.present(AlertService.basicAlert(imgName: "GrinFace", title: "Download Failed", message: error.localizedDescription), animated: true, completion: nil)
             } else {
                 let downloadURL = url
                 // Pass properties
                 videoPlaybackController.videoURL = downloadURL
+                videoPlaybackController.owned = self.ownedVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.shared = self.nwmVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.wm = self.wmVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.videoUid = selectedCell.photoUid
+                videoPlaybackController.thumbnail = selectedCell.myImage.image
                 // Move to video playback view
                 let navController = UINavigationController(rootViewController: videoPlaybackController)
                 self.present(navController, animated: true, completion: nil)
@@ -241,6 +249,10 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         self.nwmPhotosUid.removeAll()
         self.wmPhotosUid.removeAll()
         self.photosUid.removeAll()
+        self.videosUid.removeAll()
+        self.ownedVideosUid.removeAll()
+        self.nwmVideosUid.removeAll()
+        self.wmVideosUid.removeAll()
     }
     
     func fetchPhotos() {
