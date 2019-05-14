@@ -82,12 +82,6 @@ class OwnedImageViewController: UIViewController {
         let sharePhotoAction = UIAlertAction(title: "Share", style: .default) { action in
             self.showShareOptions()
         }
-        let editPerAction = UIAlertAction(title: "Edit permission", style: .default) { action in
-            let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
-            let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
-            editPermissionController.photoUid = self.photoUid!
-            self.navigationController?.pushViewController(editPermissionController, animated: true)
-        }
         let deleteAction = UIAlertAction(title: "Delete photo", style: .destructive) { action in
             let deleteAlert = UIAlertController(title: "Delete this photo?", message: "This will only delete this copy of the photo for you. It will still be visible for photo owners and shared users.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -101,20 +95,46 @@ class OwnedImageViewController: UIViewController {
         let infoAction = UIAlertAction(title: "Get info", style: .default) { action in
             print("Get info")
         }
+        let downloadAction = UIAlertAction(title: "Download", style: .default) { action in
+            UIImageWriteToSavedPhotosAlbum(self.selectedImage.image!, self, nil, nil)
+            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Download successful", message: "You can find a copy of this photo in your Photos Album."), animated: true, completion: nil)
+        }
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
         
         actionSheet.addAction(cancel)
         if owned! {
             actionSheet.addAction(sharePhotoAction)
-            actionSheet.addAction(editPerAction)
             actionSheet.addAction(infoAction)
         }
+        actionSheet.addAction(downloadAction)
         actionSheet.addAction(deleteAction)
         present(actionSheet, animated: true, completion: nil)
     }
     
+    fileprivate func createDownloadLink() {
+        let reference = Storage.storage()
+            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+            .child(self.filePath!)
+        // Fetch the download URL
+        reference.downloadURL { url, error in
+            if let error = error {
+                self.present(AlertService.basicAlert(imgName: "GrinFace", title: "Download Failed", message: error.localizedDescription), animated: true, completion: nil)
+            } else {
+                let downloadURL = url
+                UIPasteboard.general.url = downloadURL
+                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "The download link for the non-waterarked copy of this photo has been copied to your clipboard."), animated: true, completion: nil)
+            }
+        }
+    }
+    
     func showShareOptions() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editPerAction = UIAlertAction(title: "Edit permission", style: .default) { action in
+            let editStoryboard: UIStoryboard = UIStoryboard(name: "EditPermission", bundle: nil)
+            let editPermissionController: EditPermissionController = editStoryboard.instantiateViewController(withIdentifier: "EditPermissionController") as! EditPermissionController
+            editPermissionController.photoUid = self.photoUid!
+            self.navigationController?.pushViewController(editPermissionController, animated: true)
+        }
         let shareInAppAction = UIAlertAction(title: "Share in-app", style: .default) { action in
             let shareStoryboard: UIStoryboard = UIStoryboard(name: "Sharing", bundle: nil)
             let shareController: ShareController = shareStoryboard.instantiateViewController(withIdentifier: "ShareController") as! ShareController
@@ -123,12 +143,13 @@ class OwnedImageViewController: UIViewController {
             self.navigationController?.pushViewController(shareController, animated: true)
         }
         let copyLinkAction = UIAlertAction(title: "Copy link", style: .default) { action in
-            print("Copy link")
+            self.createDownloadLink()
         }
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
         
         actionSheet.addAction(cancel)
         actionSheet.addAction(shareInAppAction)
+        actionSheet.addAction(editPerAction)
         actionSheet.addAction(copyLinkAction)
         present(actionSheet, animated: true, completion: nil)
     }
