@@ -40,6 +40,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         searchTableView.delegate = self
         searchTableView.dataSource = self
         shareTableView.dataSource = self
+        searchTableView.rowHeight = UITableView.automaticDimension
+        shareTableView.rowHeight = UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,17 +56,19 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath) as! CellWithButton
-        if (tableView.tag == 1) { //shareTableView
+        if (tableView.tag == 1)
+        { //shareTableView
             cell.cellLabel?.text = toBeShared[indexPath.row].email
             cell.button.tag = indexPath.row
             cell.button.indexPath = indexPath
             cell.button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
-        } else if (tableView.tag == 2) { //searchTableView
-            cell.cellLabel.text = shownUsers[indexPath.row].email
-            cell.button.tag = indexPath.row
-            cell.button.indexPath = indexPath
-            cell.button.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
-            cell.button.tintColor = UIColor.mainRed()
+        } else if (tableView.tag == 2)
+        { //searchTableView
+            cell.cellLabel?.text = shownUsers[indexPath.row].email
+            cell.button?.tag = indexPath.row
+            cell.button?.indexPath = indexPath
+            cell.button?.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
+            cell.button?.tintColor = UIColor.mainRed()
         }
         return cell
     }

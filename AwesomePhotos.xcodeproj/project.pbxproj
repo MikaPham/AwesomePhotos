@@ -58,6 +58,7 @@
 		C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */; };
 		C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AD2280074000596D67 /* SettingsSection.swift */; };
 		C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B02280075E00596D67 /* ProfileViewController.swift */; };
+		C4E43BCA228A6CAA000476CC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E43BC9228A6CAA000476CC /* TableViewCell.swift */; };
 		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
@@ -120,6 +121,7 @@
 		C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4BDC2AD2280074000596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		C4BDC2B02280075E00596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C4E43BC9228A6CAA000476CC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				5D10BA302266DC7D0011237D /* RoundButton.swift */,
 				C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */,
 				18C9FF4A22605A2F0003B347 /* CellWithButton.swift */,
+				C4E43BC9228A6CAA000476CC /* TableViewCell.swift */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				18F0E25B225F3AFC0021A240 /* User.swift in Sources */,
 				5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */,
 				5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */,
+				C4E43BCA228A6CAA000476CC /* TableViewCell.swift in Sources */,
 				5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */,
 				CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */,
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
@@ -784,13 +788,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -803,13 +807,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+				DEVELOPMENT_TEAM = Z7N93UZNQQ;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

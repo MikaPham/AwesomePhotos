@@ -11,6 +11,13 @@ import Charts
 
 class ProfileView: GenericView {
     
+    var user: User?{
+        
+        didSet{
+            let userEmail = user?.email
+            emailLabel.text = userEmail
+        }
+    }
     // Create top red background for profile
     lazy var containerView: UIView = {
         let view = UIView()

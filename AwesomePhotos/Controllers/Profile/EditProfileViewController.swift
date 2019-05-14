@@ -77,8 +77,6 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
     }
     
     func loadUserData(){
-        guard let user = self.user else {return}
-        
         self.contentView.emailTextField.text = "useremail"
         self.contentView.passwordTextField.text = "password"
         
