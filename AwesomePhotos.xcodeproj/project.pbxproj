@@ -17,6 +17,8 @@
 		183E5B022249BC5E00F7309E /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B012249BC5E00F7309E /* SignUpController.swift */; };
 		183E5B062249BCAB00F7309E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5B052249BCAB00F7309E /* Extentions.swift */; };
 		183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183E5B092249DDD900F7309E /* GoogleService-Info.plist */; };
+		18425FBE228A6E6600074D7C /* VideoPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18425FBD228A6E6600074D7C /* VideoPreview.storyboard */; };
+		18425FC0228A6E8B00074D7C /* VideoPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18425FBF228A6E8B00074D7C /* VideoPlaybackController.swift */; };
 		1847E5EC2289283900CC7282 /* OwnedImageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */; };
 		1847E5EE2289295800CC7282 /* OwnedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */; };
 		1897EA862274703F00C0B1FB /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1897EA852274703F00C0B1FB /* DeleteAccountView.swift */; };
@@ -78,8 +80,10 @@
 		183E5B012249BC5E00F7309E /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		183E5B052249BCAB00F7309E /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		183E5B092249DDD900F7309E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18425FBD228A6E6600074D7C /* VideoPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPreview.storyboard; sourceTree = "<group>"; };
+		18425FBF228A6E8B00074D7C /* VideoPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackController.swift; sourceTree = "<group>"; };
 		1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OwnedImageView.storyboard; sourceTree = "<group>"; };
-		1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedImageViewController.swift; sourceTree = "<group>"; };
+		1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OwnedImageViewController.swift; path = ../OwnedImageViewController.swift; sourceTree = "<group>"; };
 		1897EA852274703F00C0B1FB /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		1897EA87227471DC00C0B1FB /* DeleteAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountController.swift; sourceTree = "<group>"; };
 		189A2433226C272A0017CA03 /* Sharing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sharing.storyboard; sourceTree = "<group>"; };
@@ -216,9 +220,11 @@
 		189A2430226C26CB0017CA03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */,
 				CE2250D7227C161100C7322A /* CustomButton.swift */,
 				CE2250D3227C11D500C7322A /* TabBarController.swift */,
 				CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */,
+				18425FBF228A6E8B00074D7C /* VideoPlaybackController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -277,7 +283,6 @@
 				189A242E226C26A00017CA03 /* Authentication */,
 				5D10BA182266D64C0011237D /* Camera */,
 				5D10BA172266D63C0011237D /* Video */,
-				1847E5ED2289295800CC7282 /* OwnedImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,7 +315,9 @@
 		18DDB8B1227D225400C07950 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */,
 				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
+				18425FBD228A6E6600074D7C /* VideoPreview.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -343,7 +350,6 @@
 				18D839422277E4AB00D4BBB8 /* Alert */,
 				18D8393F2277E47D00D4BBB8 /* Sharing */,
 				18D8393E2277E47000D4BBB8 /* Camera */,
-				1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 				CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */,
 				C46A603A22897D43009D0CC3 /* Progress.storyboard in Resources */,
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
+				18425FBE228A6E6600074D7C /* VideoPreview.storyboard in Resources */,
 				183E5B0A2249DDD900F7309E /* GoogleService-Info.plist in Resources */,
 				182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */,
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
@@ -614,6 +621,7 @@
 				879706342265B2870036FA2B /* Photo.swift in Sources */,
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
+				18425FC0228A6E8B00074D7C /* VideoPlaybackController.swift in Sources */,
 				183E5B062249BCAB00F7309E /* Extentions.swift in Sources */,
 				C439613C22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
