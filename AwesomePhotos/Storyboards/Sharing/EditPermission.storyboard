@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
-                                <rect key="frame" x="20" y="123" width="374" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="l6y-a5-zQf">
+                                <rect key="frame" x="20" y="112" width="374" height="29"/>
                                 <segments>
                                     <segment title="Owner"/>
                                     <segment title="Copy"/>
@@ -30,9 +30,8 @@
                                     <action selector="indexChanged:" destination="N4o-Ag-0Hq" eventType="valueChanged" id="jp2-Ef-Hsh"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-UA-gi1">
-                                <rect key="frame" x="0.0" y="159" width="414" height="737"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-UA-gi1">
+                                <rect key="frame" x="0.0" y="160" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="email" id="LYa-br-1VW" customClass="CellWithButton" customModule="AwesomePhotos" customModuleProvider="target">
@@ -42,25 +41,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTn-5m-4Hi">
-                                                    <rect key="frame" x="62" y="12" width="279" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP8-xS-Q6i" customClass="cellButton" customModule="AwesomePhotos" customModuleProvider="target">
-                                                    <rect key="frame" x="339" y="7" width="57" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP8-xS-Q6i" customClass="cellButton" customModule="AwesomePhotos" customModuleProvider="target">
+                                                    <rect key="frame" x="315" y="7" width="78" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <state key="normal" title="Remove">
+                                                    <state key="normal" title="remove">
                                                         <color key="titleColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CircleAccount" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-rt-z4z">
-                                                    <rect key="frame" x="0.0" y="8" width="48" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="20" y="8" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTn-5m-4Hi">
+                                                    <rect key="frame" x="56" y="11" width="254" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -79,9 +79,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="l6y-a5-zQf" firstAttribute="top" secondItem="nKv-B4-lNM" secondAttribute="top" constant="35" id="PCP-GM-JJM"/>
+                            <constraint firstItem="nKv-B4-lNM" firstAttribute="trailing" secondItem="vau-UA-gi1" secondAttribute="trailing" id="1R2-cl-w3M"/>
+                            <constraint firstItem="vau-UA-gi1" firstAttribute="bottom" secondItem="nKv-B4-lNM" secondAttribute="bottom" constant="34" id="Hv5-ul-Ot2"/>
+                            <constraint firstItem="l6y-a5-zQf" firstAttribute="top" secondItem="nKv-B4-lNM" secondAttribute="top" constant="24" id="PCP-GM-JJM"/>
                             <constraint firstItem="l6y-a5-zQf" firstAttribute="leading" secondItem="nKv-B4-lNM" secondAttribute="leading" constant="20" id="Wn8-M8-o9K"/>
                             <constraint firstItem="nKv-B4-lNM" firstAttribute="trailing" secondItem="l6y-a5-zQf" secondAttribute="trailing" constant="20" id="YWo-xU-hB4"/>
+                            <constraint firstItem="vau-UA-gi1" firstAttribute="leading" secondItem="nKv-B4-lNM" secondAttribute="leading" id="h2g-md-vRi"/>
+                            <constraint firstItem="vau-UA-gi1" firstAttribute="centerX" secondItem="nKv-B4-lNM" secondAttribute="centerX" id="iCy-Oe-upb"/>
+                            <constraint firstItem="vau-UA-gi1" firstAttribute="top" secondItem="l6y-a5-zQf" secondAttribute="bottom" constant="20" id="mb9-RZ-eDq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nKv-B4-lNM"/>
                     </view>
