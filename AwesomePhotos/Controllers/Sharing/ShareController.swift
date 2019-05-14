@@ -31,6 +31,9 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var photoUid: String?
     var filePath: String?
     
+    var isImage: Bool?
+    var thumbnail: UIImage?
+    
     // Bag of disposables to release them when view is being deallocated
     var disposeBag = DisposeBag()
     
@@ -81,10 +84,14 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     fileprivate func loadImage() {
-        let reference = Storage.storage()
-            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-            .child(filePath!)
-        imgView.sd_setImage(with: reference)
+        if isImage! {
+            let reference = Storage.storage()
+                .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                .child(filePath!)
+            imgView.sd_setImage(with: reference)
+        } else {
+            imgView.image = thumbnail!
+        }
     }
 
     //MARK: Init
@@ -124,12 +131,12 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch self.persmission {
             case SharingPermissionConstants.OwnerPermission:
                 if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
-                    self.db.collection("photos").document(photoUid!).updateData(
+                    self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
                         ["owners" : FieldValue.arrayUnion(usersToShare)]
                     )
                     for uid in usersToShare {
                         self.db.collection("users").document(uid).updateData(
-                            ["ownedPhotos":FieldValue.arrayUnion([photoUid])]
+                            [isImage! ? "ownedPhotos" : "ownedVideos" :FieldValue.arrayUnion([photoUid as Any])]
                         )
                     }
                 }else {
@@ -139,23 +146,23 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
             
             case SharingPermissionConstants.NoWmPermission:
-                self.db.collection("photos").document(photoUid!).updateData(
+                self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
                     ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
                     self.db.collection("users").document(uid).updateData(
-                        ["sharedPhotos":FieldValue.arrayUnion([photoUid])]
+                        [isImage! ? "sharedPhotos" : "sharedVideos":FieldValue.arrayUnion([photoUid as Any])]
                     )
                 }
             break
             
             case SharingPermissionConstants.WmPermission:
-                self.db.collection("photos").document(photoUid!).updateData(
+                self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
                     ["sharedWM":FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
                     self.db.collection("users").document(uid).updateData(
-                        ["wmPhotos":FieldValue.arrayUnion([photoUid])]
+                        [isImage! ? "wmPhotos" : "wmVideos":FieldValue.arrayUnion([photoUid as Any])]
                     )
                 }
             break
@@ -239,7 +246,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: API
     func fetchAlreadySharedAndOwned() {
-        self.db.collection("photos").document(photoUid!).addSnapshotListener{querySnapshot, error in
+        self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).addSnapshotListener{querySnapshot, error in
             guard let data = querySnapshot?.data() else {return}
             self.alreadyShared = data["sharedWith"] as! [String]
             self.alreadyOwned = data["owners"] as! [String]

@@ -23,15 +23,26 @@ class VideoPlaybackController : UIViewController
         }
     }
     
+    fileprivate func configureNavBar() {
+        configureNavBar(title: "")
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar(title: "")
+        configureNavBar()
         configurePreviewView()
         trackTimeProgress()
     }
     
     //MARK: - Methods
+    @objc func showMoreActionSheet() {
+        
+    }
     
     //1. Sets up the video preview configuration
     fileprivate func configurePreviewView(){
