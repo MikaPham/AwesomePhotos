@@ -38,11 +38,11 @@ class ProfileViewController: GenericViewController<ProfileView> {
             }
             guard let snapshot = snapshot else { return }
             let myData = snapshot.data()
-            let myEmail = myData?["email"] as? String ?? ""
+            let myEmail = Auth.auth().currentUser?.email
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
             let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
             let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
-            self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
+            self.updateProfileContentView(userEmail: myEmail!, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
         }
         
         
@@ -159,7 +159,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
     }
     
     func updateProfileContentView( userEmail: String,totalPhotos: Int, totalVideos: Int, totalShared: Int) {
-        contentView.emailLabel.text = userEmail
+        contentView.emailLabel.text = Auth.auth().currentUser?.email
         setTotalPhotosLabel(totalPhotos: totalPhotos)
         setTotalVideosLabel(totalVideos: totalVideos)
         setTotalSharedLabel(totalShared: totalShared)

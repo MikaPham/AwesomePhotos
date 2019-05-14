@@ -14,9 +14,14 @@ class EditProfileView: GenericView {
         return view.textContainerView(view: view, UIImage(named:"icons8-new_post")!, emailTextField)
     }()
     
-    lazy var passwordContainerView: UIView = {
+    lazy var oldPasswordContainerView: UIView = {
         let view = UIView()
-        return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, passwordTextField)
+        return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, oldPasswordTextField)
+    }()
+    
+    lazy var newPasswordContainerView: UIView = {
+        let view = UIView()
+        return view.textContainerView(view: view, UIImage(named:"icons8-lock")!, newPasswordTextField)
     }()
     
     lazy var emailTextField: UITextField = {
@@ -29,11 +34,18 @@ class EditProfileView: GenericView {
         return tf.textField(withPlaceolder: "Username", isSecureTextEntry: false)
     }()
     
-    lazy var passwordTextField: UITextField = {
+    lazy var oldPasswordTextField: UITextField = {
         let tf = UITextField()
         tf.textContentType = .newPassword
         tf.passwordRules = UITextInputPasswordRules(descriptor: "minlength: 6;")
-        return tf.textField(withPlaceolder: "Password", isSecureTextEntry: true)
+        return tf.textField(withPlaceolder: "Current Password", isSecureTextEntry: true)
+    }()
+    
+    lazy var newPasswordTextField: UITextField = {
+        let tf = UITextField()
+        tf.textContentType = .newPassword
+        tf.passwordRules = UITextInputPasswordRules(descriptor: "minlength: 6;")
+        return tf.textField(withPlaceolder: "New Password", isSecureTextEntry: true)
     }()
     
     let profileImageView: UIImageView = {
@@ -79,21 +91,29 @@ class EditProfileView: GenericView {
             make.height.equalTo(50)
         }
         
-        self.addSubview(passwordContainerView)
-        passwordContainerView.snp.makeConstraints{(make) in
+        self.addSubview(oldPasswordContainerView)
+        oldPasswordContainerView.snp.makeConstraints{(make) in
             make.top.equalTo(emailContainerView.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(32)
             make.right.equalToSuperview().offset(-32)
             make.height.equalTo(50)
         }
         
+        self.addSubview(newPasswordContainerView)
+        newPasswordContainerView.snp.makeConstraints{(make) in
+            make.top.equalTo(oldPasswordTextField.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(32)
+            make.right.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
+        
+        
         self.addSubview(saveButton)
         saveButton.snp.makeConstraints{(make) in
-            make.top.equalTo(passwordContainerView.snp.bottom).offset(48)
+            make.top.equalTo(newPasswordContainerView.snp.bottom).offset(48)
             make.left.equalToSuperview().offset(120)
             make.right.equalToSuperview().offset(-120)
             make.height.equalTo(50)
         }
-        
     }
 }
