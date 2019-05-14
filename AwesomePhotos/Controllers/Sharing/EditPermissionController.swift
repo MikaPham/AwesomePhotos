@@ -24,6 +24,14 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     var toBeRemovedWm = [User]()
     var photoUid: String?
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:#selector(handleRefresh),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.mainRed()
+        
+        return refreshControl
+    }()
+    
     //MARK: UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch permissionSelector.selectedSegmentIndex {
@@ -74,6 +82,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.usersTableView.addSubview(refreshControl)
         fetchOwnersAndViewers()
         configureDoneButton()
         configureNavBar(title: "Edit permission")
@@ -102,7 +111,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
         )
         navigationItem.rightBarButtonItem?.isEnabled = false
         cleanUsersArrays()
-        
+        self.present(AlertService.basicAlert(imgName: "WinkFace", title: "Done!", message: "The permission for this photo has been updated."), animated: true, completion: nil)
     }
     
     @objc func removeTapped(sender:cellButton!) {
@@ -133,6 +142,12 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func indexChanged(_ sender: Any) {
         self.usersTableView.reloadData()
+    }
+    
+    // Refresh control
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.usersTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     //MARK: API
