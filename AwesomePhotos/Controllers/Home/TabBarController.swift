@@ -31,6 +31,8 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     var showPhotos = true
     
+    let thumbnailCache = NSCache<NSString, UIImage>()
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:#selector(handleRefresh),for: UIControl.Event.valueChanged)
@@ -88,6 +90,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
         let videoUid = videosUid[indexPath.row]
         cell.myImage.image = nil
+        
         self.db.collection("medias").document(videoUid).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
@@ -99,10 +102,13 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 } else {
                     videoType = "pathToWM"
                 }
-                if data[videoType] != nil {
-                    let reference = Storage.storage()
-                        .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                        .child(data[videoType] as! String)
+                // If there is cache
+                if let imageFromCache = self.thumbnailCache.object(forKey: videoUid as NSString) {
+                    cell.myImage.image = imageFromCache
+                    
+                // If the is no cache
+                } else {
+                    let reference = Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child(data[videoType] as! String)
                     reference.downloadURL { url, error in
                         if let error = error {
                             print(error.localizedDescription)
@@ -114,6 +120,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                                     let mediaProcessor = MediaProcessor()
                                     mediaProcessor.processElements(item: self.makeWmCopyOfImage(thumbnail: thumbnail!)) {(result, error) in
                                         DispatchQueue.main.async {
+                                            self.thumbnailCache.setObject(result.image!, forKey: videoUid as NSString)
                                             cell.myImage.image = result.image
                                         }
                                     }
@@ -122,7 +129,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                         }
                     }
                 }
-                
                 cell.filePath = data[videoType] as? String
                 cell.photoUid = videoUid
             } else {

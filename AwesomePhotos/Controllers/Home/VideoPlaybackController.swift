@@ -7,7 +7,6 @@ class VideoPlaybackController : UIViewController
     //MARK: - Properties
     var videoURL : URL!
     var avPlayer : AVPlayer?
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var centerPlayButton: UIButton!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var totalDurationLabal: UILabel!
@@ -167,10 +166,5 @@ class VideoPlaybackController : UIViewController
             self.navigationController?.navigationBar.isHidden = false
             isDismissed = false
         }
-    }
-    
-    //7. Dismisses the video preview
-    @IBAction func dismissPreviewButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
     }
 }
