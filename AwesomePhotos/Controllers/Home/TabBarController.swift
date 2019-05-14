@@ -64,7 +64,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             self.db.collection("photos").document(photoUid).getDocument{document, error in
                 if let document = document, document.exists {
                     guard let data = document.data() else { return }
-                    var photoType: String
+                    var photoType = ""
                     if self.ownedPhotosUid.contains(photoUid) {
                         photoType = "pathToOG"
                     } else if self.nwmPhotosUid.contains(photoUid) {
@@ -72,6 +72,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                     } else {
                         photoType = "pathToWM"
                     }
+                    if photoType == "" { return }
                     let reference = Storage.storage()
                         .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
                         .child(data[photoType] as! String)
