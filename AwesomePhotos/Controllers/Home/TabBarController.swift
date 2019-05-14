@@ -90,7 +90,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
         let videoUid = videosUid[indexPath.row]
         cell.myImage.image = nil
-        
         self.db.collection("medias").document(videoUid).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
@@ -174,13 +173,18 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
             .child(selectedCell.filePath!)
         // Fetch the download URL
-        reference.downloadURL { url, error in
+        reference.downloadURL {[unowned self] (url, error) in
             if let error = error {
                 self.present(AlertService.basicAlert(imgName: "GrinFace", title: "Download Failed", message: error.localizedDescription), animated: true, completion: nil)
             } else {
                 let downloadURL = url
                 // Pass properties
                 videoPlaybackController.videoURL = downloadURL
+                videoPlaybackController.owned = self.ownedVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.shared = self.nwmVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.wm = self.wmVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.videoUid = selectedCell.photoUid
+                videoPlaybackController.thumbnail = selectedCell.myImage.image
                 // Move to video playback view
                 let navController = UINavigationController(rootViewController: videoPlaybackController)
                 self.present(navController, animated: true, completion: nil)
@@ -241,6 +245,10 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         self.nwmPhotosUid.removeAll()
         self.wmPhotosUid.removeAll()
         self.photosUid.removeAll()
+        self.videosUid.removeAll()
+        self.ownedVideosUid.removeAll()
+        self.nwmVideosUid.removeAll()
+        self.wmVideosUid.removeAll()
     }
     
     func fetchPhotos() {
