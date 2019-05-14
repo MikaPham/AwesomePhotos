@@ -54,105 +54,139 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
-        // Show photos
-        if showPhotos {
-            let photoUid = photosUid[indexPath.row]
-            cell.myImage.image = nil
-            DispatchQueue.global().async {
-                self.db.collection("photos").document(photoUid).getDocument{document, error in
-                    if let document = document, document.exists {
-                        guard let data = document.data() else { return }
-                        var photoType: String
-                        if self.ownedPhotosUid.contains(photoUid) {
-                            photoType = "pathToOG"
-                        } else if self.nwmPhotosUid.contains(photoUid) {
-                            photoType = "pathToNWM"
-                        } else {
-                            photoType = "pathToWM"
-                        }
-                        let reference = Storage.storage()
-                            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                            .child(data[photoType] as! String)
-                        cell.filePath = data[photoType] as? String
-                        cell.photoUid = photoUid
-                        DispatchQueue.main.async {
-                            cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "SleepFace"))
-                        }
+    fileprivate func showPhotos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
+        let photoUid = photosUid[indexPath.row]
+        cell.myImage.image = nil
+        DispatchQueue.global().async {
+            self.db.collection("photos").document(photoUid).getDocument{document, error in
+                if let document = document, document.exists {
+                    guard let data = document.data() else { return }
+                    var photoType: String
+                    if self.ownedPhotosUid.contains(photoUid) {
+                        photoType = "pathToOG"
+                    } else if self.nwmPhotosUid.contains(photoUid) {
+                        photoType = "pathToNWM"
                     } else {
-                        print("Document does not exist")
-                        return
+                        photoType = "pathToWM"
                     }
+                    let reference = Storage.storage()
+                        .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                        .child(data[photoType] as! String)
+                    cell.filePath = data[photoType] as? String
+                    cell.photoUid = photoUid
+                    DispatchQueue.main.async {
+                        cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "SleepFace"))
+                    }
+                } else {
+                    print("Document does not exist")
+                    return
                 }
             }
-        // Show Videos
-        } else {
-            let videoUid = videosUid[indexPath.row]
-            cell.myImage.image = nil
-            DispatchQueue.global().async {
-                self.db.collection("medias").document(videoUid).getDocument{document, error in
-                    if let document = document, document.exists {
-                        guard let data = document.data() else { return }
-                        var videoType: String
-                        if self.ownedVideosUid.contains(videoUid) {
-                            videoType = "pathToOG"
-                        } else if self.nwmVideosUid.contains(videoUid) {
-                            videoType = "pathToNWM"
+        }
+    }
+    
+    fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
+        let videoUid = videosUid[indexPath.row]
+        cell.myImage.image = nil
+        self.db.collection("medias").document(videoUid).getDocument{document, error in
+            if let document = document, document.exists {
+                guard let data = document.data() else { return }
+                var videoType: String
+                if self.ownedVideosUid.contains(videoUid) {
+                    videoType = "pathToOG"
+                } else if self.nwmVideosUid.contains(videoUid) {
+                    videoType = "pathToNWM"
+                } else {
+                    videoType = "pathToWM"
+                }
+                if data[videoType] != nil {
+                    let reference = Storage.storage()
+                        .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+                        .child(data[videoType] as! String)
+                    reference.downloadURL { url, error in
+                        if let error = error {
+                            print(error.localizedDescription)
                         } else {
-                            videoType = "pathToWM"
-                        }
-                        if data[videoType] != nil {
-                            let reference = Storage.storage()
-                                .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                                .child(data[videoType] as! String)
-                            reference.downloadURL { url, error in
-                                if let error = error {
-                                    print(error.localizedDescription)
-                                } else {
-                                    let downloadURL = url
-                                    let thumbnail = self.createThumbnailOfVideoFromRemoteUrl(url: downloadURL!.absoluteString)
-                                    if thumbnail != nil {
-                                        let mediaProcessor = MediaProcessor()
-                                        mediaProcessor.processElements(item: self.makeWmCopyOfImage(thumbnail: thumbnail!)) {(result, error) in
-                                            DispatchQueue.main.async {
-                                                cell.myImage.image = result.image
-                                            }
+                            let downloadURL = url
+                            let thumbnail = self.createThumbnailOfVideoFromRemoteUrl(url: downloadURL!.absoluteString)
+                            DispatchQueue.global(qos: .background).async {
+                                if thumbnail != nil {
+                                    let mediaProcessor = MediaProcessor()
+                                    mediaProcessor.processElements(item: self.makeWmCopyOfImage(thumbnail: thumbnail!)) {(result, error) in
+                                        DispatchQueue.main.async {
+                                            cell.myImage.image = result.image
                                         }
                                     }
                                 }
                             }
                         }
-                        
-                        cell.filePath = data[videoType] as? String
-                        cell.photoUid = videoUid
-                    } else {
-                        print("Document does not exist")
-                        return
                     }
                 }
+                
+                cell.filePath = data[videoType] as? String
+                cell.photoUid = videoUid
+            } else {
+                print("Document does not exist")
+                return
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
+
+        if showPhotos {
+            showPhotos(indexPath, cell)
+        } else {
+            showVideos(indexPath, cell)
         }
         return cell
     }
     
+    fileprivate func showImageView(_ indexPath: IndexPath) {
+        // Instatiate the image view
+        let ownedImageViewStoryboard: UIStoryboard = UIStoryboard(name: "OwnedImageView", bundle: nil)
+        let ownedImageViewController: OwnedImageViewController = ownedImageViewStoryboard.instantiateViewController(withIdentifier: "ownedImageViewController") as! OwnedImageViewController
+        let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
+        // Pass properties
+        ownedImageViewController.filePath = selectedCell.filePath
+        ownedImageViewController.photoUid = selectedCell.photoUid
+        ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
+        ownedImageViewController.shared = nwmPhotosUid.contains(selectedCell.photoUid!)
+        ownedImageViewController.wm = wmPhotosUid.contains(selectedCell.photoUid!)
+        // Move to image view
+        let navController = UINavigationController(rootViewController: ownedImageViewController)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
+    fileprivate func showVideoPlaybackView(_ indexPath: IndexPath) {
+        // Instatiate the video playback view
+        let videoPlaybackStoryboard: UIStoryboard = UIStoryboard(name: "VideoPreview", bundle: nil)
+        let videoPlaybackController: VideoPlaybackController = videoPlaybackStoryboard.instantiateViewController(withIdentifier: "VideoPlaybackController") as! VideoPlaybackController
+        let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
+        let reference = Storage.storage()
+            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
+            .child(selectedCell.filePath!)
+        // Fetch the download URL
+        reference.downloadURL { url, error in
+            if let error = error {
+                self.present(AlertService.basicAlert(imgName: "GrinFace", title: "Download Failed", message: error.localizedDescription), animated: true, completion: nil)
+            } else {
+                let downloadURL = url
+                // Pass properties
+                videoPlaybackController.videoURL = downloadURL
+                // Move to video playback view
+                let navController = UINavigationController(rootViewController: videoPlaybackController)
+                self.present(navController, animated: true, completion: nil)
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if showPhotos {
-            // Instatiate the image view
-            let ownedImageViewStoryboard: UIStoryboard = UIStoryboard(name: "OwnedImageView", bundle: nil)
-            let ownedImageViewController: OwnedImageViewController = ownedImageViewStoryboard.instantiateViewController(withIdentifier: "ownedImageViewController") as! OwnedImageViewController
-            let selectedCell = libraryCollectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
-            // Pass properties
-            ownedImageViewController.filePath = selectedCell.filePath
-            ownedImageViewController.photoUid = selectedCell.photoUid
-            ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
-            ownedImageViewController.shared = nwmPhotosUid.contains(selectedCell.photoUid!)
-            ownedImageViewController.wm = wmPhotosUid.contains(selectedCell.photoUid!)
-            // Move to image view
-            let navController = UINavigationController(rootViewController: ownedImageViewController)
-            self.present(navController, animated: true, completion: nil)
+            showImageView(indexPath)
         } else {
-            print("video playback")
+            showVideoPlaybackView(indexPath)
         }
     }
     
