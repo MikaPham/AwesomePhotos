@@ -97,6 +97,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vmc-2T-4re" id="Fg2-1n-SnM"/>
+                                    <outlet property="delegate" destination="vmc-2T-4re" id="Ch6-4y-NXG"/>
+                                </connections>
                             </tableView>
                             <tableView hidden="YES" clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTD-5E-OpJ">
                                 <rect key="frame" x="0.0" y="148" width="414" height="213"/>
@@ -141,6 +145,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vmc-2T-4re" id="HRN-6E-bjX"/>
+                                    <outlet property="delegate" destination="vmc-2T-4re" id="w1o-fP-C6g"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -173,7 +181,7 @@
                         <outlet property="imgView" destination="Z4b-Yn-Fh1" id="9ZJ-75-eQM"/>
                         <outlet property="permissionSelector" destination="YDt-1L-bVi" id="k3c-m0-eRV"/>
                         <outlet property="searchBar" destination="n2E-yB-4ho" id="1Ts-nW-IYF"/>
-                        <outlet property="searchTableView" destination="CTD-5E-OpJ" id="rpa-Ob-T2R"/>
+                        <outlet property="searchTableView" destination="CTD-5E-OpJ" id="tkx-fo-y7V"/>
                         <outlet property="shareTableView" destination="XsU-4c-t6c" id="Djc-4d-bgb"/>
                     </connections>
                 </viewController>
