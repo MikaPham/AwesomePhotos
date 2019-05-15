@@ -50,6 +50,7 @@
 		879706342265B2870036FA2B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706332265B2870036FA2B /* Photo.swift */; };
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
 		C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4225EAF2284889C00D18815 /* DefaultsKeys.swift */; };
+		C435FB01228BE09300973CDA /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435FB00228BE09300973CDA /* SharedViewController.swift */; };
 		C439612C2289676400485710 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612B2289676400485710 /* EditProfileViewController.swift */; };
 		C439612E2289677B00485710 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612D2289677B00485710 /* EditProfileView.swift */; };
 		C439613B22897C8600485710 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439613922897C8500485710 /* ProgressViewController.swift */; };
@@ -117,6 +118,7 @@
 		879706332265B2870036FA2B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C4225EAF2284889C00D18815 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
+		C435FB00228BE09300973CDA /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
 		C439612B2289676400485710 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C439612D2289677B00485710 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		C439613922897C8500485710 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		18CBCDA7224C648E00420484 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C435FAFF228BE05700973CDA /* Shared */,
 				C439613822897C6B00485710 /* Progress */,
 				C4BDC291227ECBB800596D67 /* Profile */,
 				C4BDC290227ECBAC00596D67 /* Settings */,
@@ -396,6 +399,14 @@
 				18C6BADE226DA6BF00C29F4F /* AlertService.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		C435FAFF228BE05700973CDA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C435FB00228BE09300973CDA /* SharedViewController.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		C439613822897C6B00485710 /* Progress */ = {
@@ -641,6 +652,7 @@
 				879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */,
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
 				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
+				C435FB01228BE09300973CDA /* SharedViewController.swift in Sources */,
 				C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,

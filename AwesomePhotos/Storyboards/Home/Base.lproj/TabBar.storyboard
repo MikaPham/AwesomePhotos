@@ -10,21 +10,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recent-->
+        <!--Shared-->
         <scene sceneID="kbg-Vi-bzL">
             <objects>
-                <viewController id="57p-1r-tau" sceneMemberID="viewController">
+                <viewController id="57p-1r-tau" customClass="SharedViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fF7-Q5-et6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="zZe-ZZ-NyM"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recent" image="Recent" landscapeImage="Recent" id="0nj-87-B4h"/>
+                    <tabBarItem key="tabBarItem" title="Shared" image="Recent" selectedImage="Recent" id="59w-TN-ybw">
+                        <color key="badgeColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZx-FZ-KTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="1077"/>
+            <point key="canvasLocation" x="-2500" y="405.80357142857139"/>
         </scene>
         <!--All-->
         <scene sceneID="cyW-Hy-NYx">
@@ -125,7 +129,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="3na-TJ-d0f" kind="relationship" relationship="viewControllers" id="rcz-BF-I8w"/>
-                        <segue destination="57p-1r-tau" kind="relationship" relationship="viewControllers" id="XUe-mV-E50"/>
+                        <segue destination="57p-1r-tau" kind="relationship" relationship="viewControllers" id="CfW-SX-L6f"/>
                         <segue destination="jdQ-18-H4V" kind="relationship" relationship="viewControllers" id="ZaL-ad-mb4"/>
                         <segue destination="UZM-Ff-hgv" kind="relationship" relationship="viewControllers" id="B5g-wJ-SzD"/>
                         <segue destination="Iy7-9D-gqG" kind="relationship" relationship="viewControllers" id="0XX-V0-oq8"/>
