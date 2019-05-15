@@ -45,28 +45,29 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             if photosUid.count == 0 {
                 emptyFace.isHidden = false
                 emptyLabel.isHidden = false
+                activityIndicator.isHidden = false
             } else {
                 emptyFace.isHidden = true
                 emptyLabel.isHidden = true
+                activityIndicator.isHidden = true
             }
             return photosUid.count
         } else {
             if videosUid.count == 0 {
                 emptyLabel.isHidden = false
                 emptyFace.isHidden = false
+                activityIndicator.isHidden = false
             } else {
                 emptyLabel.isHidden = true
                 emptyFace.isHidden = true
+                activityIndicator.isHidden = true
             }
             return videosUid.count
         }
     }
     
     fileprivate func showPhotos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
-        if photosUid.count != 0 {
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
-        }
+        self.activityIndicator.startAnimating()
         let photoUid = photosUid[indexPath.row]
         cell.myImage.image = nil
         DispatchQueue.global().async {
@@ -91,10 +92,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
-        if videosUid.count != 0 {
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
-        }
         self.activityIndicator.startAnimating()
         let videoUid = videosUid[indexPath.row]
         cell.myImage.image = nil
@@ -140,7 +137,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
-        
         if showPhotos {
             showPhotos(indexPath, cell)
         } else {
