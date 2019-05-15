@@ -43,13 +43,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         return refreshControl
     }()
     
-    // MARK: Init
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.libraryCollectionView.addSubview(self.refreshControl)
-        fetchPhotos()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if showPhotos {
             return photosUid.count
@@ -57,7 +50,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             return videosUid.count
         }
     }
-    
     
     fileprivate func showPhotos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
         self.activityIndicator.startAnimating()
@@ -112,7 +104,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 if let imageFromCache = self.thumbnailCache.object(forKey: videoUid as NSString) {
                     cell.myImage.image = imageFromCache
                     self.activityIndicator.stopAnimating()
-                // If the is no cache
+                    // If the is no cache
                 } else {
                     let reference = Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child(data[videoType] as! String)
                     reference.downloadURL { url, error in
@@ -147,7 +139,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! LibraryCollectionViewCell
-
+        
         if showPhotos {
             showPhotos(indexPath, cell)
         } else {
@@ -208,6 +200,14 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         }
     }
     
+    // MARK: Init
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.libraryCollectionView.addSubview(self.refreshControl)
+        fetchPhotos()
+    }
+    
+    // MARK: Helpers
     func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
         let asset = AVAsset(url: URL(string: url)!)
         let assetImgGenerate = AVAssetImageGenerator(asset: asset)
@@ -232,6 +232,23 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         return item
     }
     
+    fileprivate func clearArrays() {
+        self.ownedPhotosUid.removeAll()
+        self.nwmPhotosUid.removeAll()
+        self.wmPhotosUid.removeAll()
+        self.photosUid.removeAll()
+        self.videosUid.removeAll()
+        self.ownedVideosUid.removeAll()
+        self.nwmVideosUid.removeAll()
+        self.wmVideosUid.removeAll()
+    }
+    
+    // MARK: Selectors
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.libraryCollectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     @IBAction func switchCustom(_ sender: UISegmentedControl) {
         showPhotos = !showPhotos
         libraryCollectionView.reloadData()
@@ -246,17 +263,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     @IBAction func filterChoicesTapped(_ sender: UIButton) {
     }
     
-    fileprivate func clearArrays() {
-        self.ownedPhotosUid.removeAll()
-        self.nwmPhotosUid.removeAll()
-        self.wmPhotosUid.removeAll()
-        self.photosUid.removeAll()
-        self.videosUid.removeAll()
-        self.ownedVideosUid.removeAll()
-        self.nwmVideosUid.removeAll()
-        self.wmVideosUid.removeAll()
-    }
-    
+    // MARK: API
     func fetchPhotos() {
         self.db.collection("users").document(userUid!).addSnapshotListener{snapshot, error in
             self.clearArrays()
@@ -286,11 +293,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         DispatchQueue.main.async {
             self.libraryCollectionView.reloadData()
         }
-    }
-    
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.libraryCollectionView.reloadData()
-        refreshControl.endRefreshing()
     }
 }
 
