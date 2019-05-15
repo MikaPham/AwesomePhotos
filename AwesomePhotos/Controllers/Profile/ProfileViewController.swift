@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
     lazy var contentView : UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
-        view.frame.size = self.contentViewSize
+        contentView.frame.size = self.contentViewSize
         return contentView
     }()
     
@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
         scrollView.autoresizingMask = .flexibleHeight
         scrollView.backgroundColor = .white
         scrollView.frame = view.bounds
+        scrollView.isUserInteractionEnabled = true
         scrollView.contentSize = self.contentViewSize
         return scrollView
     }()
@@ -190,6 +191,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
     }
     
     override func viewDidLoad() {
+        self.view.layoutIfNeeded()
         super.viewDidLoad()
         view.backgroundColor = .white
         scrollView.delegate = self
