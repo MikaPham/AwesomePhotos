@@ -284,7 +284,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 self.videosUid += data["ownedVideos"] as! [String]
                 self.videosUid += data["sharedVideos"] as! [String]
                 self.videosUid += data["wmVideos"] as! [String]
-                
             } else {
                 print("Document does not exist")
                 return

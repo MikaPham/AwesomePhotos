@@ -67,8 +67,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
         } else if (tableView.tag == 2)
         { //searchTableView
-            
-            searchTableView.isHidden = !searchTableView.isHidden
             cell.cellLabel?.text = shownUsers[indexPath.row].email
             cell.button?.tag = indexPath.row
             cell.button?.indexPath = indexPath
@@ -95,7 +93,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             imgView.image = thumbnail!
         }
     }
-
+    
     //MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,45 +129,45 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         switch self.persmission {
-            case SharingPermissionConstants.OwnerPermission:
-                if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
-                    self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
-                        ["owners" : FieldValue.arrayUnion(usersToShare)]
-                    )
-                    for uid in usersToShare {
-                        self.db.collection("users").document(uid).updateData(
-                            [isImage! ? "ownedPhotos" : "ownedVideos" :FieldValue.arrayUnion([photoUid as Any])]
-                        )
-                    }
-                }else {
-                    let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed", message: "This file has already had \(alreadyOwned.count) users as owners. You can only add \(Limits.OwnersLimit.rawValue-alreadyOwned.count) more.")
-                    present(alert, animated: true)
-                }
-            break
-            
-            case SharingPermissionConstants.NoWmPermission:
+        case SharingPermissionConstants.OwnerPermission:
+            if (self.alreadyOwned.count + usersToShare.count <= Limits.OwnersLimit.rawValue){
                 self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
-                    ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
+                    ["owners" : FieldValue.arrayUnion(usersToShare)]
                 )
                 for uid in usersToShare {
                     self.db.collection("users").document(uid).updateData(
-                        [isImage! ? "sharedPhotos" : "sharedVideos":FieldValue.arrayUnion([photoUid as Any])]
+                        [isImage! ? "ownedPhotos" : "ownedVideos" :FieldValue.arrayUnion([photoUid as Any])]
                     )
                 }
+            }else {
+                let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Only 5 owners allowed", message: "This file has already had \(alreadyOwned.count) users as owners. You can only add \(Limits.OwnersLimit.rawValue-alreadyOwned.count) more.")
+                present(alert, animated: true)
+            }
             break
             
-            case SharingPermissionConstants.WmPermission:
-                self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
-                    ["sharedWM":FieldValue.arrayUnion(usersToShare)]
+        case SharingPermissionConstants.NoWmPermission:
+            self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
+                ["sharedWith" : FieldValue.arrayUnion(usersToShare)]
+            )
+            for uid in usersToShare {
+                self.db.collection("users").document(uid).updateData(
+                    [isImage! ? "sharedPhotos" : "sharedVideos":FieldValue.arrayUnion([photoUid as Any])]
                 )
-                for uid in usersToShare {
-                    self.db.collection("users").document(uid).updateData(
-                        [isImage! ? "wmPhotos" : "wmVideos":FieldValue.arrayUnion([photoUid as Any])]
-                    )
-                }
+            }
+            break
+            
+        case SharingPermissionConstants.WmPermission:
+            self.db.collection(isImage! ? "photos" : "medias").document(photoUid!).updateData(
+                ["sharedWM":FieldValue.arrayUnion(usersToShare)]
+            )
+            for uid in usersToShare {
+                self.db.collection("users").document(uid).updateData(
+                    [isImage! ? "wmPhotos" : "wmVideos":FieldValue.arrayUnion([photoUid as Any])]
+                )
+            }
             break
         }
-
+        
         toBeShared.removeAll()
         shareTableView.reloadData()
         
@@ -191,7 +189,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @objc func addTapped(sender:cellButton!) {
-//        searchTableView.isHidden = true
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else {return }
         if toBeShared.contains(shownUsers[button.tag]) {
@@ -203,7 +200,6 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         toBeShared.append(shownUsers[button.tag]) //add to toBeShared
         shownUsers.remove(at: button.tag) //remove from shownUsers
         searchTableView.deleteRows(at: [indexPath], with: .bottom) //remove row from searchTableView
-        searchTableView.isHidden = true
         searchTableView.reloadData() //reload data of searchTableView
         shareTableView.insertRows(at: [NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath], with: .top) //insert row to shareTableView
         shareTableView.scrollToRow(at: NSIndexPath(row: toBeShared.count-1, section: 0) as IndexPath, at: .bottom, animated: true) //scroll to the added row
@@ -213,7 +209,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @objc func removeTapped(sender:cellButton!) {
         guard let button = sender else { return }
         guard let indexPath = button.indexPath else { return }
-
+        
         shownUsers.append(toBeShared[button.tag])
         toBeShared.remove(at: toBeShared.firstIndex(of: toBeShared[button.tag])!) //remove from toBeShared
         
@@ -238,12 +234,18 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             .orEmpty // Make it non-optional
             .debounce(.seconds(Int(0.5)), scheduler: MainScheduler.instance) //Wait 0.5s for changes
             .distinctUntilChanged() //If changes didn't occur, check if new value is the same as old value
-            .filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
+            //.filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
             .subscribe(onNext: {[unowned self] query in // Here we will be notified of every new value
+                self.shownUsers.removeAll()
                 self.shownUsers = self.users.filter({ (user) -> Bool in
                     (user.email?.contains(query.lowercased()))!
                 })
-                self.searchTableView.reloadData() // Reload tableview's data
+                if self.shownUsers.isEmpty {
+                    self.searchTableView.isHidden = true
+                } else {
+                    self.searchTableView.isHidden = false
+                    self.searchTableView.reloadData() // Reload tableview's data
+                }
             })
             .disposed(by: disposeBag)
     }
