@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 import Charts
 
-class ProfileViewController: GenericViewController<ProfileView> {
+class ProfileViewController: UIViewController, UIScrollViewDelegate  {
     
     // MARK: - Properties
     var docRef: DocumentReference?
@@ -23,7 +23,143 @@ class ProfileViewController: GenericViewController<ProfileView> {
     var availableStorage = PieChartDataEntry(value: 0)
     var numberOfStorage = [PieChartDataEntry]()
 
+    lazy var contentViewSize = CGSize (width: self.view.frame.width, height: self.view.frame.height + 100)
+    // Create top red background for profile
+    lazy var contentView : UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .white
+        view.frame.size = self.contentViewSize
+        return contentView
+    }()
     
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)
+        return view
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.isScrollEnabled = true
+        scrollView.autoresizingMask = .flexibleHeight
+        scrollView.backgroundColor = .white
+        scrollView.frame = view.bounds
+        scrollView.contentSize = self.contentViewSize
+        return scrollView
+    }()
+    
+    let storagePieChart: PieChartView = {
+        let storageChart = PieChartView()
+        storageChart.centerText = "Total"
+        storageChart.usePercentValuesEnabled = true
+        return storageChart
+    }()
+    
+    
+    // Create UIImageView for profile and configure its attributes
+    let profileImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "SleepFace")
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.layer.masksToBounds = true
+        iv.layer.borderWidth = 3
+        iv.layer.borderColor = UIColor.white.cgColor
+        iv.layer.shadowColor = UIColor.black.cgColor
+        iv.layer.shadowOpacity = 1
+        iv.layer.shadowOffset = CGSize(width: 0, height: 1)
+        iv.layer.shadowRadius = 4
+        return iv
+    }()
+    
+    // Create emailLabel
+    let emailLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = .white
+        return label
+    }()
+    
+    // Create Button to display total Photos
+    let totalPhotosButton: CustomTotalButton = {
+        let button = CustomTotalButton(type: .system)
+        
+        // Add action to the button
+        button.addTarget(self, action: #selector(ProfileViewController.showAllPhotos), for: .touchUpInside)
+        return button
+    }()
+    
+    // Create Button to display total Videos
+    let totalVidesButton: CustomTotalButton = {
+        let button = CustomTotalButton(type: .system)
+        
+        // Add action to the button
+        button.addTarget(self, action: #selector(ProfileViewController.showAllVideos), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    // Create Button to display total Shared files
+    let totalSharedButton: CustomTotalButton = {
+        let button = CustomTotalButton(type: .system)
+        
+        // Add action to the button
+        button.addTarget(self, action: #selector(ProfileViewController.showAllShared), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    // Create Button to display total Photos
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [totalPhotosButton, totalVidesButton, totalSharedButton])
+        sv.axis = .horizontal
+        sv.spacing = 28
+        sv.distribution = .fillEqually
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+        func configureView() {
+        view.backgroundColor = .white
+        
+        // add the scroll view to self.view
+        view.addSubview(scrollView)
+        
+        
+//        // constrain the scroll view
+//        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//
+        // Add container and it's elements into ProfileVC
+        scrollView.addSubview(contentView)
+        contentView.addSubview(containerView)
+        containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor, height: 300)
+        
+        // Add ProfileImageView into container + configure constraints
+        containerView.addSubview(profileImageView)
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.anchor(top: containerView.topAnchor, paddingTop: 28, width: 120, height: 120)
+        profileImageView.layer.cornerRadius = 120/2
+        
+        // Add EmailLabel into container + configure constraints
+        containerView.addSubview(emailLabel)
+        emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        emailLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 14)
+        
+        // Add Buttons into container + configure constraints
+        containerView.addSubview(stackView)
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.anchor(top: emailLabel.bottomAnchor, paddingTop: 20)
+        
+        contentView.addSubview(storagePieChart)
+        storagePieChart.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        storagePieChart.anchor(top: containerView.bottomAnchor, paddingTop: 44,  width: 400, height: 400)
+    }
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,15 +192,14 @@ class ProfileViewController: GenericViewController<ProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        scrollView.delegate = self
         availableStorage.value = 300 - (photosStorage.value + videosStorage.value)
-
-        contentView.storagePieChart.chartDescription?.text = "So Cool"
+        storagePieChart.chartDescription?.text = "So Cool"
         photosStorage.label = "Photos"
         videosStorage.label = "Videos"
         numberOfStorage = [photosStorage,videosStorage,availableStorage]
         updateChartData()
-
+        configureView()
         setupNavBar()
         fetchCurrentUserData()
     }
@@ -74,7 +209,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
         let chartData = PieChartData(dataSet: chartDataSet)
         let colors = [UIColor.mainRed(), UIColor.mainBlue(), UIColor.mainGray()]
         chartDataSet.colors = colors
-        contentView.storagePieChart.data = chartData
+        storagePieChart.data = chartData
     }
     
     func setupNavBar(){
@@ -159,7 +294,7 @@ class ProfileViewController: GenericViewController<ProfileView> {
     }
     
     func updateProfileContentView( userEmail: String,totalPhotos: Int, totalVideos: Int, totalShared: Int) {
-        contentView.emailLabel.text = Auth.auth().currentUser?.email
+        emailLabel.text = Auth.auth().currentUser?.email
         setTotalPhotosLabel(totalPhotos: totalPhotos)
         setTotalVideosLabel(totalVideos: totalVideos)
         setTotalSharedLabel(totalShared: totalShared)
@@ -168,21 +303,21 @@ class ProfileViewController: GenericViewController<ProfileView> {
     func setTotalPhotosLabel(totalPhotos: Int) {
         let attributedTitle = NSMutableAttributedString(string: "\(totalPhotos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "\nPhotos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        contentView.totalPhotosButton.setAttributedTitle(attributedTitle, for: .normal)
+       totalPhotosButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     // Update totalVideosButton
     func setTotalVideosLabel(totalVideos: Int) {
         let attributedTitle = NSMutableAttributedString(string: "\(totalVideos)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "\nVideos", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        contentView.totalVidesButton.setAttributedTitle(attributedTitle, for: .normal)
+        totalVidesButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     // Update totalSharedButton
     func setTotalSharedLabel(totalShared: Int) {
         let attributedTitle = NSMutableAttributedString(string: "\(totalShared)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "\nShared", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        contentView.totalSharedButton.setAttributedTitle(attributedTitle, for: .normal)
+        totalSharedButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
 

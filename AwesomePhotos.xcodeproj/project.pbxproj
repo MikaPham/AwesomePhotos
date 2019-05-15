@@ -59,7 +59,6 @@
 		C47B15642282C94700466CB8 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47B15632282C94700466CB8 /* Camera.storyboard */; };
 		C4BDC29F227ECC9200596D67 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC29E227ECC9200596D67 /* SettingsCell.swift */; };
 		C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */; };
-		C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2A22280001300596D67 /* ProfileView.swift */; };
 		C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */; };
 		C4BDC2AF2280074000596D67 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2AD2280074000596D67 /* SettingsSection.swift */; };
 		C4BDC2B22280075F00596D67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDC2B02280075E00596D67 /* ProfileViewController.swift */; };
@@ -127,7 +126,6 @@
 		C47B15632282C94700466CB8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		C4BDC29E227ECC9200596D67 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsCell.swift; path = ../../Controllers/Settings/SettingsCell.swift; sourceTree = "<group>"; };
 		C4BDC2A0227ECCA600596D67 /* CustomTotalButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTotalButtons.swift; sourceTree = "<group>"; };
-		C4BDC2A22280001300596D67 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C4BDC2AC2280073F00596D67 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4BDC2AD2280074000596D67 /* SettingsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		C4BDC2B02280075E00596D67 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 			isa = PBXGroup;
 			children = (
 				C439612D2289677B00485710 /* EditProfileView.swift */,
-				C4BDC2A22280001300596D67 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -653,7 +650,6 @@
 				5D10BA152266D5BD0011237D /* DownloadImageViewController.swift in Sources */,
 				1897EA88227471DC00C0B1FB /* DeleteAccountController.swift in Sources */,
 				C435FB01228BE09300973CDA /* SharedViewController.swift in Sources */,
-				C4BDC2A32280001300596D67 /* ProfileView.swift in Sources */,
 				5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */,
 				18F0E259225F39380021A240 /* ShareController.swift in Sources */,
 				CE2250D8227C161100C7322A /* CustomButton.swift in Sources */,
