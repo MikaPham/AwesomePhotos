@@ -16,6 +16,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var filterChoices: [UIButton]!
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
@@ -34,6 +35,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     let thumbnailCache = NSCache<NSString, UIImage>()
     
+    // MARK: UI
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:#selector(handleRefresh),for: UIControl.Event.valueChanged)
@@ -41,6 +43,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         return refreshControl
     }()
     
+    // MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
         self.libraryCollectionView.addSubview(self.refreshControl)
@@ -234,8 +237,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         libraryCollectionView.reloadData()
     }
     
-    @IBOutlet var filterChoices: [UIButton]!
-    
     @IBAction func filterAction(_ sender: UIButton) {
         filterChoices.forEach { (button) in
         button.isHidden = !button.isHidden }
@@ -283,11 +284,10 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             }
         }
         DispatchQueue.main.async {
-            self.libraryCollectionView.reloadData() // breakpoint here to see if storyNames still empty
+            self.libraryCollectionView.reloadData()
         }
     }
     
-    // Refresh control
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.libraryCollectionView.reloadData()
         refreshControl.endRefreshing()
