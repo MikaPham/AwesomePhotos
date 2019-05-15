@@ -812,13 +812,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+=======
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
+>>>>>>> master-quang
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+>>>>>>> master-quang
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -831,13 +839,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = JXDQ2F2M4A;
+=======
+				DEVELOPMENT_TEAM = 7XXXHW74DS;
+>>>>>>> master-quang
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobb;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotos;
+>>>>>>> master-quang
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
