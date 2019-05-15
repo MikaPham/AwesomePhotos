@@ -54,10 +54,7 @@ extension LocationManager: CLLocationManagerDelegate {
 // MARK: - Get Placemark
 extension LocationManager {
     
-    
-    func getPlace(for location: CLLocation,
-                  completion: @escaping (CLPlacemark?) -> Void) {
-        
+    func getPlace(for location: CLLocation, completion: @escaping (CLPlacemark?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             
@@ -83,30 +80,24 @@ extension LocationManager {
 // MARK: - Get Location
 extension LocationManager {
     
-    func getLocation(forPlaceCalled name: String,
-                     completion: @escaping(CLLocation?) -> Void) {
-        
+    func getLocation(forPlaceCalled name: String, completion: @escaping(CLLocation?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(name) { placemarks, error in
-            
-            guard error == nil else {
+        guard error == nil else {
                 print("*** Error in \(#function): \(error!.localizedDescription)")
                 completion(nil)
                 return
             }
-            
             guard let placemark = placemarks?[0] else {
                 print("*** Error in \(#function): placemark is nil")
                 completion(nil)
                 return
             }
-            
-            guard let location = placemark.location else {
+                        guard let location = placemark.location else {
                 print("*** Error in \(#function): placemark is nil")
                 completion(nil)
                 return
             }
-            
             completion(location)
         }
     }
