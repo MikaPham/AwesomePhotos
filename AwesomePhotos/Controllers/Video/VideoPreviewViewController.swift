@@ -26,6 +26,7 @@ class PreviewVideoViewController : UIViewController
         super.viewDidLoad()
         configurePreviewView()
         trackTimeProgress()
+        
     }
     
     override var prefersStatusBarHidden: Bool {

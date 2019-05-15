@@ -76,12 +76,28 @@ class SettingsViewController: UIViewController{
             [NSAttributedString.Key.foregroundColor: UIColor(red:0.85, green:0.22, blue:0.17, alpha:1.0)]
         // Set up navigation bar back button
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+        setupNavigationBarItems()
         
         
         navigationItem.title = "Settings"
         configureSettingsTableView()
+    }
+    
+    func setupNavigationBarItems(){
+        // Configure and assign settingsButton into Nav bar
+        let backButton = UIButton(type: .system)
+        backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .mainRed()
+        
+        backButton.addTarget(self, action: #selector(SettingsViewController.backHome), for: .touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    @objc func backHome(){
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -232,10 +248,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource{
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Go back to previous screen (Profile)
-    @objc func backHome(){
-        self.dismiss(animated: true, completion: nil)
-    }
     
     // Handle SignOut
     func signOut() {

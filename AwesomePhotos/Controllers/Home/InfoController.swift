@@ -19,8 +19,26 @@ class InfoController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar(title: "")
+        configureNavBar(title: "Info")
+        setupNavigationBarItems()
         imgView.image = selectedImage
+    }
+    
+    func setupNavigationBarItems(){
+        // Configure and assign settingsButton into Nav bar
+        let backButton = UIButton(type: .system)
+        backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .mainRed()
+        
+        backButton.addTarget(self, action: #selector(OwnedImageViewController.goBack), for: .touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    @objc func goBack(){
+        navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
