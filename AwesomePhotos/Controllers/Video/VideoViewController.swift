@@ -37,6 +37,8 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         configurePreviewLayer()
         clearTmpDir()
         startSession()
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     override var prefersStatusBarHidden: Bool{

@@ -28,7 +28,7 @@ class OwnedImageViewController: UIViewController {
     }
     
     fileprivate func configureNavBar() {
-        configureNavBar(title: "")
+        configureNavBar(title: "Photo")
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
@@ -50,6 +50,7 @@ class OwnedImageViewController: UIViewController {
     
     @objc func goBack(){
         navigationController?.popViewController(animated: true)
+        
     }
     
     
@@ -58,6 +59,8 @@ class OwnedImageViewController: UIViewController {
         configureNavBar()
         setupNavigationBarItems()
         loadImage()
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     override func handleGoBack() {
@@ -166,7 +169,7 @@ class OwnedImageViewController: UIViewController {
             } else {
                 let downloadURL = url
                 UIPasteboard.general.url = downloadURL
-                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "The download link for the non-waterarked copy of this photo has been copied to your clipboard."), animated: true, completion: nil)
+                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "Download link for the non-watermarked copy has been copied to clipboard."), animated: true, completion: nil)
             }
         }
     }
