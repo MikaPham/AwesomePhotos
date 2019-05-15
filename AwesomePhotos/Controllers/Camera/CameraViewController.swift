@@ -20,10 +20,10 @@ class CameraViewController : UIViewController {
     var newCamera : AVCaptureDevice?
     var wmImage: UIImage!
     var progressStatusCompleted : Float!
-    var captureLocation: [String: String]!
     let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
+    var captureLocation: [String: String]!
     private let locationManager = LocationManager()
     
     //MARK: - Initialization
