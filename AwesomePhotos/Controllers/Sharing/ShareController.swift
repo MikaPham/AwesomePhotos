@@ -238,12 +238,18 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
             .orEmpty // Make it non-optional
             .debounce(.seconds(Int(0.5)), scheduler: MainScheduler.instance) //Wait 0.5s for changes
             .distinctUntilChanged() //If changes didn't occur, check if new value is the same as old value
-            .filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
+            //.filter { !$0.isEmpty } //If new query is new, make sure it's not empty (so that we don't search on an empty query)
             .subscribe(onNext: {[unowned self] query in // Here we will be notified of every new value
+                self.shownUsers.removeAll()
                 self.shownUsers = self.users.filter({ (user) -> Bool in
                     (user.email?.contains(query.lowercased()))!
                 })
-                self.searchTableView.reloadData() // Reload tableview's data
+                if self.shownUsers.isEmpty {
+                    self.searchTableView.isHidden = true
+                } else {
+                    self.searchTableView.isHidden = false
+                    self.searchTableView.reloadData() // Reload tableview's data
+                }
             })
             .disposed(by: disposeBag)
     }
