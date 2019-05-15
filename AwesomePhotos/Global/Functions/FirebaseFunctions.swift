@@ -9,6 +9,7 @@
 import Foundation
 
 import Firebase
+import FirebaseFirestore
 let db = Firestore.firestore()
 
 func createOrUpdate(collection: String, docId: String, data: Any) {

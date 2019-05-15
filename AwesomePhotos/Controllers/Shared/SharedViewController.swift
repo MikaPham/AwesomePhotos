@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import MediaWatermark
 import AVFoundation
+import FirebaseFirestore
+
 
 class SharedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 

@@ -2,6 +2,8 @@ import UIKit
 import AVKit
 import Firebase
 import Photos
+import FirebaseFirestore
+
 
 class VideoPlaybackController : UIViewController
 {

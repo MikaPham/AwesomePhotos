@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+
 
 //SignUpController for SignUpView
 class SignUpController: GenericViewController<SignUpView>, UITextFieldDelegate {

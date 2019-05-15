@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseUI
 import Firebase
+import FirebaseFirestore
 
 class OwnedImageViewController: UIViewController {
     

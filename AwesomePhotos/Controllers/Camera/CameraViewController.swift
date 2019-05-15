@@ -2,6 +2,7 @@ import UIKit
 import AVFoundation
 import FirebaseStorage
 import Firebase
+import FirebaseFirestore
 import MediaWatermark
 
 

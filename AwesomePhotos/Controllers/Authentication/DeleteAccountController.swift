@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 //ForgotPasswordController for ForgotPasswordView
 class DeleteAccountController : GenericViewController<DeleteAccountView> {

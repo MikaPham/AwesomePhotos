@@ -5,6 +5,7 @@ import CoreMedia
 import AVFoundation
 import FirebaseStorage
 import Firebase
+import FirebaseFirestore
 import MobileCoreServices
 import MediaWatermark
 

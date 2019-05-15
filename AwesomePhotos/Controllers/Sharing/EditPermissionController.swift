@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class EditPermissionController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
