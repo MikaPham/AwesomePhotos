@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		182060BD226EB1DB0058ACAA /* CustomAlertController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */; };
 		182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182060BF226EB8C40058ACAA /* CustomAlertController.swift */; };
+		182C98DA228BCDEB0074934D /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182C98D9228BCDEB0074934D /* Info.storyboard */; };
+		182C98DC228BCDFC0074934D /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C98DB228BCDFC0074934D /* InfoController.swift */; };
 		183E5AEE2249BBC100F7309E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E5AED2249BBC100F7309E /* AppDelegate.swift */; };
 		183E5AF32249BBC100F7309E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF12249BBC100F7309E /* Main.storyboard */; };
 		183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183E5AF42249BBC200F7309E /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 /* Begin PBXFileReference section */
 		182060BC226EB1DB0058ACAA /* CustomAlertController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomAlertController.storyboard; sourceTree = "<group>"; };
 		182060BF226EB8C40058ACAA /* CustomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertController.swift; sourceTree = "<group>"; };
+		182C98D9228BCDEB0074934D /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
+		182C98DB228BCDFC0074934D /* InfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
 		183E5AEA2249BBC100F7309E /* AwesomePhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomePhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183E5AED2249BBC100F7309E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		183E5AF22249BBC100F7309E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				CE2250D3227C11D500C7322A /* TabBarController.swift */,
 				CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */,
 				18425FBF228A6E8B00074D7C /* VideoPlaybackController.swift */,
+				182C98DB228BCDFC0074934D /* InfoController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 		18DDB8B1227D225400C07950 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				182C98D9228BCDEB0074934D /* Info.storyboard */,
 				1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */,
 				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
 				18425FBD228A6E6600074D7C /* VideoPreview.storyboard */,
@@ -506,6 +512,7 @@
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				182C98DA228BCDEB0074934D /* Info.storyboard in Resources */,
 				1847E5EC2289283900CC7282 /* OwnedImageView.storyboard in Resources */,
 				C47B15642282C94700466CB8 /* Camera.storyboard in Resources */,
 				18D8393B2277E40000D4BBB8 /* EditPermission.storyboard in Resources */,
@@ -619,6 +626,7 @@
 				183E5B002249BC3000F7309E /* LoginController.swift in Sources */,
 				18CBCDAD224C65C800420484 /* SignUpView.swift in Sources */,
 				879706342265B2870036FA2B /* Photo.swift in Sources */,
+				182C98DC228BCDFC0074934D /* InfoController.swift in Sources */,
 				5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */,
 				879706362265D6B60036FA2B /* Constant.swift in Sources */,
 				18425FC0228A6E8B00074D7C /* VideoPlaybackController.swift in Sources */,
