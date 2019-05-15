@@ -11,10 +11,15 @@ import SnapKit
 
 class CustomButton: UITabBarController{
     
+    var returnFromShared = false
+    
     override func viewDidLoad() { // Called when tab bar loads
         super.viewDidLoad()
         self.setupMiddleButton() // Sets up button
         navigationController?.navigationBar.isHidden = true
+        if returnFromShared {
+            self.selectedIndex = 1
+        }
     }
     
     func setupMiddleButton() {

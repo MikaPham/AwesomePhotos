@@ -112,7 +112,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         let video = MediaItem(url: self.videoLocation()!)
         let logoImage = UIImage(named: "AwesomeLogo")
         let firstElement = MediaElement(image: logoImage!)
-        firstElement.frame = CGRect(x: 0, y: 0, width: logoImage!.size.width/3, height: logoImage!.size.height/3)
+        firstElement.frame = CGRect(x: 10, y: video!.size.height-200, width: logoImage!.size.width/3, height: logoImage!.size.height/3)
         video!.add(elements: [firstElement])
         return video!
     }

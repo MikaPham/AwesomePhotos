@@ -28,6 +28,7 @@ class VideoPlaybackController : UIViewController
         DispatchQueue.main.async {
             let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
             let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
+            customBtnController.returnFromShared = self.owned! ? false : true
             let navController = UINavigationController(rootViewController: customBtnController)
             self.present(navController, animated: true, completion: nil)
         }
