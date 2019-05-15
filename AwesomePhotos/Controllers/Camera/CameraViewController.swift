@@ -4,11 +4,10 @@ import FirebaseStorage
 import Firebase
 import MediaWatermark
 
-class CameraViewController : UIViewController
-{
+
+class CameraViewController : UIViewController {
     // MARK: - Properties
     var captureSession = AVCaptureSession()
-    
     var currentCamera : AVCaptureDevice?
     var photoOutPut : AVCapturePhotoOutput?
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
@@ -30,11 +29,15 @@ class CameraViewController : UIViewController
         configureInputOutput()
         configurePreviewLayer()
         startRunningSession()
+        
+        
+        
     }
-    
     override var prefersStatusBarHidden: Bool{
         return true
     }
+    
+    
     //MARK: - Methods
     // 1. Creating a capture session.
     func createCaptureSession(){

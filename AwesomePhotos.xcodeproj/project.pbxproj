@@ -51,6 +51,7 @@
 		879706362265D6B60036FA2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706352265D6B60036FA2B /* Constant.swift */; };
 		C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4225EAF2284889C00D18815 /* DefaultsKeys.swift */; };
 		C435FB01228BE09300973CDA /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435FB00228BE09300973CDA /* SharedViewController.swift */; };
+		C435FB03228C2D1900973CDA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435FB02228C2D1900973CDA /* LocationManager.swift */; };
 		C439612C2289676400485710 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612B2289676400485710 /* EditProfileViewController.swift */; };
 		C439612E2289677B00485710 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612D2289677B00485710 /* EditProfileView.swift */; };
 		C439613B22897C8600485710 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439613922897C8500485710 /* ProgressViewController.swift */; };
@@ -118,6 +119,7 @@
 		879706352265D6B60036FA2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C4225EAF2284889C00D18815 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		C435FB00228BE09300973CDA /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
+		C435FB02228C2D1900973CDA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C439612B2289676400485710 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C439612D2289677B00485710 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		C439613922897C8500485710 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		189A2435226C27670017CA03 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				C435FB02228C2D1900973CDA /* LocationManager.swift */,
 				879706352265D6B60036FA2B /* Constant.swift */,
 				C4225EAF2284889C00D18815 /* DefaultsKeys.swift */,
 				183E5B052249BCAB00F7309E /* Extentions.swift */,
@@ -611,6 +614,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C435FB03228C2D1900973CDA /* LocationManager.swift in Sources */,
 				18F9E9E6225066BA003F09DA /* ForgotPasswordController.swift in Sources */,
 				18F9E9E4225064B8003F09DA /* ForgotPasswordView.swift in Sources */,
 				182060C0226EB8C40058ACAA /* CustomAlertController.swift in Sources */,
