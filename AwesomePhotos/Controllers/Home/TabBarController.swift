@@ -179,6 +179,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             } else {
                 let downloadURL = url
                 // Pass properties
+                videoPlaybackController.filePath = selectedCell.filePath
                 videoPlaybackController.videoURL = downloadURL
                 videoPlaybackController.owned = self.ownedVideosUid.contains(selectedCell.photoUid!)
                 videoPlaybackController.shared = self.nwmVideosUid.contains(selectedCell.photoUid!)

@@ -10,21 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recent-->
+        <!--Shared View Controller-->
         <scene sceneID="kbg-Vi-bzL">
             <objects>
-                <viewController id="57p-1r-tau" sceneMemberID="viewController">
+                <viewController id="57p-1r-tau" customClass="SharedViewController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fF7-Q5-et6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="zZe-ZZ-NyM"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recent" image="Recent" landscapeImage="Recent" id="0nj-87-B4h"/>
+                    <navigationItem key="navigationItem" id="69Y-nB-cJq"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZx-FZ-KTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="1077"/>
+            <point key="canvasLocation" x="-862.31884057971024" y="632.8125"/>
         </scene>
         <!--All-->
         <scene sceneID="cyW-Hy-NYx">
@@ -125,7 +127,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="3na-TJ-d0f" kind="relationship" relationship="viewControllers" id="rcz-BF-I8w"/>
-                        <segue destination="57p-1r-tau" kind="relationship" relationship="viewControllers" id="XUe-mV-E50"/>
+                        <segue destination="wTc-UJ-LxQ" kind="relationship" relationship="viewControllers" id="CfW-SX-L6f"/>
                         <segue destination="jdQ-18-H4V" kind="relationship" relationship="viewControllers" id="ZaL-ad-mb4"/>
                         <segue destination="UZM-Ff-hgv" kind="relationship" relationship="viewControllers" id="B5g-wJ-SzD"/>
                         <segue destination="Iy7-9D-gqG" kind="relationship" relationship="viewControllers" id="0XX-V0-oq8"/>
@@ -165,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKs-zj-nbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-746" y="866"/>
+            <point key="canvasLocation" x="163.768115942029" y="865.84821428571422"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="oH3-8p-ToJ">
@@ -181,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZT-aj-0An" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213" y="321"/>
+            <point key="canvasLocation" x="2121.739130434783" y="320.75892857142856"/>
         </scene>
         <!--Library-->
         <scene sceneID="x5q-AW-Sr6">
@@ -225,13 +227,34 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UpR-pq-nJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356.52173913043481" y="320.75892857142856"/>
+            <point key="canvasLocation" x="1266.6666666666667" y="320.75892857142856"/>
+        </scene>
+        <!--Shared-->
+        <scene sceneID="sAK-8I-fkW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wTc-UJ-LxQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shared" image="Shared" selectedImage="Shared" id="59w-TN-ybw">
+                        <color key="badgeColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vva-Rq-Noh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="57p-1r-tau" kind="relationship" relationship="rootViewController" id="J7o-gN-WnN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vfo-8e-oWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1772.4637681159422" y="632.8125"/>
         </scene>
     </scenes>
     <resources>
         <image name="Account" width="21" height="21"/>
         <image name="Library" width="25" height="20"/>
         <image name="Progress" width="29" height="21"/>
-        <image name="Recent" width="25" height="23"/>
+        <image name="Shared" width="36" height="36"/>
     </resources>
 </document>
