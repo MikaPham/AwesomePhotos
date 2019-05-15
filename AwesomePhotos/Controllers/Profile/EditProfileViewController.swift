@@ -47,14 +47,26 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
     
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
-        let doneButton = UIButton(type: .system)
-        doneButton.setTitle("Done", for: .normal)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.tintColor = .mainRed()
+        let backButton = UIButton(type: .system)
+        backButton.setImage(#imageLiteral(resourceName: "Back"), for: .normal)
+//        backButton.setTitle("Done", for: .normal)
+        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .mainRed()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
+        backButton.addTarget(self, action: #selector(EditProfileViewController.backHome), for: .touchUpInside)
+
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+
         navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    @objc func moveBack(){
+        let navController = UINavigationController(rootViewController: ProfileViewController())
+//        profileListener.remove()
+        self.present(navController, animated: true, completion: nil)
     }
    
 
