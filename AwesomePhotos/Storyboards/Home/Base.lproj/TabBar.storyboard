@@ -233,7 +233,7 @@
         <scene sceneID="sAK-8I-fkW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wTc-UJ-LxQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shared" image="Recent" selectedImage="Recent" id="59w-TN-ybw">
+                    <tabBarItem key="tabBarItem" title="Shared" image="Shared" selectedImage="Shared" id="59w-TN-ybw">
                         <color key="badgeColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -255,6 +255,6 @@
         <image name="Account" width="21" height="21"/>
         <image name="Library" width="25" height="20"/>
         <image name="Progress" width="29" height="21"/>
-        <image name="Recent" width="25" height="23"/>
+        <image name="Shared" width="36" height="36"/>
     </resources>
 </document>
