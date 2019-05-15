@@ -16,20 +16,17 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     @IBOutlet weak var libraryCollectionView: UICollectionView!
     @IBOutlet weak var mySegmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var filterChoices: [UIButton]!
+    @IBOutlet weak var emptyFace: UIImageView!
+    @IBOutlet weak var emptyLabel: UILabel!
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
     
     var photosUid: [String] = []
     var ownedPhotosUid: [String] = []
-    var nwmPhotosUid: [String] = []
-    var wmPhotosUid: [String] = []
     
     var videosUid: [String] = []
     var ownedVideosUid: [String] = []
-    var nwmVideosUid: [String] = []
-    var wmVideosUid: [String] = []
     
     var showPhotos = true
     
@@ -45,32 +42,41 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if showPhotos {
+            if photosUid.count == 0 {
+                emptyFace.isHidden = false
+                emptyLabel.isHidden = false
+            } else {
+                emptyFace.isHidden = true
+                emptyLabel.isHidden = true
+            }
             return photosUid.count
         } else {
+            if videosUid.count == 0 {
+                emptyLabel.isHidden = false
+                emptyFace.isHidden = false
+            } else {
+                emptyLabel.isHidden = true
+                emptyFace.isHidden = true
+            }
             return videosUid.count
         }
     }
     
     fileprivate func showPhotos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
-        self.activityIndicator.startAnimating()
+        if photosUid.count != 0 {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
         let photoUid = photosUid[indexPath.row]
         cell.myImage.image = nil
         DispatchQueue.global().async {
             self.db.collection("photos").document(photoUid).getDocument{document, error in
                 if let document = document, document.exists {
                     guard let data = document.data() else { return }
-                    var photoType = ""
-                    if self.ownedPhotosUid.contains(photoUid) {
-                        photoType = "pathToOG"
-                    } else if self.nwmPhotosUid.contains(photoUid) {
-                        photoType = "pathToNWM"
-                    } else {
-                        photoType = "pathToWM"
-                    }
                     let reference = Storage.storage()
                         .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-                        .child(data[photoType] as! String)
-                    cell.filePath = data[photoType] as? String
+                        .child(data["pathToOG"] as! String)
+                    cell.filePath = data["pathToOG"] as? String
                     cell.photoUid = photoUid
                     DispatchQueue.main.async {
                         cell.myImage.sd_setImage(with: reference, placeholderImage: UIImage(named: "SleepFace"))
@@ -85,28 +91,23 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     }
     
     fileprivate func showVideos(_ indexPath: IndexPath, _ cell: LibraryCollectionViewCell) {
+        if videosUid.count != 0 {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
         self.activityIndicator.startAnimating()
         let videoUid = videosUid[indexPath.row]
         cell.myImage.image = nil
         self.db.collection("medias").document(videoUid).getDocument{document, error in
             if let document = document, document.exists {
                 guard let data = document.data() else { return }
-                var videoType = ""
-                if self.ownedVideosUid.contains(videoUid) {
-                    videoType = "pathToOG"
-                } else if self.nwmVideosUid.contains(videoUid) {
-                    videoType = "pathToNWM"
-                } else {
-                    videoType = "pathToWM"
-                }
-                if videoType == "" { return }
                 // If there is cache
                 if let imageFromCache = self.thumbnailCache.object(forKey: videoUid as NSString) {
                     cell.myImage.image = imageFromCache
                     self.activityIndicator.stopAnimating()
                     // If the is no cache
                 } else {
-                    let reference = Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child(data[videoType] as! String)
+                    let reference = Storage.storage().reference(forURL: "gs://awesomephotos-b794e.appspot.com/").child(data["pathToOG"] as! String)
                     reference.downloadURL { url, error in
                         if let error = error {
                             print(error.localizedDescription)
@@ -128,7 +129,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                         }
                     }
                 }
-                cell.filePath = data[videoType] as? String
+                cell.filePath = data["pathToOG"] as? String
                 cell.photoUid = videoUid
             } else {
                 print("Document does not exist")
@@ -156,9 +157,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         // Pass properties
         ownedImageViewController.filePath = selectedCell.filePath
         ownedImageViewController.photoUid = selectedCell.photoUid
-        ownedImageViewController.owned = ownedPhotosUid.contains(selectedCell.photoUid!)
-        ownedImageViewController.shared = nwmPhotosUid.contains(selectedCell.photoUid!)
-        ownedImageViewController.wm = wmPhotosUid.contains(selectedCell.photoUid!)
+        ownedImageViewController.owned = true
         // Move to image view
         let navController = UINavigationController(rootViewController: ownedImageViewController)
         self.present(navController, animated: true, completion: nil)
@@ -181,9 +180,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 // Pass properties
                 videoPlaybackController.filePath = selectedCell.filePath
                 videoPlaybackController.videoURL = downloadURL
-                videoPlaybackController.owned = self.ownedVideosUid.contains(selectedCell.photoUid!)
-                videoPlaybackController.shared = self.nwmVideosUid.contains(selectedCell.photoUid!)
-                videoPlaybackController.wm = self.wmVideosUid.contains(selectedCell.photoUid!)
+                videoPlaybackController.owned = true
                 videoPlaybackController.videoUid = selectedCell.photoUid
                 videoPlaybackController.thumbnail = selectedCell.myImage.image
                 // Move to video playback view
@@ -235,13 +232,9 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     fileprivate func clearArrays() {
         self.ownedPhotosUid.removeAll()
-        self.nwmPhotosUid.removeAll()
-        self.wmPhotosUid.removeAll()
         self.photosUid.removeAll()
         self.videosUid.removeAll()
         self.ownedVideosUid.removeAll()
-        self.nwmVideosUid.removeAll()
-        self.wmVideosUid.removeAll()
     }
     
     // MARK: Selectors
@@ -255,15 +248,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
         libraryCollectionView.reloadData()
     }
     
-    @IBAction func filterAction(_ sender: UIButton) {
-        filterChoices.forEach { (button) in
-        button.isHidden = !button.isHidden }
-    }
-    
-    
-    @IBAction func filterChoicesTapped(_ sender: UIButton) {
-    }
-    
     // MARK: API
     func fetchPhotos() {
         self.db.collection("users").document(userUid!).addSnapshotListener{snapshot, error in
@@ -272,19 +256,11 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
                 guard let data = document.data() else { return }
                 // Photos
                 self.ownedPhotosUid = data["ownedPhotos"] as! [String]
-                self.nwmPhotosUid = data["sharedPhotos"] as! [String]
-                self.wmPhotosUid = data["wmPhotos"] as! [String]
                 self.photosUid += data["ownedPhotos"] as! [String]
-                self.photosUid += data["sharedPhotos"] as! [String]
-                self.photosUid += data["wmPhotos"] as! [String]
                 
                 // Videos
                 self.ownedVideosUid = data["ownedVideos"] as! [String]
-                self.nwmVideosUid = data["sharedVideos"] as! [String]
-                self.wmVideosUid = data["wmVideos"] as! [String]
                 self.videosUid += data["ownedVideos"] as! [String]
-                self.videosUid += data["sharedVideos"] as! [String]
-                self.videosUid += data["wmVideos"] as! [String]
             } else {
                 print("Document does not exist")
                 return
