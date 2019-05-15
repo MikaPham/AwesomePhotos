@@ -293,4 +293,5 @@ class SharedViewController: UIViewController, UICollectionViewDataSource, UIColl
         DispatchQueue.main.async {
             self.libraryCollectionView.reloadData()
         }
-
+    }
+}
