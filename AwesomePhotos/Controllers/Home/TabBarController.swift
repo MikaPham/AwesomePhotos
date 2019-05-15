@@ -20,7 +20,7 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     
     lazy var db = Firestore.firestore()
     lazy var userUid = Auth.auth().currentUser?.uid
-    
+        
     var photosUid: [String] = []
     var ownedPhotosUid: [String] = []
     var nwmPhotosUid: [String] = []
@@ -200,12 +200,17 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             showVideoPlaybackView(indexPath)
         }
     }
-    
+        
     // MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
         self.libraryCollectionView.addSubview(self.refreshControl)
         fetchPhotos()
+        
+        //Auto resize the cell to fit different screen size
+        let width = (view.frame.size.width-20) / 3
+        let layout = libraryCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: width)
     }
     
     // MARK: Helpers
