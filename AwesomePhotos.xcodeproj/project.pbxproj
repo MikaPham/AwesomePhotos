@@ -52,6 +52,7 @@
 		C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4225EAF2284889C00D18815 /* DefaultsKeys.swift */; };
 		C435FB01228BE09300973CDA /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435FB00228BE09300973CDA /* SharedViewController.swift */; };
 		C435FB03228C2D1900973CDA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435FB02228C2D1900973CDA /* LocationManager.swift */; };
+		C435FB05228C62A800973CDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C435FB04228C62A800973CDA /* TabBar.storyboard */; };
 		C439612C2289676400485710 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612B2289676400485710 /* EditProfileViewController.swift */; };
 		C439612E2289677B00485710 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439612D2289677B00485710 /* EditProfileView.swift */; };
 		C439613B22897C8600485710 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439613922897C8500485710 /* ProgressViewController.swift */; };
@@ -67,7 +68,6 @@
 		CE2250D4227C11D500C7322A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D3227C11D500C7322A /* TabBarController.swift */; };
 		CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */; };
 		CE2250D8227C161100C7322A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2250D7227C161100C7322A /* CustomButton.swift */; };
-		CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2250DB227C261F00C7322A /* TabBar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +120,7 @@
 		C4225EAF2284889C00D18815 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		C435FB00228BE09300973CDA /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
 		C435FB02228C2D1900973CDA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C435FB04228C62A800973CDA /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		C439612B2289676400485710 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C439612D2289677B00485710 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		C439613922897C8500485710 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +136,6 @@
 		CE2250D3227C11D500C7322A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CE2250D5227C147B00C7322A /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE2250D7227C161100C7322A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		CE2250DA227C261F00C7322A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBar.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,9 +324,9 @@
 		18DDB8B1227D225400C07950 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C435FB04228C62A800973CDA /* TabBar.storyboard */,
 				182C98D9228BCDEB0074934D /* Info.storyboard */,
 				1847E5EB2289283900CC7282 /* OwnedImageView.storyboard */,
-				CE2250DB227C261F00C7322A /* TabBar.storyboard */,
 				18425FBD228A6E6600074D7C /* VideoPreview.storyboard */,
 			);
 			path = Home;
@@ -514,7 +514,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2250D9227C261F00C7322A /* TabBar.storyboard in Resources */,
 				C46A603A22897D43009D0CC3 /* Progress.storyboard in Resources */,
 				183E5AF82249BBC200F7309E /* LaunchScreen.storyboard in Resources */,
 				18425FBE228A6E6600074D7C /* VideoPreview.storyboard in Resources */,
@@ -523,6 +522,7 @@
 				183E5AF52249BBC200F7309E /* Assets.xcassets in Resources */,
 				189A2434226C272A0017CA03 /* Sharing.storyboard in Resources */,
 				183E5AF32249BBC100F7309E /* Main.storyboard in Resources */,
+				C435FB05228C62A800973CDA /* TabBar.storyboard in Resources */,
 				182C98DA228BCDEB0074934D /* Info.storyboard in Resources */,
 				1847E5EC2289283900CC7282 /* OwnedImageView.storyboard in Resources */,
 				C47B15642282C94700466CB8 /* Camera.storyboard in Resources */,
@@ -681,14 +681,6 @@
 				183E5AF72249BBC200F7309E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		CE2250DB227C261F00C7322A /* TabBar.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE2250DA227C261F00C7322A /* Base */,
-			);
-			name = TabBar.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
