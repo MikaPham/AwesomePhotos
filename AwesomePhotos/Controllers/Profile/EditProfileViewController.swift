@@ -48,27 +48,15 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
         let backButton = UIButton(type: .system)
-        backButton.setImage(#imageLiteral(resourceName: "Back"), for: .normal)
-//        backButton.setTitle("Done", for: .normal)
-        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.tintColor = .mainRed()
         
         backButton.addTarget(self, action: #selector(EditProfileViewController.backHome), for: .touchUpInside)
 
-        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backHome))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-
         navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
     }
-    
-    @objc func moveBack(){
-        let navController = UINavigationController(rootViewController: ProfileViewController())
-//        profileListener.remove()
-        self.present(navController, animated: true, completion: nil)
-    }
-   
 
     @objc func saveEdit(){
         view.endEditing(true)

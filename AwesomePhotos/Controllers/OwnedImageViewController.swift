@@ -28,17 +28,39 @@ class OwnedImageViewController: UIViewController {
     }
     
     fileprivate func configureNavBar() {
-        configureNavBar(title: "")
+        configureNavBar(title: "Photo")
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+        
+    }
+    
+    func setupNavigationBarItems(){
+        // Configure and assign settingsButton into Nav bar
+        let backButton = UIButton(type: .system)
+        backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .mainRed()
+        
+        backButton.addTarget(self, action: #selector(OwnedImageViewController.handleGoBack), for: .touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    @objc func goBack(){
+        navigationController?.popViewController(animated: true)
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()
+        setupNavigationBarItems()
         loadImage()
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     override func handleGoBack() {
@@ -147,7 +169,7 @@ class OwnedImageViewController: UIViewController {
             } else {
                 let downloadURL = url
                 UIPasteboard.general.url = downloadURL
-                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "The download link for the non-waterarked copy of this photo has been copied to your clipboard."), animated: true, completion: nil)
+                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "Download link for the non-watermarked copy has been copied to clipboard."), animated: true, completion: nil)
             }
         }
     }

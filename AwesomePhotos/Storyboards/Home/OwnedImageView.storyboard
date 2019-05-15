@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="anL-i1-rCr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="anL-i1-rCr" firstAttribute="top" secondItem="ed0-eV-Myi" secondAttribute="top" id="Tj8-ml-PsG"/>
+                            <constraint firstItem="anL-i1-rCr" firstAttribute="top" secondItem="ZeK-XF-VoC" secondAttribute="top" id="Tj8-ml-PsG"/>
                             <constraint firstAttribute="trailing" secondItem="anL-i1-rCr" secondAttribute="trailing" id="ZxS-jZ-hDY"/>
                             <constraint firstAttribute="bottom" secondItem="anL-i1-rCr" secondAttribute="bottom" id="oNz-1h-NxE"/>
                             <constraint firstItem="anL-i1-rCr" firstAttribute="leading" secondItem="ZeK-XF-VoC" secondAttribute="leading" id="sJk-ez-Vd1"/>

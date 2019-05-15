@@ -34,7 +34,7 @@ class VideoPlaybackController : UIViewController
     }
     
     fileprivate func configureNavBar() {
-        configureNavBar(title: "")
+        configureNavBar(title: "Video")
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
