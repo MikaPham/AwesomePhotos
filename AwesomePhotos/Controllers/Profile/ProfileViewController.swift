@@ -161,6 +161,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
         storagePieChart.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         storagePieChart.anchor(top: containerView.bottomAnchor, paddingTop: 44,  width: 400, height: 400)
     }
+    
+    var totalShared : Int = 0
+    
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -178,8 +181,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
             let myEmail = Auth.auth().currentUser?.email
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
             let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
-            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
-            self.updateProfileContentView(userEmail: myEmail!, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
+            self.totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            print(totalPhotos)
+            self.updateProfileContentView(userEmail: myEmail!, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: self.totalShared)
         }
         
         
@@ -273,6 +277,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
     }
     @objc func showAllShared(){
         print ("Move to all Shared")
+        print(totalShared)
     }
     
     

@@ -281,6 +281,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     // Handle BackButtonPressed
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        captureSession.stopRunning()
         let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
         let navController = UINavigationController(rootViewController: customBtnController)

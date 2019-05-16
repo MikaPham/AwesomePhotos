@@ -30,7 +30,6 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
     var ownedVideosUid: [String] = []
     
     var showPhotos = true
-    
     let thumbnailCache = NSCache<NSString, UIImage>()
     
     // MARK: UI

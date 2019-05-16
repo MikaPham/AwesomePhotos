@@ -22,7 +22,7 @@ class ProgressViewController : UIViewController{
         super.viewDidLoad()
         
         createContent()
-        tableview.reloadData()
+        //tableview.reloadData()
     }
     
     //1. Creates content for cells
