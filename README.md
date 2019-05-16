@@ -73,7 +73,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Pham Minh Quang** - *Initial work*
+* **Minh Kha Pham** - *Initial work*
+* **Pham Minh Quang** - *Initial work*
+* **Nguyen Duc Thien Hieu** - *Initial work*
+* **Rasmus Bak Petersen** - *Initial work*
+* **Duong Viet Trung** - *Initial work*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
