@@ -26,6 +26,10 @@ change bundle identifier
 
 * [XCode](https://developer.apple.com/xcode/)
 
+* [Cloud Firestore](https://firebase.google.com/docs/firestore)
+* [Cloud Storage](https://cloud.google.com/storage/)
+* [Cloud Functions](https://cloud.google.com/functions/)
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
