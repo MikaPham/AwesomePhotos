@@ -156,18 +156,6 @@ class VideoPlaybackController : UIViewController
         }
     }
     
-    fileprivate func convertRFC3339DateTimeToString(rfc3339DateTime: Date!) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        var userVisibleDateTimeString: String!
-        let userVisibleDateFormatter = DateFormatter()
-        userVisibleDateFormatter.dateStyle = DateFormatter.Style.medium
-        userVisibleDateFormatter.timeStyle = DateFormatter.Style.short
-        userVisibleDateTimeString = userVisibleDateFormatter.string(from: rfc3339DateTime!)
-        
-        return userVisibleDateTimeString
-    }
-    
     fileprivate func deleteVideo() {
         if self.owned! {
             self.db.collection("medias").document(self.videoUid!).updateData(
