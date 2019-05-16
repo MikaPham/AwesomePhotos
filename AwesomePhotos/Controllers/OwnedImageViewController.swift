@@ -93,23 +93,23 @@ class OwnedImageViewController: UIViewController {
     }
     
     fileprivate func getInfo() {
-        let reference = Storage.storage()
-            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-            .child(self.filePath!)
-        
-        reference.getMetadata { metadata, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
+        self.db.collection("photos").document(photoUid!).getDocument{document, error in
+            if let document = document, document.exists {
+                guard let data = document.data() else { return }
                 let infoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
                 let infoController: InfoController = infoStoryboard.instantiateViewController(withIdentifier: "InfoController") as! InfoController
-                infoController.infoArray.append((metadata?.name)!)
-                infoController.infoArray.append("\(metadata!.size) bytes")
-                infoController.infoArray.append( self.convertRFC3339DateTimeToString(rfc3339DateTime: metadata?.timeCreated))
-                infoController.infoArray.append((metadata?.md5Hash)!)
+                infoController.infoArray.append(data["name"] as! String)
+                infoController.infoArray.append("\(data["size"] ?? 0) bytes")
+                infoController.infoArray.append("\(data["height"] ?? 0) x \(data["width"] ?? 0)")
+                let location = data["location"] as! [String:String]
+                let locationString = "\(location["ward"] ?? ""), \(location["town"] ?? ""), \(location["country"] ?? "")"
+                infoController.infoArray.append(locationString)
                 infoController.infoArray.append(self.owned! ? "Yes" : "No")
                 infoController.selectedImage = self.selectedImage.image
                 self.navigationController?.pushViewController(infoController, animated: true)
+            } else {
+                print("Document does not exist")
+                return
             }
         }
     }
@@ -146,18 +146,6 @@ class OwnedImageViewController: UIViewController {
         actionSheet.addAction(downloadAction)
         actionSheet.addAction(deleteAction)
         present(actionSheet, animated: true, completion: nil)
-    }
-    
-    fileprivate func convertRFC3339DateTimeToString(rfc3339DateTime: Date!) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        var userVisibleDateTimeString: String!
-        let userVisibleDateFormatter = DateFormatter()
-        userVisibleDateFormatter.dateStyle = DateFormatter.Style.medium
-        userVisibleDateFormatter.timeStyle = DateFormatter.Style.short
-        userVisibleDateTimeString = userVisibleDateFormatter.string(from: rfc3339DateTime!)
-        
-        return userVisibleDateTimeString
     }
     
     fileprivate func createDownloadLink() {

@@ -11,7 +11,7 @@ import Firebase
 class InfoController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var imgView: UIImageView!
     
-    var titleArray = ["Name","Size","Time created","MD5 hash","Owned content"]
+    var titleArray = ["Name","Size","Original resolution","Location","Owned content"]
     var infoArray = [String]()
     var selectedImage: UIImage?
     

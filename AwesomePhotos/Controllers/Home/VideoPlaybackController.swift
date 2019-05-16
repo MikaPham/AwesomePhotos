@@ -104,23 +104,23 @@ class VideoPlaybackController : UIViewController
     }
     
     fileprivate func getInfo() {
-        let reference = Storage.storage()
-            .reference(forURL: "gs://awesomephotos-b794e.appspot.com/")
-            .child(self.filePath!)
-        
-        reference.getMetadata { metadata, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
+        self.db.collection("medias").document(videoUid!).getDocument{document, error in
+            if let document = document, document.exists {
+                guard let data = document.data() else { return }
                 let infoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
                 let infoController: InfoController = infoStoryboard.instantiateViewController(withIdentifier: "InfoController") as! InfoController
-                infoController.infoArray.append((metadata?.name)!)
-                infoController.infoArray.append("\(metadata!.size) bytes")
-                infoController.infoArray.append( self.convertRFC3339DateTimeToString(rfc3339DateTime: metadata?.timeCreated))
-                infoController.infoArray.append((metadata?.md5Hash)!)
+                infoController.infoArray.append(data["name"] as! String)
+                infoController.infoArray.append("\(data["size"] ?? 0) bytes")
+                infoController.infoArray.append("\(data["height"] ?? 0) x \(data["width"] ?? 0)")
+                let location = data["location"] as! [String:String]
+                let locationString = "\(location["ward"] ?? ""), \(location["town"] ?? ""), \(location["country"] ?? "")"
+                infoController.infoArray.append(locationString)
                 infoController.infoArray.append(self.owned! ? "Yes" : "No")
                 infoController.selectedImage = self.thumbnail
                 self.navigationController?.pushViewController(infoController, animated: true)
+            } else {
+                print("Document does not exist")
+                return
             }
         }
     }
