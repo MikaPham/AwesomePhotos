@@ -26,6 +26,7 @@ class LocationManager: NSObject {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
+//        self.locationManager.requestLocation()
     }
 }
 
@@ -38,12 +39,20 @@ extension LocationManager: CLLocationManagerDelegate {
                          didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-            
-        case .notDetermined         : print("notDetermined")        // location permission not asked for yet
-        case .authorizedWhenInUse   : print("authorizedWhenInUse")  // location authorized
-        case .authorizedAlways      : print("authorizedAlways")     // location authorized
-        case .restricted            : print("restricted")           // TODO: handle
-        case .denied                : print("denied")               // TODO: handle
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            print("notDetermined")        // location permission not asked for yet
+        case .authorizedWhenInUse:
+            locationManager.requestWhenInUseAuthorization()
+            print("authorizedWhenInUse")  // location authorized
+        case .authorizedAlways:
+            print("authorizedAlways")     // location authorized
+        case .restricted:
+            print("restricted")           // TODO: handle
+        case .denied:
+            print("Location denied")               // TODO: handle
+        @unknown default:
+            break
         }
     }
 }

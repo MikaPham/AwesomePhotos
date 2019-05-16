@@ -30,6 +30,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
     var captureLocation: [String: String]!
+    let defaultCaptureLocation:[String: String] = ["ward": "", "town": "", "city": ""]
     private let locationManager = LocationManager()
     
     //MARK: - Initialization
@@ -148,7 +149,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         //Upload video to firestorage
         let id = UUID()
         let videoName = id.uuidString
-        let data: [String:Any] = ["name": videoName + ".mov","owners":[userUid],"location": captureLocation!, "sharedWith":[], "sharedWM":[]]
+        let data: [String:Any] = ["name": videoName + ".mov","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation]
         reference = db.collection("medias").addDocument(data: data) {(error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -375,8 +376,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     fileprivate func setCurrentLocation() {
-        self.captureLocation = ["ward": "", "town": "", "city": ""]
-        
         guard let exposedLocation = self.locationManager.exposedLocation else {
             print("*** Error in \(#function): exposedLocation is nil")
             return
@@ -389,7 +388,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
             let country = String(placemark.country!) // Country
             
             self.captureLocation = ["ward" : ward, "town": town, "country": country]
-            print(self.captureLocation ?? "")
+            
         }
     }
 }

@@ -24,13 +24,14 @@ class CameraViewController : UIViewController {
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
     var captureLocation: [String: String]!
+    let defaultCaptureLocation:[String: String] = ["ward": "", "town": "", "city": ""]
     private let locationManager = LocationManager()
     
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         self.setCurrentLocation()
+        navigationController?.navigationBar.isHidden = true
         createCaptureSession()
         configureInputOutput()
         configurePreviewLayer()
@@ -193,7 +194,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid],"location": captureLocation! ,"sharedWith":[], "sharedWM":[]]
+        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {
@@ -273,8 +274,6 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
     
     // Retrieve user's location into captureLocation
     fileprivate func setCurrentLocation() {
-        self.captureLocation = ["ward": "", "town": "", "city": ""]
-        
         guard let exposedLocation = self.locationManager.exposedLocation else {
             print("*** Error in \(#function): exposedLocation is nil")
             return
