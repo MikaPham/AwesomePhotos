@@ -26,6 +26,9 @@ change bundle identifier to a unique identifier
 
 * [XCode](https://developer.apple.com/xcode/)
 
+## Database and Services used
+
+* [Firebase Authentication](https://firebase.google.com/docs/auth)
 * [Cloud Firestore](https://firebase.google.com/docs/firestore)
 * [Cloud Storage](https://cloud.google.com/storage/)
 * [Cloud Functions](https://cloud.google.com/functions/)
