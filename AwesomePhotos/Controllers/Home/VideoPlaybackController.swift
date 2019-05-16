@@ -79,6 +79,8 @@ class VideoPlaybackController : UIViewController
         configurePreviewView()
         trackTimeProgress()
         setupNavigationBarItems()
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     //MARK: - Methods
@@ -334,7 +336,7 @@ class VideoPlaybackController : UIViewController
             totalDurationLabal.isHidden = true
             currentTimeLabel.isHidden = true
             slider.thumbTintColor = .clear
-            self.navigationController?.navigationBar.isHidden = true
+//            self.navigationController?.navigationBar.isHidden = true
             isDismissed = true
         }
         else{
@@ -343,7 +345,7 @@ class VideoPlaybackController : UIViewController
             totalDurationLabal.isHidden = false
             currentTimeLabel.isHidden = false
             slider.thumbTintColor = .red
-            self.navigationController?.navigationBar.isHidden = false
+//            self.navigationController?.navigationBar.isHidden = false
             isDismissed = false
         }
     }
