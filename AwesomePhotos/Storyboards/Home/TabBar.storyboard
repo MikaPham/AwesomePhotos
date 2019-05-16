@@ -131,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="-862.31884057971024" y="632.8125"/>
         </scene>
-        <!--Owned-->
+        <!--My Files-->
         <scene sceneID="cyW-Hy-NYx">
             <objects>
                 <viewController storyboardIdentifier="TabBarController" id="71L-gT-JkR" customClass="TabBarController" customModule="AwesomePhotos" customModuleProvider="target" sceneMemberID="viewController">
@@ -214,7 +214,7 @@
                         <viewLayoutGuide key="safeArea" id="o2e-8z-3Aw"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Owned" largeTitleDisplayMode="always" id="wA0-ge-IrK">
+                    <navigationItem key="navigationItem" title="My Files" largeTitleDisplayMode="always" id="wA0-ge-IrK">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Hd3-yU-Zi7">
                             <rect key="frame" x="115" y="7.6666666666666679" width="184" height="29.000000000000004"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -310,11 +310,11 @@
             </objects>
             <point key="canvasLocation" x="2121.739130434783" y="320.75892857142856"/>
         </scene>
-        <!--Library-->
+        <!--My Files-->
         <scene sceneID="x5q-AW-Sr6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3na-TJ-d0f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Library" image="Library" landscapeImage="Library" id="ukj-QU-wYF"/>
+                    <tabBarItem key="tabBarItem" title="My Files" image="Library" landscapeImage="Library" id="ukj-QU-wYF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="e5Q-S2-z4E">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
