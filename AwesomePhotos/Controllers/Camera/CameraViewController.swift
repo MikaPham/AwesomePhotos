@@ -147,16 +147,7 @@ class CameraViewController : UIViewController {
         captureSession.stopRunning()
         performSegue(withIdentifier: "segueToVideo", sender: self)
     }
-    
-    //11. Preview latest file taken
-    @IBAction func previewLatestFileButtonPressed(_sender: UIButton) {
-        captureSession.stopRunning()
-        let customBtnStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
-        let customBtnController: CustomButton = customBtnStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton
-        let navController = UINavigationController(rootViewController: customBtnController)
-        self.present(navController, animated: true, completion: nil)
-    }
-    
+        
 }
 
 extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDelegate {
