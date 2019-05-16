@@ -145,11 +145,30 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         }
     }
     
+    private func resolutionForLocalVideo(url: URL) -> CGSize? {
+        guard let track = AVURLAsset(url: url).tracks(withMediaType: AVMediaType.video).first else { return nil }
+        let size = track.naturalSize.applying(track.preferredTransform)
+        return CGSize(width: abs(size.width), height: abs(size.height))
+    }
+    
+    private func getVideoSize(url: URL) -> Int {
+        do {
+            let resources = try url.resourceValues(forKeys:[.fileSizeKey])
+            let fileSize = resources.fileSize!
+            return fileSize
+        } catch {
+            print(error.localizedDescription)
+        }
+        return 0
+    }
+    
     func uploadVideo() {
         //Upload video to firestorage
         let id = UUID()
         let videoName = id.uuidString
-        let data: [String:Any] = ["name": videoName + ".mov","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation]
+        let resolution = resolutionForLocalVideo(url: self.videoLocation()!)
+        let fileSize = getVideoSize(url: self.videoLocation()!)
+        let data: [String:Any] = ["name": videoName + ".mov","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation, "height": resolution?.height ?? 0, "width": resolution?.width ?? 0, "size": fileSize]
         reference = db.collection("medias").addDocument(data: data) {(error) in
             if let error = error {
                 print(error.localizedDescription)

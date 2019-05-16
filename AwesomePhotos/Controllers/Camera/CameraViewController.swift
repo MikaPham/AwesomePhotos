@@ -194,7 +194,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation]
+        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation, "size": imageData.count, "height": image!.size.height * image!.scale, "width": image!.size.width * image!.scale]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {
