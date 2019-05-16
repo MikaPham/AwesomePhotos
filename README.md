@@ -12,32 +12,19 @@ What things you need to install the software and how to install them
 
 ```
 Swift Version 5
-Xcode
+Xcode 9.3 or Higher
 ```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
 ```
 pod install
-```
-
-And repeat
+change bundle identifier
 
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [XCode](https://developer.apple.com/xcode/) - The web framework used
 
 ## Contributing
 
@@ -58,6 +45,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* https://github.com/danielgindi/Charts 
+* https://github.com/rubygarage/media-watermark
