@@ -257,12 +257,13 @@ class TabBarController: UIViewController, UICollectionViewDataSource, UICollecti
             if let document = snapshot, document.exists {
                 guard let data = document.data() else { return }
                 // Photos
-                self.ownedPhotosUid = data["ownedPhotos"] as! [String]
-                self.photosUid += data["ownedPhotos"] as! [String]
-                
+                let photos = data["ownedPhotos"] as! [String]
+                self.ownedPhotosUid = photos.reversed()
+                self.photosUid = photos.reversed()
                 // Videos
-                self.ownedVideosUid = data["ownedVideos"] as! [String]
-                self.videosUid += data["ownedVideos"] as! [String]
+                let videos = data["ownedVideos"] as! [String]
+                self.ownedVideosUid = videos.reversed()
+                self.videosUid = videos.reversed()
             } else {
                 print("Document does not exist")
                 return

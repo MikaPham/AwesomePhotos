@@ -276,17 +276,22 @@ class SharedViewController: UIViewController, UICollectionViewDataSource, UIColl
             if let document = snapshot, document.exists {
                 guard let data = document.data() else { return }
                 // Photos
-                self.nwmPhotosUid = data["sharedPhotos"] as! [String]
-                self.wmPhotosUid = data["wmPhotos"] as! [String]
-                self.photosUid += data["sharedPhotos"] as! [String]
-                self.photosUid += data["wmPhotos"] as! [String]
+                let nwmP = data["sharedPhotos"] as! [String]
+                let wmP = data["wmPhotos"] as! [String]
                 
+                self.nwmPhotosUid = nwmP.reversed()
+                self.wmPhotosUid = wmP.reversed()
+                self.photosUid.append(contentsOf: wmP.reversed())
+                self.photosUid.append(contentsOf: nwmP.reversed())
+                    
                 // Videos
-                self.nwmVideosUid = data["sharedVideos"] as! [String]
-                self.wmVideosUid = data["wmVideos"] as! [String]
-                self.videosUid += data["sharedVideos"] as! [String]
-                self.videosUid += data["wmVideos"] as! [String]
-                
+                let nwmV = data["sharedVideos"] as! [String]
+                let wmV = data["wmVideos"] as! [String]
+    
+                self.nwmVideosUid = nwmV.reversed()
+                self.wmVideosUid = wmV.reversed()
+                self.videosUid.append(contentsOf: wmV.reversed())
+                self.videosUid.append(contentsOf: nwmV.reversed())
             } else {
                 print("Document does not exist")
                 return
