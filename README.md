@@ -1,4 +1,4 @@
-# Project Title
+# AWESOME PHOTOS
 
 One Paragraph of project description goes here
 
