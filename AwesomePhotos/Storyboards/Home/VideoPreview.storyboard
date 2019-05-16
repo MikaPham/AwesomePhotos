@@ -126,6 +126,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Play" width="48" height="48"/>
+        <image name="Play" width="72" height="72"/>
     </resources>
 </document>

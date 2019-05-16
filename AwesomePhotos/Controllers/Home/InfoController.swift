@@ -22,11 +22,13 @@ class InfoController : UIViewController, UITableViewDelegate, UITableViewDataSou
         configureNavBar(title: "Info")
         setupNavigationBarItems()
         imgView.image = selectedImage
+        navigationController?.hidesBarsOnTap = false
     }
     
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
         let backButton = UIButton(type: .system)
+        backButton.setTitle("          ", for: .normal)
         backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.tintColor = .mainRed()
@@ -39,6 +41,7 @@ class InfoController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @objc func goBack(){
         navigationController?.popViewController(animated: true)
+        navigationController?.hidesBarsOnTap = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

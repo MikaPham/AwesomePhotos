@@ -88,6 +88,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
         let backButton = UIButton(type: .system)
+        backButton.setTitle("          ", for: .normal)
         backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.tintColor = .mainRed()
@@ -100,6 +101,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @objc func goBack(){
         navigationController?.popViewController(animated: true)
+        navigationController?.hidesBarsOnTap = true
     }
     
     fileprivate func loadImage() {
@@ -122,6 +124,8 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
         fetchUsers()
         makeObsSearchBar()
         configureShareButton()
+        navigationController?.hidesBarsOnTap = false
+
     }
     
     

@@ -118,9 +118,9 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     
     func prepareWatermark() -> MediaItem {
         let video = MediaItem(url: self.videoLocation()!)
-        let logoImage = UIImage(named: "AwesomeLogo")
+        let logoImage = UIImage(named: "AwesomeLogoAlpha")
         let firstElement = MediaElement(image: logoImage!)
-        firstElement.frame = CGRect(x: 10, y: video!.size.height-200, width: logoImage!.size.width/3, height: logoImage!.size.height/3)
+        firstElement.frame = CGRect(x: video!.size.width/2-logoImage!.size.width/4.5, y: video!.size.height/2-logoImage!.size.height, width: logoImage!.size.width/2, height: logoImage!.size.height/2)
         video!.add(elements: [firstElement])
         return video!
     }

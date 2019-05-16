@@ -84,6 +84,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
         let backButton = UIButton(type: .system)
+        backButton.setTitle("          ", for: .normal)
         backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.tintColor = .mainRed()
@@ -96,6 +97,7 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
     
     @objc func goBack(){
         navigationController?.popViewController(animated: true)
+        navigationController?.hidesBarsOnTap = true
     }
     
     //MARK: Init
@@ -107,6 +109,8 @@ class EditPermissionController : UIViewController, UITableViewDelegate, UITableV
         configureNavBar(title: "Edit permission")
         setupNavigationBarItems()
         permissionSelector.selectedSegmentIndex = 0
+        
+        navigationController?.hidesBarsOnTap = false
     }
     
     //MARK: Selectors

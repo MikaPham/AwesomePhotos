@@ -39,8 +39,35 @@ class VideoPlaybackController : UIViewController
     fileprivate func configureNavBar() {
         configureNavBar(title: "Video")
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
+
+        let moreButton = UIButton(type: .system)
+        moreButton.setImage(#imageLiteral(resourceName: "MoreOptions"), for: .normal)
+        moreButton.translatesAutoresizingMaskIntoConstraints = false
+        moreButton.tintColor = .mainRed()
+        
+        moreButton.addTarget(self, action: #selector(showMoreActionSheet), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    func setupNavigationBarItems(){
+        // Configure and assign settingsButton into Nav bar
+        let backButton = UIButton(type: .system)
+        backButton.setTitle("          ", for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .mainRed()
+        
+        backButton.addTarget(self, action: #selector(OwnedImageViewController.handleGoBack), for: .touchUpInside)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.mainRed()
+    }
+    
+    @objc func goBack(){
+        navigationController?.popViewController(animated: true)
+        
     }
     
     
@@ -51,6 +78,9 @@ class VideoPlaybackController : UIViewController
         configureNavBar()
         configurePreviewView()
         trackTimeProgress()
+        setupNavigationBarItems()
+        navigationController?.hidesBarsOnTap = true
+
     }
     
     //MARK: - Methods
@@ -110,7 +140,8 @@ class VideoPlaybackController : UIViewController
                 let infoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
                 let infoController: InfoController = infoStoryboard.instantiateViewController(withIdentifier: "InfoController") as! InfoController
                 infoController.infoArray.append(data["name"] as! String)
-                infoController.infoArray.append("\(data["size"] ?? 0) bytes")
+                let size = data["size"] as! Double
+                infoController.infoArray.append(NSString(format: "%.2f MB", size/1000000.0) as String)
                 infoController.infoArray.append("\(data["height"] ?? 0) x \(data["width"] ?? 0)")
                 let location = data["location"] as! [String:String]
                 let locationString = "\(location["ward"] ?? ""), \(location["town"] ?? ""), \(location["country"] ?? "")"
@@ -123,18 +154,6 @@ class VideoPlaybackController : UIViewController
                 return
             }
         }
-    }
-    
-    fileprivate func convertRFC3339DateTimeToString(rfc3339DateTime: Date!) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        var userVisibleDateTimeString: String!
-        let userVisibleDateFormatter = DateFormatter()
-        userVisibleDateFormatter.dateStyle = DateFormatter.Style.medium
-        userVisibleDateFormatter.timeStyle = DateFormatter.Style.short
-        userVisibleDateTimeString = userVisibleDateFormatter.string(from: rfc3339DateTime!)
-        
-        return userVisibleDateTimeString
     }
     
     fileprivate func deleteVideo() {
@@ -173,7 +192,7 @@ class VideoPlaybackController : UIViewController
         }
         let copyLinkAction = UIAlertAction(title: "Copy link", style: .default) {[unowned self] action in
             UIPasteboard.general.url = self.videoURL
-            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "The download link for the non-waterarked copy of this photo has been copied to your clipboard."), animated: true, completion: nil)
+            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "Download link for the non-waterarked copy has been copied to clipboard."), animated: true, completion: nil)
         }
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
         
@@ -305,7 +324,7 @@ class VideoPlaybackController : UIViewController
             totalDurationLabal.isHidden = true
             currentTimeLabel.isHidden = true
             slider.thumbTintColor = .clear
-            self.navigationController?.navigationBar.isHidden = true
+//            self.navigationController?.navigationBar.isHidden = true
             isDismissed = true
         }
         else{
@@ -314,7 +333,7 @@ class VideoPlaybackController : UIViewController
             totalDurationLabal.isHidden = false
             currentTimeLabel.isHidden = false
             slider.thumbTintColor = .red
-            self.navigationController?.navigationBar.isHidden = false
+//            self.navigationController?.navigationBar.isHidden = false
             isDismissed = false
         }
     }

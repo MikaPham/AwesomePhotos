@@ -31,7 +31,15 @@ class OwnedImageViewController: UIViewController {
     fileprivate func configureNavBar() {
         configureNavBar(title: "Photo")
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showMoreActionSheet))
+        
+        let moreButton = UIButton(type: .system)
+        moreButton.setImage(#imageLiteral(resourceName: "MoreOptions"), for: .normal)
+        moreButton.translatesAutoresizingMaskIntoConstraints = false
+        moreButton.tintColor = .mainRed()
+        
+        moreButton.addTarget(self, action: #selector(showMoreActionSheet), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.mainRed()
         
     }
@@ -39,6 +47,7 @@ class OwnedImageViewController: UIViewController {
     func setupNavigationBarItems(){
         // Configure and assign settingsButton into Nav bar
         let backButton = UIButton(type: .system)
+        backButton.setTitle("          ", for: .normal)
         backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.tintColor = .mainRed()
@@ -99,7 +108,8 @@ class OwnedImageViewController: UIViewController {
                 let infoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
                 let infoController: InfoController = infoStoryboard.instantiateViewController(withIdentifier: "InfoController") as! InfoController
                 infoController.infoArray.append(data["name"] as! String)
-                infoController.infoArray.append("\(data["size"] ?? 0) bytes")
+                let size = data["size"] as! Double
+                infoController.infoArray.append(NSString(format: "%.2f MB", size/1000000.0) as String)
                 infoController.infoArray.append("\(data["height"] ?? 0) x \(data["width"] ?? 0)")
                 let location = data["location"] as! [String:String]
                 let locationString = "\(location["ward"] ?? ""), \(location["town"] ?? ""), \(location["country"] ?? "")"
@@ -134,7 +144,7 @@ class OwnedImageViewController: UIViewController {
         }
         let downloadAction = UIAlertAction(title: "Download", style: .default) {[unowned self] action in
             UIImageWriteToSavedPhotosAlbum(self.selectedImage.image!, self, nil, nil)
-            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Download successful", message: "You can find a copy of this photo in your Photos Album."), animated: true, completion: nil)
+            self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Download successful", message: "This photo is saved to Photos."), animated: true, completion: nil)
         }
         let cancel = UIAlertAction(title:"Cancel", style: .cancel, handler: nil)
         
@@ -159,7 +169,7 @@ class OwnedImageViewController: UIViewController {
             } else {
                 let downloadURL = url
                 UIPasteboard.general.url = downloadURL
-                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "Download link for the non-watermarked copy has been copied to clipboard."), animated: true, completion: nil)
+                self.present(AlertService.basicAlert(imgName: "SmileFace", title: "Link Copied", message: "Download link for the non-waterarked copy has been copied to clipboard."), animated: true, completion: nil)
             }
         }
     }
