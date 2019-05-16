@@ -1,6 +1,6 @@
 # AWESOME PHOTOS
 
-One Paragraph of project description goes here
+An iOS applicationn that allows users to take photo/media and store them on the Cloud (Firebase specifically). Photos/Medias can also be shared to other users.
 
 ## Getting Started
 
