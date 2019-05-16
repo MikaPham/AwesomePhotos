@@ -40,7 +40,6 @@ class PreviewVideoViewController : UIViewController
         avPlayer = AVPlayer(url: videoURL)
         
         //Checks to see if video has loaded and is ready to be played
-        //avPlayer!.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
 
         //View setup
         let avPlayerLayer = AVPlayerLayer(player: avPlayer)
@@ -54,14 +53,6 @@ class PreviewVideoViewController : UIViewController
         avPlayer!.replaceCurrentItem(with: playerItem)
         avPlayer!.pause()
     }
-    
-    //2. Checks to see if the video has been loaded and is ready to play
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "currentItem.loadedTimeRanges"{
-//            activityIndicator.stopAnimating()
-//            containerView.isHidden = true
-//        }
-//    }
     
     //2. Tracks the duration of time played in the video
     fileprivate func trackTimeProgress(){
@@ -176,6 +167,7 @@ class PreviewVideoViewController : UIViewController
         self.delegate?.uploadVideo()
         self.present(AlertService.basicAlert(imgName: "WinkFace", title: "Video Uploaded", message: "This video has been uploaded to the cloud."), animated: true, completion: nil)
     }
+    
     //7. Dismisses the video preview
     @IBAction func dismissPreviewButtonPressed(_ sender: UIButton) {
         self.delegate?.clearTmpDir()

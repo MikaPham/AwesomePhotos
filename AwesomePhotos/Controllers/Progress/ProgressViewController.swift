@@ -69,16 +69,4 @@ extension ProgressViewController : UITableViewDelegate, UITableViewDataSource {
         tableView.deleteRows(at: [indexPath], with: .automatic )
     }
     
-    
-    //HEADERS
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
-//        return cell.contentView
-//        
-//    }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
-//        return cell.bounds.height
-//    }
 }

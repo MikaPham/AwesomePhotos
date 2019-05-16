@@ -127,14 +127,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
         // add the scroll view to self.view
         view.addSubview(scrollView)
         
-        
-//        // constrain the scroll view
-//        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//
         // Add container and it's elements into ProfileVC
         scrollView.addSubview(contentView)
         contentView.addSubview(containerView)

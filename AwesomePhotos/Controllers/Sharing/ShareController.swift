@@ -86,7 +86,7 @@ class ShareController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func setupNavigationBarItems(){
-        // Configure and assign settingsButton into Nav bar
+        // Configure and assign backButton into Nav bar
         let backButton = UIButton(type: .system)
         backButton.setTitle("          ", for: .normal)
         backButton.setImage(#imageLiteral(resourceName: "Path"), for: .normal)

@@ -23,7 +23,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet weak var timeRecordedLbl: UILabel!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var switchToCameraBtn: UIButton!
-//    @IBOutlet weak var fileStorage: UIButton!
     @IBOutlet weak var recordingButton: UIButton!
     @IBOutlet weak var darkBottomView: UIView!
     
@@ -347,7 +346,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     func modifyButtonsWhileRecording(){
         recordingButton.setImage(UIImage(named: "shutter"), for: .normal)
         switchToCameraBtn.isHidden = true
-//        fileStorage.isHidden = true
         closeBtn.isHidden = true
         darkBottomView.alpha = 0.2
     }
@@ -356,7 +354,6 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     func displayButtonsWhileNotRecording(){
         recordingButton.setImage(UIImage(named: "RedRecord"), for: .normal)
         switchToCameraBtn.isHidden = false
-//        fileStorage.isHidden = false
         closeBtn.isHidden = false
         darkBottomView.alpha = 0.7
     }
