@@ -79,8 +79,6 @@ class VideoPlaybackController : UIViewController
         configurePreviewView()
         trackTimeProgress()
         setupNavigationBarItems()
-        navigationController?.hidesBarsOnTap = true
-
     }
     
     //MARK: - Methods
@@ -288,6 +286,7 @@ class VideoPlaybackController : UIViewController
         else{
             avPlayer!.pause()
             centerPlayButton.setImage(UIImage(named: "Play"), for: .normal)
+            centerPlayButton.tintColor = .mainRed()
             isPlaying = false
         }
     }
@@ -317,14 +316,14 @@ class VideoPlaybackController : UIViewController
     var isDismissed = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        centerPlayButton.isHidden = false
+//        centerPlayButton.isHidden = false
         if isDismissed == false {
             centerPlayButton.isHidden = true
             slider.isHidden = true
             totalDurationLabal.isHidden = true
             currentTimeLabel.isHidden = true
             slider.thumbTintColor = .clear
-//            self.navigationController?.navigationBar.isHidden = true
+            self.navigationController?.navigationBar.isHidden = true
             isDismissed = true
         }
         else{
@@ -333,8 +332,10 @@ class VideoPlaybackController : UIViewController
             totalDurationLabal.isHidden = false
             currentTimeLabel.isHidden = false
             slider.thumbTintColor = .red
-//            self.navigationController?.navigationBar.isHidden = false
+            self.navigationController?.navigationBar.isHidden = false
             isDismissed = false
         }
     }
+    
+   
 }

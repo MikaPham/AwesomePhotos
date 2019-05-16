@@ -47,27 +47,6 @@
                                                     <action selector="switchCameraButtonPressed:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="Q69-OP-8A6"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-lT-C2I" userLabel="ShowsPhotosBtn">
-                                                <rect key="frame" x="20" y="33" width="48" height="48"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="J2Q-HX-IRf"/>
-                                                    <constraint firstAttribute="height" constant="48" id="Uab-da-Z0p"/>
-                                                </constraints>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="2"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
-                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="previewLatestFileButtonPressedWith_sender:" destination="DGd-Jb-BAz" eventType="touchUpInside" id="MRv-29-J3M"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-ZN-jku" userLabel="Capture">
                                                 <rect key="frame" x="172" y="21" width="70" height="70"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,11 +75,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ZPI-vf-cBp" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" constant="1" id="8ig-Pt-u6u"/>
-                                            <constraint firstItem="bcv-lT-C2I" firstAttribute="leading" secondItem="Npe-8u-KB3" secondAttribute="leading" constant="20" id="9O6-Gs-iIK"/>
                                             <constraint firstItem="8MC-kd-kUb" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" id="MeC-4M-0hA"/>
                                             <constraint firstAttribute="height" constant="110" id="OzT-g9-os5"/>
                                             <constraint firstItem="8MC-kd-kUb" firstAttribute="leading" secondItem="HV8-ZN-jku" secondAttribute="trailing" constant="28" id="U0Y-si-oJ7"/>
-                                            <constraint firstItem="bcv-lT-C2I" firstAttribute="centerY" secondItem="HV8-ZN-jku" secondAttribute="centerY" constant="1" id="WSB-Uh-IgH"/>
                                             <constraint firstItem="HV8-ZN-jku" firstAttribute="centerX" secondItem="Npe-8u-KB3" secondAttribute="centerX" id="bRE-jR-Mqi"/>
                                             <constraint firstItem="HV8-ZN-jku" firstAttribute="top" secondItem="Npe-8u-KB3" secondAttribute="top" constant="21" id="pgP-G8-eTy"/>
                                         </constraints>
@@ -586,7 +563,7 @@
         <image name="CameraView" width="30" height="23"/>
         <image name="Close" width="32" height="32"/>
         <image name="Download" width="48" height="48"/>
-        <image name="Play" width="48" height="48"/>
+        <image name="Play" width="72" height="72"/>
         <image name="Record" width="48" height="48"/>
         <image name="RedRecord" width="72" height="72"/>
         <image name="Upload" width="72" height="72"/>
