@@ -85,7 +85,7 @@ class EditProfileViewController: GenericViewController<EditProfileView>, UITextF
         
         //Alert user if succeeded or failed
             // If update fails
-            if let error = error {
+            if  (error != nil) {
                 let alert = AlertService.basicAlert(imgName: "GrinFace", title: "Changes could not be saved", message: "The email or password you entered is incorrect")
                 self.present(alert, animated: true)
                 return

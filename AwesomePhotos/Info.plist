@@ -22,9 +22,9 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string></string>
-	<key>NSMicrophoneUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow AwesomePhotos to access your photo library.</string>

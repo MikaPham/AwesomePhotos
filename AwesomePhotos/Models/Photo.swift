@@ -21,6 +21,6 @@ class Photo: NSObject {
     @objc var width: NSNumber?
     @objc var height: NSNumber?
     @objc var createdDate: NSDate?
-    @objc var location: String?
+    @objc var location: [String: String]?
     @objc var lastViewed: NSDate?
 }

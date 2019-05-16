@@ -4,6 +4,8 @@ import FirebaseStorage
 import Firebase
 import FirebaseFirestore
 import MediaWatermark
+import MapKit
+
 
 
 class CameraViewController : UIViewController {
@@ -21,10 +23,14 @@ class CameraViewController : UIViewController {
     let db = Firestore.firestore()
     let userUid = Auth.auth().currentUser?.uid
     let userEmail = Auth.auth().currentUser?.email
+    var captureLocation: [String: String]!
+    let defaultCaptureLocation:[String: String] = ["ward": "", "town": "", "city": ""]
+    private let locationManager = LocationManager()
     
     //MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setCurrentLocation()
         navigationController?.navigationBar.isHidden = true
         createCaptureSession()
         configureInputOutput()
@@ -188,7 +194,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         guard let imageDataWm = wmImage.jpegData(compressionQuality: 0.55) else {return}
         
         //Upload to Firestore
-        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid],"sharedWith":[], "sharedWM":[]]
+        let data: [String:Any] = ["name": photoName + ".jpg","owners":[userUid], "sharedWith":[], "sharedWM":[], "location": captureLocation ?? defaultCaptureLocation, "size": imageData.count, "height": image!.size.height * image!.scale, "width": image!.size.width * image!.scale]
         var ref: DocumentReference? = nil
         ref = db.collection("photos").addDocument(data: data) { (error) in
             if let error = error {
@@ -251,6 +257,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         }
     }
     
+    // Initialize WM copy
     fileprivate func makeWmCopyOfImage() {
         let item = MediaItem(image: image!)
         let watermarkString = "\(userEmail ?? "")\n[AwesomePhotos]"
@@ -265,6 +272,23 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate, UploadImageDeleg
         }
     }
     
+    // Retrieve user's location into captureLocation
+    fileprivate func setCurrentLocation() {
+        guard let exposedLocation = self.locationManager.exposedLocation else {
+            print("*** Error in \(#function): exposedLocation is nil")
+            return
+        }
+        
+        self.locationManager.getPlace(for: exposedLocation) { placemark in
+            guard let placemark = placemark else { return }
+            let ward = String(placemark.subAdministrativeArea!) // District
+            let town = String(placemark.locality!) // Town
+            let country = String(placemark.country!) // Country
+
+            self.captureLocation = ["ward" : ward, "town": town, "country": country]
+            print(self.captureLocation ?? "")
+        }
+    }
 }
 
 extension UIImage{
@@ -274,7 +298,4 @@ extension UIImage{
         let image:UIImage = UIImage.init(cgImage: cgImage)
         return image
     }
-    //            let cIImage : CIImage = CIImage(cgImage: (image?.cgImage!)!).oriented(forExifOrientation: 6)
-    //            let mirroredImage = cIImage.transformed(by: CGAffineTransform(scaleX: -1, y: 1))
-    //            image = UIImage.convert(from: mirroredImage)
 }
