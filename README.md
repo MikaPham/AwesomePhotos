@@ -18,7 +18,7 @@ Xcode 9.3 or Higher
 ### Installing
 ```
 pod install
-change bundle identifier
+change bundle identifier to a unique identifier
 
 ```
 
