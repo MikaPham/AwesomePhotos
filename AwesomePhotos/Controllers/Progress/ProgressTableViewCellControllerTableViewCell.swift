@@ -37,8 +37,8 @@ class ProgressTableViewCellControllerTableViewCell: UITableViewCell {
                                                object: nil,
                                                queue: nil,
                                                using: catchProgressNotification)
-        
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         
         super.setSelected(selected, animated: animated)
@@ -56,7 +56,6 @@ class ProgressTableViewCellControllerTableViewCell: UITableViewCell {
         
         uploadName.text = progressCell.label
         progressBarView.progress = progressCell.progress
-        progressVC.progressCells.append(progressCell)
     }
     
     
@@ -65,13 +64,13 @@ class ProgressTableViewCellControllerTableViewCell: UITableViewCell {
         
         guard let progress = notification.userInfo as? [String : Float] else { return }
         for (key, value) in progress {
-            progressBarView.setProgress(value, animated: true)
             if key == "IMG"{
                 uploadName.text = "IMG_\(smallId).JPG" as String
             }
             else{
                 uploadName.text = "VID_\(smallId).MOV" as String
             }
+            progressBarView.setProgress(value, animated: true)
         }
     }
     

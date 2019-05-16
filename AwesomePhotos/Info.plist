@@ -20,18 +20,24 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow AwesomePhotos to track you</string>
+	<key>Privacy - Camera Usage Description
+Privacy - Camera Usage Description
+Privacy - Camera</key>
+	<string>Please allow AwesomePhotos to access your Camera.</string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Please allow us to track you.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow AwesomePhotos to access your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Please allow us to save your data.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UIMainStoryboardFile</key>
 	<string>TabBar</string>
 	<key>UIRequiredDeviceCapabilities</key>

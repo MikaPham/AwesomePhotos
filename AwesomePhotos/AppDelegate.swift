@@ -14,11 +14,14 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+    }
+    
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
-        
+    
         
         let libraryStoryboard: UIStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
         let libraryController: CustomButton = libraryStoryboard.instantiateViewController(withIdentifier: "CustomButton") as! CustomButton

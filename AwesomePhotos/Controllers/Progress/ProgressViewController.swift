@@ -11,23 +11,22 @@ import UIKit
 
 class ProgressViewController : UIViewController{
     
+    //MARK:- PROPERTIES
     @IBOutlet var tableview: UITableView!
     var preview = PreviewmageViewController()
     var cameraVC = CameraViewController()
-    var p = ProgressTableViewCellControllerTableViewCell()
     var progressCells = [Progress]()
 
+    //MARK: INITIALIZATION
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        //createContent()
-        progressCells = []
+        createContent()
         tableview.reloadData()
     }
     
-    //2. Creates content for cells
+    //1. Creates content for cells
     func createContent(){
-        
         let newContent = Progress(label: "Loading...", progress: 0.0)
         progressCells.append(newContent)
     }
@@ -54,7 +53,6 @@ extension ProgressViewController : UITableViewDelegate, UITableViewDataSource {
         guard editingStyle == .delete else { return }
         
         progressCells.remove(at: indexPath.row)
-        cameraVC.uploadTask?.cancel()
         tableView.deleteRows(at: [indexPath], with: .automatic )
     }
     

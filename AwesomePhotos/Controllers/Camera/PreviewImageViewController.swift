@@ -79,7 +79,6 @@ class PreviewmageViewController : UIViewController {
     //1. Uploads the taken photo to Firebase Storage
     @IBAction func uploadToStorageButtonPressed(_ sender: UIButton) {
         self.delegate?.uploadImage()
-        performSegue(withIdentifier: "segueToProgress", sender: self)
         print("Uploading to Storage")
     }
     
@@ -101,12 +100,3 @@ class PreviewmageViewController : UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-
-
-//!! Tracks progress of image uplaoding -- might be used for later 
-//            uploadTask.observe(.progress){ (snapshot) in
-//                print(snapshot.progress ?? "Progress cancelled")
-//            }
-//            uploadTask.resume()
-//            dismiss(animated: true, completion: nil)
-//       }
