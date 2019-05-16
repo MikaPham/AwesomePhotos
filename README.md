@@ -24,7 +24,7 @@ change bundle identifier
 
 ## Built With
 
-* [XCode](https://developer.apple.com/xcode/) - The web framework used
+* [XCode](https://developer.apple.com/xcode/)
 
 ## Contributing
 
