@@ -251,8 +251,8 @@
                         <segue destination="3na-TJ-d0f" kind="relationship" relationship="viewControllers" id="rcz-BF-I8w"/>
                         <segue destination="wTc-UJ-LxQ" kind="relationship" relationship="viewControllers" id="CfW-SX-L6f"/>
                         <segue destination="jdQ-18-H4V" kind="relationship" relationship="viewControllers" id="ZaL-ad-mb4"/>
-                        <segue destination="UZM-Ff-hgv" kind="relationship" relationship="viewControllers" id="B5g-wJ-SzD"/>
                         <segue destination="Iy7-9D-gqG" kind="relationship" relationship="viewControllers" id="0XX-V0-oq8"/>
+                        <segue destination="Dm2-tE-Don" kind="relationship" relationship="viewControllers" id="ha9-SE-dgx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4R-Gr-Lhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,20 +276,33 @@
             <point key="canvasLocation" x="-746" y="-1240"/>
         </scene>
         <!--Progress-->
-        <scene sceneID="cxX-GU-R6x">
+        <scene sceneID="PN8-4B-0e4">
             <objects>
-                <viewController id="UZM-Ff-hgv" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5E1-Qa-OdQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="miJ-fQ-11o"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Progress" image="Progress" id="Mkr-Iz-agA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eKs-zj-nbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="Dm2-tE-Don" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Progress" image="Progress" id="6Xm-QL-d76">
+                        <color key="badgeColor" red="0.89396136999999998" green="0.26227232810000001" blue="0.1766711473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ode-2e-eWr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wfG-34-wqd" kind="relationship" relationship="rootViewController" id="6IB-Sp-quK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vSS-mu-fLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="163.768115942029" y="865.84821428571422"/>
+            <point key="canvasLocation" x="87" y="633"/>
+        </scene>
+        <!--Progress-->
+        <scene sceneID="jMw-eF-nS2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Progress" id="wfG-34-wqd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HBp-R8-iap"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8Y-3g-WMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="867"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="oH3-8p-ToJ">

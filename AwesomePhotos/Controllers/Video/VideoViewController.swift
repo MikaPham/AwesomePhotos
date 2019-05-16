@@ -19,6 +19,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var videoCaptureDevice : AVCaptureDevice?
     var myPreviewLayer : AVCaptureVideoPreviewLayer?
     var stopWatch = VideoStopwatch()
+    var progressStatusCompleted : Float?
     @IBOutlet weak var timeRecordedLbl: UILabel!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var switchToCameraBtn: UIButton!
@@ -32,6 +33,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     var captureLocation: [String: String]!
     let defaultCaptureLocation:[String: String] = ["ward": "", "town": "", "city": ""]
     private let locationManager = LocationManager()
+    private var uploadTask : StorageUploadTask?
     
     //MARK: - Initialization
     override func viewDidLoad() {
@@ -192,7 +194,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                                 print(error.localizedDescription)
                             } else {
                                 let uploadVideoPath = videoStorageReference.child(videoName + "-\(value).mov")
-                                _ = uploadVideoPath.putFile(from: result.processedUrl!, metadata: storageMetaData){metadata, error in
+                                self.uploadTask = uploadVideoPath.putFile(from: result.processedUrl!, metadata: storageMetaData){metadata, error in
                                     if (error != nil) {
                                         print("Error is", error as Any)
                                     } else {
@@ -209,6 +211,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
                                         }
                                     }
                                 }
+                                self.observeVideoUpload()
                             }
                         }
                     } else {
@@ -240,8 +243,22 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
    
+    //7. Observes where the progress of the file is at in %
+    func observeVideoUpload(){
+        uploadTask!.observe(.progress) { [weak self] (snapshot) in
+            guard let progressStatus = snapshot.progress else { return }
+            
+            self!.progressStatusCompleted = Float(progressStatus.fractionCompleted)
+            
+            //Adds observer to listen when photo is being uploaded
+            let progressName = Notification.Name(rawValue: progressCapturedKey)
+            let statuses = ["MOV" : self!.progressStatusCompleted]
+            NotificationCenter.default.post(name: progressName, object: self, userInfo: statuses as [AnyHashable : Any])
+        }
+    }
+
     
-    //7. Stores the video in this temporary directory in the cache
+    //8. Stores the video in this temporary directory in the cache
     func videoLocation() -> URL? {
         let directory = NSTemporaryDirectory().appending("tempWork")
         let videoURL = URL(fileURLWithPath: directory).appendingPathExtension("mov")
@@ -252,7 +269,7 @@ class VideoViewController : UIViewController, AVCaptureFileOutputRecordingDelega
         return videoURL
     }
     
-    //8. Updates the time recorded and resets it, if video stopped recording
+    //9. Updates the time recorded and resets it, if video stopped recordin
     @objc func updateElapsedTimeLabel(_ timer: Timer) {
         if stopWatch.isRunning {
             timeRecordedLbl.text = stopWatch.elapsedTimeAsString
