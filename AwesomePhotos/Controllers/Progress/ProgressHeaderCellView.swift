@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 class ProgressHeaderCellView : UITableViewCell{
     
-    @IBOutlet weak var NameLbl: UILabel!
+//    @IBOutlet weak var NameLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

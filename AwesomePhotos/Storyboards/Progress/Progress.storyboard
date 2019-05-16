@@ -18,32 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="44" id="0x2-nj-CGb" customClass="ProgressHeaderCellView" customModule="AwesomePhotos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0x2-nj-CGb" id="xmL-PM-OjJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UPLOADS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bep-Gg-nDJ">
-                                            <rect key="frame" x="20" y="12" width="101" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="87" id="osJ-K0-KJE" customClass="ProgressTableViewCellControllerTableViewCell" customModule="AwesomePhotos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="87"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="87" id="osJ-K0-KJE" customClass="ProgressTableViewCellControllerTableViewCell" customModule="AwesomePhotos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="87"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="osJ-K0-KJE" id="poy-U0-UzX">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="86.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="86.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="818-Xp-bqC">
-                                            <rect key="frame" x="20" y="39" width="317" height="16"/>
+                                            <rect key="frame" x="20" y="49" width="317" height="16"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -54,7 +37,7 @@
                                             <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MediaUpload.mov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpD-8j-FeX">
-                                            <rect key="frame" x="20" y="0.0" width="343" height="29"/>
+                                            <rect key="frame" x="20" y="10" width="343" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="29" id="nzY-9J-M7B"/>
                                                 <constraint firstAttribute="width" constant="343" id="vZm-pl-f7v"/>
@@ -66,13 +49,14 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="818-Xp-bqC" firstAttribute="top" secondItem="gpD-8j-FeX" secondAttribute="bottom" constant="10" id="0EC-OZ-cPe"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="818-Xp-bqC" secondAttribute="bottom" constant="40" id="9G9-rL-y9k"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="818-Xp-bqC" secondAttribute="bottom" constant="20" id="9G9-rL-y9k"/>
                                         <constraint firstItem="818-Xp-bqC" firstAttribute="leading" secondItem="poy-U0-UzX" secondAttribute="leadingMargin" id="NK6-r5-WuE"/>
-                                        <constraint firstItem="gpD-8j-FeX" firstAttribute="top" secondItem="poy-U0-UzX" secondAttribute="top" id="XIa-2X-NgJ"/>
+                                        <constraint firstItem="gpD-8j-FeX" firstAttribute="top" secondItem="poy-U0-UzX" secondAttribute="top" constant="10" id="XIa-2X-NgJ"/>
                                         <constraint firstItem="818-Xp-bqC" firstAttribute="top" secondItem="gpD-8j-FeX" secondAttribute="bottom" constant="10" id="bdg-hj-TAn"/>
                                         <constraint firstItem="gpD-8j-FeX" firstAttribute="leading" secondItem="poy-U0-UzX" secondAttribute="leading" constant="20" id="w2j-iW-f89"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.85490196080000003" green="0.2156862745" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="progressBarView" destination="818-Xp-bqC" id="0Dn-Jy-ZaP"/>
                                     <outlet property="uploadName" destination="gpD-8j-FeX" id="rUh-9E-837"/>

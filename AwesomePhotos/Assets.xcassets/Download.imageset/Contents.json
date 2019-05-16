@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "round_save_alt_black_48pt_2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "round_save_alt_black_48pt_2x.png",
       "scale" : "2x"
     },
     {

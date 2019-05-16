@@ -221,9 +221,11 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
     func setupNavBar(){
         
         // Set up navigation bar
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
         navigationItem.title = "Profile"

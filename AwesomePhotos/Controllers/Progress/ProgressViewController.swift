@@ -20,14 +20,27 @@ class ProgressViewController : UIViewController{
     //MARK: INITIALIZATION
     override func viewDidLoad(){
         super.viewDidLoad()
+        setupNavBar()
         
         createContent()
         //tableview.reloadData()
     }
     
+    func setupNavBar(){
+        // Set up navigation bar
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainRed()]
+        navigationItem.title = "Progress"
+    }
+    
     //1. Creates content for cells
     func createContent(){
-        let newContent = Progress(label: "Loading...", progress: 0.0)
+        let newContent = Progress(label: "File name", progress: 0.0)
         progressCells.append(newContent)
     }
 }
@@ -58,14 +71,14 @@ extension ProgressViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     //HEADERS
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
-        return cell.contentView
-        
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
-        return cell.bounds.height
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
+//        return cell.contentView
+//        
+//    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! ProgressHeaderCellView
+//        return cell.bounds.height
+//    }
 }

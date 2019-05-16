@@ -174,6 +174,7 @@ class PreviewVideoViewController : UIViewController
     
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
         self.delegate?.uploadVideo()
+        self.present(AlertService.basicAlert(imgName: "WinkFace", title: "Video Uploaded", message: "This video has been uploaded to the cloud."), animated: true, completion: nil)
     }
     //7. Dismisses the video preview
     @IBAction func dismissPreviewButtonPressed(_ sender: UIButton) {

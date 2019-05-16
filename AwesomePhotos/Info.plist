@@ -18,26 +18,28 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Please allow AwesomePhotos to track you</string>
-	<key>Privacy - Camera Usage Description
-Privacy - Camera Usage Description
-Privacy - Camera</key>
-	<string>Please allow AwesomePhotos to access your Camera.</string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow AwesomePhotos to track you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow us to track you.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Please allow AwesomePhotos to access your Microphone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow AwesomePhotos to access your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow us to save your data.</string>
+	<key>Privacy - Camera Usage Description
+Privacy - Camera Usage Description
+Privacy - Camera</key>
+	<string>Please allow AwesomePhotos to access your Camera.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>UIMainStoryboardFile</key>
 	<string>TabBar</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -54,8 +56,6 @@ Privacy - Camera</key>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Please allow AwesomePhotos to access your Microphone</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
