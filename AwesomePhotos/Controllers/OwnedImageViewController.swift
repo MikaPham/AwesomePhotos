@@ -99,7 +99,8 @@ class OwnedImageViewController: UIViewController {
                 let infoStoryboard: UIStoryboard = UIStoryboard(name: "Info", bundle: nil)
                 let infoController: InfoController = infoStoryboard.instantiateViewController(withIdentifier: "InfoController") as! InfoController
                 infoController.infoArray.append(data["name"] as! String)
-                infoController.infoArray.append("\(data["size"] ?? 0) bytes")
+                let size = data["size"] as! Double
+                infoController.infoArray.append(NSString(format: "%.2f MB", size/1000000.0) as String)
                 infoController.infoArray.append("\(data["height"] ?? 0) x \(data["width"] ?? 0)")
                 let location = data["location"] as! [String:String]
                 let locationString = "\(location["ward"] ?? ""), \(location["town"] ?? ""), \(location["country"] ?? "")"
