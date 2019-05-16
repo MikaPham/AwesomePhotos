@@ -44,6 +44,7 @@
 		5D10BA1A2266D6BB0011237D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA192266D6BB0011237D /* CameraViewController.swift */; };
 		5D10BA322266DC7D0011237D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA302266DC7D0011237D /* RoundButton.swift */; };
 		5D10BA332266DC7D0011237D /* VideoStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10BA312266DC7D0011237D /* VideoStopwatch.swift */; };
+		5D63F0DA228D2CC4000BA473 /* ProgressHeaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D63F0D9228D2CC4000BA473 /* ProgressHeaderCellView.swift */; };
 		5DA8C6AA226B057800E6FE21 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */; };
 		5DEDE8972272EF7D00BAF1D2 /* VideoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */; };
 		879706322265B1610036FA2B /* FirebaseFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879706312265B1610036FA2B /* FirebaseFunctions.swift */; };
@@ -110,6 +111,7 @@
 		5D10BA192266D6BB0011237D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		5D10BA302266DC7D0011237D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		5D10BA312266DC7D0011237D /* VideoStopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStopwatch.swift; sourceTree = "<group>"; };
+		5D63F0D9228D2CC4000BA473 /* ProgressHeaderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeaderCellView.swift; sourceTree = "<group>"; };
 		5DA8C6A9226B057800E6FE21 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5DEDE8962272EF7D00BAF1D2 /* VideoPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewViewController.swift; sourceTree = "<group>"; };
 		76BCC0AC2DDF9DD473DD0E18 /* Pods_AwesomePhotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomePhotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,6 +417,7 @@
 			children = (
 				C439613A22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift */,
 				C439613922897C8500485710 /* ProgressViewController.swift */,
+				5D63F0D9228D2CC4000BA473 /* ProgressHeaderCellView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				C439613C22897C8600485710 /* ProgressTableViewCellControllerTableViewCell.swift in Sources */,
 				CE2250D6227C147B00C7322A /* LibraryCollectionViewCell.swift in Sources */,
 				C439612E2289677B00485710 /* EditProfileView.swift in Sources */,
+				5D63F0DA228D2CC4000BA473 /* ProgressHeaderCellView.swift in Sources */,
 				C4225EB02284889C00D18815 /* DefaultsKeys.swift in Sources */,
 				C4BDC2A1227ECCA600596D67 /* CustomTotalButtons.swift in Sources */,
 				C4BDC2AE2280074000596D67 /* SettingsViewController.swift in Sources */,
@@ -808,13 +812,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobbb;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobbb123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -827,13 +831,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7XXXHW74DS;
+				DEVELOPMENT_TEAM = MZD4V9J498;
 				INFOPLIST_FILE = AwesomePhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobbb;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AwesomePhotosBobbb123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
