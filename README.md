@@ -6,6 +6,21 @@ An iOS applicationn that allows users to take photo/media and store them on the 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Features
+- User can register and login to our application using their email account.
+
+- Once logged in, a user can: 
++ Change their password
++ Take a picture or a video.
+
+- After capturing a media, the media can be uploaded to Firebase Storage. The upload/save to local process can be done manually by pressing the upload/save button or it can be set automatically in the Settings screen.
+
+- Each user can add owner or share their medias to other users. By adding an owner, the original copy of the photo is given to the owner(s) and by sharing, a watermarked copy will be shared.
+
+- A user can also edit the permission of their photos or videos.
+
+
+
 ### Prerequisites
 
 What things you need to install the software and how to install them
@@ -52,5 +67,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+Libraries used: 
 * https://github.com/danielgindi/Charts 
 * https://github.com/rubygarage/media-watermark
+
+References: 
+* http://khou22.com/ios/2016/08/10/swift-navigation-basics-how-to-setup-a-simple-tab-bar-app.html
+* https://www.youtube.com/watch?v=2-nxXXQyVuE
+* https://www.youtube.com/channel/UCuP2vJ6kRutQBfRmdcI92mA
