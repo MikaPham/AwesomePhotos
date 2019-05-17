@@ -30,9 +30,10 @@ Xcode 9.3 or Higher
 
 ### Installing
 ```
+open Xcode
 pod install
 change bundle identifier to a unique identifier
-
+Type Cmd + R or press the build button
 ```
 
 ## Built With
