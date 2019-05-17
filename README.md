@@ -68,8 +68,15 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 Libraries used: 
-* https://github.com/danielgindi/Charts 
-* https://github.com/rubygarage/media-watermark
+* https://github.com/danielgindi/Charts - Pie Chart
+* https://github.com/rubygarage/media-watermark - Watermark
+* https://firebase.google.com/docs/auth - Firebase Authentication
+* https://firebase.google.com/docs/firestore - Firebase Firestore
+* https://firebase.google.com/docs/storage - Firebase Storage
+* https://github.com/SnapKit/SnapKit - Snapkit
+* https://github.com/raulriera/TextFieldEffects - TextFieldEffects
+* https://github.com/ReactiveX/RxSwift - RxSwift
+* https://github.com/ReactiveX/RxSwift/tree/master/RxCocoa - RxCocoa
 
 References: 
 * http://khou22.com/ios/2016/08/10/swift-navigation-basics-how-to-setup-a-simple-tab-bar-app.html
