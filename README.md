@@ -6,12 +6,10 @@ An iOS applicationn that allows users to take photo/media and store them on the 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Features
+### Main Features
 - User can register and login to our application using their email account.
 
-- Once logged in, a user can: 
-+ Change their password
-+ Take a picture or a video.
+- Once logged in, a user can: Change their password; take a picture or a video, and other core features.
 
 - After capturing a media, the media can be uploaded to Firebase Storage. The upload/save to local process can be done manually by pressing the upload/save button or it can be set automatically in the Settings screen.
 
