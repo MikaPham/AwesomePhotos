@@ -173,7 +173,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
             let myEmail = Auth.auth().currentUser?.email
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
             let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
-            self.totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            self.totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["wmPhotos"] as? [String] ?? [""]).count + (myData?["wmVideos"] as? [String] ?? [""]).count
             print(totalPhotos)
             self.updateProfileContentView(userEmail: myEmail!, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: self.totalShared)
         }
@@ -289,7 +289,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate  {
             let myEmail = myData?["email"] as? String ?? ""
             let totalPhotos = (myData?["ownedPhotos"] as? [String] ?? [""]).count
             let totalVideos = (myData?["ownedVideos"] as? [String] ?? [""]).count
-            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedPhotos"] as? [String] ?? [""]).count
+            let totalShared = (myData?["sharedPhotos"] as? [String] ?? [""]).count + (myData?["sharedVideos"] as? [String] ?? [""]).count + (myData?["wmPhotos"] as? [String] ?? [""]).count + (myData?["wmVideos"] as? [String] ?? [""]).count
             self.updateProfileContentView(userEmail: myEmail, totalPhotos: totalPhotos, totalVideos: totalVideos, totalShared: totalShared)
         }
     }
