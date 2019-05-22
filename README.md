@@ -55,7 +55,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 * **Pham Minh Quang** - *Initial work*
 * **Minh Kha Pham** - *Initial work*
-* **Pham Minh Quang** - *Initial work*
 * **Nguyen Duc Thien Hieu** - *Initial work*
 * **Rasmus Bak Petersen** - *Initial work*
 * **Duong Viet Trung** - *Initial work*
