@@ -1,6 +1,6 @@
 # AWESOME PHOTOS
 
-An iOS applicationn that allows users to take photo/media and store them on the Cloud (Firebase specifically). Photos/Medias can also be shared to other users.
+An iOS application that allows users to take photo/media and store them on the Cloud (Firebase specifically). Photos/Medias can also be shared to other users.
 
 ## Getting Started
 
@@ -54,7 +54,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Pham Minh Quang** - *Initial work*
-* **Minh Kha Pham** - *Initial work*
+* **Pham Minh Kha** - *Initial work*
 * **Nguyen Duc Thien Hieu** - *Initial work*
 * **Rasmus Bak Petersen** - *Initial work*
 * **Duong Viet Trung** - *Initial work*
